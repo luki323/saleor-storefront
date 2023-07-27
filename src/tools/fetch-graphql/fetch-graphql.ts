@@ -55,7 +55,6 @@ export async function fetchGraphQL<Result, Variables>(
     if (error instanceof Error) {
       console.error(error.cause);
     }
-
     throw error;
   }
 }

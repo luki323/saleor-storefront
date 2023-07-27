@@ -7,7 +7,8 @@
     "prettier": "prettier -u -w --cache",
     "fmt": "pnpm run prettier .",
     "prepare": "husky install",
-    "generate": "DOTENV_CONFIG_PATH=.env.local graphql-codegen -r dotenv/config"
+    "generate": "DOTENV_CONFIG_PATH=.env.local graphql-codegen -r dotenv/config",
+    "postinstall": "stale-dep -u"
   },
   "dependencies": {
     "graphql": "^16.7.1",
@@ -42,6 +43,7 @@
     "prettier": "3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "server-only": "^0.0.1",
+    "stale-dep": "^0.7.0",
     "tailwindcss": "^3.3.3",
     "typescript": "5.1.6"
   }

@@ -31,5 +31,13 @@
       }
     ],
     "no-console": ["error", {"allow": ["error"]}]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.cjs"],
+      "rules": {
+        "functional/immutable-data": "off"
+      }
+    }
+  ]
 }

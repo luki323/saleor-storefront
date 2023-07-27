@@ -3,6 +3,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "prettier": "prettier -u -w --cache",
     "fmt": "pnpm run prettier ."
   },
@@ -12,10 +13,15 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-next": "^13.4.12",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-functional": "^5.0.8",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "3.0.0",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
-    "prettier": "3.0.0",
     "typescript": "5.1.6"
   }
 }

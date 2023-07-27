@@ -8,7 +8,8 @@
     "fmt": "pnpm run prettier .",
     "prepare": "husky install",
     "generate": "DOTENV_CONFIG_PATH=.env.local graphql-codegen -r dotenv/config",
-    "postinstall": "stale-dep -u"
+    "postinstall": "stale-dep -u",
+    "commit": "commit"
   },
   "dependencies": {
     "graphql": "^16.7.1",
@@ -17,6 +18,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@commitlint/prompt-cli": "^17.6.7",
+    "@commitlint/types": "^17.4.4",
     "@graphql-codegen/add": "^5.0.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/import-types-preset": "^2.2.6",

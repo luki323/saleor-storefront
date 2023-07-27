@@ -5,7 +5,8 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier -u -w --cache",
-    "fmt": "pnpm run prettier ."
+    "fmt": "pnpm run prettier .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "^13.4.12",
@@ -24,6 +25,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-functional": "^5.0.8",
     "eslint-plugin-import": "^2.27.5",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",
     "prettier": "3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",

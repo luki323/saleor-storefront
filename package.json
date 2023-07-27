@@ -6,30 +6,42 @@
     "lint": "next lint",
     "prettier": "prettier -u -w --cache",
     "fmt": "pnpm run prettier .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "generate-graphql-types": "DOTENV_CONFIG_PATH=.env.local graphql-codegen -r dotenv/config"
   },
   "dependencies": {
+    "graphql": "^16.7.1",
     "next": "^13.4.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegengit/add": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/import-types-preset": "^2.2.6",
+    "@graphql-codegen/typed-document-node": "^5.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "autoprefixer": "^10.4.14",
+    "dotenv": "^16.3.1",
     "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.12",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-functional": "^5.0.8",
     "eslint-plugin-import": "^2.27.5",
+    "graphql-config": "^5.0.2",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",
     "prettier": "3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
+    "server-only": "^0.0.1",
     "tailwindcss": "^3.3.3",
     "typescript": "5.1.6"
   }

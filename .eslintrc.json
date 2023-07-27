@@ -42,8 +42,10 @@
     {
       "files": ["*.cjs"],
       "rules": {
-        "functional/immutable-data": "off"
+        "functional/immutable-data": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["src/graphql/generated/**"]
 }

@@ -1,0 +1,5 @@
+# Packages
+/pnpm-lock.yaml
+
+# Next.js
+/dist

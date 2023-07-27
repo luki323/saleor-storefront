@@ -21,7 +21,7 @@
     "eslint-config-next": "^13.4.12",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-functional": "^5.0.8",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "postcss": "^8.4.27",
     "prettier": "3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",

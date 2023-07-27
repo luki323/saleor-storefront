@@ -1,6 +1,12 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
-  "plugins": ["functional", "import"],
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/strict",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "functional", "import"],
   "rules": {
     "functional/no-this-expressions": "error",
     "functional/no-classes": "error",

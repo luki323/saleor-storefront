@@ -3,3 +3,7 @@
 
 # Next.js
 /dist
+/next-env.d.ts
+
+# Other
+.DS_Store

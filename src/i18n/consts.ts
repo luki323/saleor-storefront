@@ -1,0 +1,10 @@
+import {getCanonicalLocales} from '@/tools/get-canonical-locales';
+
+export const DEFAULT_LOCALE = 'en-US';
+export const AVAILABLE_LOCALES = [DEFAULT_LOCALE] as const;
+
+// https://tc39.es/ecma402/#sec-canonicalizelocalelist
+// Throws an error if language tag is not structurally valid
+void getCanonicalLocales(...AVAILABLE_LOCALES);
+
+export type AvailableLocle = (typeof AVAILABLE_LOCALES)[number];

@@ -6,7 +6,7 @@
     "next/core-web-vitals",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "functional", "import"],
+  "plugins": ["@typescript-eslint", "functional", "import", "formatjs"],
   "rules": {
     "functional/no-this-expressions": "error",
     "functional/no-classes": "error",
@@ -35,6 +35,10 @@
         "newlines-between": "always",
         "warnOnUnassignedImports": true
       }
+    ],
+    "formatjs/enforce-id": [
+      "error",
+      {"idInterpolationPattern": "[sha512:contenthash:base64:6]"}
     ],
     "no-console": ["error", {"allow": ["error"]}]
   },

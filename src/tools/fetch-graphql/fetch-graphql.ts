@@ -1,7 +1,8 @@
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 
+import {MIME_TYPES} from './consts';
+import {formatMimeTypes} from './format-mime-types';
 import {isValidResponse} from './is-valid-response';
-import {MIME_TYPES, formatMimeTypes} from './mime-types';
 
 import type {TypedDocumentString} from '@/graphql/generated/documents';
 import type {FormattedExecutionResult} from 'graphql';

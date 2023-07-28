@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formatjs/intl':
+    specifier: ^2.9.0
+    version: 2.9.0(typescript@5.1.6)
   graphql:
     specifier: ^16.7.1
     version: 16.7.1
@@ -31,6 +34,9 @@ devDependencies:
   '@commitlint/types':
     specifier: ^17.4.4
     version: 17.4.4
+  '@formatjs/cli':
+    specifier: ^6.1.3
+    version: 6.1.3
   '@graphql-codegen/add':
     specifier: ^5.0.0
     version: 5.0.0(graphql@16.7.1)
@@ -82,6 +88,9 @@ devDependencies:
   eslint-config-prettier:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.45.0)
+  eslint-plugin-formatjs:
+    specifier: ^4.10.3
+    version: 4.10.3(eslint@8.45.0)
   eslint-plugin-functional:
     specifier: ^5.0.8
     version: 5.0.8(eslint@8.45.0)(typescript@5.1.6)
@@ -948,6 +957,98 @@ packages:
   /@eslint/js@8.44.0:
     resolution: {integrity: sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@formatjs/cli@6.1.3:
+    resolution: {integrity: sha512-PdTXZTY8LqxwmvFqdifn89gjXnPUpGtGyFs0BnoeLuOuxZFSnBfIs5WQCVMaJnr1+0vNNlXyT0VAIAwjRpf6BA==}
+    engines: {node: '>= 16'}
+    hasBin: true
+    peerDependencies:
+      '@vue/compiler-sfc': ^3.2.34
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
+    dev: true
+
+  /@formatjs/ecma402-abstract@1.17.0:
+    resolution: {integrity: sha512-6ueQTeJZtwKjmh23bdkq/DMqH4l4bmfvtQH98blOSbiXv/OUiyijSW6jU22IT8BNM1ujCaEvJfTtyCYVH38EMQ==}
+    dependencies:
+      '@formatjs/intl-localematcher': 0.4.0
+      tslib: 2.6.1
+
+  /@formatjs/fast-memoize@2.2.0:
+    resolution: {integrity: sha512-hnk/nY8FyrL5YxwP9e4r9dqeM6cAbo8PeU9UjyXojZMNvVad2Z06FAVHyR3Ecw6fza+0GH7vdJgiKIVXTMbSBA==}
+    dependencies:
+      tslib: 2.6.1
+    dev: false
+
+  /@formatjs/icu-messageformat-parser@2.6.0:
+    resolution: {integrity: sha512-yT6at0qc0DANw9qM/TU8RZaCtfDXtj4pZM/IC2WnVU80yAcliS3KVDiuUt4jSQAeFL9JS5bc2hARnFmjPdA6qw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      '@formatjs/icu-skeleton-parser': 1.6.0
+      tslib: 2.6.1
+
+  /@formatjs/icu-skeleton-parser@1.6.0:
+    resolution: {integrity: sha512-eMmxNpoX/J1IPUjPGSZwo0Wh+7CEvdEMddP2Jxg1gQJXfGfht/FdW2D5XDFj3VMbOTUQlDIdZJY7uC6O6gjPoA==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      tslib: 2.6.1
+
+  /@formatjs/intl-displaynames@6.5.0:
+    resolution: {integrity: sha512-sg/nR8ILEdUl+2sWu6jc1nQ5s04yucGlH1RVfatW8TSJ5uG3Yy3vgigi8NNC/BuhcncUNPWqSpTCSI1hA+rhiw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      '@formatjs/intl-localematcher': 0.4.0
+      tslib: 2.6.1
+    dev: false
+
+  /@formatjs/intl-listformat@7.4.0:
+    resolution: {integrity: sha512-ifupb+balZUAF/Oh3QyGRqPRWGSKwWoMPR0cYZEG7r61SimD+m38oFQqVx/3Fp7LfQFF11m7IS+MlxOo2sKINA==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      '@formatjs/intl-localematcher': 0.4.0
+      tslib: 2.6.1
+    dev: false
+
+  /@formatjs/intl-localematcher@0.4.0:
+    resolution: {integrity: sha512-bRTd+rKomvfdS4QDlVJ6TA/Jx1F2h/TBVO5LjvhQ7QPPHp19oPNMIum7W2CMEReq/zPxpmCeB31F9+5gl/qtvw==}
+    dependencies:
+      tslib: 2.6.1
+
+  /@formatjs/intl@2.9.0(typescript@5.1.6):
+    resolution: {integrity: sha512-Ym0trUoC/VO6wQu4YHa0H1VR2tEixFRmwZgADkDLm7nD+vv1Ob+/88mUAoT0pwvirFqYKgUKEwp1tFepqyqvVA==}
+    peerDependencies:
+      typescript: ^4.7 || 5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      '@formatjs/fast-memoize': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.6.0
+      '@formatjs/intl-displaynames': 6.5.0
+      '@formatjs/intl-listformat': 7.4.0
+      intl-messageformat: 10.5.0
+      tslib: 2.6.1
+      typescript: 5.1.6
+    dev: false
+
+  /@formatjs/ts-transformer@3.13.3:
+    resolution: {integrity: sha512-W6+huH4dLYx8eZfZue6fcreNzLZHoPboreqJSkickYCKIOicI35zC0Txb4xCT6kau/DXAKTpNEln3V2NgX6Igg==}
+    peerDependencies:
+      ts-jest: '>=27'
+    peerDependenciesMeta:
+      ts-jest:
+        optional: true
+    dependencies:
+      '@formatjs/icu-messageformat-parser': 2.6.0
+      '@types/json-stable-stringify': 1.0.34
+      '@types/node': 17.0.45
+      chalk: 4.1.2
+      json-stable-stringify: 1.0.2
+      tslib: 2.6.1
+      typescript: 5.1.6
     dev: true
 
   /@graphql-codegen/add@3.2.3(graphql@16.7.1):
@@ -1849,6 +1950,17 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
+  /@types/eslint@8.44.1:
+    resolution: {integrity: sha512-XpNDc4Z5Tb4x+SW1MriMVeIsMoONHCkWFMkR/aPJbzEsxqHy+4Glu/BqTdPrApfDeMaXbtNh6bseNgl5KaWrSg==}
+    dependencies:
+      '@types/estree': 1.0.1
+      '@types/json-schema': 7.0.12
+    dev: true
+
+  /@types/estree@1.0.1:
+    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+    dev: true
+
   /@types/js-yaml@4.0.5:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: true
@@ -1869,12 +1981,20 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
+  /@types/node@17.0.45:
+    resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+    dev: true
+
   /@types/node@20.4.5:
     resolution: {integrity: sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/picomatch@2.3.0:
+    resolution: {integrity: sha512-O397rnSS9iQI4OirieAtsDqvCj4+3eY1J+EPdNTKuHuRWIfUoGyzX294o8C4KJYaLqgSrd2o60c5EqCU8Zv02g==}
     dev: true
 
   /@types/prop-types@15.7.5:
@@ -2036,6 +2156,11 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/types@5.59.0:
+    resolution: {integrity: sha512-yR2h1NotF23xFFYKHZs17QJnB51J/s+ud4PYU4MqdZbzeNxpgUr05+dNeCN/bb6raslHvGdd6BFCkVhpPk/ZeA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
   /@typescript-eslint/types@5.62.0:
     resolution: {integrity: sha512-87NVngcbVXUahrRTqIK27gD2t5Cu1yuCXxbLcFtCzZGlfyVWWh8mLHkoxzjsB6DDNnvdL+fW8MiwPEJyGJQDgQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2044,6 +2169,27 @@ packages:
   /@typescript-eslint/types@6.2.0:
     resolution: {integrity: sha512-1nRRaDlp/XYJQLvkQJG5F3uBTno5SHPT7XVcJ5n1/k2WfNI28nJsvLakxwZRNY5spuatEKO7d5nZWsQpkqXwBA==}
     engines: {node: ^16.0.0 || >=18.0.0}
+    dev: true
+
+  /@typescript-eslint/typescript-estree@5.59.0(typescript@5.1.6):
+    resolution: {integrity: sha512-sUNnktjmI8DyGzPdZ8dRwW741zopGxltGs/SAPgGL/AAgDpiLsCFLcMNSpbfXfmnNeHmK9h3wGmCkGRGAoUZAg==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/types': 5.59.0
+      '@typescript-eslint/visitor-keys': 5.59.0
+      debug: 4.3.4
+      globby: 11.1.0
+      is-glob: 4.0.3
+      semver: 7.5.4
+      tsutils: 3.21.0(typescript@5.1.6)
+      typescript: 5.1.6
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@typescript-eslint/typescript-estree@5.62.0(typescript@5.1.6):
@@ -2125,6 +2271,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
+    dev: true
+
+  /@typescript-eslint/visitor-keys@5.59.0:
+    resolution: {integrity: sha512-qZ3iXxQhanchCeaExlKPV3gDQFxMUmU35xfd5eCXB6+kUw1TUAbIy2n7QIrwz9s98DQLzNWyHp61fY0da4ZcbA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dependencies:
+      '@typescript-eslint/types': 5.59.0
+      eslint-visitor-keys: 3.4.1
     dev: true
 
   /@typescript-eslint/visitor-keys@5.62.0:
@@ -3141,6 +3295,10 @@ packages:
   /electron-to-chromium@1.4.473:
     resolution: {integrity: sha512-aVfC8+440vGfl06l8HKKn8/PD5jRfSnLkTTD65EFvU46igbpQRri1gxSzW9/+TeUlwYzrXk1sw867T96zlyECA==}
 
+  /emoji-regex@10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
+    dev: true
+
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     dev: true
@@ -3370,6 +3528,28 @@ packages:
       eslint-import-resolver-node: 0.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /eslint-plugin-formatjs@4.10.3(eslint@8.45.0):
+    resolution: {integrity: sha512-EHKuEMCmWhAiMdCc8oZU8qBAvnvHPUiJuhGxPqA+GX2Nb7GBsGm2o616KYnSSffDisK+v0E9TDCrS8oJ0QLgcw==}
+    peerDependencies:
+      eslint: 7 || 8
+    dependencies:
+      '@formatjs/icu-messageformat-parser': 2.6.0
+      '@formatjs/ts-transformer': 3.13.3
+      '@types/eslint': 8.44.1
+      '@types/picomatch': 2.3.0
+      '@typescript-eslint/typescript-estree': 5.59.0(typescript@5.1.6)
+      emoji-regex: 10.2.1
+      eslint: 8.45.0
+      magic-string: 0.30.1
+      picomatch: 2.3.1
+      tslib: 2.5.0
+      typescript: 5.1.6
+      unicode-emoji-utils: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
+      - ts-jest
     dev: true
 
   /eslint-plugin-functional@5.0.8(eslint@8.45.0)(typescript@5.1.6):
@@ -4284,6 +4464,15 @@ packages:
       side-channel: 1.0.4
     dev: true
 
+  /intl-messageformat@10.5.0:
+    resolution: {integrity: sha512-AvojYuOaRb6r2veOKfTVpxH9TrmjSdc5iR9R5RgBwrDZYSmAAFVT+QLbW3C4V7Qsg0OguMp67Q/EoUkxZzXRGw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.0
+      '@formatjs/fast-memoize': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.6.0
+      tslib: 2.6.1
+    dev: false
+
   /invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
     dependencies:
@@ -4864,6 +5053,13 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /magic-string@0.30.1:
+    resolution: {integrity: sha512-mbVKXPmS0z0G4XqFDCTllmDQ6coZzn94aMlb0o/A4HEHJCKcanlDZwYJgwnkmgD3jyWhUgj9VsPrfd972yPffA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /make-error@1.3.6:
@@ -6449,6 +6645,10 @@ packages:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
     dev: true
 
+  /tslib@2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: true
+
   /tslib@2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
@@ -6540,7 +6740,6 @@ packages:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /ua-parser-js@1.0.35:
     resolution: {integrity: sha512-fKnGuqmTBnIE+/KXSzCn4db8RTigUzw1AN0DmdU6hJovUTbYJKyqj+8Mt1c4VfRDnOVJnENmfYkIPZ946UrSAA==}
@@ -6558,6 +6757,12 @@ packages:
   /unc-path-regex@0.1.2:
     resolution: {integrity: sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /unicode-emoji-utils@1.1.2:
+    resolution: {integrity: sha512-b0fe4T08DjwayBPvKtG+tKyNMwx/Qdc50EZJhOJlGDwqU24DaxNrHMT8Kl75hVmLabrXC6TQ+CuMEVV163z1eQ==}
+    dependencies:
+      emoji-regex: 10.2.1
     dev: true
 
   /universalify@2.0.0:

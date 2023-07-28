@@ -1,15 +1,14 @@
 'use client';
 
-import {createContext, useContext} from 'react';
+import {createBoundaryContext} from '@/tools/create-boundary-context';
 
 import type {ResolvedIntlConfig} from '@formatjs/intl';
 import type {ReactNode} from 'react';
 
-const defaultValue = Symbol();
+const [MessagesContext, useMessages] =
+  createBoundaryContext<ResolvedIntlConfig['messages']>('messages');
 
-const MessagesContext = createContext<
-  ResolvedIntlConfig['messages'] | typeof defaultValue
->(defaultValue);
+export {useMessages};
 
 type Props = {readonly children: ReactNode} & Pick<
   ResolvedIntlConfig,
@@ -22,15 +21,4 @@ export function MessagesProvider({children, messages}: Props) {
       {children}
     </MessagesContext.Provider>
   );
-}
-
-export function useMessages() {
-  const value = useContext(MessagesContext);
-
-  if (value === defaultValue) {
-    throw new Error(
-      `Used default value for ${MessagesContext.displayName} context`,
-    );
-  }
-  return value;
 }

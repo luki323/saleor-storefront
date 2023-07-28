@@ -5,7 +5,7 @@ import {DEFAULT_LOCALE} from '../consts';
 import {useLocale} from '../contexts/locale-context';
 import {useMessages} from '../contexts/messages-context';
 
-export const useIntl = function useIntl() {
+export function useIntl() {
   const locale = useLocale();
   const messages = useMessages();
 
@@ -17,4 +17,4 @@ export const useIntl = function useIntl() {
   }, [locale, messages]);
 
   return {intl};
-};
+}

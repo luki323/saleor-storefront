@@ -2,9 +2,9 @@ import {createServerContext, useContext} from 'react';
 
 import {DEFAULT_LOCALE} from '../consts';
 
-import type {AvailableLocle} from '../consts';
+import type {AvailableLocale} from '../consts';
 
-export const LocaleContext = createServerContext<AvailableLocle>(
+export const LocaleContext = createServerContext<AvailableLocale>(
   'LocaleContext',
   DEFAULT_LOCALE,
 );

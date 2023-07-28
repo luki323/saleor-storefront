@@ -13,6 +13,5 @@ export function FormattedMessage({
   ...descriptor
 }: FormattedMessageProps) {
   const {intl} = useIntl();
-
   return intl.formatMessage(descriptor, values);
 }

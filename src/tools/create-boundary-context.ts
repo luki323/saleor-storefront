@@ -1,12 +1,12 @@
 import {createContext, useContext} from 'react';
 
-import {uppercaseFirst} from './uppercase-first';
+import {capitalize} from './capitalize';
 
 export function createBoundaryContext<Value>(name: string) {
   const initialValue = Symbol();
   const context = createContext<Value | typeof initialValue>(initialValue);
 
-  const displayName = uppercaseFirst(name);
+  const displayName = capitalize(name);
 
   const useBoundaryContext = () => {
     const value = useContext(context);
@@ -18,6 +18,5 @@ export function createBoundaryContext<Value>(name: string) {
     }
     return value;
   };
-
   return [context, useBoundaryContext] as const;
 }

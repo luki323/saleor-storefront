@@ -1,7 +1,7 @@
-import type {AvailableLocle} from '../consts';
+import type {AvailableLocale} from '../consts';
 import type {ResolvedIntlConfig} from '@formatjs/intl';
 
-export async function loadCompiledMessages(locale: AvailableLocle) {
+export async function loadCompiledMessages(locale: AvailableLocale) {
   const compiledMessagesModule = await import(
     `@/i18n/compiled-messages/${locale}.json`,
     {assert: {type: 'json'}}

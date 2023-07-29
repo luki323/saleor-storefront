@@ -1,0 +1,25 @@
+query getPoductList(
+  $first: Int
+  $after: String
+  $last: Int
+  $before: String
+  $channel: String
+) {
+  products(
+    first: $first
+    after: $after
+    last: $last
+    before: $before
+    channel: $channel
+  ) {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+    pageInfo {
+      ...PageInfo
+    }
+  }
+}

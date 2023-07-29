@@ -1,4 +1,4 @@
-import {twMerge} from 'tailwind-merge';
+import {cn} from '@/tools/cn';
 
 type As = keyof Pick<JSX.IntrinsicElements, 'p' | 'span'>;
 
@@ -13,7 +13,7 @@ export function Text({as: As = 'p', size = 'base', role, children}: Props) {
   return (
     <As
       role={role}
-      className={twMerge(
+      className={cn(
         size === 'small' && 'text-sm',
         size === 'base' && 'text-base',
         size === 'large' && 'text-lg',

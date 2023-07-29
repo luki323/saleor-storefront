@@ -1,4 +1,5 @@
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {cn} from '@/tools/cn';
 import {isDefined} from '@/tools/is-defined';
 
 import {SEARCH_PARAMS, PAGE_SIZES} from '../_consts';
@@ -20,7 +21,7 @@ export function Navigation({currentPage, currentPageSize}: Props) {
 
   return (
     <nav>
-      <ul className="flex gap-4">
+      <ul className={cn('flex gap-4')}>
         <li>
           <NavigationLink
             disabled={!isDefined(prevPage)}
@@ -42,7 +43,7 @@ export function Navigation({currentPage, currentPageSize}: Props) {
           </NavigationLink>
         </li>
       </ul>
-      <ul className="flex gap-4">
+      <ul className={cn('flex gap-4')}>
         {PAGE_SIZES.map((pageSize) => {
           const pageNumber = productCursorsStore.changePageSize(
             {currentPage, pageSize: currentPageSize},

@@ -1,6 +1,5 @@
 import {DEFAULT_LOCALE} from '@/i18n/consts';
-
-import './globals.css';
+import '@/styles/globals.css';
 
 import type {ReactNode} from 'react';
 

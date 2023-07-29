@@ -1,5 +1,6 @@
 import {ROUTE} from '@/consts';
 import {IntlLink} from '@/i18n/components/IntlLink';
+import {cn} from '@/tools/cn';
 
 import {SEARCH_PARAMS} from '../_consts';
 
@@ -23,7 +24,7 @@ export function NavigationLink({children, disabled = false, query}: Props) {
         pathname: ROUTE.PRODUCTS,
         query,
       }}
-      className="underline">
+      className={cn('underline')}>
       {children}
     </IntlLink>
   );

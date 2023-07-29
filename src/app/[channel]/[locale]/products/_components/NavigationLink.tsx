@@ -1,16 +1,15 @@
 import {ROUTE} from '@/consts';
 import {IntlLink} from '@/i18n/components/IntlLink';
 
-import type {GetPoductListVariables} from '@/graphql/generated/documents';
+import {SEARCH_PARAMS} from '../_consts';
+
+import type {ObjectValues} from '@/types';
 import type {ReactNode} from 'react';
 
 type Props = {
   readonly children: ReactNode;
   readonly disabled?: boolean;
-  readonly query: Required<
-    | Pick<GetPoductListVariables, 'first' | 'after'>
-    | Pick<GetPoductListVariables, 'last' | 'before'>
-  >;
+  readonly query: Record<ObjectValues<typeof SEARCH_PARAMS>, number | null>;
 };
 
 export function NavigationLink({children, disabled = false, query}: Props) {

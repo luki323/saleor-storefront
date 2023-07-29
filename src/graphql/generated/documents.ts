@@ -2,11 +2,18 @@
 import type * as Types from './types';
 
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
-export type GetPoductListVariables = Types.Exact<{
-  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+export type GetProductCursorsVariables = Types.Exact<{
+  first: Types.Scalars['Int']['input'];
   after?: Types.InputMaybe<Types.Scalars['String']['input']>;
-  last?: Types.InputMaybe<Types.Scalars['Int']['input']>;
-  before?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+}>;
+
+
+export type GetProductCursors = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', cursor: string }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } | null };
+
+export type GetPoductListVariables = Types.Exact<{
+  first: Types.Scalars['Int']['input'];
+  after?: Types.InputMaybe<Types.Scalars['String']['input']>;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
@@ -37,15 +44,21 @@ export const PageInfo = new TypedDocumentString(`
   hasPreviousPage
 }
     `, {"fragmentName":"PageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
+export const GetProductCursorsDocument = new TypedDocumentString(`
+    query getProductCursors($first: Int!, $after: String, $channel: String) {
+  products(first: $first, after: $after, channel: $channel) {
+    edges {
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetProductCursors, GetProductCursorsVariables>;
 export const GetPoductListDocument = new TypedDocumentString(`
-    query getPoductList($first: Int, $after: String, $last: Int, $before: String, $channel: String) {
-  products(
-    first: $first
-    after: $after
-    last: $last
-    before: $before
-    channel: $channel
-  ) {
+    query getPoductList($first: Int!, $after: String, $channel: String) {
+  products(first: $first, after: $after, channel: $channel) {
     edges {
       node {
         id

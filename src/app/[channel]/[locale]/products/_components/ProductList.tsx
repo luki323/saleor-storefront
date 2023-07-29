@@ -1,12 +1,5 @@
-import {
-  GetPoductListDocument,
-  type GetPoductListVariables,
-} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/tools/fetch-graphql';
-import {isDefined} from '@/tools/is-defined';
-import {raise} from '@/tools/raise';
-
-import {DEFAULT_PAGE_SIZE} from '../_consts';
+import {DEFAULT_SEARCH_PARAMS, SEARCH_PARAMS} from '../_consts';
+import {fetchProducts} from '../_tools/fetch-products';
 
 import {Navigation} from './Navigation';
 
@@ -14,27 +7,24 @@ import type {AvailableChannel} from '@/i18n/consts';
 
 export type ProductListProps = {
   readonly channel: AvailableChannel;
-  readonly searchParams: Partial<Omit<GetPoductListVariables, 'channel'>>;
+  readonly searchParams: Partial<{
+    readonly [SEARCH_PARAMS.PAGE_NUMBER]: string;
+    readonly [SEARCH_PARAMS.PAGE_SIZE]: string;
+  }>;
 };
 
 export async function ProductList({
   channel,
   searchParams: {
-    first = DEFAULT_PAGE_SIZE,
-    after = null,
-    last = null,
-    before = null,
+    [SEARCH_PARAMS.PAGE_NUMBER]: pageNumberProp,
+    [SEARCH_PARAMS.PAGE_SIZE]: pageSizeProp,
   },
 }: ProductListProps) {
-  const {edges, pageInfo} =
-    (
-      await fetchGraphQL(GetPoductListDocument, {
-        variables: {
-          ...(isDefined(last) ? {last, before} : {first, after}),
-          channel,
-        },
-      })
-    ).products ?? raise('Products are not defined');
+  const [pageNumber, pageSize] = [
+    Number(pageNumberProp ?? DEFAULT_SEARCH_PARAMS.PAGE_NUMBER),
+    Number(pageSizeProp ?? DEFAULT_SEARCH_PARAMS.PAGE_SIZE),
+  ];
+  const {edges} = await fetchProducts(pageNumber, pageSize, channel);
 
   return (
     <div>
@@ -43,15 +33,7 @@ export async function ProductList({
           return <li key={id}>{name}</li>;
         })}
       </ul>
-      <Navigation
-        cursors={{
-          first,
-          after,
-          last,
-          before,
-        }}
-        pageInfo={pageInfo}
-      />
+      <Navigation currentPage={pageNumber} currentPageSize={pageSize} />
     </div>
   );
 }

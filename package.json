@@ -11,6 +11,7 @@
     "postinstall": "stale-dep -u",
     "extract": "formatjs extract --out-file messages/en-US.json -- 'src/**/*.{ts,tsx}'",
     "compile-folder": "formatjs compile-folder -- messages src/i18n/compiled-messages",
+    "extract-compile": "pnpm run extract && pnpm run compile-folder",
     "commit": "commit"
   },
   "dependencies": {

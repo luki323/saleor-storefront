@@ -1,0 +1,10 @@
+query getProductCursors($first: Int!, $after: String, $channel: String) {
+  products(first: $first, after: $after, channel: $channel) {
+    edges {
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}

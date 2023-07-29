@@ -1,70 +1,65 @@
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {isDefined} from '@/tools/is-defined';
 
-import {DEFAULT_PAGE_SIZE, PAGE_SIZES} from '../_consts';
+import {SEARCH_PARAMS, PAGE_SIZES} from '../_consts';
+import {productCursorsStore} from '../_tools/product-cursors-store';
 
 import {NavigationLink} from './NavigationLink';
 
-import type {PageInfo} from '@/graphql/generated/documents';
-
 type Props = {
-  readonly cursors: {
-    readonly first: number | null;
-    readonly after: string | null;
-    readonly last: number | null;
-    readonly before: string | null;
-  };
-  readonly pageInfo: PageInfo;
+  readonly currentPage: number;
+  readonly currentPageSize: number;
 };
 
-export function Navigation({
-  cursors: {first, after, last, before},
-  pageInfo: {
-    startCursor = null,
-    hasPreviousPage,
-    endCursor = null,
-    hasNextPage,
-  },
-}: Props) {
-  const pageSize = (isDefined(last) ? last : first) ?? DEFAULT_PAGE_SIZE;
+export function Navigation({currentPage, currentPageSize}: Props) {
+  const nextPage = productCursorsStore.getNextPage(
+    currentPage,
+    currentPageSize,
+  );
+  const prevPage = productCursorsStore.getPrevPage(currentPage);
 
   return (
     <nav>
       <ul className="flex gap-4">
         <li>
           <NavigationLink
-            disabled={!hasPreviousPage}
+            disabled={!isDefined(prevPage)}
             query={{
-              last: pageSize,
-              before: startCursor,
+              [SEARCH_PARAMS.PAGE_NUMBER]: prevPage,
+              [SEARCH_PARAMS.PAGE_SIZE]: currentPageSize,
             }}>
             <FormattedMessage defaultMessage="Previous" id="JJNc3c" />
           </NavigationLink>
         </li>
         <li>
           <NavigationLink
-            disabled={!hasNextPage}
+            disabled={!isDefined(nextPage)}
             query={{
-              first: pageSize,
-              after: endCursor,
+              [SEARCH_PARAMS.PAGE_NUMBER]: nextPage,
+              [SEARCH_PARAMS.PAGE_SIZE]: currentPageSize,
             }}>
             <FormattedMessage defaultMessage="Next" id="9+Ddtu" />
           </NavigationLink>
         </li>
       </ul>
       <ul className="flex gap-4">
-        {PAGE_SIZES.map((pageSize) => (
-          <li key={pageSize}>
-            <NavigationLink
-              query={{
-                ...(isDefined(last)
-                  ? {last: pageSize, before}
-                  : {first: pageSize, after}),
-              }}>
-              {pageSize}
-            </NavigationLink>
-          </li>
-        ))}
+        {PAGE_SIZES.map((pageSize) => {
+          const pageNumber = productCursorsStore.changePageSize(
+            {currentPage, pageSize: currentPageSize},
+            pageSize,
+          );
+          return (
+            <li key={pageSize}>
+              <NavigationLink
+                query={{
+                  [SEARCH_PARAMS.PAGE_NUMBER]: pageNumber,
+                  [SEARCH_PARAMS.PAGE_SIZE]: pageSize,
+                }}>
+                {pageSize}
+              </NavigationLink>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

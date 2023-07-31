@@ -1,6 +1,15 @@
 {
+  "00LcfG": {
+    "defaultMessage": "Load more"
+  },
+  "0vL5u1": {
+    "defaultMessage": "Create an account"
+  },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
+  },
+  "5Mlwka": {
+    "defaultMessage": "Loading products..."
   },
   "9+Ddtu": {
     "defaultMessage": "Next"
@@ -23,17 +32,23 @@
   "RVxG/0": {
     "defaultMessage": "Email description"
   },
+  "U3l+Q9": {
+    "defaultMessage": "Home page"
+  },
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
+  },
+  "cU/aSG": {
+    "defaultMessage": "Email is required"
   },
   "hagaYK": {
     "defaultMessage": "Password:"
   },
-  "hxAznc": {
-    "defaultMessage": "hello, world"
-  },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
+  },
+  "uiFoFm": {
+    "defaultMessage": "Password is required"
   },
   "wUCGLt": {
     "defaultMessage": "Sign up with Google"

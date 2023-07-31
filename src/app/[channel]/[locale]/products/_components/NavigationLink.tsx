@@ -17,7 +17,6 @@ export function NavigationLink({children, disabled = false, query}: Props) {
   if (disabled) {
     return <a>{children}</a>;
   }
-
   return (
     <IntlLink
       href={{

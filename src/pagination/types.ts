@@ -1,9 +1,9 @@
-type ForwardArguments = {
+export type ForwardArguments = {
   readonly first: number;
   readonly after?: string;
 };
 
-type FetchCursorsResult = {
+export type FetchCursorsResult = {
   readonly cursors: readonly string[];
   readonly hasNextPage: boolean;
 };

@@ -1,4 +1,5 @@
 import {DEFAULT_LOCALE} from '@/i18n/consts';
+import {QueryProviders} from '@/pagination/components/QueryProviders';
 import {fontSans} from '@/styles/fonts';
 import '@/styles/globals.css';
 
@@ -9,7 +10,9 @@ type Props = {readonly children: ReactNode};
 export default function RootLayout({children}: Props) {
   return (
     <html lang={DEFAULT_LOCALE} className={fontSans.className}>
-      <body>{children}</body>
+      <body>
+        <QueryProviders>{children}</QueryProviders>
+      </body>
     </html>
   );
 }

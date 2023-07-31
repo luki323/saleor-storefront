@@ -2,6 +2,8 @@
 import type * as Types from './types';
 
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
+export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string };
+
 export type GetProductCursorsVariables = Types.Exact<{
   first: Types.Scalars['Int']['input'];
   after?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -11,14 +13,14 @@ export type GetProductCursorsVariables = Types.Exact<{
 
 export type GetProductCursors = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', cursor: string }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } | null };
 
-export type GetPoductListVariables = Types.Exact<{
+export type GetProductsVariables = Types.Exact<{
   first: Types.Scalars['Int']['input'];
   after?: Types.InputMaybe<Types.Scalars['String']['input']>;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
 
-export type GetPoductList = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
+export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
 
 export type SignUpVariables = Types.Exact<{
   accountRegisterInput: Types.AccountRegisterInput;
@@ -43,6 +45,13 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const ProductListItem = new TypedDocumentString(`
+    fragment ProductListItem on Product {
+  id
+  name
+  slug
+}
+    `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
 export const PageInfo = new TypedDocumentString(`
     fragment PageInfo on PageInfo {
   startCursor
@@ -63,13 +72,12 @@ export const GetProductCursorsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetProductCursors, GetProductCursorsVariables>;
-export const GetPoductListDocument = new TypedDocumentString(`
-    query getPoductList($first: Int!, $after: String, $channel: String) {
+export const GetProductsDocument = new TypedDocumentString(`
+    query getProducts($first: Int!, $after: String, $channel: String) {
   products(first: $first, after: $after, channel: $channel) {
     edges {
       node {
-        id
-        name
+        ...ProductListItem
       }
     }
     pageInfo {
@@ -77,22 +85,14 @@ export const GetPoductListDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment PageInfo on PageInfo {
+    fragment ProductListItem on Product {
+  id
+  name
+  slug
+}
+fragment PageInfo on PageInfo {
   startCursor
   hasNextPage
   endCursor
   hasPreviousPage
-}`) as unknown as TypedDocumentString<GetPoductList, GetPoductListVariables>;
-export const SignUpDocument = new TypedDocumentString(`
-    mutation signUp($accountRegisterInput: AccountRegisterInput!) {
-  accountRegister(input: $accountRegisterInput) {
-    errors {
-      field
-      code
-    }
-    user {
-      id
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
+}`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;

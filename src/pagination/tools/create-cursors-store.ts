@@ -1,9 +1,8 @@
-import {isDefined} from '../is-defined';
-import {raise} from '../raise';
+import {isDefined} from '@/tools/is-defined';
 
-import {MAX_PAGE_SIZE} from './consts';
+import {MAX_PAGE_SIZE} from '../consts';
 
-import type {FetchCursors} from './types';
+import type {FetchCursors} from '../types';
 
 export function createCursorsStore() {
   let cursors: readonly string[] = [];
@@ -65,12 +64,8 @@ export function createCursorsStore() {
     return nextPage;
   }
   function pageNumberPageSizeToCursor(pageNumber: number, pageSize: number) {
-    const currentIdx = ((pageNumber - 1) * pageSize || 1) - 1;
-
-    return (
-      cursors[currentIdx] ??
-      raise(`Cursor is not defined for ${pageNumber} page of size ${pageSize}`)
-    );
+    const currentIdx = (pageNumber - 1) * pageSize - 1;
+    return cursors[currentIdx] ?? null;
   }
   return {
     loadCursors,

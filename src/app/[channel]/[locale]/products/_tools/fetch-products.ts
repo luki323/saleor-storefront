@@ -1,30 +1,17 @@
-import {GetPoductListDocument} from '@/graphql/generated/documents';
+import {GetProductsDocument} from '@/graphql/generated/documents';
 import {fetchGraphQL} from '@/tools/fetch-graphql';
-import {raise} from '@/tools/raise';
 
-import {fetchProductCursors} from '../_tools/fetch-product-cursors';
-
-import {productCursorsStore} from './product-cursors-store';
-
-import type {AvailableChannel} from '@/i18n/consts';
+import type {GetProductsVariables} from '@/graphql/generated/documents';
 
 export async function fetchProducts(
-  pageNumber: number,
-  pageSize: number,
-  channel: AvailableChannel,
+  variables: GetProductsVariables,
+  init?: Omit<RequestInit, 'method'>,
 ) {
-  void (await productCursorsStore.loadCursors(fetchProductCursors(channel)));
-
-  const startCursor = productCursorsStore.pageNumberPageSizeToCursor(
-    pageNumber,
-    pageSize,
-  );
-  const {products} = await fetchGraphQL(GetPoductListDocument, {
-    variables: {
-      first: pageSize,
-      after: startCursor,
-      channel,
-    },
-  });
-  return products ?? raise('Products are not defined');
+  const {products} = await fetchGraphQL(GetProductsDocument, {variables}, init);
+  if (!products) {
+    throw new Error('Products object is missing in the response');
+  }
+  return products;
 }
+
+export type FetchProductsResult = Awaited<ReturnType<typeof fetchProducts>>;

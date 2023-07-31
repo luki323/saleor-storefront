@@ -1,25 +1,26 @@
 import {GetProductCursorsDocument} from '@/graphql/generated/documents';
 import {fetchGraphQL} from '@/tools/fetch-graphql';
-import {raise} from '@/tools/raise';
+
+import {PRODUCT_CURSORS_TAG} from '../_consts';
 
 import type {AvailableChannel} from '@/i18n/consts';
-import type {FetchCursors} from '@/tools/pagination/types';
-
-export const PRODUCT_CURSORS_TAG = 'product-cursors-tag';
+import type {FetchCursors} from '@/pagination/types';
 
 export const fetchProductCursors =
   (channel: AvailableChannel): FetchCursors =>
   async (forward) => {
-    const response = await fetchGraphQL(
+    const {products} = await fetchGraphQL(
       GetProductCursorsDocument,
       {variables: {...forward, channel}},
       {cache: 'force-cache', next: {tags: [PRODUCT_CURSORS_TAG]}},
     );
-    const products = response.products ?? raise('Products are not defined');
-    const cursors = products.edges.map((edge) => edge.cursor);
+    if (!products) {
+      throw new Error('Products object is missing in the response');
+    }
+    const {edges} = products;
 
     return {
-      cursors,
+      cursors: edges.map(({cursor}) => cursor),
       ...products.pageInfo,
     };
   };

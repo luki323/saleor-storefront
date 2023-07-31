@@ -1,10 +1,10 @@
-import {ROUTE} from '@/consts';
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {cn} from '@/tools/cn';
+import {ROUTE} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 
 import {SEARCH_PARAMS} from '../_consts';
 
-import type {ObjectValues} from '@/types';
+import type {ObjectValues} from '@/lib/types';
 import type {ReactNode} from 'react';
 
 type Props = {

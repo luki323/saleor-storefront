@@ -1,5 +1,5 @@
 import {GetProductsDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/tools/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
 import type {GetProductsVariables} from '@/graphql/generated/documents';
 

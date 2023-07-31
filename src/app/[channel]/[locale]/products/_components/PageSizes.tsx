@@ -1,4 +1,4 @@
-import {cn} from '@/tools/cn';
+import {cn} from '@/lib/tools/cn';
 
 import {SEARCH_PARAMS, PAGE_SIZES} from '../_consts';
 import {cursorsStore} from '../_tools/cursors-store';

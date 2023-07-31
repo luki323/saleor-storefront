@@ -1,6 +1,6 @@
-import {Button} from '@/components/Button';
-import {Icons} from '@/components/Icons';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {Button} from '@/lib/components/ui/Button';
+import {Icons} from '@/lib/components/ui/Icons';
 
 export function GoogleButton() {
   return (

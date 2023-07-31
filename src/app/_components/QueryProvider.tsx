@@ -7,7 +7,7 @@ import {useMemo} from 'react';
 
 import type {ReactNode} from 'react';
 
-export function QueryProviders({children}: {readonly children: ReactNode}) {
+export function QueryProvider({children}: {readonly children: ReactNode}) {
   const queryClient = useMemo(() => {
     return new QueryClient();
   }, []);

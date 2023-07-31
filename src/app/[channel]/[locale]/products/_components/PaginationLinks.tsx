@@ -1,6 +1,6 @@
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
-import {cn} from '@/tools/cn';
-import {isDefined} from '@/tools/is-defined';
+import {cn} from '@/lib/tools/cn';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import {SEARCH_PARAMS} from '../_consts';
 import {cursorsStore} from '../_tools/cursors-store';

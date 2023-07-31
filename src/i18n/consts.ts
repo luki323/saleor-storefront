@@ -1,4 +1,4 @@
-import {getCanonicalLocales} from '@/tools/get-canonical-locales';
+import {getCanonicalLocales} from '@/lib/tools/get-canonical-locales';
 
 export const DEFAULT_LOCALE = 'en-US';
 export const AVAILABLE_LOCALES = [DEFAULT_LOCALE] as const;

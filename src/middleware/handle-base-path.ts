@@ -1,10 +1,10 @@
 import {NextResponse} from 'next/server';
 
 import {formatLocale} from '@/i18n/tools/format-locale';
-import {ciEquals} from '@/tools/ci-equals';
-import {formatPathname} from '@/tools/format-pathname';
-import {isDefined} from '@/tools/is-defined';
-import {splitPathname} from '@/tools/split-pathname';
+import {ciEquals} from '@/lib/tools/ci-equals';
+import {formatPathname} from '@/lib/tools/format-pathname';
+import {isDefined} from '@/lib/tools/is-defined';
+import {splitPathname} from '@/lib/tools/split-pathname';
 
 import {CUSTOM_HEADERS} from './consts';
 import {negotiateChannel} from './tools/negotiate-channel';

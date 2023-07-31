@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-import {buttonStyles} from '@/components/Button';
-import {Divider} from '@/components/Divider';
-import {Text} from '@/components/Text';
-import {ROUTE} from '@/consts';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
-import {cn} from '@/tools/cn';
+import {buttonStyles} from '@/lib/components/ui/Button';
+import {Divider} from '@/lib/components/ui/Divider';
+import {Text} from '@/lib/components/ui/Text';
+import {ROUTE} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 
 import {GoogleButton} from './_components/GoogleButton';
 import {SignupForm} from './_components/SignupForm';

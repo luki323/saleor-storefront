@@ -1,6 +1,6 @@
 'use client';
 
-import {createBoundaryContext} from '@/tools/create-boundary-context';
+import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
 
 import type {ResolvedIntlConfig} from '@formatjs/intl';
 import type {ReactNode} from 'react';

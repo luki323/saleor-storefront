@@ -3,15 +3,15 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
-import {Button} from '@/components/Button';
-import {Input} from '@/components/Input';
-import {Spinner} from '@/components/Spinner';
-import {ROUTE} from '@/consts';
 import {ORIGIN} from '@/env/env';
 import {SignUpDocument} from '@/graphql/generated/documents';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {useChannel} from '@/i18n/contexts/channel-context';
-import {fetchGraphQL} from '@/tools/fetch-graphql';
+import {Button} from '@/lib/components/ui/Button';
+import {Input} from '@/lib/components/ui/Input';
+import {Spinner} from '@/lib/components/ui/Spinner';
+import {ROUTE} from '@/lib/consts';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
 

@@ -1,6 +1,6 @@
 import * as Label from '@radix-ui/react-label';
 
-import {cn} from '@/tools/cn';
+import {cn} from '@/lib/tools/cn';
 
 import {useFormField} from './FormField';
 

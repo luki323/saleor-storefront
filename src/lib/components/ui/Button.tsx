@@ -1,6 +1,6 @@
 import {cva} from 'cva';
 
-import {cn} from '@/tools/cn';
+import {cn} from '@/lib/tools/cn';
 
 import type {VariantProps} from 'cva';
 import type {ButtonHTMLAttributes} from 'react';

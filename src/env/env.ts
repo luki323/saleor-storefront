@@ -1,4 +1,4 @@
-import {raise} from '@/tools/raise';
+import {raise} from '@/lib/tools/raise';
 
 export const GRAPHQL_ENDPOINT =
   process.env['NEXT_PUBLIC_GRAPHQL_ENDPOINT'] ??

@@ -1,7 +1,7 @@
 import {useId} from 'react';
 
-import {cn} from '@/tools/cn';
-import {createBoundaryContext} from '@/tools/create-boundary-context';
+import {cn} from '@/lib/tools/cn';
+import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
 
 import type {ReactNode} from 'react';
 

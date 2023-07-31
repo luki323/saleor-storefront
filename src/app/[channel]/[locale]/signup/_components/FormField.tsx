@@ -1,11 +1,11 @@
 import {useMemo} from 'react';
 import {Controller, useFormContext} from 'react-hook-form';
 
-import {createBoundaryContext} from '@/tools/create-boundary-context';
+import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
 
 import {useFormItemId} from './FormItem';
 
-import type {ObjectValues} from '@/types';
+import type {ObjectValues} from '@/lib/types';
 import type {ControllerProps} from 'react-hook-form';
 
 type Fields = typeof FIELDS;

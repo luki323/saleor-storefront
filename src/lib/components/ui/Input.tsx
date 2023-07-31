@@ -1,6 +1,6 @@
 import {forwardRef} from 'react';
 
-import {cn} from '@/tools/cn';
+import {cn} from '@/lib/tools/cn';
 
 import type {InputHTMLAttributes} from 'react';
 

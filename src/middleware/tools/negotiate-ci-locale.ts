@@ -3,8 +3,8 @@ import Negotiator from 'negotiator';
 
 import {DEFAULT_LOCALE, AVAILABLE_LOCALES} from '@/i18n/consts';
 import {isAvailableCiLocale} from '@/i18n/tools/is-available-ci-locale';
-import {ciEquals} from '@/tools/ci-equals';
-import {isDefined} from '@/tools/is-defined';
+import {ciEquals} from '@/lib/tools/ci-equals';
+import {isDefined} from '@/lib/tools/is-defined';
 
 export function negotiateCiLocale(headers: Headers, preferredLocale?: string) {
   const requestedLanguages = new Negotiator({

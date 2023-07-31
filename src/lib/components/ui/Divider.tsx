@@ -1,4 +1,4 @@
-import {Text} from '@/components/Text';
+import {Text} from '@/lib/components/ui/Text';
 
 import type {ReactNode} from 'react';
 

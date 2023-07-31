@@ -1,0 +1,11 @@
+mutation signUp($accountRegisterInput: AccountRegisterInput!) {
+  accountRegister(input: $accountRegisterInput) {
+    errors {
+      field
+      code
+    }
+    user {
+      id
+    }
+  }
+}

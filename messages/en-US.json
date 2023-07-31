@@ -1,11 +1,44 @@
 {
+  "4cSA+G": {
+    "defaultMessage": "Or continue with"
+  },
   "9+Ddtu": {
     "defaultMessage": "Next"
+  },
+  "A4RrFD": {
+    "defaultMessage": "Password description"
+  },
+  "AyGauy": {
+    "defaultMessage": "Login"
   },
   "JJNc3c": {
     "defaultMessage": "Previous"
   },
+  "Kx1LZl": {
+    "defaultMessage": "Enter your email below to create your account"
+  },
+  "OSAM2w": {
+    "defaultMessage": "Passwords must be at least 8 characters"
+  },
+  "RVxG/0": {
+    "defaultMessage": "Email description"
+  },
+  "Ydq9bW": {
+    "defaultMessage": "Please enter valid email"
+  },
+  "hagaYK": {
+    "defaultMessage": "Password:"
+  },
   "hxAznc": {
     "defaultMessage": "hello, world"
+  },
+  "pmu7Ih": {
+    "defaultMessage": "Sign up with email"
+  },
+  "wUCGLt": {
+    "defaultMessage": "Sign up with Google"
+  },
+  "xpTPb3": {
+    "defaultMessage": "Email:"
   }
 }

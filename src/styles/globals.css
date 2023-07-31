@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --ring: 240 5% 64.9%;
+
+  --input: 240 3.7% 15.9%;
+
+  --background: 0 0% 100%;
+
+  --muted-foreground: 240 5% 64.9%;
+
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+
+  --radius: 0.5rem;
+}

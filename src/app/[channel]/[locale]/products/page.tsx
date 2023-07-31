@@ -1,6 +1,8 @@
 import {useChannel} from '@/i18n/contexts/channel-context';
 
-import {ProductList, type ProductListProps} from './_components/ProductList';
+import {ProductList} from './_components/ProductList';
+
+import type {ProductListProps} from './_components/ProductList';
 
 type Props = {
   readonly searchParams?: ProductListProps['searchParams'];

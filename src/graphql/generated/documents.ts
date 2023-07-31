@@ -20,6 +20,13 @@ export type GetPoductListVariables = Types.Exact<{
 
 export type GetPoductList = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
 
+export type SignUpVariables = Types.Exact<{
+  accountRegisterInput: Types.AccountRegisterInput;
+}>;
+
+
+export type SignUp = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }>, user?: { __typename?: 'User', id: string } | null } | null };
+
 export type PageInfo = { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean };
 
 export class TypedDocumentString<TResult, TVariables>
@@ -76,3 +83,16 @@ export const GetPoductListDocument = new TypedDocumentString(`
   endCursor
   hasPreviousPage
 }`) as unknown as TypedDocumentString<GetPoductList, GetPoductListVariables>;
+export const SignUpDocument = new TypedDocumentString(`
+    mutation signUp($accountRegisterInput: AccountRegisterInput!) {
+  accountRegister(input: $accountRegisterInput) {
+    errors {
+      field
+      code
+    }
+    user {
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SignUp, SignUpVariables>;

@@ -96,3 +96,16 @@ fragment PageInfo on PageInfo {
   endCursor
   hasPreviousPage
 }`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;
+export const SignUpDocument = new TypedDocumentString(`
+    mutation signUp($accountRegisterInput: AccountRegisterInput!) {
+  accountRegister(input: $accountRegisterInput) {
+    errors {
+      field
+      code
+    }
+    user {
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SignUp, SignUpVariables>;

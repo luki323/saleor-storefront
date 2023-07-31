@@ -7,21 +7,22 @@ import {ORIGIN} from '@/env/env';
 import {SignUpDocument} from '@/graphql/generated/documents';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {useChannel} from '@/i18n/contexts/channel-context';
+import {Form} from '@/lib/components/Form/Form';
+import {FormControl} from '@/lib/components/Form/FormControl';
+import {FormDescription} from '@/lib/components/Form/FormDescription';
+import {FormErrorMessage} from '@/lib/components/Form/FormErrorMessage';
+import {FormField} from '@/lib/components/Form/FormField';
 import {Button} from '@/lib/components/ui/Button';
 import {Input} from '@/lib/components/ui/Input';
 import {Spinner} from '@/lib/components/ui/Spinner';
 import {ROUTE} from '@/lib/consts';
 import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
+import {FormItem} from '../_components/FormItem';
+import {FormLabel} from '../_components/FormLabel';
+import {FIELDS} from '../_consts';
 import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
-import {Form} from './Form';
-import {FormControl} from './FormControl';
-import {FormDescription} from './FormDescription';
-import {FormErrorMessage} from './FormErrorMessage';
-import {FIELDS, FormField} from './FormField';
-import {FormItem} from './FormItem';
-import {FormLabel} from './FormLabel';
 
 export function SignupForm() {
   const channel = useChannel();
@@ -51,7 +52,7 @@ export function SignupForm() {
   };
 
   return (
-    <Form
+    <Form<SignupFormSchema>
       form={form}
       onSubmit={form.handleSubmit(onSubmit)}
       noValidate

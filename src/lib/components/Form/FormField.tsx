@@ -1,32 +1,27 @@
 import {useMemo} from 'react';
-import type {ControllerProps} from 'react-hook-form';
+import type {
+  ControllerProps,
+  FieldPath,
+  FieldValues as UnknownFieldValues,
+} from 'react-hook-form';
 import {Controller, useFormContext} from 'react-hook-form';
 
 import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
-import type {ObjectValues} from '@/lib/types';
 
 import {useFormItemId} from './FormItem';
 
-type Fields = typeof FIELDS;
-
-type FieldNames = ObjectValues<Fields>;
-
-export const FIELDS = {
-  EMAIL: 'email',
-  PASSWORD: 'password',
-} as const;
-
 const [FormFieldNameContext, useFormFieldName] =
-  createBoundaryContext<FieldNames>('formFieldName');
+  createBoundaryContext<string>('formFieldName');
 
-type Props<FieldName extends FieldNames> = ControllerProps<
-  Readonly<Record<FieldNames, string>>,
-  FieldName
->;
+type Props<
+  FieldValues extends UnknownFieldValues,
+  FieldName extends FieldPath<FieldValues>,
+> = ControllerProps<FieldValues, FieldName>;
 
-export function FormField<FieldName extends FieldNames>(
-  props: Props<FieldName>,
-) {
+export function FormField<
+  FieldValues extends UnknownFieldValues,
+  FieldName extends FieldPath<FieldValues>,
+>(props: Props<FieldValues, FieldName>) {
   return (
     <FormFieldNameContext.Provider value={props.name}>
       <Controller {...props} />
@@ -40,13 +35,11 @@ export function useFormField() {
   const formItemId = useFormItemId();
 
   return useMemo(() => {
-    const fieldState = getFieldState(formFieldName, formState);
-
     return {
       formItemId: `${formItemId}-form-item`,
       formDescriptionId: `${formItemId}-form-item-description`,
       formErrorMessageId: `${formItemId}-form-item-error-message`,
-      ...fieldState,
+      ...getFieldState(formFieldName, formState),
     };
   }, [formFieldName, formItemId, formState, getFieldState]);
 }

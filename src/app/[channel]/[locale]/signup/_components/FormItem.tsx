@@ -1,22 +1,10 @@
-import type {ReactNode} from 'react';
-import {useId} from 'react';
+import type {ComponentProps} from 'react';
 
+import {FormItem as FormItemImpl} from '@/lib/components/Form/FormItem';
 import {cn} from '@/lib/tools/cn';
-import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
 
-const [FormItemIdContext, useFormItemId] =
-  createBoundaryContext<ReturnType<typeof useId>>('formItemId');
+type Props = Pick<ComponentProps<typeof FormItemImpl>, 'children'>;
 
-export {useFormItemId};
-
-type Props = {
-  readonly children: ReactNode;
-};
-
-export function FormItem({children}: Props) {
-  return (
-    <FormItemIdContext.Provider value={useId()}>
-      <div className={cn('flex flex-col space-y-1')}>{children}</div>
-    </FormItemIdContext.Provider>
-  );
+export function FormItem(props: Props) {
+  return <FormItemImpl className={cn('flex flex-col space-y-1')} {...props} />;
 }

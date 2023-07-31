@@ -1,18 +1,10 @@
-import * as Label from '@radix-ui/react-label';
-import type {ComponentPropsWithoutRef} from 'react';
+import type {ComponentProps} from 'react';
 
+import {FormLabel as FormLabelImpl} from '@/lib/components/Form/FormLabel';
 import {cn} from '@/lib/tools/cn';
 
-import {useFormField} from './FormField';
+type Props = Pick<ComponentProps<typeof FormLabelImpl>, 'children'>;
 
-type Props = Pick<ComponentPropsWithoutRef<(typeof Label)['Root']>, 'children'>;
-
-export function FormLabel({children}: Props) {
-  const {formItemId} = useFormField();
-
-  return (
-    <Label.Root htmlFor={formItemId} className={cn(' text-sm font-medium')}>
-      {children}
-    </Label.Root>
-  );
+export function FormLabel(props: Props) {
+  return <FormLabelImpl className={cn('text-sm font-medium')} {...props} />;
 }

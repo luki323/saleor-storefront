@@ -1,8 +1,8 @@
-import {MessagesProvider as MessagesProviderImpl} from '../contexts/messages-context';
-import {loadCompiledMessages} from '../tools/load-compiled-messages';
+import type {ReactNode} from 'react';
 
 import type {AvailableLocale} from '../consts';
-import type {ReactNode} from 'react';
+import {MessagesProvider as MessagesProviderImpl} from '../contexts/messages-context';
+import {loadCompiledMessages} from '../tools/load-compiled-messages';
 
 type Props = {
   readonly children: ReactNode;

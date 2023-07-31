@@ -1,5 +1,6 @@
-import type {AvailableLocale} from '../consts';
 import type {ResolvedIntlConfig} from '@formatjs/intl';
+
+import type {AvailableLocale} from '../consts';
 
 export async function loadCompiledMessages(locale: AvailableLocale) {
   const compiledMessagesModule = await import(

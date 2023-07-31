@@ -1,8 +1,7 @@
+import type {VariantProps} from 'cva';
 import {cva} from 'cva';
 
 import {cn} from '@/lib/tools/cn';
-
-import type {VariantProps} from 'cva';
 
 const styles = cva('', {
   variants: {

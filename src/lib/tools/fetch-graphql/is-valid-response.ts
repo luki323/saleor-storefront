@@ -1,5 +1,4 @@
 import {raise} from '../raise';
-
 import {MIME_TYPES} from './consts';
 
 export function isValidResponse(response: Response) {

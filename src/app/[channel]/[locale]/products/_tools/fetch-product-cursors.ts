@@ -1,10 +1,9 @@
 import {GetProductCursorsDocument} from '@/graphql/generated/documents';
+import type {AvailableChannel} from '@/i18n/consts';
 import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import type {FetchCursors} from '@/lib/tools/pagination/types';
 
 import {PRODUCT_CURSORS_TAG} from '../_consts';
-
-import type {AvailableChannel} from '@/i18n/consts';
-import type {FetchCursors} from '@/lib/tools/pagination/types';
 
 export const fetchProductCursors =
   (channel: AvailableChannel): FetchCursors =>

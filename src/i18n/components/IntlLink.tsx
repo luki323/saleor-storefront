@@ -1,12 +1,11 @@
 'use client';
 
+import type {LinkProps} from 'next/link';
 import Link from 'next/link';
 import {forwardRef} from 'react';
 
 import {useChannel} from '../contexts/channel-context';
 import {useLocale} from '../contexts/locale-context';
-
-import type {LinkProps} from 'next/link';
 
 export const IntlLink: typeof Link = forwardRef(function IntlLink(
   {href: hrefProp, ...restProps},

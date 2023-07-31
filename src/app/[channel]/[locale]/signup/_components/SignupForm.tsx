@@ -13,17 +13,15 @@ import {Spinner} from '@/lib/components/ui/Spinner';
 import {ROUTE} from '@/lib/consts';
 import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
+import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
-
 import {Form} from './Form';
 import {FormControl} from './FormControl';
 import {FormDescription} from './FormDescription';
 import {FormErrorMessage} from './FormErrorMessage';
-import {FormField, FIELDS} from './FormField';
+import {FIELDS, FormField} from './FormField';
 import {FormItem} from './FormItem';
 import {FormLabel} from './FormLabel';
-
-import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 
 export function SignupForm() {
   const channel = useChannel();

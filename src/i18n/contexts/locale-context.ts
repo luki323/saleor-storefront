@@ -1,8 +1,7 @@
 import {createServerContext, useContext} from 'react';
 
-import {DEFAULT_LOCALE} from '../consts';
-
 import type {AvailableLocale} from '../consts';
+import {DEFAULT_LOCALE} from '../consts';
 
 export const LocaleContext = createServerContext<AvailableLocale>(
   'LocaleContext',

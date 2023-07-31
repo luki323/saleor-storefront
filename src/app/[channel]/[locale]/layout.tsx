@@ -1,7 +1,7 @@
-import {IntlProvider} from '@/i18n/components/IntlProvider';
+import type {ReactNode} from 'react';
 
 import type {IntlProviderProps} from '@/i18n/components/IntlProvider';
-import type {ReactNode} from 'react';
+import {IntlProvider} from '@/i18n/components/IntlProvider';
 
 type Props = {
   readonly children: ReactNode;

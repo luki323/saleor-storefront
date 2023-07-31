@@ -1,10 +1,11 @@
-import {DEFAULT_LOCALE} from '@/i18n/consts';
-import {fontSans} from '@/styles/fonts';
 import '@/styles/globals.css';
 
-import {QueryProvider} from './_components/QueryProvider';
-
 import type {ReactNode} from 'react';
+
+import {DEFAULT_LOCALE} from '@/i18n/consts';
+import {fontSans} from '@/styles/fonts';
+
+import {QueryProvider} from './_components/QueryProvider';
 
 type Props = {readonly children: ReactNode};
 

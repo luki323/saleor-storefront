@@ -1,6 +1,5 @@
-import {AVAILABLE_LOCALES} from '../consts';
-
 import type {AvailableLocale} from '../consts';
+import {AVAILABLE_LOCALES} from '../consts';
 
 export function assertAvailableLocale(
   locale: string,

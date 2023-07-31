@@ -1,9 +1,9 @@
 'use client';
 
-import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
-
 import type {ResolvedIntlConfig} from '@formatjs/intl';
 import type {ReactNode} from 'react';
+
+import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
 
 const [MessagesContext, useMessages] =
   createBoundaryContext<ResolvedIntlConfig['messages']>('messages');

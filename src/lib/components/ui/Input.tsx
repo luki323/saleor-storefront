@@ -1,8 +1,7 @@
+import type {InputHTMLAttributes} from 'react';
 import {forwardRef} from 'react';
 
 import {cn} from '@/lib/tools/cn';
-
-import type {InputHTMLAttributes} from 'react';
 
 export const Input = forwardRef<
   HTMLInputElement,

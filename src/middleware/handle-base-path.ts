@@ -1,3 +1,4 @@
+import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 
 import {formatLocale} from '@/i18n/tools/format-locale';
@@ -9,8 +10,6 @@ import {splitPathname} from '@/lib/tools/split-pathname';
 import {CUSTOM_HEADERS} from './consts';
 import {negotiateChannel} from './tools/negotiate-channel';
 import {negotiateCiLocale} from './tools/negotiate-ci-locale';
-
-import type {NextRequest} from 'next/server';
 
 export function handleBasePath(request: NextRequest) {
   const pathnameSegments = splitPathname(request.nextUrl.pathname);

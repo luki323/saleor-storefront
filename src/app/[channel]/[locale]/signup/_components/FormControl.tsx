@@ -1,8 +1,7 @@
 import {Slot} from '@radix-ui/react-slot';
+import type {ComponentPropsWithoutRef} from 'react';
 
 import {useFormField} from './FormField';
-
-import type {ComponentPropsWithoutRef} from 'react';
 
 type Props = Pick<ComponentPropsWithoutRef<typeof Slot>, 'children'>;
 

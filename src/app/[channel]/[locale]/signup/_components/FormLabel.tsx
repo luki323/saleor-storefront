@@ -1,10 +1,9 @@
 import * as Label from '@radix-ui/react-label';
+import type {ComponentPropsWithoutRef} from 'react';
 
 import {cn} from '@/lib/tools/cn';
 
 import {useFormField} from './FormField';
-
-import type {ComponentPropsWithoutRef} from 'react';
 
 type Props = Pick<ComponentPropsWithoutRef<(typeof Label)['Root']>, 'children'>;
 

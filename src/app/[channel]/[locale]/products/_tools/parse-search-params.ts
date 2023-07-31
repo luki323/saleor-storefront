@@ -1,5 +1,4 @@
-import {SEARCH_PARAMS, DEFAULT_SEARCH_PARAMS} from '../_consts';
-
+import {DEFAULT_SEARCH_PARAMS, SEARCH_PARAMS} from '../_consts';
 import type {SearchParams} from '../_types';
 
 export function parseSearchParams({

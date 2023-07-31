@@ -1,7 +1,6 @@
 import {isDefined} from '@/lib/tools/is-defined';
 
 import {MAX_PAGE_SIZE} from '../consts';
-
 import type {FetchCursors} from '../types';
 
 export function createCursorsStore() {

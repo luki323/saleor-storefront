@@ -1,6 +1,6 @@
-import {Text} from '@/lib/components/ui/Text';
-
 import type {ReactNode} from 'react';
+
+import {Text} from '@/lib/components/ui/Text';
 
 type Props = {
   readonly children: ReactNode;

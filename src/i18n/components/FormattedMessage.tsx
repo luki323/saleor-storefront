@@ -1,8 +1,8 @@
 'use client';
 
-import {useIntl} from '../hooks/use-intl';
-
 import type {MessageDescriptor} from '@formatjs/intl';
+
+import {useIntl} from '../hooks/use-intl';
 
 type FormattedMessageProps = MessageDescriptor & {
   readonly values?: Record<string, string>;

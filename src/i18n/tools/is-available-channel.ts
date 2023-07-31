@@ -1,6 +1,5 @@
-import {AVAILABLE_CHANNELS} from '../consts';
-
 import type {AvailableChannel} from '../consts';
+import {AVAILABLE_CHANNELS} from '../consts';
 
 export function isAvailableChannel(
   channel: string,

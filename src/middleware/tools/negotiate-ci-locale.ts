@@ -1,7 +1,7 @@
 import {match} from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 
-import {DEFAULT_LOCALE, AVAILABLE_LOCALES} from '@/i18n/consts';
+import {AVAILABLE_LOCALES, DEFAULT_LOCALE} from '@/i18n/consts';
 import {isAvailableCiLocale} from '@/i18n/tools/is-available-ci-locale';
 import {ciEquals} from '@/lib/tools/ci-equals';
 import {isDefined} from '@/lib/tools/is-defined';

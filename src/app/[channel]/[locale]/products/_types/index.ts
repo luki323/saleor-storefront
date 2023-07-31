@@ -1,7 +1,7 @@
+import type {ObjectValues} from '@/lib/types';
+
 import {SEARCH_PARAMS} from '../_consts';
 import {parseSearchParams} from '../_tools/parse-search-params';
-
-import type {ObjectValues} from '@/lib/types';
 
 export type SearchParams = Partial<
   Record<ObjectValues<typeof SEARCH_PARAMS>, string>

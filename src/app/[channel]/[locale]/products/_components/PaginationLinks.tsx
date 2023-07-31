@@ -4,10 +4,8 @@ import {isDefined} from '@/lib/tools/is-defined';
 
 import {SEARCH_PARAMS} from '../_consts';
 import {cursorsStore} from '../_tools/cursors-store';
-
-import {NavigationLink} from './NavigationLink';
-
 import type {ParsedSearchParams} from '../_types';
+import {NavigationLink} from './NavigationLink';
 
 type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;
 

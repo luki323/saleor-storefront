@@ -1,7 +1,6 @@
 'use client';
 
 import {useInfiniteProductsQuery} from '../_hooks/use-infinite-products-query';
-
 import {ProductList} from './ui/ProductList';
 
 export function LoadMoreList() {

@@ -1,13 +1,12 @@
+import type {DefaultError, InfiniteData} from '@tanstack/react-query';
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query';
 
 import {useChannel} from '@/i18n/contexts/channel-context';
 
 import {DEFAULT_SEARCH_PARAMS} from '../_consts';
 import {PRODUCTS_QUERY_KEY} from '../_consts';
-import {fetchProducts} from '../_tools/fetch-products';
-
 import type {FetchProductsResult} from '../_tools/fetch-products';
-import type {DefaultError, InfiniteData} from '@tanstack/react-query';
+import {fetchProducts} from '../_tools/fetch-products';
 
 export function useInfiniteProductsQuery() {
   const channel = useChannel();

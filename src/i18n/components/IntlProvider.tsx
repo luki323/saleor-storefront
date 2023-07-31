@@ -1,11 +1,10 @@
+import type {ReactNode} from 'react';
+
+import type {AvailableChannel} from '../consts';
 import {ChannelContext} from '../contexts/channel-context';
 import {LocaleContext} from '../contexts/locale-context';
 import {formatLocale} from '../tools/format-locale';
-
 import {MessagesProvider} from './MessagesProvider';
-
-import type {AvailableChannel} from '../consts';
-import type {ReactNode} from 'react';
 
 export type IntlProviderProps = {
   readonly children: ReactNode;

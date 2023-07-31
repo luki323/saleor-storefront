@@ -1,11 +1,9 @@
 import {cn} from '@/lib/tools/cn';
 
-import {SEARCH_PARAMS, PAGE_SIZES} from '../_consts';
+import {PAGE_SIZES, SEARCH_PARAMS} from '../_consts';
 import {cursorsStore} from '../_tools/cursors-store';
-
-import {NavigationLink} from './NavigationLink';
-
 import type {ParsedSearchParams} from '../_types';
+import {NavigationLink} from './NavigationLink';
 
 type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;
 

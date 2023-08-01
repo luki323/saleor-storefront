@@ -36,7 +36,7 @@ export function SignupForm() {
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   return (
-    <Form<SignupFormSchema>
+    <Form
       form={form}
       onSubmit={form.handleSubmit(signupSubmit)}
       noValidate

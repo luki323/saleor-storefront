@@ -42,7 +42,7 @@ export function LoginForm() {
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   return (
-    <Form<LoginFormSchema>
+    <Form
       form={form}
       onSubmit={form.handleSubmit(onSubmit)}
       noValidate

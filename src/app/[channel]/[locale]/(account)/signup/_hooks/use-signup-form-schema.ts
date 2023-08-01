@@ -7,7 +7,7 @@ export type SignupFormSchema = zod.infer<
   ReturnType<typeof useSignupFormSchema>
 >;
 
-export const useSignupFormSchema = () => {
+export function useSignupFormSchema() {
   const {intl} = useIntl();
 
   return useMemo(
@@ -42,4 +42,4 @@ export const useSignupFormSchema = () => {
       }),
     [intl],
   );
-};
+}

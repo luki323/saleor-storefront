@@ -26,7 +26,7 @@ export const buttonStyles = cva(
 );
 
 type Props = VariantProps<typeof buttonStyles> &
-  Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'children'>;
+  ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Button({variant, size, children, ...restProps}: Props) {
   return (

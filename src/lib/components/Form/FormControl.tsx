@@ -1,9 +1,11 @@
 import {Slot} from '@radix-ui/react-slot';
-import type {ComponentPropsWithoutRef} from 'react';
+import type {ReactNode} from 'react';
 
 import {useFormField} from './FormField';
 
-type Props = Pick<ComponentPropsWithoutRef<typeof Slot>, 'children'>;
+type Props = {
+  readonly children: ReactNode;
+};
 
 export function FormControl({children}: Props) {
   const {error, formItemId, formDescriptionId, formErrorMessageId} =

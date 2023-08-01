@@ -11,6 +11,9 @@
   "5Mlwka": {
     "defaultMessage": "Loading products..."
   },
+  "8HJxXG": {
+    "defaultMessage": "Sign up"
+  },
   "9+Ddtu": {
     "defaultMessage": "Next"
   },
@@ -23,17 +26,20 @@
   "JJNc3c": {
     "defaultMessage": "Previous"
   },
-  "Kx1LZl": {
-    "defaultMessage": "Enter your email below to create your account"
-  },
   "OSAM2w": {
     "defaultMessage": "Passwords must be at least 8 characters"
+  },
+  "Omjm4o": {
+    "defaultMessage": "Enter email and password to create account"
   },
   "RVxG/0": {
     "defaultMessage": "Email description"
   },
   "U3l+Q9": {
     "defaultMessage": "Home page"
+  },
+  "VxQzFj": {
+    "defaultMessage": "Enter email and password to log in"
   },
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
@@ -44,11 +50,20 @@
   "hagaYK": {
     "defaultMessage": "Password:"
   },
+  "hfuuOe": {
+    "defaultMessage": "Login with Google"
+  },
+  "odXlk8": {
+    "defaultMessage": "Log in"
+  },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
   },
   "uiFoFm": {
     "defaultMessage": "Password is required"
+  },
+  "vu1wqp": {
+    "defaultMessage": "Log in with email"
   },
   "wUCGLt": {
     "defaultMessage": "Sign up with Google"

@@ -1,6 +1,7 @@
 'use client';
 
 import {zodResolver} from '@hookform/resolvers/zod';
+import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
 import {ORIGIN} from '@/env/env';
@@ -16,10 +17,13 @@ import {Button} from '@/lib/components/ui/Button';
 import {Input} from '@/lib/components/ui/Input';
 import {Spinner} from '@/lib/components/ui/Spinner';
 import {ROUTE} from '@/lib/consts';
+import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
+import {cn} from '@/lib/tools/cn';
 import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {focusInput} from '@/lib/tools/focus-input';
 
-import {FormItem} from '../_components/FormItem';
-import {FormLabel} from '../_components/FormLabel';
+import {FormItem} from '../../_components/FormItem';
+import {FormLabel} from '../../_components/FormLabel';
 import {FIELDS} from '../_consts';
 import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
@@ -51,16 +55,18 @@ export function SignupForm() {
     }
   };
 
+  const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
+
   return (
     <Form<SignupFormSchema>
       form={form}
       onSubmit={form.handleSubmit(onSubmit)}
       noValidate
-      className="flex flex-col gap-3">
+      className={cn('flex flex-col gap-3')}>
       <FormField
         name={FIELDS.EMAIL}
         control={form.control}
-        render={({field: {value, ...restField}}) => (
+        render={({field: {value, ref, ...restField}}) => (
           <FormItem>
             <FormLabel>
               <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
@@ -73,6 +79,7 @@ export function SignupForm() {
                 value={value ?? ''}
                 autoFocus
                 required
+                ref={refMountCallback(ref, focusInput)}
                 {...restField}
               />
             </FormControl>
@@ -118,7 +125,7 @@ export function SignupForm() {
       />
       <Button disabled={form.formState.isSubmitting}>
         {form.formState.isSubmitting && (
-          <span className="mr-2">
+          <span className={cn('mr-2')}>
             <Spinner />
           </span>
         )}

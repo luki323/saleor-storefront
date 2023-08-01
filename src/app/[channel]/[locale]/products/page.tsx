@@ -11,9 +11,9 @@ import {PreloadCursors} from './_components/PreloadCursors';
 import {parseSearchParams} from './_tools/parse-search-params';
 import type {SearchParams} from './_types';
 
-type Props = {
+interface Props {
   readonly searchParams?: SearchParams;
-};
+}
 
 export default function ProductsPage({searchParams}: Props) {
   const {pageNumber, pageSize} = parseSearchParams(searchParams);

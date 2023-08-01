@@ -7,11 +7,11 @@ import type {ObjectValues} from '@/lib/types';
 
 import {SEARCH_PARAMS} from '../_consts';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
   readonly disabled?: boolean;
   readonly query: Record<ObjectValues<typeof SEARCH_PARAMS>, number | null>;
-};
+}
 
 export function NavigationLink({children, disabled = false, query}: Props) {
   if (disabled) {

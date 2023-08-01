@@ -6,11 +6,11 @@ import {LocaleContext} from '../contexts/locale-context';
 import {formatLocale} from '../tools/format-locale';
 import {MessagesProvider} from './MessagesProvider';
 
-export type IntlProviderProps = {
+export interface IntlProviderProps {
   readonly children: ReactNode;
   readonly channel: AvailableChannel;
   readonly locale: string;
-};
+}
 
 export function IntlProvider({children, channel, locale}: IntlProviderProps) {
   const formattedLocale = formatLocale(locale);

@@ -1,12 +1,12 @@
-export type ForwardArguments = {
+export interface ForwardArguments {
   readonly first: number;
   readonly after?: string;
-};
+}
 
-export type FetchCursorsResult = {
+export interface FetchCursorsResult {
   readonly cursors: readonly string[];
   readonly hasNextPage: boolean;
-};
+}
 
 export type FetchCursors = (
   forward: ForwardArguments,

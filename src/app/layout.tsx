@@ -7,7 +7,9 @@ import {fontSans} from '@/styles/fonts';
 
 import {QueryProvider} from './_components/QueryProvider';
 
-type Props = {readonly children: ReactNode};
+interface Props {
+  readonly children: ReactNode;
+}
 
 export default function RootLayout({children}: Props) {
   return (

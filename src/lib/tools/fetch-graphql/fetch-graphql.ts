@@ -7,10 +7,10 @@ import {MIME_TYPES} from './consts';
 import {formatMimeTypes} from './format-mime-types';
 import {isValidResponse} from './is-valid-response';
 
-type OptionalParams<Variables> = {
+interface OptionalParams<Variables> {
   readonly operationName?: string | null;
   readonly variables?: Variables | null;
-};
+}
 
 export async function fetchGraphQL<Result, Variables>(
   query: TypedDocumentString<Result, Variables>,

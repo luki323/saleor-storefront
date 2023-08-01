@@ -3,9 +3,9 @@ import type {ReactNode} from 'react';
 import {Text} from '@/lib/components/ui/Text';
 import {cn} from '@/lib/tools/cn';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
-};
+}
 
 export function Divider({children}: Props) {
   return (

@@ -2,9 +2,9 @@ import type {ProductListItem} from '@/graphql/generated/documents';
 
 import {ProductCard} from './ProductCard';
 
-type Props = {
+interface Props {
   readonly products: readonly ProductListItem[];
-};
+}
 
 export function ProductList({products}: Props) {
   return (

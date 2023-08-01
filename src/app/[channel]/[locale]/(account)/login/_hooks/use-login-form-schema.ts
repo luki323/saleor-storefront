@@ -1,12 +1,11 @@
 import {useMemo} from 'react';
+import {useIntl} from 'react-intl';
 import * as zod from 'zod';
-
-import {useIntl} from '@/i18n/hooks/use-intl';
 
 export type LoginFormSchema = zod.infer<ReturnType<typeof useLoginFormSchema>>;
 
 export function useLoginFormSchema() {
-  const {intl} = useIntl();
+  const intl = useIntl();
 
   return useMemo(
     () =>

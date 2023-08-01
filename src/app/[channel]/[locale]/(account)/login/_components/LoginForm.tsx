@@ -5,11 +5,11 @@ import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
-import {Form} from '@/lib/components/Form/Form';
-import {FormControl} from '@/lib/components/Form/FormControl';
-import {FormDescription} from '@/lib/components/Form/FormDescription';
-import {FormErrorMessage} from '@/lib/components/Form/FormErrorMessage';
-import {FormField} from '@/lib/components/Form/FormField';
+import {Form} from '@/lib/components/form/Form';
+import {FormControl} from '@/lib/components/form/FormControl';
+import {FormDescription} from '@/lib/components/form/FormDescription';
+import {FormErrorMessage} from '@/lib/components/form/FormErrorMessage';
+import {FormField} from '@/lib/components/form/FormField';
 import {Button} from '@/lib/components/ui/Button';
 import {Input} from '@/lib/components/ui/Input';
 import {Spinner} from '@/lib/components/ui/Spinner';

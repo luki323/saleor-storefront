@@ -1,11 +1,11 @@
 import type {ReactNode} from 'react';
 
-import type {IntlProviderProps} from '@/i18n/components/IntlProvider';
-import {IntlProvider} from '@/i18n/components/IntlProvider';
+import type {I18nProviderProps} from '@/i18n/components/I18nProvider';
+import {I18nProvider} from '@/i18n/components/I18nProvider';
 
 interface Props {
   readonly children: ReactNode;
-  readonly params: Pick<IntlProviderProps, 'channel' | 'locale'>;
+  readonly params: Pick<I18nProviderProps, 'channel' | 'locale'>;
 }
 
 export default function HomeLayout({
@@ -13,8 +13,8 @@ export default function HomeLayout({
   params: {channel, locale},
 }: Props) {
   return (
-    <IntlProvider channel={channel} locale={locale}>
+    <I18nProvider channel={channel} locale={locale}>
       {children}
-    </IntlProvider>
+    </I18nProvider>
   );
 }

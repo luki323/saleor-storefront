@@ -4,8 +4,8 @@ import type {LinkProps} from 'next/link';
 import Link from 'next/link';
 import {forwardRef} from 'react';
 
-import {useChannel} from '../contexts/channel-context';
-import {useLocale} from '../contexts/locale-context';
+import {useChannel} from '../channel-context';
+import {useLocale} from '../locale-context';
 
 export const IntlLink: typeof Link = forwardRef(function IntlLink(
   {href: hrefProp, ...restProps},

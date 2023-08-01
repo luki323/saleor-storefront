@@ -10,7 +10,7 @@
     "generate": "DOTENV_CONFIG_PATH=.env.local graphql-codegen -r dotenv/config",
     "postinstall": "stale-dep -u",
     "extract": "formatjs extract --out-file messages/en-US.json -- 'src/**/*.{ts,tsx}'",
-    "compile-folder": "formatjs compile-folder -- messages src/i18n/compiled-messages",
+    "compile-folder": "formatjs compile-folder --ast -- messages src/i18n/compiled-messages",
     "extract-compile": "pnpm run extract && pnpm run compile-folder",
     "commit": "commit"
   },
@@ -29,6 +29,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
+    "react-intl": "^6.4.4",
     "react-merge-refs": "^2.0.2",
     "tailwind-merge": "^1.14.0",
     "zod": "^3.21.4"

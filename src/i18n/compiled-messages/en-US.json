@@ -1,26 +1,146 @@
 {
-  "00LcfG": "Load more",
-  "0vL5u1": "Create an account",
-  "4cSA+G": "Or continue with",
-  "5Mlwka": "Loading products...",
-  "8HJxXG": "Sign up",
-  "9+Ddtu": "Next",
-  "A4RrFD": "Password description",
-  "AyGauy": "Login",
-  "JJNc3c": "Previous",
-  "OSAM2w": "Passwords must be at least 8 characters",
-  "Omjm4o": "Enter email and password to create account",
-  "RVxG/0": "Email description",
-  "U3l+Q9": "Home page",
-  "VxQzFj": "Enter email and password to log in",
-  "Ydq9bW": "Please enter valid email",
-  "cU/aSG": "Email is required",
-  "hagaYK": "Password:",
-  "hfuuOe": "Login with Google",
-  "odXlk8": "Log in",
-  "pmu7Ih": "Sign up with email",
-  "uiFoFm": "Password is required",
-  "vu1wqp": "Log in with email",
-  "wUCGLt": "Sign up with Google",
-  "xpTPb3": "Email:"
+  "00LcfG": [
+    {
+      "type": 0,
+      "value": "Load more"
+    }
+  ],
+  "0vL5u1": [
+    {
+      "type": 0,
+      "value": "Create an account"
+    }
+  ],
+  "4cSA+G": [
+    {
+      "type": 0,
+      "value": "Or continue with"
+    }
+  ],
+  "5Mlwka": [
+    {
+      "type": 0,
+      "value": "Loading products..."
+    }
+  ],
+  "8HJxXG": [
+    {
+      "type": 0,
+      "value": "Sign up"
+    }
+  ],
+  "9+Ddtu": [
+    {
+      "type": 0,
+      "value": "Next"
+    }
+  ],
+  "A4RrFD": [
+    {
+      "type": 0,
+      "value": "Password description"
+    }
+  ],
+  "AyGauy": [
+    {
+      "type": 0,
+      "value": "Login"
+    }
+  ],
+  "JJNc3c": [
+    {
+      "type": 0,
+      "value": "Previous"
+    }
+  ],
+  "OSAM2w": [
+    {
+      "type": 0,
+      "value": "Passwords must be at least 8 characters"
+    }
+  ],
+  "Omjm4o": [
+    {
+      "type": 0,
+      "value": "Enter email and password to create account"
+    }
+  ],
+  "RVxG/0": [
+    {
+      "type": 0,
+      "value": "Email description"
+    }
+  ],
+  "U3l+Q9": [
+    {
+      "type": 0,
+      "value": "Home page"
+    }
+  ],
+  "VxQzFj": [
+    {
+      "type": 0,
+      "value": "Enter email and password to log in"
+    }
+  ],
+  "Ydq9bW": [
+    {
+      "type": 0,
+      "value": "Please enter valid email"
+    }
+  ],
+  "cU/aSG": [
+    {
+      "type": 0,
+      "value": "Email is required"
+    }
+  ],
+  "hagaYK": [
+    {
+      "type": 0,
+      "value": "Password:"
+    }
+  ],
+  "hfuuOe": [
+    {
+      "type": 0,
+      "value": "Login with Google"
+    }
+  ],
+  "odXlk8": [
+    {
+      "type": 0,
+      "value": "Log in"
+    }
+  ],
+  "pmu7Ih": [
+    {
+      "type": 0,
+      "value": "Sign up with email"
+    }
+  ],
+  "uiFoFm": [
+    {
+      "type": 0,
+      "value": "Password is required"
+    }
+  ],
+  "vu1wqp": [
+    {
+      "type": 0,
+      "value": "Log in with email"
+    }
+  ],
+  "wUCGLt": [
+    {
+      "type": 0,
+      "value": "Sign up with Google"
+    }
+  ],
+  "xpTPb3": [
+    {
+      "type": 0,
+      "value": "Email:"
+    }
+  ]
 }

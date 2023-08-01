@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 
-import {FormLabel as FormLabelImpl} from '@/lib/components/Form/FormLabel';
+import {FormLabel as FormLabelImpl} from '@/lib/components/form/FormLabel';
 import {cn} from '@/lib/tools/cn';
 
 interface Props {

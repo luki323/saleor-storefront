@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 
-import {FormItem as FormItemImpl} from '@/lib/components/Form/FormItem';
+import {FormItem as FormItemImpl} from '@/lib/components/form/FormItem';
 import {cn} from '@/lib/tools/cn';
 
 interface Props {

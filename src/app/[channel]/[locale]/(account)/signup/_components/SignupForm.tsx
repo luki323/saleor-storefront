@@ -4,9 +4,6 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
-import {ORIGIN} from '@/env/env';
-import {SignUpDocument} from '@/graphql/generated/documents';
-import {useChannel} from '@/i18n/channel-context';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {Form} from '@/lib/components/form/Form';
 import {FormControl} from '@/lib/components/form/FormControl';
@@ -16,10 +13,8 @@ import {FormField} from '@/lib/components/form/FormField';
 import {Button} from '@/lib/components/ui/Button';
 import {Input} from '@/lib/components/ui/Input';
 import {Spinner} from '@/lib/components/ui/Spinner';
-import {ROUTE} from '@/lib/consts';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
 import {cn} from '@/lib/tools/cn';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 import {focusInput} from '@/lib/tools/focus-input';
 
 import {FormItem} from '../../_components/FormItem';
@@ -27,40 +22,23 @@ import {FormLabel} from '../../_components/FormLabel';
 import {FIELDS} from '../_consts';
 import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
+import {useSignupSubmit} from '../_hooks/use-signup-submit';
 
 export function SignupForm() {
-  const channel = useChannel();
+  const signupFormSchema = useSignupFormSchema();
 
   const form = useForm<SignupFormSchema>({
-    resolver: zodResolver(useSignupFormSchema()),
+    resolver: zodResolver(signupFormSchema),
   });
 
-  const onSubmit = async ({email, password}: SignupFormSchema) => {
-    try {
-      await fetchGraphQL(SignUpDocument, {
-        variables: {
-          accountRegisterInput: {
-            email,
-            password,
-            channel,
-            redirectUrl: `${ORIGIN}/${ROUTE.CONFIRM_ACCOUNT}`,
-          },
-        },
-      });
-
-      form.reset();
-    } catch (error) {
-      // TODO: display server error
-      console.error(error);
-    }
-  };
+  const signupSubmit = useSignupSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   return (
     <Form<SignupFormSchema>
       form={form}
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit(signupSubmit)}
       noValidate
       className={cn('flex flex-col gap-3')}>
       <FormField

@@ -24,8 +24,10 @@ import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
 
 export function LoginForm() {
+  const loginFormSchema = useLoginFormSchema();
+
   const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(useLoginFormSchema()),
+    resolver: zodResolver(loginFormSchema),
   });
 
   const onSubmit = async () => {

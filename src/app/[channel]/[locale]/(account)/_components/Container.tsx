@@ -2,9 +2,9 @@ import type {ReactNode} from 'react';
 
 import {cn} from '@/lib/tools/cn';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
-};
+}
 
 export function Container({children}: Props) {
   return (

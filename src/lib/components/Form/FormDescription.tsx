@@ -4,9 +4,9 @@ import {Text} from '@/lib/components/ui/Text';
 
 import {useFormField} from './FormField';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
-};
+}
 
 export function FormDescription({children}: Props) {
   const {formDescriptionId} = useFormField();

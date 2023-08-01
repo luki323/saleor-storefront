@@ -3,9 +3,9 @@ import type {ReactNode} from 'react';
 
 import {useFormField} from './FormField';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
-};
+}
 
 export function FormControl({children}: Props) {
   const {error, formItemId, formDescriptionId, formErrorMessageId} =

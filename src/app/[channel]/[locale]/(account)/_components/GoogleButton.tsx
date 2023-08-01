@@ -4,9 +4,9 @@ import {Button} from '@/lib/components/ui/Button';
 import {Icons} from '@/lib/components/ui/Icons';
 import {cn} from '@/lib/tools/cn';
 
-type Props = {
+interface Props {
   readonly children: ReactNode;
-};
+}
 
 export function GoogleButton({children}: Props) {
   return (

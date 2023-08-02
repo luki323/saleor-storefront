@@ -17,7 +17,7 @@ function LoginPage() {
       </NavigationLink>
       <Container>
         <Heading>
-          <FormattedMessage defaultMessage="Log in" id="odXlk8" />
+          <FormattedMessage defaultMessage="Welcome back" id="UKxoV8" />
         </Heading>
         <Text size="small" color="muted-foreground">
           <FormattedMessage

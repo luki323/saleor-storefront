@@ -7,7 +7,9 @@
 
   --input: 240 3.7% 15.9%;
 
-  --background: 0 0% 100%;
+  --white: 0 0% 100%;
+
+  --background: 0 0% 98%;
 
   --muted-foreground: 240 5% 64.9%;
 
@@ -18,4 +20,8 @@
   --accent-foreground: 240 5.9% 10%;
 
   --radius: 0.5rem;
+}
+
+body {
+  @apply bg-background;
 }

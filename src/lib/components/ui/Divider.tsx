@@ -10,7 +10,7 @@ interface Props {
 export function Divider({children}: Props) {
   return (
     <div className={cn('relative flex justify-center')}>
-      <div className={cn('z-10 bg-white px-2 uppercase')}>
+      <div className={cn('z-10 bg-background px-2 uppercase')}>
         <Text as="span" color="muted-foreground" size="small">
           {children}
         </Text>

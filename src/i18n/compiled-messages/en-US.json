@@ -53,6 +53,20 @@
       "value": "Previous"
     }
   ],
+  "OFXKGv": [
+    {
+      "type": 0,
+      "value": "Confirmation email was sent to "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    },
+    {
+      "type": 0,
+      "value": " mailbox."
+    }
+  ],
   "OSAM2w": [
     {
       "type": 0,

@@ -26,6 +26,9 @@
   "JJNc3c": {
     "defaultMessage": "Previous"
   },
+  "OFXKGv": {
+    "defaultMessage": "Confirmation email was sent to {email} mailbox."
+  },
   "OSAM2w": {
     "defaultMessage": "Passwords must be at least 8 characters"
   },

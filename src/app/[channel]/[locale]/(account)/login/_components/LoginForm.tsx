@@ -22,6 +22,7 @@ import {FormLabel} from '../../_components/FormLabel';
 import {FIELDS} from '../_consts';
 import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
+import {useLoginSubmit} from '../_hooks/use-login-submit';
 
 export function LoginForm() {
   const loginFormSchema = useLoginFormSchema();
@@ -30,21 +31,14 @@ export function LoginForm() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  const onSubmit = async () => {
-    try {
-      form.reset();
-    } catch (error) {
-      // TODO: di§play server error
-      console.error(error);
-    }
-  };
+  const loginSubmit = useLoginSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   return (
     <Form
       form={form}
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit(loginSubmit)}
       noValidate
       className={cn('flex flex-col gap-3')}>
       <FormField

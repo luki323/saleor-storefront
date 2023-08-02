@@ -2,6 +2,9 @@
 const config = {
   distDir: 'dist',
   reactStrictMode: true,
+  experimental: {
+    serverActions: true,
+  },
   webpack(config) {
     return {
       ...config,

@@ -16,6 +16,7 @@ export const buttonStyles = cva(
       },
       size: {
         default: 'h-10 px-4 py-2',
+        icon: 'h-10 w-10',
       },
     },
     defaultVariants: {
@@ -25,10 +26,10 @@ export const buttonStyles = cva(
   },
 );
 
-type Props = VariantProps<typeof buttonStyles> &
+export type ButtonProps = VariantProps<typeof buttonStyles> &
   ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({variant, size, children, ...restProps}: Props) {
+export function Button({variant, size, children, ...restProps}: ButtonProps) {
   return (
     <button className={cn(buttonStyles({variant, size}))} {...restProps}>
       {children}

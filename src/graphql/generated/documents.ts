@@ -22,6 +22,14 @@ export type SignUpVariables = Types.Exact<{
 
 export type SignUp = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', requiresConfirmation?: boolean | null, user?: { __typename?: 'User', email: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type GetHeaderMenuVariables = Types.Exact<{
+  languageCode: Types.LanguageCodeEnum;
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+}>;
+
+
+export type GetHeaderMenu = { __typename?: 'Query', menu?: { __typename?: 'Menu', items?: Array<{ __typename?: 'MenuItem', category?: { __typename?: 'Category', name: string, slug: string, translation?: { __typename?: 'CategoryTranslation', name?: string | null } | null } | null }> | null } | null };
+
 export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string };
 
 export type GetProductCursorsVariables = Types.Exact<{
@@ -112,6 +120,21 @@ export const SignUpDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
+export const GetHeaderMenuDocument = new TypedDocumentString(`
+    query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
+  menu(name: "navbar", channel: $channel) {
+    items {
+      category {
+        name
+        slug
+        translation(languageCode: $languageCode) {
+          name
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetHeaderMenu, GetHeaderMenuVariables>;
 export const GetProductCursorsDocument = new TypedDocumentString(`
     query getProductCursors($first: Int!, $after: String, $channel: String) {
   products(first: $first, after: $after, channel: $channel) {

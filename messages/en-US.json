@@ -5,6 +5,9 @@
   "0vL5u1": {
     "defaultMessage": "Create an account"
   },
+  "2tqQFl": {
+    "defaultMessage": "Cart"
+  },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
   },
@@ -47,6 +50,9 @@
   "VxQzFj": {
     "defaultMessage": "Enter email and password to log in"
   },
+  "X8m9DF": {
+    "defaultMessage": "Search for products..."
+  },
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
   },
@@ -61,6 +67,9 @@
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
+  },
+  "tKMlOc": {
+    "defaultMessage": "Menu"
   },
   "uiFoFm": {
     "defaultMessage": "Password is required"

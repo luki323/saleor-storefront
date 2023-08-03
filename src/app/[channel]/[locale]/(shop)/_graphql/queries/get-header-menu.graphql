@@ -1,12 +1,12 @@
 query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
   menu(name: "navbar", channel: $channel) {
     items {
-      category {
+      name
+      translation(languageCode: $languageCode) {
         name
+      }
+      category {
         slug
-        translation(languageCode: $languageCode) {
-          name
-        }
       }
     }
   }

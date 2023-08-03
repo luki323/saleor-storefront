@@ -8,11 +8,16 @@ export async function fetchHeaderMenu(variables: GetHeaderMenuVariables) {
   });
 
   return (
-    menu?.items
-      ?.flatMap(({category}) => category ?? [])
-      .map(({name, slug, translation}) => ({
+    menu?.items?.map(({category, name, translation}) => {
+      if (!category) {
+        throw new Error('Category object is not defined');
+      }
+      const {slug} = category;
+
+      return {
         name: translation?.name ?? name,
         slug,
-      })) ?? []
+      };
+    }) ?? []
   );
 }

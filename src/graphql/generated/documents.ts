@@ -28,7 +28,7 @@ export type GetHeaderMenuVariables = Types.Exact<{
 }>;
 
 
-export type GetHeaderMenu = { __typename?: 'Query', menu?: { __typename?: 'Menu', items?: Array<{ __typename?: 'MenuItem', category?: { __typename?: 'Category', name: string, slug: string, translation?: { __typename?: 'CategoryTranslation', name?: string | null } | null } | null }> | null } | null };
+export type GetHeaderMenu = { __typename?: 'Query', menu?: { __typename?: 'Menu', items?: Array<{ __typename?: 'MenuItem', name: string, translation?: { __typename?: 'MenuItemTranslation', name: string } | null, category?: { __typename?: 'Category', slug: string } | null }> | null } | null };
 
 export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string };
 
@@ -124,12 +124,12 @@ export const GetHeaderMenuDocument = new TypedDocumentString(`
     query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
   menu(name: "navbar", channel: $channel) {
     items {
-      category {
+      name
+      translation(languageCode: $languageCode) {
         name
+      }
+      category {
         slug
-        translation(languageCode: $languageCode) {
-          name
-        }
       }
     }
   }

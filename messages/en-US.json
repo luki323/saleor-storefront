@@ -20,11 +20,17 @@
   "9+Ddtu": {
     "defaultMessage": "Next"
   },
+  "9KlUdb": {
+    "defaultMessage": "Enter your email to receive reset link"
+  },
   "A4RrFD": {
     "defaultMessage": "Password description"
   },
   "AyGauy": {
     "defaultMessage": "Login"
+  },
+  "DkQ5Q8": {
+    "defaultMessage": "Send reset link"
   },
   "JJNc3c": {
     "defaultMessage": "Previous"
@@ -47,6 +53,9 @@
   "UKxoV8": {
     "defaultMessage": "Welcome back"
   },
+  "V/JHlm": {
+    "defaultMessage": "Forgot password?"
+  },
   "VxQzFj": {
     "defaultMessage": "Enter email and password to log in"
   },
@@ -58,6 +67,9 @@
   },
   "cU/aSG": {
     "defaultMessage": "Email is required"
+  },
+  "cyR7Kh": {
+    "defaultMessage": "Back"
   },
   "hagaYK": {
     "defaultMessage": "Password:"
@@ -73,6 +85,9 @@
   },
   "uiFoFm": {
     "defaultMessage": "Password is required"
+  },
+  "vIAvec": {
+    "defaultMessage": "Reset link was sent to {email} mailbox."
   },
   "vu1wqp": {
     "defaultMessage": "Log in with email"

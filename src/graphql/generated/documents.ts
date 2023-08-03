@@ -20,6 +20,15 @@ export type ConfirmAccountVariables = Types.Exact<{
 
 export type ConfirmAccount = { __typename?: 'Mutation', confirmAccount?: { __typename?: 'ConfirmAccount', user?: { __typename?: 'User', isActive: boolean } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type ForgotPasswordVariables = Types.Exact<{
+  email: Types.Scalars['String']['input'];
+  redirectUrl: Types.Scalars['String']['input'];
+  channel: Types.Scalars['String']['input'];
+}>;
+
+
+export type ForgotPassword = { __typename?: 'Mutation', forgotPassword?: { __typename?: 'RequestPasswordReset', errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+
 export type SignUpVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   password: Types.Scalars['String']['input'];
@@ -125,6 +134,22 @@ export const ConfirmAccountDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<ConfirmAccount, ConfirmAccountVariables>;
+export const ForgotPasswordDocument = new TypedDocumentString(`
+    mutation forgotPassword($email: String!, $redirectUrl: String!, $channel: String!) {
+  forgotPassword: requestPasswordReset(
+    email: $email
+    redirectUrl: $redirectUrl
+    channel: $channel
+  ) {
+    errors {
+      ...AccountError
+    }
+  }
+}
+    fragment AccountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<ForgotPassword, ForgotPasswordVariables>;
 export const SignUpDocument = new TypedDocumentString(`
     mutation signUp($email: String!, $password: String!, $channel: String!, $redirectUrl: String!) {
   accountRegister(

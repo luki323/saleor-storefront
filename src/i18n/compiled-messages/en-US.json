@@ -41,6 +41,12 @@
       "value": "Next"
     }
   ],
+  "9KlUdb": [
+    {
+      "type": 0,
+      "value": "Enter your email to receive reset link"
+    }
+  ],
   "A4RrFD": [
     {
       "type": 0,
@@ -51,6 +57,12 @@
     {
       "type": 0,
       "value": "Login"
+    }
+  ],
+  "DkQ5Q8": [
+    {
+      "type": 0,
+      "value": "Send reset link"
     }
   ],
   "JJNc3c": [
@@ -103,6 +115,12 @@
       "value": "Welcome back"
     }
   ],
+  "V/JHlm": [
+    {
+      "type": 0,
+      "value": "Forgot password?"
+    }
+  ],
   "VxQzFj": [
     {
       "type": 0,
@@ -125,6 +143,12 @@
     {
       "type": 0,
       "value": "Email is required"
+    }
+  ],
+  "cyR7Kh": [
+    {
+      "type": 0,
+      "value": "Back"
     }
   ],
   "hagaYK": [
@@ -155,6 +179,20 @@
     {
       "type": 0,
       "value": "Password is required"
+    }
+  ],
+  "vIAvec": [
+    {
+      "type": 0,
+      "value": "Reset link was sent to "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    },
+    {
+      "type": 0,
+      "value": " mailbox."
     }
   ],
   "vu1wqp": [

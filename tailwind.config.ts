@@ -8,6 +8,7 @@ const config: Config = {
         ring: 'hsl(var(--ring))',
         input: 'hsl(var(--input))',
         white: 'hsl(var(--white))',
+        grey: 'hsl(var(--grey))',
         background: 'hsl(var(--background))',
         muted: {
           foreground: 'hsl(var(--muted-foreground))',

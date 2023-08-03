@@ -19,7 +19,7 @@ import {focusInput} from '@/lib/tools/focus-input';
 
 import {FormItem} from '../../_components/FormItem';
 import {FormLabel} from '../../_components/FormLabel';
-import {FIELDS} from '../_consts';
+import {FIELDS} from '../_consts/consts';
 import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupSubmit} from '../_hooks/use-signup-submit';

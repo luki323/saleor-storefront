@@ -1,4 +1,4 @@
-import type {HTMLAttributes} from 'react';
+import type {ReactNode} from 'react';
 import {useId} from 'react';
 
 import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
@@ -8,7 +8,10 @@ const [FormItemIdContext, useFormItemId] =
 
 export {useFormItemId};
 
-type Props = Pick<HTMLAttributes<HTMLDivElement>, 'children' | 'className'>;
+interface Props {
+  readonly children: ReactNode;
+  readonly className: string;
+}
 
 export function FormItem({children, ...restProps}: Props) {
   return (

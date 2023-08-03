@@ -1,12 +1,13 @@
 import type {FormHTMLAttributes} from 'react';
-import type {UseFormReturn} from 'react-hook-form';
+import type {FieldValues, UseFormReturn} from 'react-hook-form';
 import {FormProvider} from 'react-hook-form';
 
-type Props<FormSchema extends Record<string, unknown>> = {
+interface Props<FormSchema extends FieldValues>
+  extends FormHTMLAttributes<HTMLFormElement> {
   readonly form: UseFormReturn<FormSchema>;
-} & FormHTMLAttributes<HTMLFormElement>;
+}
 
-export function Form<FormSchema extends Record<string, unknown>>({
+export function Form<FormSchema extends FieldValues>({
   form,
   ...restProps
 }: Props<FormSchema>) {

@@ -19,7 +19,7 @@ import {focusInput} from '@/lib/tools/focus-input';
 
 import {FormItem} from '../../_components/FormItem';
 import {FormLabel} from '../../_components/FormLabel';
-import {FIELDS} from '../_consts';
+import {FIELDS} from '../_consts/consts';
 import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginSubmit} from '../_hooks/use-login-submit';

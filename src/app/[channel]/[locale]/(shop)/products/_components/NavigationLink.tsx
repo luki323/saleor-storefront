@@ -1,11 +1,11 @@
 import type {ReactNode} from 'react';
 
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {ROUTE} from '@/lib/consts';
+import {ROUTE} from '@/lib/consts/consts';
 import {cn} from '@/lib/tools/cn';
-import type {ObjectValues} from '@/lib/types';
+import type {ObjectValues} from '@/lib/types/types';
 
-import {SEARCH_PARAMS} from '../_consts';
+import type {SEARCH_PARAMS} from '../_consts/consts';
 
 interface Props {
   readonly children: ReactNode;

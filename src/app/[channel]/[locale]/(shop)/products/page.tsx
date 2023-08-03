@@ -9,7 +9,7 @@ import {PaginationLinks} from './_components/PaginationLinks';
 import {PaginationList} from './_components/PaginationList';
 import {PreloadCursors} from './_components/PreloadCursors';
 import {parseSearchParams} from './_tools/parse-search-params';
-import type {SearchParams} from './_types';
+import type {SearchParams} from './_types/types';
 
 interface Props {
   readonly searchParams?: SearchParams;

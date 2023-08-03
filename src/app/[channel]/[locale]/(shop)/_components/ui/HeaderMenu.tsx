@@ -1,10 +1,10 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
 import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts';
+import {ROUTE} from '@/lib/consts/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {fetchHeaderMenu} from '../../_tools/fetch-header-menu';
+import type {fetchHeaderMenu} from '../../_tools/fetch-header-menu';
 
 interface Props {
   readonly menu: Awaited<ReturnType<typeof fetchHeaderMenu>>;

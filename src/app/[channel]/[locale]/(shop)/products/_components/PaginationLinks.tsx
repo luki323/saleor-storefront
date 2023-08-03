@@ -2,9 +2,9 @@ import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {cn} from '@/lib/tools/cn';
 import {isDefined} from '@/lib/tools/is-defined';
 
-import {SEARCH_PARAMS} from '../_consts';
+import {SEARCH_PARAMS} from '../_consts/consts';
 import {cursorsStore} from '../_tools/cursors-store';
-import type {ParsedSearchParams} from '../_types';
+import type {ParsedSearchParams} from '../_types/types';
 import {NavigationLink} from './NavigationLink';
 
 type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;

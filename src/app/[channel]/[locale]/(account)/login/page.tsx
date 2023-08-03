@@ -1,7 +1,7 @@
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {Divider} from '@/lib/components/ui/Divider';
 import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts';
+import {ROUTE} from '@/lib/consts/consts';
 
 import {Container} from '../_components/Container';
 import {GoogleButton} from '../_components/GoogleButton';

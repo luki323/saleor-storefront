@@ -3,8 +3,8 @@ import {useSuspenseInfiniteQuery} from '@tanstack/react-query';
 
 import {useChannel} from '@/i18n/channel-context';
 
-import {DEFAULT_SEARCH_PARAMS} from '../_consts';
-import {PRODUCTS_QUERY_KEY} from '../_consts';
+import {DEFAULT_SEARCH_PARAMS} from '../_consts/consts';
+import {PRODUCTS_QUERY_KEY} from '../_consts/consts';
 import type {FetchProductsResult} from '../_tools/fetch-products';
 import {fetchProducts} from '../_tools/fetch-products';
 

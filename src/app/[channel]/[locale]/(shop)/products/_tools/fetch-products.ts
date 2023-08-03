@@ -1,6 +1,6 @@
 import type {GetProductsVariables} from '@/graphql/generated/documents';
 import {GetProductsDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
 
 export async function fetchProducts(
   variables: GetProductsVariables,

@@ -6,7 +6,11 @@ import {ReactQueryStreamedHydration} from '@tanstack/react-query-next-experiment
 import type {ReactNode} from 'react';
 import {useMemo} from 'react';
 
-export function QueryProvider({children}: {readonly children: ReactNode}) {
+interface Props {
+  readonly children: ReactNode;
+}
+
+export function QueryProvider({children}: Props) {
   const queryClient = useMemo(() => {
     return new QueryClient();
   }, []);

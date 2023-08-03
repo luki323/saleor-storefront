@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 
-import {type ReactNode} from 'react';
+import type {ReactNode} from 'react';
 
 import {DEFAULT_LOCALE} from '@/i18n/consts';
 import {fontSans} from '@/styles/fonts';

@@ -5,7 +5,7 @@ import {toast} from 'sonner';
 
 import {ORIGIN} from '@/env/env';
 import {useChannel} from '@/i18n/channel-context';
-import {ROUTE} from '@/lib/consts';
+import {ROUTE} from '@/lib/consts/consts';
 
 import {handleLoginResult} from '../../_tools/handle-login-result';
 import {logInAction} from '../../_tools/log-in-action';

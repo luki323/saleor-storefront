@@ -1,9 +1,5 @@
 import {useMemo} from 'react';
-import type {
-  ControllerProps,
-  FieldPath,
-  FieldValues as UnknownFieldValues,
-} from 'react-hook-form';
+import type {ControllerProps, FieldPath, FieldValues} from 'react-hook-form';
 import {Controller, useFormContext} from 'react-hook-form';
 
 import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
@@ -13,15 +9,15 @@ import {useFormItemId} from './FormItem';
 const [FormFieldNameContext, useFormFieldName] =
   createBoundaryContext<string>('formFieldName');
 
-type Props<
-  FieldValues extends UnknownFieldValues,
-  FieldName extends FieldPath<FieldValues>,
-> = ControllerProps<FieldValues, FieldName>;
+interface Props<
+  FormSchema extends FieldValues,
+  FieldName extends FieldPath<FormSchema>,
+> extends ControllerProps<FormSchema, FieldName> {}
 
 export function FormField<
-  FieldValues extends UnknownFieldValues,
-  FieldName extends FieldPath<FieldValues>,
->(props: Props<FieldValues, FieldName>) {
+  FormSchema extends FieldValues,
+  FieldName extends FieldPath<FormSchema>,
+>(props: Props<FormSchema, FieldName>) {
   return (
     <FormFieldNameContext.Provider value={props.name}>
       <Controller {...props} />

@@ -2,7 +2,7 @@ import {getChannel} from '@/i18n/tools/get-channel';
 
 import {cursorsStore} from '../_tools/cursors-store';
 import {fetchProducts} from '../_tools/fetch-products';
-import type {ParsedSearchParams} from '../_types';
+import type {ParsedSearchParams} from '../_types/types';
 import {ProductList} from './ui/ProductList';
 
 type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;

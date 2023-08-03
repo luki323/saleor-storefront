@@ -6,7 +6,7 @@ import {
   TokenCreateDocument,
   type TokenCreateVariables,
 } from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 
 export async function logInAction(variables: TokenCreateVariables) {

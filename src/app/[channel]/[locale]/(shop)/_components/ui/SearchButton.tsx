@@ -8,8 +8,8 @@ export function SearchButton() {
   return (
     <IconButton
       variant="outline"
-      label={<FormattedMessage defaultMessage="Menu" id="tKMlOc" />}
-      icon={<MagnifyingGlassIcon className={cn('h-4')} />}
-    />
+      label={<FormattedMessage defaultMessage="Menu" id="tKMlOc" />}>
+      <MagnifyingGlassIcon className={cn('h-4')} />
+    </IconButton>
   );
 }

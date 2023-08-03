@@ -12,12 +12,14 @@ interface Props {
 
 export function HeaderMenu({menu}: Props) {
   return (
-    <ul className={cn('flex gap-4')}>
+    <ul className={cn('flex gap-5')}>
       {menu.map(({name, slug}) => (
         <li key={slug}>
           <IntlLink
             href={formatPathname([ROUTE.PRODUCTS, slug])}
-            className={cn('hover:underline')}>
+            className={cn(
+              'text-input transition-colors hover:text-inherit hover:underline',
+            )}>
             <Text as="span">{name}</Text>
           </IntlLink>
         </li>

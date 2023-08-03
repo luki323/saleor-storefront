@@ -12,8 +12,8 @@ export function CartButton() {
   return (
     <IconButton
       variant="outline"
-      label={intl.formatMessage({defaultMessage: 'Cart', id: '2tqQFl'})}
-      icon={<ShoppingCartIcon className={cn('h-4')} />}
-    />
+      label={intl.formatMessage({defaultMessage: 'Cart', id: '2tqQFl'})}>
+      <ShoppingCartIcon className={cn('h-4')} />
+    </IconButton>
   );
 }

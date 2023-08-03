@@ -24,7 +24,7 @@ export async function Header({languageCode, channel}: Props) {
       <div className={cn('hidden max-w-xl basis-1/3 lg:block')}>
         <SearchInput />
       </div>
-      <div className={cn('flex flex-1 justify-end gap-4')}>
+      <div className={cn('flex flex-1 justify-end gap-5')}>
         <div className={cn('block lg:hidden')}>
           <SearchButton />
         </div>

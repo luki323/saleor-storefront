@@ -12,9 +12,13 @@ import {isDefined} from '@/lib/tools/is-defined';
 export async function logInAction(variables: TokenCreateVariables) {
   const {token, refreshToken, csrfToken, errors} =
     (
-      await fetchGraphQL(TokenCreateDocument, {
-        variables,
-      })
+      await fetchGraphQL(
+        TokenCreateDocument,
+        {
+          variables,
+        },
+        {cache: 'no-cache'},
+      )
     ).tokenCreate ?? {};
 
   if (errors?.length) {

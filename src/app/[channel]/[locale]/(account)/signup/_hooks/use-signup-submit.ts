@@ -26,7 +26,7 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
               email,
               password,
               channel,
-              redirectUrl: `${ORIGIN}/${ROUTE.CONFIRM_ACCOUNT}`,
+              redirectUrl: `${ORIGIN}${ROUTE.CONFIRM_ACCOUNT}`,
             })
           ).accountRegister ?? {};
 

@@ -12,6 +12,14 @@ export type TokenCreateVariables = Types.Exact<{
 
 export type TokenCreate = { __typename?: 'Mutation', tokenCreate?: { __typename?: 'CreateToken', token?: string | null, refreshToken?: string | null, csrfToken?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type ConfirmAccountVariables = Types.Exact<{
+  email: Types.Scalars['String']['input'];
+  token: Types.Scalars['String']['input'];
+}>;
+
+
+export type ConfirmAccount = { __typename?: 'Mutation', confirmAccount?: { __typename?: 'ConfirmAccount', user?: { __typename?: 'User', isActive: boolean } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+
 export type SignUpVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   password: Types.Scalars['String']['input'];
@@ -102,6 +110,21 @@ export const TokenCreateDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<TokenCreate, TokenCreateVariables>;
+export const ConfirmAccountDocument = new TypedDocumentString(`
+    mutation confirmAccount($email: String!, $token: String!) {
+  confirmAccount(email: $email, token: $token) {
+    user {
+      isActive
+    }
+    errors {
+      ...AccountError
+    }
+  }
+}
+    fragment AccountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<ConfirmAccount, ConfirmAccountVariables>;
 export const SignUpDocument = new TypedDocumentString(`
     mutation signUp($email: String!, $password: String!, $channel: String!, $redirectUrl: String!) {
   accountRegister(

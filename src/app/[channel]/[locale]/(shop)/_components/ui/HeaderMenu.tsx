@@ -1,5 +1,4 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {Text} from '@/lib/components/ui/Text';
 import {ROUTE} from '@/lib/consts/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
@@ -20,7 +19,7 @@ export function HeaderMenu({menu}: Props) {
             className={cn(
               'text-input transition-colors hover:text-inherit hover:underline',
             )}>
-            <Text as="span">{name}</Text>
+            {name}
           </IntlLink>
         </li>
       ))}

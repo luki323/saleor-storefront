@@ -5,7 +5,7 @@ import {isDefined} from '@/lib/tools/is-defined';
 import {fetchHeaderMenu} from '../_tools/fetch-header-menu';
 import {CartButton} from './ui/CartButton';
 import {HeaderMenu} from './ui/HeaderMenu';
-import {SearchButton} from './ui/SearchButton';
+import {MenuButton} from './ui/MenuButton';
 import {SearchInput} from './ui/SearchInput';
 
 type Props = GetHeaderMenuVariables;
@@ -19,16 +19,18 @@ export async function Header({languageCode, channel}: Props) {
   return (
     <header className={cn('flex items-center px-6 py-4')}>
       <div className={cn('flex-1')}>
-        <HeaderMenu menu={menu} />
+        <div className={cn('lg:hidden')}>
+          <MenuButton className={cn('h-4')} />
+        </div>
+        <div className={cn('max-lg:hidden')}>
+          <HeaderMenu menu={menu} />
+        </div>
       </div>
-      <div className={cn('hidden max-w-xl basis-1/3 lg:block')}>
+      <div className={cn('max-w-xl basis-5/12 max-lg:hidden')}>
         <SearchInput />
       </div>
-      <div className={cn('flex flex-1 justify-end gap-5')}>
-        <div className={cn('block lg:hidden')}>
-          <SearchButton />
-        </div>
-        <CartButton />
+      <div className={cn('flex flex-1 justify-end')}>
+        <CartButton className={cn('h-4')} />
       </div>
     </header>
   );

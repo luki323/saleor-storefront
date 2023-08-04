@@ -4,7 +4,7 @@ mutation tokenCreate($email: String!, $password: String!) {
     refreshToken
     csrfToken
     errors {
-      ...AccountError
+      ...accountError
     }
   }
 }

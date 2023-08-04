@@ -10,19 +10,19 @@ import {FormControl} from '@/lib/components/form/FormControl';
 import {FormDescription} from '@/lib/components/form/FormDescription';
 import {FormErrorMessage} from '@/lib/components/form/FormErrorMessage';
 import {FormField} from '@/lib/components/form/FormField';
-import {Button} from '@/lib/components/ui/Button';
 import {Input} from '@/lib/components/ui/Input';
-import {Spinner} from '@/lib/components/ui/Spinner';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
 import {cn} from '@/lib/tools/cn';
 import {focusInput} from '@/lib/tools/focus-input';
 
 import {FormItem} from '../../_components/FormItem';
 import {FormLabel} from '../../_components/FormLabel';
+import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts/consts';
 import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginSubmit} from '../_hooks/use-login-submit';
+import {ForgotPasswordLink} from './ForgotPasswordLink';
 
 export function LoginForm() {
   const loginFormSchema = useLoginFormSchema();
@@ -55,7 +55,6 @@ export function LoginForm() {
                 placeholder="name@example.com"
                 autoComplete="off"
                 value={value ?? ''}
-                autoFocus
                 required
                 ref={refMountCallback(ref, focusInput)}
                 {...restField}
@@ -98,17 +97,13 @@ export function LoginForm() {
               </FormDescription>
               <FormErrorMessage />
             </div>
+            <ForgotPasswordLink />
           </FormItem>
         )}
       />
-      <Button disabled={form.formState.isSubmitting}>
-        {form.formState.isSubmitting && (
-          <span className={cn('mr-2')}>
-            <Spinner />
-          </span>
-        )}
+      <SubmitButton loading={form.formState.isSubmitting}>
         <FormattedMessage defaultMessage="Log in with email" id="vu1wqp" />
-      </Button>
+      </SubmitButton>
     </Form>
   );
 }

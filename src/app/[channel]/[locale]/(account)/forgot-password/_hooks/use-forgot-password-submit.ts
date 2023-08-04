@@ -23,13 +23,17 @@ export function useForgotPasswordSubmit(
       try {
         const {errors} =
           (
-            await fetchGraphQL(ForgotPasswordDocument, {
-              variables: {
-                email,
-                channel,
-                redirectUrl: `${ORIGIN}${ROUTE.RESET_PASSWORD}`,
+            await fetchGraphQL(
+              ForgotPasswordDocument,
+              {
+                variables: {
+                  email,
+                  channel,
+                  redirectUrl: `${ORIGIN}${ROUTE.CHANGE_PASSWORD}`,
+                },
               },
-            })
+              {cache: 'no-cache'},
+            )
           ).forgotPassword ?? {};
 
         if (errors?.length) {

@@ -3,5 +3,6 @@ export const ROUTE = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   CONFIRM_ACCOUNT: '/confirm-account',
-  RESET_PASSWORD: '/reset-password',
+  FORGOT_PASSWORD: '/forgot-password',
+  CHANGE_PASSWORD: '/change-password',
 };

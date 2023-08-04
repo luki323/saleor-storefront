@@ -4,12 +4,12 @@ import {useIntl} from 'react-intl';
 import {toast} from 'sonner';
 
 import {ORIGIN} from '@/env/env';
+import {SignUpDocument} from '@/graphql/generated/documents';
 import {useChannel} from '@/i18n/channel-context';
 import {ROUTE} from '@/lib/consts/consts';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
 
-import {handleLoginResult} from '../../_tools/handle-login-result';
-import {logInAction} from '../../_tools/log-in-action';
-import {signUpAction} from '../_tools/sign-up-action';
+import {tokenCreate} from '../../_tools/token-create-action';
 import type {SignupFormSchema} from './use-signup-form-schema';
 
 export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
@@ -22,12 +22,18 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
       try {
         const {requiresConfirmation, user} =
           (
-            await signUpAction({
-              email,
-              password,
-              channel,
-              redirectUrl: `${ORIGIN}${ROUTE.CONFIRM_ACCOUNT}`,
-            })
+            await fetchGraphQL(
+              SignUpDocument,
+              {
+                variables: {
+                  email,
+                  password,
+                  channel,
+                  redirectUrl: `${ORIGIN}${ROUTE.CONFIRM_ACCOUNT}`,
+                },
+              },
+              {cache: 'no-cache'},
+            )
           ).accountRegister ?? {};
 
         if (requiresConfirmation && user) {
@@ -42,16 +48,18 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
             ),
           );
         } else {
-          const loginResult = await logInAction({email, password});
+          const {type, value} = await tokenCreate({email, password});
 
-          handleLoginResult(loginResult);
+          if (type === 'error') {
+            // TODO: display server error
+            return;
+          }
+
+          localStorage.setItem(value.name, value.value);
         }
 
         form.reset();
-      } catch (error) {
-        // TODO: display server error
-        console.error(error);
-      }
+      } catch (error) {}
     },
     [channel, form, intl],
   );

@@ -8,6 +8,9 @@
   "2tqQFl": {
     "defaultMessage": "Cart"
   },
+  "2uRGzp": {
+    "defaultMessage": "Confirm password is required"
+  },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
   },
@@ -34,6 +37,9 @@
   },
   "JJNc3c": {
     "defaultMessage": "Previous"
+  },
+  "L4nXIc": {
+    "defaultMessage": "Change password"
   },
   "LmKz3g": {
     "defaultMessage": "Storefront"
@@ -68,17 +74,26 @@
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
   },
+  "atD3r4": {
+    "defaultMessage": "Confirm password:"
+  },
   "cU/aSG": {
     "defaultMessage": "Email is required"
   },
   "cyR7Kh": {
     "defaultMessage": "Back"
   },
+  "h/zqNr": {
+    "defaultMessage": "Enter your new password"
+  },
   "hagaYK": {
     "defaultMessage": "Password:"
   },
   "hfuuOe": {
     "defaultMessage": "Login with Google"
+  },
+  "lTr7eP": {
+    "defaultMessage": "Change password and log in"
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
@@ -88,6 +103,9 @@
   },
   "uiFoFm": {
     "defaultMessage": "Password is required"
+  },
+  "vHV69y": {
+    "defaultMessage": "Confirm password description"
   },
   "vIAvec": {
     "defaultMessage": "Reset link was sent to {email} mailbox."

@@ -19,62 +19,36 @@ import {FormItem} from '../../_components/FormItem';
 import {FormLabel} from '../../_components/FormLabel';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts/consts';
-import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
-import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
-import {useSignupSubmit} from '../_hooks/use-signup-submit';
+import type {ChangePasswordFormSchema} from '../_hooks/use-change-password-schema';
+import {useChangePasswordSchema} from '../_hooks/use-change-password-schema';
+import {useChangePasswordSubmit} from '../_hooks/use-change-password-submit';
 
-export function SignupForm() {
-  const signupFormSchema = useSignupFormSchema();
+interface Props {
+  readonly email: string;
+  readonly token: string;
+}
 
-  const form = useForm<SignupFormSchema>({
-    resolver: zodResolver(signupFormSchema),
+export function ChangePasswordForm({email, token}: Props) {
+  const changePasswordSchema = useChangePasswordSchema();
+
+  const form = useForm<ChangePasswordFormSchema>({
+    resolver: zodResolver(changePasswordSchema),
   });
 
-  const signupSubmit = useSignupSubmit(form);
+  const changePasswordSubmit = useChangePasswordSubmit(form, {email, token});
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   return (
     <Form
       form={form}
-      onSubmit={form.handleSubmit(signupSubmit)}
+      onSubmit={form.handleSubmit(changePasswordSubmit)}
       noValidate
       className={cn('flex flex-col gap-3')}>
       <FormField
-        name={FIELDS.EMAIL}
-        control={form.control}
-        render={({field: {value, ref, ...restField}}) => (
-          <FormItem>
-            <FormLabel>
-              <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
-            </FormLabel>
-            <FormControl>
-              <Input
-                type="email"
-                placeholder="name@example.com"
-                autoComplete="off"
-                value={value ?? ''}
-                required
-                ref={refMountCallback(ref, focusInput)}
-                {...restField}
-              />
-            </FormControl>
-            <div>
-              <FormDescription>
-                <FormattedMessage
-                  defaultMessage="Email description"
-                  id="RVxG/0"
-                />
-              </FormDescription>
-              <FormErrorMessage />
-            </div>
-          </FormItem>
-        )}
-      />
-      <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
-        render={({field: {value, ...restField}}) => (
+        render={({field: {value, ref, ...restField}}) => (
           <FormItem>
             <FormLabel>
               <FormattedMessage defaultMessage="Password:" id="hagaYK" />
@@ -84,6 +58,7 @@ export function SignupForm() {
                 type="password"
                 value={value ?? ''}
                 required
+                ref={refMountCallback(ref, focusInput)}
                 {...restField}
               />
             </FormControl>
@@ -99,8 +74,42 @@ export function SignupForm() {
           </FormItem>
         )}
       />
+      <FormField
+        name={FIELDS.CONFIRM_PASSWORD}
+        control={form.control}
+        render={({field: {value, ...restField}}) => (
+          <FormItem>
+            <FormLabel>
+              <FormattedMessage
+                defaultMessage="Confirm password:"
+                id="atD3r4"
+              />
+            </FormLabel>
+            <FormControl>
+              <Input
+                type="password"
+                value={value ?? ''}
+                required
+                {...restField}
+              />
+            </FormControl>
+            <div>
+              <FormDescription>
+                <FormattedMessage
+                  defaultMessage="Confirm password description"
+                  id="vHV69y"
+                />
+              </FormDescription>
+              <FormErrorMessage />
+            </div>
+          </FormItem>
+        )}
+      />
       <SubmitButton loading={form.formState.isSubmitting}>
-        <FormattedMessage defaultMessage="Sign up with email" id="pmu7Ih" />
+        <FormattedMessage
+          defaultMessage="Change password and log in"
+          id="lTr7eP"
+        />
       </SubmitButton>
     </Form>
   );

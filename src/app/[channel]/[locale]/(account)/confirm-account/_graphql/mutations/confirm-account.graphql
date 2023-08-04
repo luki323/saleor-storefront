@@ -4,7 +4,7 @@ mutation confirmAccount($email: String!, $token: String!) {
       isActive
     }
     errors {
-      ...AccountError
+      ...accountError
     }
   }
 }

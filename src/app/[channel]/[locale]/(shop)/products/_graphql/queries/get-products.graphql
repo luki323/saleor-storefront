@@ -2,11 +2,11 @@ query getProducts($first: Int!, $after: String, $channel: String) {
   products(first: $first, after: $after, channel: $channel) {
     edges {
       node {
-        ...ProductListItem
+        ...productListItem
       }
     }
     pageInfo {
-      ...PageInfo
+      ...pageInfo
     }
   }
 }

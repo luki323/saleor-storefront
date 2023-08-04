@@ -2,44 +2,13 @@
 
 import {cookies} from 'next/headers';
 
-import {
-  TokenCreateDocument,
-  type TokenCreateVariables,
-} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
-import {isDefined} from '@/lib/tools/is-defined';
+interface Tokens {
+  readonly token: string;
+  readonly refreshToken: string;
+  readonly csrfToken: string;
+}
 
-export async function logInAction(variables: TokenCreateVariables) {
-  const {token, refreshToken, csrfToken, errors} =
-    (
-      await fetchGraphQL(
-        TokenCreateDocument,
-        {
-          variables,
-        },
-        {cache: 'no-cache'},
-      )
-    ).tokenCreate ?? {};
-
-  if (errors?.length) {
-    return {
-      type: 'error' as const,
-      value: errors,
-    };
-  }
-
-  if (!isDefined(token) || !isDefined(refreshToken) || !isDefined(csrfToken)) {
-    throw new Error(
-      `Missing token. Received: ${{token, refreshToken, csrfToken}}`,
-    );
-  }
-
-  const tokens = {
-    token,
-    refreshToken,
-    csrfToken,
-  };
-
+export async function logInAction(tokens: Tokens) {
   const tokenNames = Object.keys(tokens) as ReadonlyArray<keyof typeof tokens>;
 
   const kvTokens = Object.fromEntries(
@@ -59,8 +28,5 @@ export async function logInAction(variables: TokenCreateVariables) {
       secure: true,
     });
 
-  return {
-    type: 'csrfToken' as const,
-    value: kvTokens.csrfToken,
-  };
+  return kvTokens.csrfToken;
 }

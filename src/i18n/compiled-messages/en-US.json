@@ -17,6 +17,12 @@
       "value": "Cart"
     }
   ],
+  "2uRGzp": [
+    {
+      "type": 0,
+      "value": "Confirm password is required"
+    }
+  ],
   "4cSA+G": [
     {
       "type": 0,
@@ -69,6 +75,12 @@
     {
       "type": 0,
       "value": "Previous"
+    }
+  ],
+  "L4nXIc": [
+    {
+      "type": 0,
+      "value": "Change password"
     }
   ],
   "LmKz3g": [
@@ -145,6 +157,12 @@
       "value": "Please enter valid email"
     }
   ],
+  "atD3r4": [
+    {
+      "type": 0,
+      "value": "Confirm password:"
+    }
+  ],
   "cU/aSG": [
     {
       "type": 0,
@@ -157,6 +175,12 @@
       "value": "Back"
     }
   ],
+  "h/zqNr": [
+    {
+      "type": 0,
+      "value": "Enter your new password"
+    }
+  ],
   "hagaYK": [
     {
       "type": 0,
@@ -167,6 +191,12 @@
     {
       "type": 0,
       "value": "Login with Google"
+    }
+  ],
+  "lTr7eP": [
+    {
+      "type": 0,
+      "value": "Change password and log in"
     }
   ],
   "pmu7Ih": [
@@ -185,6 +215,12 @@
     {
       "type": 0,
       "value": "Password is required"
+    }
+  ],
+  "vHV69y": [
+    {
+      "type": 0,
+      "value": "Confirm password description"
     }
   ],
   "vIAvec": [

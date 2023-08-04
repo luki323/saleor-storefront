@@ -12,16 +12,20 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
   if (email && token) {
     const {user} =
       (
-        await fetchGraphQL(ConfirmAccountDocument, {
-          variables: {
-            email,
-            token,
+        await fetchGraphQL(
+          ConfirmAccountDocument,
+          {
+            variables: {
+              email,
+              token,
+            },
           },
-        })
+          {cache: 'no-cache'},
+        )
       ).confirmAccount ?? {};
 
     if (user?.isActive) {
-      return NextResponse.redirect(new URL(`${origin}${ROUTE.LOGIN}`));
+      return NextResponse.redirect(`${origin}${ROUTE.LOGIN}`);
     }
   }
 

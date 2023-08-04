@@ -12,6 +12,15 @@ export type TokenCreateVariables = Types.Exact<{
 
 export type TokenCreate = { __typename?: 'Mutation', tokenCreate?: { __typename?: 'CreateToken', token?: string | null, refreshToken?: string | null, csrfToken?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type ChangePasswordVariables = Types.Exact<{
+  email: Types.Scalars['String']['input'];
+  token: Types.Scalars['String']['input'];
+  password: Types.Scalars['String']['input'];
+}>;
+
+
+export type ChangePassword = { __typename?: 'Mutation', setPassword?: { __typename?: 'SetPassword', token?: string | null, refreshToken?: string | null, csrfToken?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+
 export type ConfirmAccountVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   token: Types.Scalars['String']['input'];
@@ -84,26 +93,26 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 export const AccountError = new TypedDocumentString(`
-    fragment AccountError on AccountError {
+    fragment accountError on AccountError {
   field
   code
 }
-    `, {"fragmentName":"AccountError"}) as unknown as TypedDocumentString<AccountError, unknown>;
+    `, {"fragmentName":"accountError"}) as unknown as TypedDocumentString<AccountError, unknown>;
 export const ProductListItem = new TypedDocumentString(`
-    fragment ProductListItem on Product {
+    fragment productListItem on Product {
   id
   name
   slug
 }
-    `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
+    `, {"fragmentName":"productListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
 export const PageInfo = new TypedDocumentString(`
-    fragment PageInfo on PageInfo {
+    fragment pageInfo on PageInfo {
   startCursor
   hasNextPage
   endCursor
   hasPreviousPage
 }
-    `, {"fragmentName":"PageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
+    `, {"fragmentName":"pageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
 export const TokenCreateDocument = new TypedDocumentString(`
     mutation tokenCreate($email: String!, $password: String!) {
   tokenCreate(email: $email, password: $password) {
@@ -111,14 +120,29 @@ export const TokenCreateDocument = new TypedDocumentString(`
     refreshToken
     csrfToken
     errors {
-      ...AccountError
+      ...accountError
     }
   }
 }
-    fragment AccountError on AccountError {
+    fragment accountError on AccountError {
   field
   code
 }`) as unknown as TypedDocumentString<TokenCreate, TokenCreateVariables>;
+export const ChangePasswordDocument = new TypedDocumentString(`
+    mutation changePassword($email: String!, $token: String!, $password: String!) {
+  setPassword(email: $email, token: $token, password: $password) {
+    token
+    refreshToken
+    csrfToken
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<ChangePassword, ChangePasswordVariables>;
 export const ConfirmAccountDocument = new TypedDocumentString(`
     mutation confirmAccount($email: String!, $token: String!) {
   confirmAccount(email: $email, token: $token) {
@@ -126,11 +150,11 @@ export const ConfirmAccountDocument = new TypedDocumentString(`
       isActive
     }
     errors {
-      ...AccountError
+      ...accountError
     }
   }
 }
-    fragment AccountError on AccountError {
+    fragment accountError on AccountError {
   field
   code
 }`) as unknown as TypedDocumentString<ConfirmAccount, ConfirmAccountVariables>;
@@ -142,11 +166,11 @@ export const ForgotPasswordDocument = new TypedDocumentString(`
     channel: $channel
   ) {
     errors {
-      ...AccountError
+      ...accountError
     }
   }
 }
-    fragment AccountError on AccountError {
+    fragment accountError on AccountError {
   field
   code
 }`) as unknown as TypedDocumentString<ForgotPassword, ForgotPasswordVariables>;
@@ -159,12 +183,12 @@ export const SignUpDocument = new TypedDocumentString(`
       email
     }
     errors {
-      ...AccountError
+      ...accountError
     }
     requiresConfirmation
   }
 }
-    fragment AccountError on AccountError {
+    fragment accountError on AccountError {
   field
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
@@ -200,20 +224,20 @@ export const GetProductsDocument = new TypedDocumentString(`
   products(first: $first, after: $after, channel: $channel) {
     edges {
       node {
-        ...ProductListItem
+        ...productListItem
       }
     }
     pageInfo {
-      ...PageInfo
+      ...pageInfo
     }
   }
 }
-    fragment ProductListItem on Product {
+    fragment productListItem on Product {
   id
   name
   slug
 }
-fragment PageInfo on PageInfo {
+fragment pageInfo on PageInfo {
   startCursor
   hasNextPage
   endCursor

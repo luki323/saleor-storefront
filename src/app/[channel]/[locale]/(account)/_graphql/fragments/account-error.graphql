@@ -1,4 +1,4 @@
-fragment AccountError on AccountError {
+fragment accountError on AccountError {
   field
   code
 }

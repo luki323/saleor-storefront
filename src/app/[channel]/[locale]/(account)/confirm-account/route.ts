@@ -25,7 +25,7 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
       ).confirmAccount ?? {};
 
     if (user?.isActive) {
-      return NextResponse.redirect(`${origin}${ROUTE.LOGIN}`);
+      return NextResponse.redirect(new URL(ROUTE.LOGIN, origin));
     }
   }
 

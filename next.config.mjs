@@ -6,17 +6,18 @@ const config = {
     serverActions: true,
   },
   webpack(config) {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          '@formatjs/icu-messageformat-parser':
-            '@formatjs/icu-messageformat-parser/no-parser',
-        },
+    config.resolve.alias['@formatjs/icu-messageformat-parser'] =
+      '@formatjs/icu-messageformat-parser/no-parser';
+
+    return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'asdfasdf.eu.saleor.cloud',
       },
-    };
+    ],
   },
 };
 

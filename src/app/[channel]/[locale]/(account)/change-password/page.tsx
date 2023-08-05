@@ -3,6 +3,7 @@ import {redirect} from 'next/navigation';
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {Text} from '@/lib/components/ui/Text';
 import {ROUTE} from '@/lib/consts/consts';
+import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/Container';
 import {Heading} from '../_components/Heading';
@@ -17,7 +18,7 @@ interface Props {
 
 async function ChangePasswordPage({searchParams: {email, token}}: Props) {
   if (!email || !token) {
-    redirect(ROUTE.LOGIN);
+    redirect(formatPathname([ROUTE.LOGIN]));
   }
 
   return (

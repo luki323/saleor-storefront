@@ -1,10 +1,9 @@
-import type {ObjectValues} from '@/lib/types/types';
-
-import type {SEARCH_PARAMS} from '../_consts/consts';
-import type {parseSearchParams} from '../_tools/parse-search-params';
+import type {GetProductsVariables} from '@/graphql/generated/documents';
 
 export type SearchParams = Partial<
-  Record<ObjectValues<typeof SEARCH_PARAMS>, string>
+  Record<
+    | keyof Pick<GetProductsVariables, 'first' | 'after' | 'last' | 'before'>
+    | keyof Pick<NonNullable<GetProductsVariables['filter']>, 'search'>,
+    string
+  >
 >;
-
-export type ParsedSearchParams = ReturnType<typeof parseSearchParams>;

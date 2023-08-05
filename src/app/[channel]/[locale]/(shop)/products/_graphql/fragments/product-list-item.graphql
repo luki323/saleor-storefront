@@ -2,4 +2,23 @@ fragment productListItem on Product {
   id
   name
   slug
+  defaultVariant {
+    id
+    media {
+      ...productMedia
+    }
+    pricing {
+      onSale
+      discount {
+        ...grossPrice
+      }
+      price {
+        ...grossPrice
+      }
+      priceUndiscounted {
+        ...grossPrice
+      }
+    }
+  }
+  isAvailable
 }

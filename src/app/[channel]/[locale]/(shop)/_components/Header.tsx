@@ -1,6 +1,7 @@
-import type {GetHeaderMenuVariables} from '@/graphql/generated/documents';
+import {getChannel} from '@/i18n/tools/get-channel';
+import {getLocale} from '@/i18n/tools/get-locale';
+import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {cn} from '@/lib/tools/cn';
-import {isDefined} from '@/lib/tools/is-defined';
 
 import {fetchHeaderMenu} from '../_tools/fetch-header-menu';
 import {CartButton} from './ui/CartButton';
@@ -9,13 +10,10 @@ import {HomeLink} from './ui/HomeLink';
 import {MenuButton} from './ui/MenuButton';
 import {SearchInput} from './ui/SearchInput';
 
-type Props = GetHeaderMenuVariables;
-
-export async function Header({languageCode, channel}: Props) {
-  const menu = await fetchHeaderMenu({
-    languageCode,
-    ...(isDefined(channel) && {channel}),
-  });
+export async function Header() {
+  const channel = getChannel();
+  const languageCode = localeToLangCode(getLocale());
+  const menu = await fetchHeaderMenu({languageCode, channel});
 
   return (
     <header className={cn('flex items-center px-6 py-4')}>
@@ -29,7 +27,7 @@ export async function Header({languageCode, channel}: Props) {
         </div>
       </div>
       <div className={cn('lg:basis-1/3')}>
-        <div className={cn('max-w-xl max-lg:hidden')}>
+        <div className={cn('max-lg:hidden')}>
           <SearchInput />
         </div>
         <div className={cn('lg:hidden')}>

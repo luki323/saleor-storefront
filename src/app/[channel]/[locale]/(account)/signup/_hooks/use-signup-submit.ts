@@ -29,7 +29,10 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
                   email,
                   password,
                   channel,
-                  redirectUrl: `${ORIGIN}${ROUTE.CONFIRM_ACCOUNT}`,
+                  redirectUrl: new URL(
+                    ROUTE.CONFIRM_ACCOUNT,
+                    ORIGIN,
+                  ).toString(),
                 },
               },
               {cache: 'no-cache'},

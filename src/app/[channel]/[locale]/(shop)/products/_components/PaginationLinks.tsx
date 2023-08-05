@@ -1,39 +1,44 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {ArrowLeftIcon, ArrowRightIcon} from '@heroicons/react/24/outline';
+
+import type {PageInfo} from '@/graphql/generated/documents';
+import {ROUTE} from '@/lib/consts/consts';
 import {cn} from '@/lib/tools/cn';
-import {isDefined} from '@/lib/tools/is-defined';
+import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {SEARCH_PARAMS} from '../_consts/consts';
-import {cursorsStore} from '../_tools/cursors-store';
-import type {ParsedSearchParams} from '../_types/types';
-import {NavigationLink} from './NavigationLink';
+import {DEFAULT_PAGE_SIZE} from '../_consts/consts';
+import type {SearchParams} from '../_types/types';
+import {NavigationIcon} from './NavigationIcon';
 
-type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;
+type Props = SearchParams & Omit<PageInfo, '__typename'>;
 
-export function PaginationLinks({pageNumber, pageSize}: Props) {
-  const nextPage = cursorsStore.getNextPage(pageNumber, pageSize);
-  const prevPage = cursorsStore.getPrevPage(pageNumber);
+export function PaginationLinks({search, ...restProps}: Props) {
+  const pageSize = Number(
+    restProps.last ?? restProps.first ?? DEFAULT_PAGE_SIZE,
+  );
 
   return (
-    <ul className={cn('flex gap-4')}>
+    <ul className={cn('flex justify-between')}>
       <li>
-        <NavigationLink
-          disabled={!isDefined(prevPage)}
-          query={{
-            [SEARCH_PARAMS.PAGE_NUMBER]: prevPage,
-            [SEARCH_PARAMS.PAGE_SIZE]: pageSize,
-          }}>
-          <FormattedMessage defaultMessage="Previous" id="JJNc3c" />
-        </NavigationLink>
+        <NavigationIcon
+          disabled={!restProps.hasPreviousPage}
+          href={{
+            pathname: formatPathname([ROUTE.PRODUCTS]),
+            query: {last: pageSize, before: restProps.startCursor, search},
+          }}
+          label="Here will be the message">
+          <ArrowLeftIcon className={cn('h-5')} />
+        </NavigationIcon>
       </li>
       <li>
-        <NavigationLink
-          disabled={!isDefined(nextPage)}
-          query={{
-            [SEARCH_PARAMS.PAGE_NUMBER]: nextPage,
-            [SEARCH_PARAMS.PAGE_SIZE]: pageSize,
-          }}>
-          <FormattedMessage defaultMessage="Next" id="9+Ddtu" />
-        </NavigationLink>
+        <NavigationIcon
+          disabled={!restProps.hasNextPage}
+          href={{
+            pathname: formatPathname([ROUTE.PRODUCTS]),
+            query: {first: pageSize, after: restProps.endCursor, search},
+          }}
+          label="Here will be the message">
+          <ArrowRightIcon className={cn('h-5')} />
+        </NavigationIcon>
       </li>
     </ul>
   );

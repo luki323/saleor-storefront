@@ -1,6 +1,7 @@
 import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {Text} from '@/lib/components/ui/Text';
 import {ROUTE} from '@/lib/consts/consts';
+import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/Container';
 import {Heading} from '../_components/Heading';
@@ -10,7 +11,7 @@ import {ForgotPasswordForm} from './_components/ForgotPasswordForm';
 function ForgotPasswordPage() {
   return (
     <>
-      <NavigationLink href={ROUTE.LOGIN}>
+      <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
         <FormattedMessage defaultMessage="Back" id="cyR7Kh" />
       </NavigationLink>
       <Container>

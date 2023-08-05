@@ -29,22 +29,10 @@
       "value": "Or continue with"
     }
   ],
-  "5Mlwka": [
-    {
-      "type": 0,
-      "value": "Loading products..."
-    }
-  ],
   "8HJxXG": [
     {
       "type": 0,
       "value": "Sign up"
-    }
-  ],
-  "9+Ddtu": [
-    {
-      "type": 0,
-      "value": "Next"
     }
   ],
   "9KlUdb": [
@@ -69,12 +57,6 @@
     {
       "type": 0,
       "value": "Send reset link"
-    }
-  ],
-  "JJNc3c": [
-    {
-      "type": 0,
-      "value": "Previous"
     }
   ],
   "L4nXIc": [
@@ -155,6 +137,12 @@
     {
       "type": 0,
       "value": "Please enter valid email"
+    }
+  ],
+  "ZATT08": [
+    {
+      "type": 0,
+      "value": "Pagination"
     }
   ],
   "atD3r4": [

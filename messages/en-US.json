@@ -14,14 +14,8 @@
   "4cSA+G": {
     "defaultMessage": "Or continue with"
   },
-  "5Mlwka": {
-    "defaultMessage": "Loading products..."
-  },
   "8HJxXG": {
     "defaultMessage": "Sign up"
-  },
-  "9+Ddtu": {
-    "defaultMessage": "Next"
   },
   "9KlUdb": {
     "defaultMessage": "Enter your email to receive reset link"
@@ -34,9 +28,6 @@
   },
   "DkQ5Q8": {
     "defaultMessage": "Send reset link"
-  },
-  "JJNc3c": {
-    "defaultMessage": "Previous"
   },
   "L4nXIc": {
     "defaultMessage": "Change password"
@@ -73,6 +64,9 @@
   },
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
+  },
+  "ZATT08": {
+    "defaultMessage": "Pagination"
   },
   "atD3r4": {
     "defaultMessage": "Confirm password:"

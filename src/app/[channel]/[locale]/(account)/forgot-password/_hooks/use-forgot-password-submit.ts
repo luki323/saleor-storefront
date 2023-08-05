@@ -29,7 +29,10 @@ export function useForgotPasswordSubmit(
                 variables: {
                   email,
                   channel,
-                  redirectUrl: `${ORIGIN}${ROUTE.CHANGE_PASSWORD}`,
+                  redirectUrl: new URL(
+                    ROUTE.CHANGE_PASSWORD,
+                    ORIGIN,
+                  ).toString(),
                 },
               },
               {cache: 'no-cache'},

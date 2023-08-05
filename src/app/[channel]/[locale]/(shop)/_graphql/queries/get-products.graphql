@@ -1,0 +1,30 @@
+query getProducts(
+  $first: Int
+  $after: String
+  $last: Int
+  $before: String
+  $languageCode: LanguageCodeEnum!
+  $channel: String
+  $filter: ProductFilterInput
+) {
+  products(
+    first: $first
+    after: $after
+    last: $last
+    before: $before
+    channel: $channel
+    filter: $filter
+  ) {
+    edges {
+      node {
+        ...productListItem
+        translation(languageCode: $languageCode) {
+          name
+        }
+      }
+    }
+    pageInfo {
+      ...pageInfo
+    }
+  }
+}

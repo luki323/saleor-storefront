@@ -2,6 +2,7 @@ import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {Divider} from '@/lib/components/ui/Divider';
 import {Text} from '@/lib/components/ui/Text';
 import {ROUTE} from '@/lib/consts/consts';
+import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/Container';
 import {GoogleButton} from '../_components/GoogleButton';
@@ -12,7 +13,7 @@ import {SignupForm} from './_components/SignupForm';
 function SignupPage() {
   return (
     <>
-      <NavigationLink href={ROUTE.LOGIN}>
+      <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
         <FormattedMessage defaultMessage="Login" id="AyGauy" />
       </NavigationLink>
       <Container>

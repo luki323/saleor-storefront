@@ -1,21 +1,18 @@
-import {formatLocale} from '@/i18n/tools/format-locale';
-import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
+import type {ReactNode} from 'react';
 
-import type {HomeLayoutProps} from '../layout';
+import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
 
-type Props = HomeLayoutProps;
+interface Props {
+  readonly children: ReactNode;
+}
 
-export default async function ShopLayout({
-  children,
-  params: {channel, locale},
-}: Props) {
-  const languageCode = localeToLangCode(formatLocale(locale));
-
+export default async function ShopLayout({children}: Props) {
   return (
     <>
-      <Header languageCode={languageCode} channel={channel} />
+      <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }

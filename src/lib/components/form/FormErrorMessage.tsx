@@ -8,7 +8,6 @@ export function FormErrorMessage() {
   if (!error?.message) {
     return null;
   }
-
   return (
     <Text size="small" error id={formErrorMessageId}>
       {error.message}

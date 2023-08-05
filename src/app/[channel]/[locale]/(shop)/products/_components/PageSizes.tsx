@@ -1,36 +1,34 @@
+import {IntlLink} from '@/i18n/components/IntlLink';
+import {buttonStyles} from '@/lib/components/ui/Button';
+import {ROUTE} from '@/lib/consts/consts';
 import {cn} from '@/lib/tools/cn';
+import {formatPathname} from '@/lib/tools/format-pathname';
+import {isDefined} from '@/lib/tools/is-defined';
 
-import {PAGE_SIZES, SEARCH_PARAMS} from '../_consts/consts';
-import {cursorsStore} from '../_tools/cursors-store';
-import type {ParsedSearchParams} from '../_types/types';
-import {NavigationLink} from './NavigationLink';
+import {PAGE_SIZES} from '../_consts/consts';
+import type {SearchParams} from '../_types/types';
 
-type Props = Pick<ParsedSearchParams, 'pageNumber' | 'pageSize'>;
+type Props = SearchParams;
 
-export function PageSizes({
-  pageNumber: currentPage,
-  pageSize: currentPageSize,
-}: Props) {
+export function PageSizes(props: Props) {
+  const pageSizeKey = isDefined(props.last) ? 'last' : 'first';
+
   return (
-    <ul className={cn('flex gap-4')}>
-      {PAGE_SIZES.map((pageSize) => {
-        const pageNumber = cursorsStore.changePageSize(
-          {currentPage, pageSize: currentPageSize},
-          pageSize,
-        );
-
-        return (
+    <div className={cn('flex items-center gap-1')}>
+      <ul className={cn('flex gap-2')}>
+        {PAGE_SIZES.map((pageSize) => (
           <li key={pageSize}>
-            <NavigationLink
-              query={{
-                [SEARCH_PARAMS.PAGE_NUMBER]: pageNumber,
-                [SEARCH_PARAMS.PAGE_SIZE]: pageSize,
-              }}>
+            <IntlLink
+              href={{
+                pathname: formatPathname([ROUTE.PRODUCTS]),
+                query: {...props, [pageSizeKey]: pageSize},
+              }}
+              className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>
               {pageSize}
-            </NavigationLink>
+            </IntlLink>
           </li>
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+    </div>
   );
 }

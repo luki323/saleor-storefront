@@ -48,6 +48,8 @@ export type SignUpVariables = Types.Exact<{
 
 export type SignUp = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', requiresConfirmation?: boolean | null, user?: { __typename?: 'User', email: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type PageInfo = { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean };
+
 export type GetHeaderMenuVariables = Types.Exact<{
   languageCode: Types.LanguageCodeEnum;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -56,27 +58,24 @@ export type GetHeaderMenuVariables = Types.Exact<{
 
 export type GetHeaderMenu = { __typename?: 'Query', menu?: { __typename?: 'Menu', items?: Array<{ __typename?: 'MenuItem', name: string, translation?: { __typename?: 'MenuItemTranslation', name: string } | null, category?: { __typename?: 'Category', slug: string } | null }> | null } | null };
 
-export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string };
-
-export type GetProductCursorsVariables = Types.Exact<{
-  first: Types.Scalars['Int']['input'];
-  after?: Types.InputMaybe<Types.Scalars['String']['input']>;
-  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
-}>;
-
-
-export type GetProductCursors = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', cursor: string }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } | null };
-
 export type GetProductsVariables = Types.Exact<{
-  first: Types.Scalars['Int']['input'];
+  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
   after?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  last?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  before?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  languageCode: Types.LanguageCodeEnum;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  filter?: Types.InputMaybe<Types.ProductFilterInput>;
 }>;
 
 
-export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
+export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, translation?: { __typename?: 'ProductTranslation', name?: string | null } | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
 
-export type PageInfo = { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean };
+export type GrossPrice = { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } };
+
+export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null };
+
+export type ProductMedia = { __typename?: 'ProductMedia', id: string, alt: string, url: string };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -98,13 +97,6 @@ export const AccountError = new TypedDocumentString(`
   code
 }
     `, {"fragmentName":"accountError"}) as unknown as TypedDocumentString<AccountError, unknown>;
-export const ProductListItem = new TypedDocumentString(`
-    fragment productListItem on Product {
-  id
-  name
-  slug
-}
-    `, {"fragmentName":"productListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
 export const PageInfo = new TypedDocumentString(`
     fragment pageInfo on PageInfo {
   startCursor
@@ -113,6 +105,57 @@ export const PageInfo = new TypedDocumentString(`
   hasPreviousPage
 }
     `, {"fragmentName":"pageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
+export const ProductMedia = new TypedDocumentString(`
+    fragment productMedia on ProductMedia {
+  id
+  alt
+  url
+}
+    `, {"fragmentName":"productMedia"}) as unknown as TypedDocumentString<ProductMedia, unknown>;
+export const GrossPrice = new TypedDocumentString(`
+    fragment grossPrice on TaxedMoney {
+  gross {
+    currency
+    amount
+  }
+}
+    `, {"fragmentName":"grossPrice"}) as unknown as TypedDocumentString<GrossPrice, unknown>;
+export const ProductListItem = new TypedDocumentString(`
+    fragment productListItem on Product {
+  id
+  name
+  slug
+  defaultVariant {
+    id
+    media {
+      ...productMedia
+    }
+    pricing {
+      onSale
+      discount {
+        ...grossPrice
+      }
+      price {
+        ...grossPrice
+      }
+      priceUndiscounted {
+        ...grossPrice
+      }
+    }
+  }
+  isAvailable
+}
+    fragment grossPrice on TaxedMoney {
+  gross {
+    currency
+    amount
+  }
+}
+fragment productMedia on ProductMedia {
+  id
+  alt
+  url
+}`, {"fragmentName":"productListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
 export const TokenCreateDocument = new TypedDocumentString(`
     mutation tokenCreate($email: String!, $password: String!) {
   tokenCreate(email: $email, password: $password) {
@@ -207,24 +250,22 @@ export const GetHeaderMenuDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetHeaderMenu, GetHeaderMenuVariables>;
-export const GetProductCursorsDocument = new TypedDocumentString(`
-    query getProductCursors($first: Int!, $after: String, $channel: String) {
-  products(first: $first, after: $after, channel: $channel) {
-    edges {
-      cursor
-    }
-    pageInfo {
-      hasNextPage
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<GetProductCursors, GetProductCursorsVariables>;
 export const GetProductsDocument = new TypedDocumentString(`
-    query getProducts($first: Int!, $after: String, $channel: String) {
-  products(first: $first, after: $after, channel: $channel) {
+    query getProducts($first: Int, $after: String, $last: Int, $before: String, $languageCode: LanguageCodeEnum!, $channel: String, $filter: ProductFilterInput) {
+  products(
+    first: $first
+    after: $after
+    last: $last
+    before: $before
+    channel: $channel
+    filter: $filter
+  ) {
     edges {
       node {
         ...productListItem
+        translation(languageCode: $languageCode) {
+          name
+        }
       }
     }
     pageInfo {
@@ -232,14 +273,44 @@ export const GetProductsDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment productListItem on Product {
-  id
-  name
-  slug
-}
-fragment pageInfo on PageInfo {
+    fragment pageInfo on PageInfo {
   startCursor
   hasNextPage
   endCursor
   hasPreviousPage
+}
+fragment grossPrice on TaxedMoney {
+  gross {
+    currency
+    amount
+  }
+}
+fragment productListItem on Product {
+  id
+  name
+  slug
+  defaultVariant {
+    id
+    media {
+      ...productMedia
+    }
+    pricing {
+      onSale
+      discount {
+        ...grossPrice
+      }
+      price {
+        ...grossPrice
+      }
+      priceUndiscounted {
+        ...grossPrice
+      }
+    }
+  }
+  isAvailable
+}
+fragment productMedia on ProductMedia {
+  id
+  alt
+  url
 }`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;

@@ -1,3 +1,5 @@
+const graphqlEndpoint = new URL(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT);
+
 /** @type {import('next').NextConfig} */
 const config = {
   distDir: 'dist',
@@ -14,8 +16,8 @@ const config = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'asdfasdf.eu.saleor.cloud',
+        protocol: graphqlEndpoint.protocol.slice(0, -1), // Remove trailing ':'
+        hostname: graphqlEndpoint.hostname,
       },
     ],
   },

@@ -22,18 +22,13 @@ export function useInfiniteProductsQuery() {
     async queryFn({pageParam}: {readonly pageParam: string | null}) {
       const languageCode = localeToLangCode(locale);
 
-      return await fetchProducts(
-        {
-          first: DEFAULT_PAGE_SIZE,
-          after: pageParam,
-          filter: {search: searchValue},
-          channel,
-          languageCode,
-        },
-        {
-          cache: 'force-cache',
-        },
-      );
+      return await fetchProducts({
+        first: DEFAULT_PAGE_SIZE,
+        after: pageParam,
+        filter: {search: searchValue},
+        channel,
+        languageCode,
+      });
     },
     getNextPageParam({pageInfo}) {
       if (!pageInfo.hasNextPage) {

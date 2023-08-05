@@ -1,8 +1,8 @@
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query';
 import {useSearchParams} from 'next/navigation';
 
-import {useChannel} from '@/i18n/channel-context';
-import {useLocale} from '@/i18n/locale-context';
+import {useChannel} from '@/i18n/context/channel-context';
+import {useLocale} from '@/i18n/context/locale-context';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 
 import {DEFAULT_PAGE_SIZE} from '../_consts/consts';

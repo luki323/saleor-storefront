@@ -1,12 +1,8 @@
-import type {ReactNode} from 'react';
+import type {PropsWithChildren} from 'react';
 
 import {cn} from '@/lib/tools/cn';
 
-interface Props {
-  readonly children: ReactNode;
-}
-
-export function Container({children}: Props) {
+export function Container({children}: PropsWithChildren) {
   return (
     <div className={cn('flex flex-col items-center text-center')}>
       {children}

@@ -13,13 +13,14 @@ export function NavigationIcon({
   disabled,
   ...restProps
 }: Props) {
-  return (
+  const iconButton = (
     <IconButton variant="ghost" disabled={disabled} label={label}>
-      {disabled ? (
-        <a>{children}</a>
-      ) : (
-        <IntlLink {...restProps}>{children}</IntlLink>
-      )}
+      {children}
     </IconButton>
   );
+
+  if (disabled) {
+    return <a>{iconButton}</a>;
+  }
+  return <IntlLink {...restProps}>{iconButton}</IntlLink>;
 }

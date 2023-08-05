@@ -1,5 +1,5 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {ROUTE} from '@/lib/consts/consts';
+import {ROUTE} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -9,7 +9,7 @@ interface Props {
   readonly menu: Awaited<ReturnType<typeof fetchHeaderMenu>>;
 }
 
-export function HeaderMenu({menu}: Props) {
+export function HeaderLinks({menu}: Props) {
   return (
     <ul className={cn('flex gap-4 text-sm')}>
       {menu.map(({name, slug}) => (

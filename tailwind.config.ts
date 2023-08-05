@@ -10,6 +10,7 @@ const config: Config = {
         white: 'hsl(var(--white))',
         grey: 'hsl(var(--grey))',
         background: 'hsl(var(--background))',
+        destructive: 'hsl(var(--destructive))',
         muted: {
           foreground: 'hsl(var(--muted-foreground))',
         },

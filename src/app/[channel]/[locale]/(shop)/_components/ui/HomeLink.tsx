@@ -1,5 +1,5 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
 import {IntlLink} from '@/i18n/components/IntlLink';
+import {FormattedMessage} from '@/i18n/react-intl';
 import {buttonStyles} from '@/lib/components/ui/Button';
 import {cn} from '@/lib/tools/cn';
 

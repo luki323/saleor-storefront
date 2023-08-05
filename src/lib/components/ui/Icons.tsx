@@ -3,7 +3,7 @@ import type {HTMLAttributes} from 'react';
 type IconsProps = HTMLAttributes<SVGElement>;
 
 export const Icons = {
-  google: (props) => (
+  Google: (props) => (
     <svg role="img" viewBox="0 0 24 24" {...props}>
       <path
         fill="currentColor"
@@ -11,7 +11,7 @@ export const Icons = {
       />
     </svg>
   ),
-  spinner: (props) => {
+  Spinner: (props) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

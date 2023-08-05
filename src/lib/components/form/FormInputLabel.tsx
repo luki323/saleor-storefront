@@ -1,14 +1,14 @@
 import * as Label from '@radix-ui/react-label';
 import type {ComponentPropsWithoutRef} from 'react';
 
-import {useFormField} from './FormField';
+import {useFormField} from './hooks/use-form-field';
 
 type Props = Pick<
   ComponentPropsWithoutRef<(typeof Label)['Root']>,
   'className' | 'children'
 >;
 
-export function FormLabel({children, ...restProps}: Props) {
+export function FormInputLabel({children, ...restProps}: Props) {
   const {formItemId} = useFormField();
 
   return (

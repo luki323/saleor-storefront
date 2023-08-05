@@ -1,6 +1,3 @@
-export function formatPathname(
-  segments: readonly string[],
-  trailingSlash = false,
-) {
-  return `/${segments.join('/')}/${trailingSlash ? '/' : ''}`;
+export function formatPathname(segments: readonly string[]) {
+  return `/${segments.join('/')}`;
 }

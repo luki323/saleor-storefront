@@ -17,10 +17,13 @@ export const useRefMountCallback = <Element extends HTMLElement>() => {
     [],
   );
 
-  return (...refs: Refs<Element>) => {
-    // eslint-disable-next-line functional/immutable-data
-    mergedRefCallbacks.current ??= mergeRefs(refs);
+  return useCallback(
+    (...refs: Refs<Element>) => {
+      // eslint-disable-next-line functional/immutable-data
+      mergedRefCallbacks.current ??= mergeRefs(refs);
 
-    return refCallback;
-  };
+      return refCallback;
+    },
+    [refCallback],
+  );
 };

@@ -1,19 +1,12 @@
-import type {ReactNode} from 'react';
+import type {PropsWithChildren} from 'react';
 
-import {Text} from '@/lib/components/ui/Text';
 import {cn} from '@/lib/tools/cn';
 
-interface Props {
-  readonly children: ReactNode;
-}
-
-export function Divider({children}: Props) {
+export function Divider({children}: PropsWithChildren) {
   return (
     <div className={cn('relative flex justify-center')}>
       <div className={cn('z-10 bg-background px-2 uppercase')}>
-        <Text as="span" color="muted-foreground" size="small">
-          {children}
-        </Text>
+        <span className={cn('text-sm text-muted-foreground')}>{children}</span>
       </div>
       <div className={cn('absolute inset-0 flex items-center')}>
         <span className={cn('w-full border-t')} />

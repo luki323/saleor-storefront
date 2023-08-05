@@ -1,4 +1,4 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {FormattedMessage} from '@/i18n/react-intl';
 
 export default function HomePage() {
   return (

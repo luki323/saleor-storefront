@@ -36,7 +36,7 @@ export type ForgotPasswordVariables = Types.Exact<{
 }>;
 
 
-export type ForgotPassword = { __typename?: 'Mutation', forgotPassword?: { __typename?: 'RequestPasswordReset', errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+export type ForgotPassword = { __typename?: 'Mutation', requestPasswordReset?: { __typename?: 'RequestPasswordReset', errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
 export type SignUpVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
@@ -48,8 +48,6 @@ export type SignUpVariables = Types.Exact<{
 
 export type SignUp = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', requiresConfirmation?: boolean | null, user?: { __typename?: 'User', email: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
-export type PageInfo = { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean };
-
 export type GetHeaderMenuVariables = Types.Exact<{
   languageCode: Types.LanguageCodeEnum;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -57,6 +55,14 @@ export type GetHeaderMenuVariables = Types.Exact<{
 
 
 export type GetHeaderMenu = { __typename?: 'Query', menu?: { __typename?: 'Menu', items?: Array<{ __typename?: 'MenuItem', name: string, translation?: { __typename?: 'MenuItemTranslation', name: string } | null, category?: { __typename?: 'Category', slug: string } | null }> | null } | null };
+
+export type GrossPrice = { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } };
+
+export type PageInfo = { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean };
+
+export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null };
+
+export type ProductMedia = { __typename?: 'ProductMedia', id: string, alt: string, url: string };
 
 export type GetProductsVariables = Types.Exact<{
   first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
@@ -70,12 +76,6 @@ export type GetProductsVariables = Types.Exact<{
 
 
 export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, translation?: { __typename?: 'ProductTranslation', name?: string | null } | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
-
-export type GrossPrice = { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } };
-
-export type ProductListItem = { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null };
-
-export type ProductMedia = { __typename?: 'ProductMedia', id: string, alt: string, url: string };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -203,7 +203,7 @@ export const ConfirmAccountDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<ConfirmAccount, ConfirmAccountVariables>;
 export const ForgotPasswordDocument = new TypedDocumentString(`
     mutation forgotPassword($email: String!, $redirectUrl: String!, $channel: String!) {
-  forgotPassword: requestPasswordReset(
+  requestPasswordReset(
     email: $email
     redirectUrl: $redirectUrl
     channel: $channel
@@ -273,17 +273,17 @@ export const GetProductsDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment pageInfo on PageInfo {
-  startCursor
-  hasNextPage
-  endCursor
-  hasPreviousPage
-}
-fragment grossPrice on TaxedMoney {
+    fragment grossPrice on TaxedMoney {
   gross {
     currency
     amount
   }
+}
+fragment pageInfo on PageInfo {
+  startCursor
+  hasNextPage
+  endCursor
+  hasPreviousPage
 }
 fragment productListItem on Product {
   id

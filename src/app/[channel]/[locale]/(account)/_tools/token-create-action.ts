@@ -5,24 +5,17 @@ import {TokenCreateDocument} from '@/graphql/generated/documents';
 import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 
-import {logInAction} from './log-in-action';
+import {handleLogIn} from './handle-log-in';
 
-export async function tokenCreate(variables: TokenCreateVariables) {
+export async function tokenCreateAction(variables: TokenCreateVariables) {
   const {token, refreshToken, csrfToken, errors} =
-    (
-      await fetchGraphQL(
-        TokenCreateDocument,
-        {
-          variables,
-        },
-        {cache: 'no-cache'},
-      )
-    ).tokenCreate ?? {};
+    (await fetchGraphQL(TokenCreateDocument, {variables}, {cache: 'no-cache'}))
+      .tokenCreate ?? {};
 
   if (errors?.length) {
     return {
       type: 'error' as const,
-      value: errors,
+      result: errors,
     };
   }
 
@@ -34,6 +27,6 @@ export async function tokenCreate(variables: TokenCreateVariables) {
 
   return {
     type: 'success' as const,
-    value: await logInAction({token, refreshToken, csrfToken}),
+    result: handleLogIn({token, refreshToken, csrfToken}),
   };
 }

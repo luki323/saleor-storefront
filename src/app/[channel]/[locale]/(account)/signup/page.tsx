@@ -1,16 +1,16 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {FormattedMessage} from '@/i18n/react-intl';
 import {Divider} from '@/lib/components/ui/Divider';
-import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts/consts';
+import {ROUTE} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
-import {GoogleButton} from '../_components/GoogleButton';
-import {Heading} from '../_components/Heading';
-import {NavigationLink} from '../_components/NavigationLink';
+import {Container} from '../_components/ui/Container';
+import {Description} from '../_components/ui/Description';
+import {GoogleButton} from '../_components/ui/GoogleButton';
+import {Heading} from '../_components/ui/Heading';
+import {NavigationLink} from '../_components/ui/NavigationLink';
 import {SignupForm} from './_components/SignupForm';
 
-function SignupPage() {
+export default function SignupPage() {
   return (
     <>
       <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
@@ -20,12 +20,12 @@ function SignupPage() {
         <Heading>
           <FormattedMessage defaultMessage="Create an account" id="0vL5u1" />
         </Heading>
-        <Text size="small" color="muted-foreground">
+        <Description>
           <FormattedMessage
             defaultMessage="Enter email and password to create account"
             id="Omjm4o"
           />
-        </Text>
+        </Description>
       </Container>
       <SignupForm />
       <Divider>
@@ -37,5 +37,3 @@ function SignupPage() {
     </>
   );
 }
-
-export default SignupPage;

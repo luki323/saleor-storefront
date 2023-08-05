@@ -1,14 +1,14 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
-import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts/consts';
+import {FormattedMessage} from '@/i18n/react-intl';
+import {ROUTE} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
-import {Heading} from '../_components/Heading';
-import {NavigationLink} from '../_components/NavigationLink';
+import {Container} from '../_components/ui/Container';
+import {Description} from '../_components/ui/Description';
+import {Heading} from '../_components/ui/Heading';
+import {NavigationLink} from '../_components/ui/NavigationLink';
 import {ForgotPasswordForm} from './_components/ForgotPasswordForm';
 
-function ForgotPasswordPage() {
+export default function ForgotPasswordPage() {
   return (
     <>
       <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
@@ -18,16 +18,14 @@ function ForgotPasswordPage() {
         <Heading>
           <FormattedMessage defaultMessage="Forgot password?" id="V/JHlm" />
         </Heading>
-        <Text size="small" color="muted-foreground">
+        <Description>
           <FormattedMessage
             defaultMessage="Enter your email to receive reset link"
             id="9KlUdb"
           />
-        </Text>
+        </Description>
       </Container>
       <ForgotPasswordForm />
     </>
   );
 }
-
-export default ForgotPasswordPage;

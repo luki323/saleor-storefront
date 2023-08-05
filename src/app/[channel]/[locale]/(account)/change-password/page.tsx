@@ -1,12 +1,12 @@
 import {redirect} from 'next/navigation';
 
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
-import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts/consts';
+import {FormattedMessage} from '@/i18n/react-intl';
+import {ROUTE} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
-import {Heading} from '../_components/Heading';
+import {Container} from '../_components/ui/Container';
+import {Description} from '../_components/ui/Description';
+import {Heading} from '../_components/ui/Heading';
 import {ChangePasswordForm} from './_components/ChangePasswordForm';
 
 interface Props {
@@ -16,7 +16,9 @@ interface Props {
   };
 }
 
-async function ChangePasswordPage({searchParams: {email, token}}: Props) {
+export default async function ChangePasswordPage({
+  searchParams: {email, token},
+}: Props) {
   if (!email || !token) {
     redirect(formatPathname([ROUTE.LOGIN]));
   }
@@ -27,16 +29,14 @@ async function ChangePasswordPage({searchParams: {email, token}}: Props) {
         <Heading>
           <FormattedMessage defaultMessage="Change password" id="L4nXIc" />
         </Heading>
-        <Text size="small" color="muted-foreground">
+        <Description>
           <FormattedMessage
             defaultMessage="Enter your new password"
             id="h/zqNr"
           />
-        </Text>
+        </Description>
       </Container>
       <ChangePasswordForm email={email} token={token} />
     </>
   );
 }
-
-export default ChangePasswordPage;

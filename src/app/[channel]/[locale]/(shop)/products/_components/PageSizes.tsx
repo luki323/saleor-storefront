@@ -1,6 +1,6 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
 import {buttonStyles} from '@/lib/components/ui/Button';
-import {ROUTE} from '@/lib/consts/consts';
+import {ROUTE} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';

@@ -13,7 +13,7 @@ export function Form<FormSchema extends FieldValues>({
 }: Props<FormSchema>) {
   return (
     <FormProvider {...form}>
-      <form {...restProps} />
+      <form noValidate {...restProps} />
     </FormProvider>
   );
 }

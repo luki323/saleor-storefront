@@ -1,6 +1,9 @@
 import {useMemo} from 'react';
-import {useIntl} from 'react-intl';
 import * as zod from 'zod';
+
+import {useIntl} from '@/i18n/react-intl';
+
+import {MIN_PASSWORD_LENGTH} from '../../_consts';
 
 export type SignupFormSchema = zod.infer<
   ReturnType<typeof useSignupFormSchema>
@@ -32,7 +35,7 @@ export function useSignupFormSchema() {
               id: 'uiFoFm',
             }),
           })
-          .min(8, {
+          .min(MIN_PASSWORD_LENGTH, {
             message: intl.formatMessage({
               defaultMessage: 'Passwords must be at least 8 characters',
               id: 'OSAM2w',

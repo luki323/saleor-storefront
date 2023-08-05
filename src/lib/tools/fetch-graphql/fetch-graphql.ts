@@ -3,8 +3,7 @@ import type {FormattedExecutionResult} from 'graphql';
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 import type {TypedDocumentString} from '@/graphql/generated/documents';
 
-import {MIME_TYPES} from './consts';
-import {formatMimeTypes} from './format-mime-types';
+import {formatMimeTypes} from '../format-mime-types';
 import {isValidResponse} from './is-valid-response';
 
 interface OptionalParams<Variables> {
@@ -23,10 +22,10 @@ export async function fetchGraphQL<Result, Variables>(
       method: 'POST',
       headers: {
         ...init?.headers,
-        'Content-Type': formatMimeTypes([MIME_TYPES.JSON, 'charset=utf-8']),
+        'Content-Type': formatMimeTypes(['application/json', 'charset=utf-8']),
         Accept: formatMimeTypes(
-          [MIME_TYPES.GRAPHQL_RESPONSE_JSON, 'charset=utf-8'],
-          [MIME_TYPES.JSON, 'charset=utf-8'],
+          ['application/graphql-response+json', 'charset=utf-8'],
+          ['application/json', 'charset=utf-8'],
         ),
       },
       body: JSON.stringify({

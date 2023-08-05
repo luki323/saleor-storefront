@@ -9,13 +9,8 @@ import {splitPathname} from './lib/tools/split-pathname';
 import {negotiateChannel} from './middleware/negotiate-channel';
 import {negotiateCiLocale} from './middleware/negotiate-ci-locale';
 
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-};
-
 export default function middleware(request: NextRequest) {
   const pathnameSegments = splitPathname(request.nextUrl.pathname);
-
   const [preferredChannel, preferredLocale] = pathnameSegments;
 
   const locale = negotiateCiLocale(request.headers, preferredLocale);
@@ -23,28 +18,37 @@ export default function middleware(request: NextRequest) {
 
   const channel = negotiateChannel(formattedLocale, preferredChannel);
 
-  const isBasePathInvalid =
-    preferredChannel !== channel ||
-    !(isDefined(preferredLocale) && ciEquals(preferredLocale, locale));
-
   const updatedUrl = new URL(request.url);
 
-  const updatedSegments = [
-    channel,
-    locale,
-    ...(isBasePathInvalid ? pathnameSegments : pathnameSegments.slice(2)),
-  ];
-
-  // There is no easy way to solve this without mutating an object
-  // eslint-disable-next-line functional/immutable-data
-  updatedUrl.pathname = formatPathname(updatedSegments);
-
-  if (isBasePathInvalid) {
+  if (
+    preferredChannel !== channel ||
+    !(isDefined(preferredLocale) && ciEquals(preferredLocale, locale))
+  ) {
     // Redirect if the channel or locale is not valid
+
+    // eslint-disable-next-line functional/immutable-data -- There is no easy way to solve this without mutating an object
+    updatedUrl.pathname = formatPathname([
+      channel,
+      locale,
+      ...pathnameSegments,
+    ]);
+
     return NextResponse.redirect(updatedUrl);
   } else if (preferredLocale !== locale) {
     // Rewrite if the channel is valid and the locale is case-insensitive equal
+
+    // eslint-disable-next-line functional/immutable-data -- There is no easy way to solve this without mutating an object
+    updatedUrl.pathname = formatPathname([
+      channel,
+      locale,
+      ...pathnameSegments.slice(2),
+    ]);
+
     return NextResponse.rewrite(updatedUrl);
   }
   return NextResponse.next();
 }
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};

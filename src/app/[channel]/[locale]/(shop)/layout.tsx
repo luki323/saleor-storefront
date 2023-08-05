@@ -1,13 +1,9 @@
-import type {ReactNode} from 'react';
+import type {PropsWithChildren} from '@/lib/types/react';
 
 import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
 
-interface Props {
-  readonly children: ReactNode;
-}
-
-export default async function ShopLayout({children}: Props) {
+export default async function ShopLayout({children}: PropsWithChildren) {
   return (
     <>
       <Header />

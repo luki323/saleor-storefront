@@ -1,17 +1,12 @@
-import type {ReactNode} from 'react';
-
 import {Button} from '@/lib/components/ui/Button';
 import {Icons} from '@/lib/components/ui/Icons';
 import {cn} from '@/lib/tools/cn';
+import type {PropsWithChildren} from '@/lib/types/react';
 
-interface Props {
-  readonly children: ReactNode;
-}
-
-export function GoogleButton({children}: Props) {
+export function GoogleButton({children}: PropsWithChildren) {
   return (
     <Button variant="outline">
-      <Icons.google className={cn('mr-2 h-4 w-4')} />
+      <Icons.Google className={cn('mr-2 h-4 w-4')} />
       {children}
     </Button>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import {Bars3Icon} from '@heroicons/react/24/outline';
-import {useIntl} from 'react-intl';
 
+import {useIntl} from '@/i18n/react-intl';
 import type {IconButtonProps} from '@/lib/components/ui/IconButton';
 import {IconButton} from '@/lib/components/ui/IconButton';
 

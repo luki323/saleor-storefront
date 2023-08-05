@@ -10,7 +10,7 @@ export const Input = forwardRef<
   return (
     <input
       ref={ref}
-      spellCheck="false"
+      spellCheck="false" // Turn off spell checking by default
       className={cn(
         'h-10 rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         className,

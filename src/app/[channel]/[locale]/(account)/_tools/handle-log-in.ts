@@ -1,4 +1,4 @@
-'use server';
+import 'server-only';
 
 import {cookies} from 'next/headers';
 
@@ -8,15 +8,12 @@ interface Tokens {
   readonly csrfToken: string;
 }
 
-export async function logInAction(tokens: Tokens) {
-  const tokenNames = Object.keys(tokens) as ReadonlyArray<keyof typeof tokens>;
+export function handleLogIn(tokens: Tokens) {
+  const tokenNames = Object.keys(tokens) as ReadonlyArray<keyof Tokens>;
 
   const kvTokens = Object.fromEntries(
     tokenNames.map((name) => [name, {name, value: tokens[name]}]),
-  ) as Record<
-    (typeof tokenNames)[number],
-    {readonly name: string; readonly value: string}
-  >;
+  ) as Record<keyof Tokens, {readonly name: string; readonly value: string}>;
 
   cookies()
     .set(kvTokens.token.name, kvTokens.token.value, {

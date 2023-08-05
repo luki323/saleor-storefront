@@ -1,17 +1,12 @@
-import type {ReactNode} from 'react';
-
 import {cn} from '@/lib/tools/cn';
+import type {PropsWithChildren} from '@/lib/types/react';
 
-interface Props {
-  readonly children: ReactNode;
-}
-
-export default function AccountLayout({children}: Props) {
+export default function AccountLayout({children}: PropsWithChildren) {
   return (
     <div className={cn('absolute inset-0 flex items-center justify-center')}>
-      <div className={cn('flex w-full flex-col gap-4 px-2 sm:w-[350px]')}>
+      <main className={cn('flex w-full flex-col gap-4 px-2 sm:w-[350px]')}>
         {children}
-      </div>
+      </main>
     </div>
   );
 }

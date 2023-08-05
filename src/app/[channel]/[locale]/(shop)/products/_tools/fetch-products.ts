@@ -16,15 +16,15 @@ export async function fetchProducts(variables: GetProductsVariables) {
   if (!response.products) {
     throw new Error('Products object is missing in the response');
   }
-  const fetchedProducts = response.products;
-
-  const products = fetchedProducts.edges.map(({node}) => ({
-    ...node,
-    name: node.translation?.name ?? node.name,
-  }));
+  const {
+    products: {edges, pageInfo},
+  } = response;
 
   return {
-    products,
-    pageInfo: fetchedProducts.pageInfo,
+    products: edges.map(({node}) => ({
+      ...node,
+      name: node.translation?.name ?? node.name,
+    })),
+    pageInfo,
   };
 }

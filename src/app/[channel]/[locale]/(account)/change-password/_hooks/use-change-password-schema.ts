@@ -1,6 +1,9 @@
 import {useMemo} from 'react';
-import {useIntl} from 'react-intl';
 import * as zod from 'zod';
+
+import {useIntl} from '@/i18n/react-intl';
+
+import {MIN_PASSWORD_LENGTH} from '../../_consts';
 
 export type ChangePasswordFormSchema = zod.infer<
   ReturnType<typeof useChangePasswordSchema>
@@ -20,7 +23,7 @@ export function useChangePasswordSchema() {
                 id: 'uiFoFm',
               }),
             })
-            .min(8, {
+            .min(MIN_PASSWORD_LENGTH, {
               message: intl.formatMessage({
                 defaultMessage: 'Passwords must be at least 8 characters',
                 id: 'OSAM2w',
@@ -34,7 +37,7 @@ export function useChangePasswordSchema() {
           }),
         })
         .refine(({password, confirmPassword}) => password === confirmPassword, {
-          message: "Passwords don't match",
+          message: 'Passwords do not match',
           path: ['confirmPassword'],
         }),
     [intl],

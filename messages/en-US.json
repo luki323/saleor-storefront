@@ -2,6 +2,9 @@
   "00LcfG": {
     "defaultMessage": "Load more"
   },
+  "06/qxx": {
+    "defaultMessage": "Reset link was sent to {email} mailbox"
+  },
   "0vL5u1": {
     "defaultMessage": "Create an account"
   },
@@ -86,11 +89,17 @@
   "hfuuOe": {
     "defaultMessage": "Login with Google"
   },
+  "k9hDFZ": {
+    "defaultMessage": "Previous page"
+  },
   "lTr7eP": {
     "defaultMessage": "Change password and log in"
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
+  },
+  "rBj9Ib": {
+    "defaultMessage": "Next page"
   },
   "tKMlOc": {
     "defaultMessage": "Menu"
@@ -100,9 +109,6 @@
   },
   "vHV69y": {
     "defaultMessage": "Confirm password description"
-  },
-  "vIAvec": {
-    "defaultMessage": "Reset link was sent to {email} mailbox."
   },
   "vu1wqp": {
     "defaultMessage": "Log in with email"

@@ -1,5 +1,5 @@
-import {getChannel} from '@/i18n/tools/get-channel';
-import {getLocale} from '@/i18n/tools/get-locale';
+import {getChannel} from '@/i18n/context/get-channel';
+import {getLocale} from '@/i18n/context/get-locale';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {cn} from '@/lib/tools/cn';
 import {isDefined} from '@/lib/tools/is-defined';

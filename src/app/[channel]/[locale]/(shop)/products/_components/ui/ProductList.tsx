@@ -1,6 +1,7 @@
 import type {ProductListItem} from '@/graphql/generated/documents';
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {ROUTE} from '@/lib/consts/consts';
+import {ROUTE} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {ProductCard} from './ProductCard';
@@ -11,7 +12,7 @@ interface Props {
 
 export function ProductList({products}: Props) {
   return (
-    <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <ul className={cn('grid gap-4 md:grid-cols-2 lg:grid-cols-3')}>
       {products.map((product) => (
         <li key={product.id}>
           <IntlLink href={formatPathname([ROUTE.PRODUCTS, product.slug])}>

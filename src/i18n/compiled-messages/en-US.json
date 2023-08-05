@@ -5,6 +5,20 @@
       "value": "Load more"
     }
   ],
+  "06/qxx": [
+    {
+      "type": 0,
+      "value": "Reset link was sent to "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    },
+    {
+      "type": 0,
+      "value": " mailbox"
+    }
+  ],
   "0vL5u1": [
     {
       "type": 0,
@@ -181,6 +195,12 @@
       "value": "Login with Google"
     }
   ],
+  "k9hDFZ": [
+    {
+      "type": 0,
+      "value": "Previous page"
+    }
+  ],
   "lTr7eP": [
     {
       "type": 0,
@@ -191,6 +211,12 @@
     {
       "type": 0,
       "value": "Sign up with email"
+    }
+  ],
+  "rBj9Ib": [
+    {
+      "type": 0,
+      "value": "Next page"
     }
   ],
   "tKMlOc": [
@@ -209,20 +235,6 @@
     {
       "type": 0,
       "value": "Confirm password description"
-    }
-  ],
-  "vIAvec": [
-    {
-      "type": 0,
-      "value": "Reset link was sent to "
-    },
-    {
-      "type": 1,
-      "value": "email"
-    },
-    {
-      "type": 0,
-      "value": " mailbox."
     }
   ],
   "vu1wqp": [

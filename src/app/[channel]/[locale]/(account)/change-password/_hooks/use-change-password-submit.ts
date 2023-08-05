@@ -11,7 +11,7 @@ export function useChangePasswordSubmit(
   return useCallback(
     async ({password}: ChangePasswordFormSchema) => {
       try {
-        const {type, value} = await changePasswordAction({
+        const {type, result} = await changePasswordAction({
           email,
           token,
           password,
@@ -22,7 +22,7 @@ export function useChangePasswordSubmit(
           return;
         }
 
-        localStorage.setItem(value.name, value.value);
+        localStorage.setItem(result.name, result.value);
 
         form.reset();
       } catch (error) {

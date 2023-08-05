@@ -4,20 +4,20 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {FormattedMessage} from '@/i18n/react-intl';
 import {Form} from '@/lib/components/form/Form';
-import {FormControl} from '@/lib/components/form/FormControl';
-import {FormDescription} from '@/lib/components/form/FormDescription';
-import {FormErrorMessage} from '@/lib/components/form/FormErrorMessage';
 import {FormField} from '@/lib/components/form/FormField';
+import {FormFieldDescription} from '@/lib/components/form/FormFieldDescription';
+import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
+import {FormInputControl} from '@/lib/components/form/FormInputControl';
 import {Input} from '@/lib/components/ui/Input';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
 import {cn} from '@/lib/tools/cn';
 import {focusInput} from '@/lib/tools/focus-input';
 
-import {FormItem} from '../../_components/FormItem';
-import {FormLabel} from '../../_components/FormLabel';
-import {SubmitButton} from '../../_components/SubmitButton';
+import {FormInputLabel} from '../../_components/ui/form/FormInputLabel';
+import {FormItem} from '../../_components/ui/form/FormItem';
+import {SubmitButton} from '../../_components/ui/SubmitButton';
 import {FIELDS} from '../_consts/consts';
 import type {ChangePasswordFormSchema} from '../_hooks/use-change-password-schema';
 import {useChangePasswordSchema} from '../_hooks/use-change-password-schema';
@@ -43,33 +43,33 @@ export function ChangePasswordForm({email, token}: Props) {
     <Form
       form={form}
       onSubmit={form.handleSubmit(changePasswordSubmit)}
-      noValidate
       className={cn('flex flex-col gap-3')}>
       <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
         render={({field: {value, ref, ...restField}}) => (
           <FormItem>
-            <FormLabel>
+            <FormInputLabel>
               <FormattedMessage defaultMessage="Password:" id="hagaYK" />
-            </FormLabel>
-            <FormControl>
+            </FormInputLabel>
+            <FormInputControl>
               <Input
                 type="password"
+                autoComplete="new-password"
                 value={value ?? ''}
-                required
                 ref={refMountCallback(ref, focusInput)}
+                required
                 {...restField}
               />
-            </FormControl>
+            </FormInputControl>
             <div>
-              <FormDescription>
+              <FormFieldDescription>
                 <FormattedMessage
                   defaultMessage="Password description"
                   id="A4RrFD"
                 />
-              </FormDescription>
-              <FormErrorMessage />
+              </FormFieldDescription>
+              <FormFieldErrorMessage />
             </div>
           </FormItem>
         )}
@@ -79,28 +79,29 @@ export function ChangePasswordForm({email, token}: Props) {
         control={form.control}
         render={({field: {value, ...restField}}) => (
           <FormItem>
-            <FormLabel>
+            <FormInputLabel>
               <FormattedMessage
                 defaultMessage="Confirm password:"
                 id="atD3r4"
               />
-            </FormLabel>
-            <FormControl>
+            </FormInputLabel>
+            <FormInputControl>
               <Input
                 type="password"
+                autoComplete="password"
                 value={value ?? ''}
                 required
                 {...restField}
               />
-            </FormControl>
+            </FormInputControl>
             <div>
-              <FormDescription>
+              <FormFieldDescription>
                 <FormattedMessage
                   defaultMessage="Confirm password description"
                   id="vHV69y"
                 />
-              </FormDescription>
-              <FormErrorMessage />
+              </FormFieldDescription>
+              <FormFieldErrorMessage />
             </div>
           </FormItem>
         )}

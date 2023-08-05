@@ -1,16 +1,16 @@
-import {FormattedMessage} from '@/i18n/components/FormattedMessage';
+import {FormattedMessage} from '@/i18n/react-intl';
 import {Divider} from '@/lib/components/ui/Divider';
-import {Text} from '@/lib/components/ui/Text';
-import {ROUTE} from '@/lib/consts/consts';
+import {ROUTE} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
-import {GoogleButton} from '../_components/GoogleButton';
-import {Heading} from '../_components/Heading';
-import {NavigationLink} from '../_components/NavigationLink';
+import {Container} from '../_components/ui/Container';
+import {Description} from '../_components/ui/Description';
+import {GoogleButton} from '../_components/ui/GoogleButton';
+import {Heading} from '../_components/ui/Heading';
+import {NavigationLink} from '../_components/ui/NavigationLink';
 import {LoginForm} from './_components/LoginForm';
 
-function LoginPage() {
+export default function LoginPage() {
   return (
     <>
       <NavigationLink href={formatPathname([ROUTE.SIGNUP])}>
@@ -20,12 +20,12 @@ function LoginPage() {
         <Heading>
           <FormattedMessage defaultMessage="Welcome back" id="UKxoV8" />
         </Heading>
-        <Text size="small" color="muted-foreground">
+        <Description>
           <FormattedMessage
             defaultMessage="Enter email and password to log in"
             id="VxQzFj"
           />
-        </Text>
+        </Description>
       </Container>
       <LoginForm />
       <Divider>
@@ -37,5 +37,3 @@ function LoginPage() {
     </>
   );
 }
-
-export default LoginPage;

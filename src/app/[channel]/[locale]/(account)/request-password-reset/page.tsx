@@ -6,9 +6,9 @@ import {Container} from '../_components/ui/Container';
 import {Description} from '../_components/ui/Description';
 import {Heading} from '../_components/ui/Heading';
 import {NavigationLink} from '../_components/ui/NavigationLink';
-import {ForgotPasswordForm} from './_components/ForgotPasswordForm';
+import {RequestPasswordResetForm} from './_components/RequestPasswordResetForm';
 
-export default function ForgotPasswordPage() {
+export default function RequestPasswordResetPage() {
   return (
     <>
       <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
@@ -16,7 +16,10 @@ export default function ForgotPasswordPage() {
       </NavigationLink>
       <Container>
         <Heading>
-          <FormattedMessage defaultMessage="Forgot password?" id="V/JHlm" />
+          <FormattedMessage
+            defaultMessage="Request password reset"
+            id="Wtffln"
+          />
         </Heading>
         <Description>
           <FormattedMessage
@@ -25,7 +28,7 @@ export default function ForgotPasswordPage() {
           />
         </Description>
       </Container>
-      <ForgotPasswordForm />
+      <RequestPasswordResetForm />
     </>
   );
 }

@@ -4,7 +4,7 @@ import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {cn} from '@/lib/tools/cn';
 import {isDefined} from '@/lib/tools/is-defined';
 
-import {DEFAULT_PAGE_SIZE} from '../_consts/consts';
+import {DEFAULT_PAGE_SIZE} from '../_consts';
 import {fetchProducts} from '../_tools/fetch-products';
 import type {SearchParams} from '../_types/types';
 import {PageSizes} from './PageSizes';

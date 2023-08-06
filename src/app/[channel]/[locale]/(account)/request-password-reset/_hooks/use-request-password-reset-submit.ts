@@ -3,26 +3,26 @@ import type {UseFormReturn} from 'react-hook-form';
 import {toast} from 'sonner';
 
 import {ORIGIN} from '@/env/env';
-import {ForgotPasswordDocument} from '@/graphql/generated/documents';
+import {RequestPasswordResetDocument} from '@/graphql/generated/documents';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {ROUTE} from '@/lib/consts';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
-import type {ForgotPasswordSchema} from './use-forgot-password-schema';
+import type {RequestPasswordResetSchema} from './use-request-password-reset-schema';
 
-export function useForgotPasswordSubmit(
-  form: UseFormReturn<ForgotPasswordSchema>,
+export function useRequestPasswordResetSubmit(
+  form: UseFormReturn<RequestPasswordResetSchema>,
 ) {
   const intl = useIntl();
   const channel = useChannel();
 
   return useCallback(
-    async ({email}: ForgotPasswordSchema) => {
+    async ({email}: RequestPasswordResetSchema) => {
       try {
         const {errors} =
           (
-            await fetchGraphQL(ForgotPasswordDocument, {
+            await fetchGraphQL(RequestPasswordResetDocument, {
               variables: {
                 email,
                 channel,

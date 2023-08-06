@@ -7,7 +7,7 @@ import {SignUpDocument} from '@/graphql/generated/documents';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {ROUTE} from '@/lib/consts';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
 import {tokenCreateAction} from '../../_tools/token-create-action';
 import type {SignupFormSchema} from './use-signup-form-schema';

@@ -5,7 +5,7 @@ import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';
 
-import {PAGE_SIZES} from '../_consts/consts';
+import {PAGE_SIZES} from '../_consts';
 import type {SearchParams} from '../_types/types';
 
 type Props = SearchParams;

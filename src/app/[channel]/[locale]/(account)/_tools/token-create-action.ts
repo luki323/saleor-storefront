@@ -2,7 +2,7 @@
 
 import type {TokenCreateVariables} from '@/graphql/generated/documents';
 import {TokenCreateDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 
 import {handleLogIn} from './handle-log-in';

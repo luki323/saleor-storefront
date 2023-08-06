@@ -3,11 +3,11 @@ import * as zod from 'zod';
 
 import {useIntl} from '@/i18n/react-intl';
 
-export type ForgotPasswordSchema = zod.infer<
-  ReturnType<typeof useForgotPasswordSchema>
+export type RequestPasswordResetSchema = zod.infer<
+  ReturnType<typeof useRequestPasswordResetSchema>
 >;
 
-export function useForgotPasswordSchema() {
+export function useRequestPasswordResetSchema() {
   const intl = useIntl();
 
   return useMemo(

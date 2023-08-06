@@ -5,8 +5,8 @@ import {useChannel} from '@/i18n/context/channel-context';
 import {useLocale} from '@/i18n/context/locale-context';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 
-import {DEFAULT_PAGE_SIZE} from '../_consts/consts';
-import {PRODUCTS_QUERY_KEY} from '../_consts/consts';
+import {DEFAULT_PAGE_SIZE} from '../_consts';
+import {PRODUCTS_QUERY_KEY} from '../_consts';
 import {fetchProducts} from '../_tools/fetch-products';
 
 export function useInfiniteProductsQuery() {

@@ -2,7 +2,9 @@ import type {FormHTMLAttributes} from 'react';
 import type {FieldValues, UseFormReturn} from 'react-hook-form';
 import {FormProvider} from 'react-hook-form';
 
-interface Props<FormSchema extends FieldValues>
+import {cn} from '@/lib/tools/cn';
+
+export interface FormProps<FormSchema extends FieldValues>
   extends FormHTMLAttributes<HTMLFormElement> {
   readonly form: UseFormReturn<FormSchema>;
 }
@@ -10,10 +12,10 @@ interface Props<FormSchema extends FieldValues>
 export function Form<FormSchema extends FieldValues>({
   form,
   ...restProps
-}: Props<FormSchema>) {
+}: FormProps<FormSchema>) {
   return (
     <FormProvider {...form}>
-      <form noValidate {...restProps} />
+      <form className={cn('flex flex-col gap-3')} noValidate {...restProps} />
     </FormProvider>
   );
 }

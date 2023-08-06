@@ -1,6 +1,6 @@
 import type {GetHeaderMenuVariables} from '@/graphql/generated/documents';
 import {GetHeaderMenuDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 
 export async function fetchHeaderMenu(variables: GetHeaderMenuVariables) {
   const {menu} = await fetchGraphQL(GetHeaderMenuDocument, {

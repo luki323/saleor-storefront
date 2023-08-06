@@ -3,6 +3,6 @@ export const ROUTE = {
   LOGIN: 'login',
   SIGNUP: 'signup',
   CONFIRM_ACCOUNT: 'confirm-account',
-  FORGOT_PASSWORD: 'forgot-password',
+  REQUEST_PASSWORD_RESET: 'request-password-reset',
   CHANGE_PASSWORD: 'change-password',
 };

@@ -129,16 +129,16 @@
       "value": "Welcome back"
     }
   ],
-  "V/JHlm": [
-    {
-      "type": 0,
-      "value": "Forgot password?"
-    }
-  ],
   "VxQzFj": [
     {
       "type": 0,
       "value": "Enter email and password to log in"
+    }
+  ],
+  "Wtffln": [
+    {
+      "type": 0,
+      "value": "Request password reset"
     }
   ],
   "X8m9DF": [

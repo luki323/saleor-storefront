@@ -3,7 +3,7 @@ import {NextResponse} from 'next/server';
 
 import {ConfirmAccountDocument} from '@/graphql/generated/documents';
 import {ROUTE} from '@/lib/consts';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql/fetch-graphql';
+import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 
 export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {

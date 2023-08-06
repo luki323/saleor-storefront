@@ -1,19 +1,16 @@
-import * as Label from '@radix-ui/react-label';
-import type {ComponentPropsWithoutRef} from 'react';
+import type {ComponentProps} from 'react';
 
+import {Label} from '../ui/Label';
 import {useFormField} from './hooks/use-form-field';
 
-type Props = Pick<
-  ComponentPropsWithoutRef<(typeof Label)['Root']>,
-  'className' | 'children'
->;
+type Props = Omit<ComponentProps<typeof Label>, 'htmlFor'>;
 
 export function FormInputLabel({children, ...restProps}: Props) {
   const {formItemId} = useFormField();
 
   return (
-    <Label.Root htmlFor={formItemId} {...restProps}>
+    <Label htmlFor={formItemId} {...restProps}>
       {children}
-    </Label.Root>
+    </Label>
   );
 }

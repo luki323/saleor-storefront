@@ -1,3 +1,7 @@
 'use client';
 
-export {Toaster} from 'sonner';
+import {Toaster as ToasterImpl} from 'sonner';
+
+export function Toaster() {
+  return <ToasterImpl closeButton />;
+}

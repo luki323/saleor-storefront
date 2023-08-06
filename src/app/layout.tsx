@@ -11,8 +11,8 @@ export default function RootLayout({children}: PropsWithChildren) {
   return (
     <html lang={DEFAULT_LOCALE} className={fontSans.className}>
       <body>
+        <Toaster />
         <QueryProvider>{children}</QueryProvider>
-        <Toaster expand duration={100000000} />
       </body>
     </html>
   );

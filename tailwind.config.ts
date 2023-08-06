@@ -10,12 +10,9 @@ const config: Config = {
         white: 'hsl(var(--white))',
         grey: 'hsl(var(--grey))',
         background: 'hsl(var(--background))',
+        destructive: 'hsl(var(--destructive))',
         muted: {
           foreground: 'hsl(var(--muted-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive))',
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
@@ -28,10 +25,6 @@ const config: Config = {
       },
       borderRadius: {
         md: `calc(var(--radius) - 2px)`,
-      },
-      width: {
-        'toast-dektop': 'var(--toast-desktop-width)',
-        'toast-mobile': 'var(--toast-mobile-width)',
       },
     },
     fontFamily: {

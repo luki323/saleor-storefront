@@ -5,7 +5,7 @@
 :root {
   --ring: 240 5% 64.9%;
 
-  --input: 240 5.9% 90%;
+  --input: 240 3.7% 15.9%;
 
   --white: 0 0% 100%;
   --grey: 240 5% 40%;
@@ -23,10 +23,6 @@
   --radius: 0.5rem;
 
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-
-  --toast-desktop-width: 365px;
-  --toast-mobile-width: calc(100% -32px);
 }
 
 body {

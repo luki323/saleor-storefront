@@ -12,13 +12,8 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
 
   if (isDefined(email) && isDefined(token)) {
     const {user} =
-      (
-        await fetchGraphQL(
-          ConfirmAccountDocument,
-          {variables: {email, token}},
-          {cache: 'no-cache'},
-        )
-      ).confirmAccount ?? {};
+      (await fetchGraphQL(ConfirmAccountDocument, {variables: {email, token}}))
+        .confirmAccount ?? {};
 
     if (user?.isActive) {
       return NextResponse.redirect(new URL(ROUTE.LOGIN, origin));

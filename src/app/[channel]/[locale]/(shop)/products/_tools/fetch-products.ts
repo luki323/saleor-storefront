@@ -1,17 +1,12 @@
 import type {GetProductsVariables} from '@/graphql/generated/documents';
-import {GetProductsDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
+
+import {createGetProductsRequest} from './create-get-products-request';
 
 export type FetchProductsResult = Awaited<ReturnType<typeof fetchProducts>>;
 
-const PRODUCTS_REVALIDATE_TAG = 'products-revalidate-tag';
-
 export async function fetchProducts(variables: GetProductsVariables) {
-  const response = await fetchGraphQL(
-    GetProductsDocument,
-    {variables},
-    {cache: 'force-cache', next: {tags: [PRODUCTS_REVALIDATE_TAG]}},
-  );
+  const response = await fetchQueryData(createGetProductsRequest(variables));
 
   if (!response.products) {
     throw new Error('Products object is missing in the response');

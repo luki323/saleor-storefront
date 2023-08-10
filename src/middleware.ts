@@ -32,7 +32,6 @@ export default function middleware(request: NextRequest) {
       locale,
       ...pathnameSegments,
     ]);
-
     return NextResponse.redirect(updatedUrl);
   } else if (preferredLocale !== locale) {
     // Rewrite if the channel is valid and the locale is case-insensitive equal
@@ -43,7 +42,6 @@ export default function middleware(request: NextRequest) {
       locale,
       ...pathnameSegments.slice(2),
     ]);
-
     return NextResponse.rewrite(updatedUrl);
   }
   return NextResponse.next();

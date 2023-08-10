@@ -2,14 +2,14 @@ import {useCallback} from 'react';
 import type {UseFormReturn} from 'react-hook-form';
 
 import {ORIGIN} from '@/env/env';
-import {SignUpDocument} from '@/graphql/generated/documents';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {ROUTE} from '@/lib/consts';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 
 import {tokenCreateAction} from '../../_tools/token-create-action';
+import {createSignUpRequest} from '../_tools/create-sign-up-request';
 import type {SignupFormSchema} from './use-signup-form-schema';
 
 export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
@@ -19,17 +19,15 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
   return useCallback(
     async ({email, password}: SignupFormSchema) => {
       try {
-        const {requiresConfirmation, user} =
-          (
-            await fetchGraphQL(SignUpDocument, {
-              variables: {
-                email,
-                password,
-                channel,
-                redirectUrl: new URL(ROUTE.CONFIRM_ACCOUNT, ORIGIN).toString(),
-              },
-            })
-          ).accountRegister ?? {};
+        const {accountRegister} = await fetchQueryData(
+          createSignUpRequest({
+            email,
+            password,
+            channel,
+            redirectUrl: new URL(ROUTE.CONFIRM_ACCOUNT, ORIGIN).toString(),
+          }),
+        );
+        const {requiresConfirmation, user} = accountRegister ?? {};
 
         if (requiresConfirmation && user) {
           toast.default({

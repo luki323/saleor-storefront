@@ -1,23 +1,17 @@
 'use server';
 
-import {
-  ChangePasswordDocument,
-  type ChangePasswordVariables,
-} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import type {ChangePasswordVariables} from '@/graphql/generated/documents';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 import {isDefined} from '@/lib/tools/is-defined';
 
 import {handleLogIn} from '../../_tools/handle-log-in';
+import {createChangePasswordRequest} from './create-change-password-request';
 
 export async function changePasswordAction(variables: ChangePasswordVariables) {
-  const {token, refreshToken, csrfToken, errors} =
-    (
-      await fetchGraphQL(
-        ChangePasswordDocument,
-        {variables},
-        {cache: 'no-cache'},
-      )
-    ).setPassword ?? {};
+  const {setPassword} = await fetchQueryData(
+    createChangePasswordRequest(variables),
+  );
+  const {token, refreshToken, csrfToken, errors} = setPassword ?? {};
 
   if (errors?.length) {
     return {
@@ -26,11 +20,8 @@ export async function changePasswordAction(variables: ChangePasswordVariables) {
     };
   }
   if (!isDefined(token) || !isDefined(refreshToken) || !isDefined(csrfToken)) {
-    throw new Error(
-      `Missing token. Received: ${{token, refreshToken, csrfToken}}`,
-    );
+    throw new Error('Missing token');
   }
-
   return {
     type: 'success' as const,
     result: handleLogIn({token, refreshToken, csrfToken}),

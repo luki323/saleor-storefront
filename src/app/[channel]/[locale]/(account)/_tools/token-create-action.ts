@@ -1,16 +1,17 @@
 'use server';
 
 import type {TokenCreateVariables} from '@/graphql/generated/documents';
-import {TokenCreateDocument} from '@/graphql/generated/documents';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 import {isDefined} from '@/lib/tools/is-defined';
 
+import {createTokenCreateRequest} from './create-token-create-request';
 import {handleLogIn} from './handle-log-in';
 
 export async function tokenCreateAction(variables: TokenCreateVariables) {
-  const {token, refreshToken, csrfToken, errors} =
-    (await fetchGraphQL(TokenCreateDocument, {variables}, {cache: 'no-cache'}))
-      .tokenCreate ?? {};
+  const {tokenCreate} = await fetchQueryData(
+    createTokenCreateRequest(variables),
+  );
+  const {token, refreshToken, csrfToken, errors} = tokenCreate ?? {};
 
   if (errors?.length) {
     return {
@@ -18,15 +19,12 @@ export async function tokenCreateAction(variables: TokenCreateVariables) {
       result: errors,
     };
   }
-
   if (!isDefined(token) || !isDefined(refreshToken) || !isDefined(csrfToken)) {
-    throw new Error(
-      `Missing token. Received: ${{token, refreshToken, csrfToken}}`,
-    );
+    throw new Error('Missing token');
   }
-
-  return {
+  const result = {
     type: 'success' as const,
     result: handleLogIn({token, refreshToken, csrfToken}),
   };
+  return result;
 }

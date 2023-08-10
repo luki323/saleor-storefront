@@ -2,13 +2,13 @@ import {useCallback} from 'react';
 import type {UseFormReturn} from 'react-hook-form';
 
 import {ORIGIN} from '@/env/env';
-import {RequestPasswordResetDocument} from '@/graphql/generated/documents';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {ROUTE} from '@/lib/consts';
-import {fetchGraphQL} from '@/lib/tools/fetch-graphql';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 
+import {createRequestPasswordResetRequest} from '../_tools/create-request-password-reset-request';
 import type {RequestPasswordResetSchema} from './use-request-password-reset-schema';
 
 export function useRequestPasswordResetSubmit(
@@ -20,16 +20,14 @@ export function useRequestPasswordResetSubmit(
   return useCallback(
     async ({email}: RequestPasswordResetSchema) => {
       try {
-        const {errors} =
-          (
-            await fetchGraphQL(RequestPasswordResetDocument, {
-              variables: {
-                email,
-                channel,
-                redirectUrl: new URL(ROUTE.CHANGE_PASSWORD, ORIGIN).toString(),
-              },
-            })
-          ).requestPasswordReset ?? {};
+        const {requestPasswordReset} = await fetchQueryData(
+          createRequestPasswordResetRequest({
+            email,
+            channel,
+            redirectUrl: new URL(ROUTE.CHANGE_PASSWORD, ORIGIN).toString(),
+          }),
+        );
+        const {errors} = requestPasswordReset ?? {};
 
         if (errors?.length) {
           // TODO: Display server error

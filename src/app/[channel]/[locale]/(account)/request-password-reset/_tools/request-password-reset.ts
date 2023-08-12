@@ -1,12 +1,12 @@
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 import type {RequestPasswordResetVariables} from '@/graphql/generated/documents';
 import {RequestPasswordResetDocument} from '@/graphql/generated/documents';
-import {Request} from '@/lib/tools/fetch-query';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-export function createRequestPasswordResetRequest(
+export async function requestPasswordReset(
   variables: RequestPasswordResetVariables,
 ) {
-  return new Request(GRAPHQL_ENDPOINT, {
+  return await fetchQueryData(GRAPHQL_ENDPOINT, {
     params: {
       query: RequestPasswordResetDocument,
       variables,

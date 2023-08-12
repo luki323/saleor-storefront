@@ -1,3 +1,3 @@
-export function formatPathname(segments: readonly string[]) {
+export function formatPathname(...segments: readonly string[]) {
   return `/${segments.join('/')}`;
 }

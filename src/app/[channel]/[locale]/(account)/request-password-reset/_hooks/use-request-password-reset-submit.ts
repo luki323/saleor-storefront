@@ -5,10 +5,9 @@ import {ORIGIN} from '@/env/env';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';
-import {ROUTE} from '@/lib/consts';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {APP_ROUTES} from '@/lib/consts';
 
-import {createRequestPasswordResetRequest} from '../_tools/create-request-password-reset-request';
+import {requestPasswordReset} from '../_tools/request-password-reset';
 import type {RequestPasswordResetSchema} from './use-request-password-reset-schema';
 
 export function useRequestPasswordResetSubmit(
@@ -20,14 +19,12 @@ export function useRequestPasswordResetSubmit(
   return useCallback(
     async ({email}: RequestPasswordResetSchema) => {
       try {
-        const {requestPasswordReset} = await fetchQueryData(
-          createRequestPasswordResetRequest({
-            email,
-            channel,
-            redirectUrl: new URL(ROUTE.CHANGE_PASSWORD, ORIGIN).toString(),
-          }),
-        );
-        const {errors} = requestPasswordReset ?? {};
+        const response = await requestPasswordReset({
+          email,
+          channel,
+          redirectUrl: new URL(APP_ROUTES.CHANGE_PASSWORD, ORIGIN).toString(),
+        });
+        const {errors} = response.requestPasswordReset ?? {};
 
         if (errors?.length) {
           // TODO: Display server error

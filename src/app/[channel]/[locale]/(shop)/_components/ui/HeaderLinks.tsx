@@ -1,5 +1,5 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {ROUTE} from '@/lib/consts';
+import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -15,7 +15,7 @@ export function HeaderLinks({menu}: Props) {
       {menu.map(({name, slug}) => (
         <li key={slug}>
           <IntlLink
-            href={formatPathname([ROUTE.PRODUCTS, slug])}
+            href={formatPathname(APP_ROUTES.PRODUCTS, slug)}
             className={cn(
               'text-grey transition-colors hover:text-inherit hover:underline',
             )}>

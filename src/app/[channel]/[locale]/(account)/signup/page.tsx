@@ -1,6 +1,6 @@
 import {FormattedMessage} from '@/i18n/react-intl';
 import {Divider} from '@/lib/components/ui/Divider';
-import {ROUTE} from '@/lib/consts';
+import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/ui/Container';
@@ -13,7 +13,7 @@ import {SignupForm} from './_components/SignupForm';
 export default function SignupPage() {
   return (
     <>
-      <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
+      <NavigationLink href={formatPathname(APP_ROUTES.LOGIN)}>
         <FormattedMessage defaultMessage="Login" id="AyGauy" />
       </NavigationLink>
       <Container>

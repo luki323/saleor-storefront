@@ -1,7 +1,7 @@
 import {redirect} from 'next/navigation';
 
 import {FormattedMessage} from '@/i18n/react-intl';
-import {ROUTE} from '@/lib/consts';
+import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/ui/Container';
@@ -20,7 +20,7 @@ export default async function ChangePasswordPage({
   searchParams: {email, token},
 }: Props) {
   if (!email || !token) {
-    redirect(formatPathname([ROUTE.LOGIN]));
+    redirect(formatPathname(APP_ROUTES.LOGIN));
   }
 
   return (

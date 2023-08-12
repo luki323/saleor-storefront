@@ -1,12 +1,10 @@
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 import type {ConfirmAccountVariables} from '@/graphql/generated/documents';
 import {ConfirmAccountDocument} from '@/graphql/generated/documents';
-import {Request} from '@/lib/tools/fetch-query';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-export function createConfirmAccountRequest(
-  variables: ConfirmAccountVariables,
-) {
-  return new Request(GRAPHQL_ENDPOINT, {
+export async function confirmAccount(variables: ConfirmAccountVariables) {
+  return await fetchQueryData(GRAPHQL_ENDPOINT, {
     params: {
       query: ConfirmAccountDocument,
       variables,

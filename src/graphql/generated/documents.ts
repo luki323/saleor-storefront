@@ -4,13 +4,13 @@ import type * as Types from './types';
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type AccountError = { __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode };
 
-export type TokenCreateVariables = Types.Exact<{
+export type LogInVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   password: Types.Scalars['String']['input'];
 }>;
 
 
-export type TokenCreate = { __typename?: 'Mutation', tokenCreate?: { __typename?: 'CreateToken', token?: string | null, refreshToken?: string | null, csrfToken?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+export type LogIn = { __typename?: 'Mutation', tokenCreate?: { __typename?: 'CreateToken', token?: string | null, refreshToken?: string | null, csrfToken?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
 export type ChangePasswordVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
@@ -48,6 +48,11 @@ export type SignUpVariables = Types.Exact<{
 
 export type SignUp = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', requiresConfirmation?: boolean | null, user?: { __typename?: 'User', email: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
+export type GetUserEmailVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetUserEmail = { __typename?: 'Query', me?: { __typename?: 'User', email: string } | null };
+
 export type GetHeaderMenuVariables = Types.Exact<{
   languageCode: Types.LanguageCodeEnum;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -76,6 +81,13 @@ export type GetProductsVariables = Types.Exact<{
 
 
 export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, translation?: { __typename?: 'ProductTranslation', name?: string | null } | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
+
+export type RefreshAccessTokenVariables = Types.Exact<{
+  refreshToken: Types.Scalars['String']['input'];
+}>;
+
+
+export type RefreshAccessToken = { __typename?: 'Mutation', tokenRefresh?: { __typename?: 'RefreshToken', token?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -156,8 +168,8 @@ fragment productMedia on ProductMedia {
   alt
   url
 }`, {"fragmentName":"productListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
-export const TokenCreateDocument = new TypedDocumentString(`
-    mutation tokenCreate($email: String!, $password: String!) {
+export const LogInDocument = new TypedDocumentString(`
+    mutation logIn($email: String!, $password: String!) {
   tokenCreate(email: $email, password: $password) {
     token
     refreshToken
@@ -170,7 +182,7 @@ export const TokenCreateDocument = new TypedDocumentString(`
     fragment accountError on AccountError {
   field
   code
-}`) as unknown as TypedDocumentString<TokenCreate, TokenCreateVariables>;
+}`) as unknown as TypedDocumentString<LogIn, LogInVariables>;
 export const ChangePasswordDocument = new TypedDocumentString(`
     mutation changePassword($email: String!, $token: String!, $password: String!) {
   setPassword(email: $email, token: $token, password: $password) {
@@ -235,6 +247,13 @@ export const SignUpDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
+export const GetUserEmailDocument = new TypedDocumentString(`
+    query getUserEmail {
+  me {
+    email
+  }
+}
+    `) as unknown as TypedDocumentString<GetUserEmail, GetUserEmailVariables>;
 export const GetHeaderMenuDocument = new TypedDocumentString(`
     query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
   menu(name: "navbar", channel: $channel) {
@@ -314,3 +333,16 @@ fragment productMedia on ProductMedia {
   alt
   url
 }`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;
+export const RefreshAccessTokenDocument = new TypedDocumentString(`
+    mutation refreshAccessToken($refreshToken: String!) {
+  tokenRefresh(refreshToken: $refreshToken) {
+    token
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<RefreshAccessToken, RefreshAccessTokenVariables>;

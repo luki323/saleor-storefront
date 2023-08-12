@@ -1,0 +1,8 @@
+mutation refreshAccessToken($refreshToken: String!) {
+  tokenRefresh(refreshToken: $refreshToken) {
+    token
+    errors {
+      ...accountError
+    }
+  }
+}

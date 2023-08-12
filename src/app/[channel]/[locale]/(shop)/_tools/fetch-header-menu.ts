@@ -1,10 +1,9 @@
 import type {GetHeaderMenuVariables} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-import {createGetHeaderMenuRequest} from './create-get-header-menu-request';
+import {getHeaderMenu} from './get-header-menu';
 
 export async function fetchHeaderMenu(variables: GetHeaderMenuVariables) {
-  const {menu} = await fetchQueryData(createGetHeaderMenuRequest(variables));
+  const {menu} = await getHeaderMenu(variables);
 
   return (
     menu?.items?.map(({category, name, translation}) => {

@@ -1,6 +1,6 @@
 import {IntlLink} from '@/i18n/components/IntlLink';
 import {buttonStyles} from '@/lib/components/ui/Button';
-import {ROUTE} from '@/lib/consts';
+import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';
@@ -20,7 +20,7 @@ export function PageSizes(props: Props) {
           <li key={pageSize}>
             <IntlLink
               href={{
-                pathname: formatPathname([ROUTE.PRODUCTS]),
+                pathname: formatPathname(APP_ROUTES.PRODUCTS),
                 query: {...props, [pageSizeKey]: pageSize},
               }}
               className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>

@@ -1,5 +1,5 @@
 import {FormattedMessage} from '@/i18n/react-intl';
-import {ROUTE} from '@/lib/consts';
+import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {Container} from '../_components/ui/Container';
@@ -11,7 +11,7 @@ import {RequestPasswordResetForm} from './_components/RequestPasswordResetForm';
 export default function RequestPasswordResetPage() {
   return (
     <>
-      <NavigationLink href={formatPathname([ROUTE.LOGIN])}>
+      <NavigationLink href={formatPathname(APP_ROUTES.LOGIN)}>
         <FormattedMessage defaultMessage="Back" id="cyR7Kh" />
       </NavigationLink>
       <Container>

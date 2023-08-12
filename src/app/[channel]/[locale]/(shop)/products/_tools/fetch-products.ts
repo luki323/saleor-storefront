@@ -1,12 +1,11 @@
 import type {GetProductsVariables} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-import {createGetProductsRequest} from './create-get-products-request';
+import {getProducts} from './get-products';
 
 export type FetchProductsResult = Awaited<ReturnType<typeof fetchProducts>>;
 
 export async function fetchProducts(variables: GetProductsVariables) {
-  const response = await fetchQueryData(createGetProductsRequest(variables));
+  const response = await getProducts(variables);
 
   if (!response.products) {
     throw new Error('Products object is missing in the response');

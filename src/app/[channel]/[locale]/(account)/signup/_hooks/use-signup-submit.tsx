@@ -5,11 +5,10 @@ import {ORIGIN} from '@/env/env';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';
-import {ROUTE} from '@/lib/consts';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {APP_ROUTES} from '@/lib/consts';
 
-import {tokenCreateAction} from '../../_tools/token-create-action';
-import {createSignUpRequest} from '../_tools/create-sign-up-request';
+import {logInAction} from '../../_tools/log-in-action';
+import {signUp} from '../_tools/sign-up';
 import type {SignupFormSchema} from './use-signup-form-schema';
 
 export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
@@ -19,14 +18,12 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
   return useCallback(
     async ({email, password}: SignupFormSchema) => {
       try {
-        const {accountRegister} = await fetchQueryData(
-          createSignUpRequest({
-            email,
-            password,
-            channel,
-            redirectUrl: new URL(ROUTE.CONFIRM_ACCOUNT, ORIGIN).toString(),
-          }),
-        );
+        const {accountRegister} = await signUp({
+          email,
+          password,
+          channel,
+          redirectUrl: new URL(APP_ROUTES.CONFIRM_ACCOUNT, ORIGIN).toString(),
+        });
         const {requiresConfirmation, user} = accountRegister ?? {};
 
         if (requiresConfirmation && user) {
@@ -45,7 +42,7 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
             ),
           });
         } else {
-          const {type, result} = await tokenCreateAction({email, password});
+          const {type, result} = await logInAction({email, password});
 
           if (type === 'error') {
             // TODO: display server error

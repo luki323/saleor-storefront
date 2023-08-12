@@ -1,16 +1,15 @@
 'use server';
 
-import type {ChangePasswordVariables} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
-import {isDefined} from '@/lib/tools/is-defined';
+import invariant from 'tiny-invariant';
 
-import {handleLogIn} from '../../_tools/handle-log-in';
-import {createChangePasswordRequest} from './create-change-password-request';
+import type {ChangePasswordVariables} from '@/graphql/generated/documents';
+import {CSRF_TOKEN_NAME} from '@/lib/consts';
+import {setAccessToken, setRefreshToken} from '@/lib/tools/cookies';
+
+import {changePassword} from './change-password';
 
 export async function changePasswordAction(variables: ChangePasswordVariables) {
-  const {setPassword} = await fetchQueryData(
-    createChangePasswordRequest(variables),
-  );
+  const {setPassword} = await changePassword(variables);
   const {token, refreshToken, csrfToken, errors} = setPassword ?? {};
 
   if (errors?.length) {
@@ -19,11 +18,16 @@ export async function changePasswordAction(variables: ChangePasswordVariables) {
       result: errors,
     };
   }
-  if (!isDefined(token) || !isDefined(refreshToken) || !isDefined(csrfToken)) {
-    throw new Error('Missing token');
-  }
+  invariant(token && refreshToken && csrfToken, 'Missing token');
+
+  setAccessToken(token);
+  setRefreshToken(refreshToken);
+
   return {
     type: 'success' as const,
-    result: handleLogIn({token, refreshToken, csrfToken}),
+    result: {
+      name: CSRF_TOKEN_NAME,
+      value: csrfToken,
+    },
   };
 }

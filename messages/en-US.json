@@ -8,6 +8,9 @@
   "0vL5u1": {
     "defaultMessage": "Create an account"
   },
+  "1UUo5H": {
+    "defaultMessage": "Refreshing access token..."
+  },
   "2tqQFl": {
     "defaultMessage": "Cart"
   },
@@ -61,6 +64,9 @@
   },
   "Wtffln": {
     "defaultMessage": "Request password reset"
+  },
+  "WxJYBG": {
+    "defaultMessage": "Loading user data..."
   },
   "X8m9DF": {
     "defaultMessage": "Search for products..."

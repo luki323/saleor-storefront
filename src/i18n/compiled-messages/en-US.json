@@ -25,6 +25,12 @@
       "value": "Create an account"
     }
   ],
+  "1UUo5H": [
+    {
+      "type": 0,
+      "value": "Refreshing access token..."
+    }
+  ],
   "2tqQFl": [
     {
       "type": 0,
@@ -139,6 +145,12 @@
     {
       "type": 0,
       "value": "Request password reset"
+    }
+  ],
+  "WxJYBG": [
+    {
+      "type": 0,
+      "value": "Loading user data..."
     }
   ],
   "X8m9DF": [

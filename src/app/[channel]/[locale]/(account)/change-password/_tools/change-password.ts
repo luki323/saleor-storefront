@@ -1,12 +1,10 @@
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 import type {ChangePasswordVariables} from '@/graphql/generated/documents';
 import {ChangePasswordDocument} from '@/graphql/generated/documents';
-import {Request} from '@/lib/tools/fetch-query';
+import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-export function createChangePasswordRequest(
-  variables: ChangePasswordVariables,
-) {
-  return new Request(GRAPHQL_ENDPOINT, {
+export async function changePassword(variables: ChangePasswordVariables) {
+  return await fetchQueryData(GRAPHQL_ENDPOINT, {
     params: {
       query: ChangePasswordDocument,
       variables,

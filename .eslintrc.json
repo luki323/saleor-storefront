@@ -26,7 +26,6 @@
       {"fixStyle": "separate-type-imports"}
     ],
     "functional/no-this-expressions": "error",
-    "functional/immutable-data": "error",
     "functional/prefer-readonly-type": "error",
     "react/function-component-definition": [
       "error",
@@ -43,20 +42,5 @@
     ],
     "no-console": ["error", {"allow": ["error"]}]
   },
-  "overrides": [
-    {
-      "files": ["*.cjs"],
-      "rules": {
-        "functional/immutable-data": "off",
-        "@typescript-eslint/no-var-requires": "off"
-      }
-    },
-    {
-      "files": ["next.config.mjs"],
-      "rules": {
-        "functional/immutable-data": "off"
-      }
-    }
-  ],
   "ignorePatterns": ["src/graphql/generated/**"]
 }

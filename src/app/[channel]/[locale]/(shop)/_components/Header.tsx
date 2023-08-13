@@ -5,10 +5,10 @@ import {cn} from '@/lib/tools/cn';
 
 import {fetchHeaderMenu} from '../_tools/fetch-header-menu';
 import {SearchInput} from './search-input/SearchInput';
-import {CartButton} from './ui/CartButton';
 import {HeaderLinks} from './ui/HeaderLinks';
 import {HomeLink} from './ui/HomeLink';
 import {MenuButton} from './ui/MenuButton';
+import {ShoppingCartButton} from './ui/ShoppingCartButton';
 
 export async function Header() {
   const channel = getChannel();
@@ -16,26 +16,26 @@ export async function Header() {
   const menu = await fetchHeaderMenu({languageCode, channel});
 
   return (
-    <header className={cn('flex items-center px-6 py-4')}>
+    <header className={cn('relative flex px-4 py-3')}>
       <div className={cn('flex-1')}>
-        <div className={cn('lg:hidden')}>
-          <MenuButton className={cn('h-4')} />
-        </div>
-        <nav className={cn('flex items-center gap-4 max-lg:hidden')}>
-          <HomeLink className={cn('max-xl:hidden')} />
+        <div className={cn('flex items-center gap-5 max-lg:hidden')}>
+          <HomeLink />
           <HeaderLinks menu={menu} />
-        </nav>
+        </div>
+        <div className={cn('lg:hidden')}>
+          <MenuButton />
+        </div>
       </div>
-      <div className={cn('lg:basis-1/3')}>
-        <div className={cn('max-lg:hidden')}>
+      <div className={cn('flex basis-1/3 items-center justify-center')}>
+        <div className={cn('flex-1 max-lg:hidden')}>
           <SearchInput />
         </div>
-        <nav className={cn('lg:hidden')}>
+        <div className={cn('lg:hidden')}>
           <HomeLink />
-        </nav>
+        </div>
       </div>
-      <div className={cn('flex flex-1 justify-end')}>
-        <CartButton className={cn('h-4')} />
+      <div className={cn('flex flex-1 items-center justify-end')}>
+        <ShoppingCartButton />
       </div>
     </header>
   );

@@ -31,12 +31,6 @@
       "value": "Refreshing access token..."
     }
   ],
-  "2tqQFl": [
-    {
-      "type": 0,
-      "value": "Cart"
-    }
-  ],
   "2uRGzp": [
     {
       "type": 0,
@@ -83,12 +77,6 @@
     {
       "type": 0,
       "value": "Change password"
-    }
-  ],
-  "LmKz3g": [
-    {
-      "type": 0,
-      "value": "Storefront"
     }
   ],
   "OFXKGv": [
@@ -151,12 +139,6 @@
     {
       "type": 0,
       "value": "Loading user data..."
-    }
-  ],
-  "X8m9DF": [
-    {
-      "type": 0,
-      "value": "Search for products..."
     }
   ],
   "Ydq9bW": [
@@ -243,6 +225,12 @@
       "value": "Password is required"
     }
   ],
+  "un+VWt": [
+    {
+      "type": 0,
+      "value": "Search products"
+    }
+  ],
   "vHV69y": [
     {
       "type": 0,
@@ -259,6 +247,12 @@
     {
       "type": 0,
       "value": "Sign up with Google"
+    }
+  ],
+  "wjh10D": [
+    {
+      "type": 0,
+      "value": "Shopping cart"
     }
   ],
   "xpTPb3": [

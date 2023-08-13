@@ -1,4 +1,5 @@
 export const APP_ROUTES = {
+  ROOT: '',
   PRODUCTS: 'products',
   LOGIN: 'login',
   SIGNUP: 'signup',

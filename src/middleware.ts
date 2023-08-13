@@ -11,7 +11,7 @@ import {negotiateChannel} from './middleware/tools/negotiate-channel';
 import {negotiateCiLocale} from './middleware/tools/negotiate-ci-locale';
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets).*)'],
 };
 
 export default function middleware(request: NextRequest) {

@@ -1,24 +1,22 @@
+import Image from 'next/image';
+
 import {IntlLink} from '@/i18n/components/IntlLink';
-import {FormattedMessage} from '@/i18n/react-intl';
-import {buttonStyles} from '@/lib/components/ui/Button';
+import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
+import {formatPathname} from '@/lib/tools/format-pathname';
 
-interface Props {
-  readonly className?: string;
-}
-
-export function HomeLink({className}: Props) {
+export function HomeLink() {
   return (
-    <IntlLink href="/" className={cn('flex items-center gap-2')}>
-      <span
-        className={cn(
-          buttonStyles({variant: 'outline', size: 'icon'}),
-          'h-7 w-7',
-        )}
-      />
-      <span className={cn('text-sm font-semibold uppercase', className)}>
-        <FormattedMessage defaultMessage="Storefront" id="LmKz3g" />
-      </span>
-    </IntlLink>
+    <div className={cn('h-10 w-10')}>
+      <IntlLink href={formatPathname(APP_ROUTES.ROOT)}>
+        <Image
+          src="/assets/saleor-trunc.svg"
+          alt="Saleor logo"
+          width={0}
+          height={0}
+          className={cn('h-full w-full')}
+        />
+      </IntlLink>
+    </div>
   );
 }

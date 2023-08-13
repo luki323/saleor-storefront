@@ -11,9 +11,6 @@
   "1UUo5H": {
     "defaultMessage": "Refreshing access token..."
   },
-  "2tqQFl": {
-    "defaultMessage": "Cart"
-  },
   "2uRGzp": {
     "defaultMessage": "Confirm password is required"
   },
@@ -37,9 +34,6 @@
   },
   "L4nXIc": {
     "defaultMessage": "Change password"
-  },
-  "LmKz3g": {
-    "defaultMessage": "Storefront"
   },
   "OFXKGv": {
     "defaultMessage": "Confirmation email was sent to {email} mailbox."
@@ -67,9 +61,6 @@
   },
   "WxJYBG": {
     "defaultMessage": "Loading user data..."
-  },
-  "X8m9DF": {
-    "defaultMessage": "Search for products..."
   },
   "Ydq9bW": {
     "defaultMessage": "Please enter valid email"
@@ -113,6 +104,9 @@
   "uiFoFm": {
     "defaultMessage": "Password is required"
   },
+  "un+VWt": {
+    "defaultMessage": "Search products"
+  },
   "vHV69y": {
     "defaultMessage": "Confirm password description"
   },
@@ -121,6 +115,9 @@
   },
   "wUCGLt": {
     "defaultMessage": "Sign up with Google"
+  },
+  "wjh10D": {
+    "defaultMessage": "Shopping cart"
   },
   "xpTPb3": {
     "defaultMessage": "Email:"

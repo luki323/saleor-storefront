@@ -1,7 +1,8 @@
 'use client';
 
-import {MagnifyingGlassIcon} from '@heroicons/react/24/outline';
+import {SearchIcon} from 'lucide-react';
 
+import {FormattedMessage} from '@/i18n/react-intl';
 import {useIntl} from '@/i18n/react-intl';
 import {Input} from '@/lib/components/ui/Input';
 import {cn} from '@/lib/tools/cn';
@@ -15,15 +16,18 @@ export function SearchInput() {
   return (
     <form action={searchAction}>
       <div className={cn('relative')}>
-        <MagnifyingGlassIcon
-          className={cn('absolute left-3 top-1/2 h-4 -translate-y-1/2')}
-        />
+        <button className={cn('absolute top-1/2 -translate-y-1/2 p-3')}>
+          <span className={'sr-only'}>
+            <FormattedMessage defaultMessage="Search products" id="un+VWt" />
+          </span>
+          <SearchIcon className={cn('h-4 w-4')} />
+        </button>
         <Input
           name="search"
           className={cn('w-full pl-10')}
           placeholder={intl.formatMessage({
-            defaultMessage: 'Search for products...',
-            id: 'X8m9DF',
+            defaultMessage: 'Search products',
+            id: 'un+VWt',
           })}
         />
       </div>

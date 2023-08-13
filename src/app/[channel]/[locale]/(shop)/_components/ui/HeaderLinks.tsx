@@ -11,14 +11,12 @@ interface Props {
 
 export function HeaderLinks({menu}: Props) {
   return (
-    <ul className={cn('flex gap-4 text-sm')}>
+    <ul className={cn('flex gap-5 text-sm')}>
       {menu.map(({name, slug}) => (
         <li key={slug}>
           <IntlLink
             href={formatPathname(APP_ROUTES.PRODUCTS, slug)}
-            className={cn(
-              'text-grey transition-colors hover:text-inherit hover:underline',
-            )}>
+            className={cn('hover:underline')}>
             {name}
           </IntlLink>
         </li>

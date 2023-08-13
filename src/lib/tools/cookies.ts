@@ -12,7 +12,12 @@ export function createAccessToken(value: string) {
   return [
     COOKIE_NAMES.ACCESS_TOKEN,
     value,
-    {secure: true, path: '/', httpOnly: true, sameSite: 'lax'},
+    {
+      secure: true,
+      path: formatPathname(APP_ROUTES.ROOT),
+      httpOnly: true,
+      sameSite: 'lax',
+    },
   ] satisfies Parameters<typeof serialize>;
 }
 

@@ -1,22 +1,26 @@
 'use client';
 
-import {ShoppingCartIcon} from '@heroicons/react/24/outline';
+import {ShoppingCartIcon} from 'lucide-react';
 
 import {useIntl} from '@/i18n/react-intl';
 import type {IconButtonProps} from '@/lib/components/ui/IconButton';
 import {IconButton} from '@/lib/components/ui/IconButton';
+import {cn} from '@/lib/tools/cn';
 
 type Props = Omit<IconButtonProps, 'children' | 'label' | 'variant'>;
 
-export function CartButton({className, ...restProps}: Props) {
+export function ShoppingCartButton(props: Props) {
   const intl = useIntl();
 
   return (
     <IconButton
       variant="outline"
-      label={intl.formatMessage({defaultMessage: 'Cart', id: '2tqQFl'})}
-      {...restProps}>
-      <ShoppingCartIcon className={className} />
+      label={intl.formatMessage({
+        defaultMessage: 'Shopping cart',
+        id: 'wjh10D',
+      })}
+      {...props}>
+      <ShoppingCartIcon className={cn('h-4')} />
     </IconButton>
   );
 }

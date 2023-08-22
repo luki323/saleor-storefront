@@ -18,9 +18,13 @@ export function useChangePasswordSchema() {
         .object({
           password: zod
             .string({
+              invalid_type_error: intl.formatMessage({
+                defaultMessage: 'Enter a valid password',
+                id: 'TZm4bq',
+              }),
               required_error: intl.formatMessage({
-                defaultMessage: 'Password is required',
-                id: 'uiFoFm',
+                defaultMessage: 'Enter a password',
+                id: '9pBa/R',
               }),
             })
             .min(MIN_PASSWORD_LENGTH, {
@@ -30,9 +34,13 @@ export function useChangePasswordSchema() {
               }),
             }),
           confirmPassword: zod.string({
+            invalid_type_error: intl.formatMessage({
+              defaultMessage: 'Enter a valid confirm password',
+              id: '8QOEAp',
+            }),
             required_error: intl.formatMessage({
-              defaultMessage: 'Confirm password is required',
-              id: '2uRGzp',
+              defaultMessage: 'Enter confirm password',
+              id: 'VmFv3C',
             }),
           }),
         })

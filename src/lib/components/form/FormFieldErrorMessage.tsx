@@ -1,11 +1,18 @@
-import {ErrorText} from '../ui/ErrorText';
-import {useFormField} from './hooks/use-form-field';
+import {Slot} from '@radix-ui/react-slot';
 
-export function FormFieldErrorMessage() {
+import type {PropsWithChildren} from '@/lib/types/react';
+
+import {useFormField} from './FormField/use-form-field';
+
+export function FormFieldErrorMessage({children}: PropsWithChildren) {
   const {error, formErrorMessageId} = useFormField();
 
   if (!error?.message) {
     return null;
   }
-  return <ErrorText id={formErrorMessageId}>{error.message}</ErrorText>;
+  return (
+    <Slot id={formErrorMessageId} aria-errormessage={error.message}>
+      {children}
+    </Slot>
+  );
 }

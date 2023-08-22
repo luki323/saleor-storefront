@@ -1,9 +1,24 @@
 {
+  "+m0IDF": {
+    "defaultMessage": "Enter a email"
+  },
+  "/H0TuY": {
+    "defaultMessage": "Enter a valid first name"
+  },
+  "/Knt5/": {
+    "defaultMessage": "Lastname"
+  },
+  "/V1GsM": {
+    "defaultMessage": "Country/Region"
+  },
   "00LcfG": {
     "defaultMessage": "Load more"
   },
   "06/qxx": {
     "defaultMessage": "Reset link was sent to {email} mailbox"
+  },
+  "0MqfPh": {
+    "defaultMessage": "Apartment, suit, etc. (optional)"
   },
   "0vL5u1": {
     "defaultMessage": "Create an account"
@@ -11,17 +26,35 @@
   "1UUo5H": {
     "defaultMessage": "Refreshing access token..."
   },
-  "2uRGzp": {
-    "defaultMessage": "Confirm password is required"
+  "2htJqw": {
+    "defaultMessage": "Use shipping address as billing address"
+  },
+  "3Gc+Ab": {
+    "defaultMessage": "Enter a valid last name"
   },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
   },
+  "4jBGA6": {
+    "defaultMessage": "Enter a country code"
+  },
+  "5mvFDZ": {
+    "defaultMessage": "Enter a valid city"
+  },
+  "6orx1c": {
+    "defaultMessage": "Billing address"
+  },
   "8HJxXG": {
     "defaultMessage": "Sign up"
   },
+  "8QOEAp": {
+    "defaultMessage": "Enter a valid confirm password"
+  },
   "9KlUdb": {
     "defaultMessage": "Enter your email to receive reset link"
+  },
+  "9pBa/R": {
+    "defaultMessage": "Enter a password"
   },
   "A4RrFD": {
     "defaultMessage": "Password description"
@@ -29,11 +62,32 @@
   "AyGauy": {
     "defaultMessage": "Login"
   },
+  "BKdjS1": {
+    "defaultMessage": "Enter an address"
+  },
+  "DgnS8R": {
+    "defaultMessage": "Continue to shipping"
+  },
   "DkQ5Q8": {
     "defaultMessage": "Send reset link"
   },
+  "EyqsQj": {
+    "defaultMessage": "Enter a valid country code"
+  },
   "L4nXIc": {
     "defaultMessage": "Change password"
+  },
+  "L8seEc": {
+    "defaultMessage": "Subtotal"
+  },
+  "MJ2jZQ": {
+    "defaultMessage": "Total"
+  },
+  "N0KmXz": {
+    "defaultMessage": "Enter a country"
+  },
+  "Nau+P4": {
+    "defaultMessage": "Enter a last name"
   },
   "OFXKGv": {
     "defaultMessage": "Confirmation email was sent to {email} mailbox."
@@ -44,8 +98,20 @@
   "Omjm4o": {
     "defaultMessage": "Enter email and password to create account"
   },
+  "PFfzPv": {
+    "defaultMessage": "Enter a valid email"
+  },
+  "PRlD0A": {
+    "defaultMessage": "Shipping"
+  },
   "RVxG/0": {
     "defaultMessage": "Email description"
+  },
+  "TE4fIS": {
+    "defaultMessage": "City"
+  },
+  "TZm4bq": {
+    "defaultMessage": "Enter a valid password"
   },
   "U3l+Q9": {
     "defaultMessage": "Home page"
@@ -53,8 +119,14 @@
   "UKxoV8": {
     "defaultMessage": "Welcome back"
   },
+  "VmFv3C": {
+    "defaultMessage": "Enter confirm password"
+  },
   "VxQzFj": {
     "defaultMessage": "Enter email and password to log in"
+  },
+  "WAgSwa": {
+    "defaultMessage": "Enter a valid ZIP code. Did you mean {postalCodeExample}?"
   },
   "Wtffln": {
     "defaultMessage": "Request password reset"
@@ -62,20 +134,26 @@
   "WxJYBG": {
     "defaultMessage": "Loading user data..."
   },
-  "Ydq9bW": {
-    "defaultMessage": "Please enter valid email"
-  },
   "ZATT08": {
     "defaultMessage": "Pagination"
+  },
+  "ZAqkJ0": {
+    "defaultMessage": "Entera valid email"
+  },
+  "ZpVtCa": {
+    "defaultMessage": "Shipping address"
   },
   "atD3r4": {
     "defaultMessage": "Confirm password:"
   },
-  "cU/aSG": {
-    "defaultMessage": "Email is required"
-  },
   "cyR7Kh": {
     "defaultMessage": "Back"
+  },
+  "dTZ0NV": {
+    "defaultMessage": "Enter a valid country"
+  },
+  "e6Ph5+": {
+    "defaultMessage": "Address"
   },
   "h/zqNr": {
     "defaultMessage": "Enter your new password"
@@ -89,20 +167,38 @@
   "k9hDFZ": {
     "defaultMessage": "Previous page"
   },
+  "kXVvh3": {
+    "defaultMessage": "Contact details"
+  },
+  "ku+mDU": {
+    "defaultMessage": "State"
+  },
   "lTr7eP": {
     "defaultMessage": "Change password and log in"
+  },
+  "pJi/8z": {
+    "defaultMessage": "Enter a ZIP / postal code"
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
   },
+  "qF/pIW": {
+    "defaultMessage": "Enter an valid address"
+  },
+  "qTs7Lh": {
+    "defaultMessage": "Firstname"
+  },
   "rBj9Ib": {
     "defaultMessage": "Next page"
+  },
+  "rHnr4K": {
+    "defaultMessage": "ZIP Code"
   },
   "tKMlOc": {
     "defaultMessage": "Menu"
   },
-  "uiFoFm": {
-    "defaultMessage": "Password is required"
+  "u1JzBg": {
+    "defaultMessage": "Enter a city"
   },
   "un+VWt": {
     "defaultMessage": "Search products"
@@ -119,10 +215,16 @@
   "wjh10D": {
     "defaultMessage": "Shopping cart"
   },
+  "x9hzVm": {
+    "defaultMessage": "Enter a valid ZIP / postal code"
+  },
   "xpTPb3": {
     "defaultMessage": "Email:"
   },
   "xrKHS6": {
     "defaultMessage": "Success"
+  },
+  "y6WUKS": {
+    "defaultMessage": "Enter a first name"
   }
 }

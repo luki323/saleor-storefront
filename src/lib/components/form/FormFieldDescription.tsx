@@ -1,14 +1,11 @@
-import {cn} from '@/lib/tools/cn';
+import {Slot} from '@radix-ui/react-slot';
+
 import type {PropsWithChildren} from '@/lib/types/react';
 
-import {useFormField} from './hooks/use-form-field';
+import {useFormField} from './FormField/use-form-field';
 
 export function FormFieldDescription({children}: PropsWithChildren) {
   const {formDescriptionId} = useFormField();
 
-  return (
-    <p className={cn('text-sm')} id={formDescriptionId}>
-      {children}
-    </p>
-  );
+  return <Slot id={formDescriptionId}>{children}</Slot>;
 }

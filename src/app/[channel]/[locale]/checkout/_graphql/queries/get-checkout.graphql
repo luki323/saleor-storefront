@@ -1,0 +1,10 @@
+query getCheckout($id: ID!) {
+  checkout(id: $id) {
+    billingAddress {
+      ...address
+    }
+    shippingAddress {
+      ...address
+    }
+  }
+}

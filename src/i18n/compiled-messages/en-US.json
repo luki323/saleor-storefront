@@ -1,4 +1,28 @@
 {
+  "+m0IDF": [
+    {
+      "type": 0,
+      "value": "Enter a email"
+    }
+  ],
+  "/H0TuY": [
+    {
+      "type": 0,
+      "value": "Enter a valid first name"
+    }
+  ],
+  "/Knt5/": [
+    {
+      "type": 0,
+      "value": "Lastname"
+    }
+  ],
+  "/V1GsM": [
+    {
+      "type": 0,
+      "value": "Country/Region"
+    }
+  ],
   "00LcfG": [
     {
       "type": 0,
@@ -19,6 +43,12 @@
       "value": " mailbox"
     }
   ],
+  "0MqfPh": [
+    {
+      "type": 0,
+      "value": "Apartment, suit, etc. (optional)"
+    }
+  ],
   "0vL5u1": [
     {
       "type": 0,
@@ -31,10 +61,16 @@
       "value": "Refreshing access token..."
     }
   ],
-  "2uRGzp": [
+  "2htJqw": [
     {
       "type": 0,
-      "value": "Confirm password is required"
+      "value": "Use shipping address as billing address"
+    }
+  ],
+  "3Gc+Ab": [
+    {
+      "type": 0,
+      "value": "Enter a valid last name"
     }
   ],
   "4cSA+G": [
@@ -43,16 +79,46 @@
       "value": "Or continue with"
     }
   ],
+  "4jBGA6": [
+    {
+      "type": 0,
+      "value": "Enter a country code"
+    }
+  ],
+  "5mvFDZ": [
+    {
+      "type": 0,
+      "value": "Enter a valid city"
+    }
+  ],
+  "6orx1c": [
+    {
+      "type": 0,
+      "value": "Billing address"
+    }
+  ],
   "8HJxXG": [
     {
       "type": 0,
       "value": "Sign up"
     }
   ],
+  "8QOEAp": [
+    {
+      "type": 0,
+      "value": "Enter a valid confirm password"
+    }
+  ],
   "9KlUdb": [
     {
       "type": 0,
       "value": "Enter your email to receive reset link"
+    }
+  ],
+  "9pBa/R": [
+    {
+      "type": 0,
+      "value": "Enter a password"
     }
   ],
   "A4RrFD": [
@@ -67,16 +133,58 @@
       "value": "Login"
     }
   ],
+  "BKdjS1": [
+    {
+      "type": 0,
+      "value": "Enter an address"
+    }
+  ],
+  "DgnS8R": [
+    {
+      "type": 0,
+      "value": "Continue to shipping"
+    }
+  ],
   "DkQ5Q8": [
     {
       "type": 0,
       "value": "Send reset link"
     }
   ],
+  "EyqsQj": [
+    {
+      "type": 0,
+      "value": "Enter a valid country code"
+    }
+  ],
   "L4nXIc": [
     {
       "type": 0,
       "value": "Change password"
+    }
+  ],
+  "L8seEc": [
+    {
+      "type": 0,
+      "value": "Subtotal"
+    }
+  ],
+  "MJ2jZQ": [
+    {
+      "type": 0,
+      "value": "Total"
+    }
+  ],
+  "N0KmXz": [
+    {
+      "type": 0,
+      "value": "Enter a country"
+    }
+  ],
+  "Nau+P4": [
+    {
+      "type": 0,
+      "value": "Enter a last name"
     }
   ],
   "OFXKGv": [
@@ -105,10 +213,34 @@
       "value": "Enter email and password to create account"
     }
   ],
+  "PFfzPv": [
+    {
+      "type": 0,
+      "value": "Enter a valid email"
+    }
+  ],
+  "PRlD0A": [
+    {
+      "type": 0,
+      "value": "Shipping"
+    }
+  ],
   "RVxG/0": [
     {
       "type": 0,
       "value": "Email description"
+    }
+  ],
+  "TE4fIS": [
+    {
+      "type": 0,
+      "value": "City"
+    }
+  ],
+  "TZm4bq": [
+    {
+      "type": 0,
+      "value": "Enter a valid password"
     }
   ],
   "U3l+Q9": [
@@ -123,10 +255,30 @@
       "value": "Welcome back"
     }
   ],
+  "VmFv3C": [
+    {
+      "type": 0,
+      "value": "Enter confirm password"
+    }
+  ],
   "VxQzFj": [
     {
       "type": 0,
       "value": "Enter email and password to log in"
+    }
+  ],
+  "WAgSwa": [
+    {
+      "type": 0,
+      "value": "Enter a valid ZIP code. Did you mean "
+    },
+    {
+      "type": 1,
+      "value": "postalCodeExample"
+    },
+    {
+      "type": 0,
+      "value": "?"
     }
   ],
   "Wtffln": [
@@ -141,16 +293,22 @@
       "value": "Loading user data..."
     }
   ],
-  "Ydq9bW": [
-    {
-      "type": 0,
-      "value": "Please enter valid email"
-    }
-  ],
   "ZATT08": [
     {
       "type": 0,
       "value": "Pagination"
+    }
+  ],
+  "ZAqkJ0": [
+    {
+      "type": 0,
+      "value": "Entera valid email"
+    }
+  ],
+  "ZpVtCa": [
+    {
+      "type": 0,
+      "value": "Shipping address"
     }
   ],
   "atD3r4": [
@@ -159,16 +317,22 @@
       "value": "Confirm password:"
     }
   ],
-  "cU/aSG": [
-    {
-      "type": 0,
-      "value": "Email is required"
-    }
-  ],
   "cyR7Kh": [
     {
       "type": 0,
       "value": "Back"
+    }
+  ],
+  "dTZ0NV": [
+    {
+      "type": 0,
+      "value": "Enter a valid country"
+    }
+  ],
+  "e6Ph5+": [
+    {
+      "type": 0,
+      "value": "Address"
     }
   ],
   "h/zqNr": [
@@ -195,10 +359,28 @@
       "value": "Previous page"
     }
   ],
+  "kXVvh3": [
+    {
+      "type": 0,
+      "value": "Contact details"
+    }
+  ],
+  "ku+mDU": [
+    {
+      "type": 0,
+      "value": "State"
+    }
+  ],
   "lTr7eP": [
     {
       "type": 0,
       "value": "Change password and log in"
+    }
+  ],
+  "pJi/8z": [
+    {
+      "type": 0,
+      "value": "Enter a ZIP / postal code"
     }
   ],
   "pmu7Ih": [
@@ -207,10 +389,28 @@
       "value": "Sign up with email"
     }
   ],
+  "qF/pIW": [
+    {
+      "type": 0,
+      "value": "Enter an valid address"
+    }
+  ],
+  "qTs7Lh": [
+    {
+      "type": 0,
+      "value": "Firstname"
+    }
+  ],
   "rBj9Ib": [
     {
       "type": 0,
       "value": "Next page"
+    }
+  ],
+  "rHnr4K": [
+    {
+      "type": 0,
+      "value": "ZIP Code"
     }
   ],
   "tKMlOc": [
@@ -219,10 +419,10 @@
       "value": "Menu"
     }
   ],
-  "uiFoFm": [
+  "u1JzBg": [
     {
       "type": 0,
-      "value": "Password is required"
+      "value": "Enter a city"
     }
   ],
   "un+VWt": [
@@ -255,6 +455,12 @@
       "value": "Shopping cart"
     }
   ],
+  "x9hzVm": [
+    {
+      "type": 0,
+      "value": "Enter a valid ZIP / postal code"
+    }
+  ],
   "xpTPb3": [
     {
       "type": 0,
@@ -265,6 +471,12 @@
     {
       "type": 0,
       "value": "Success"
+    }
+  ],
+  "y6WUKS": [
+    {
+      "type": 0,
+      "value": "Enter a first name"
     }
   ]
 }

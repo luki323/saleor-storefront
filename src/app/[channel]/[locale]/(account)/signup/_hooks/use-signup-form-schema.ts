@@ -4,6 +4,7 @@ import * as zod from 'zod';
 import {useIntl} from '@/i18n/react-intl';
 
 import {MIN_PASSWORD_LENGTH} from '../../_consts';
+import {FIELDS} from '../_consts';
 
 export type SignupFormSchema = zod.infer<
   ReturnType<typeof useSignupFormSchema>
@@ -15,24 +16,32 @@ export function useSignupFormSchema() {
   return useMemo(
     () =>
       zod.object({
-        email: zod
+        [FIELDS.EMAIL]: zod
           .string({
+            invalid_type_error: intl.formatMessage({
+              defaultMessage: 'Entera  valid email',
+              id: 'ZAqkJ0',
+            }),
             required_error: intl.formatMessage({
-              defaultMessage: 'Email is required',
-              id: 'cU/aSG',
+              defaultMessage: 'Enter a email',
+              id: '+m0IDF',
             }),
           })
           .email({
             message: intl.formatMessage({
-              defaultMessage: 'Please enter valid email',
-              id: 'Ydq9bW',
+              defaultMessage: 'Enter a valid email',
+              id: 'PFfzPv',
             }),
           }),
-        password: zod
+        [FIELDS.PASSWORD]: zod
           .string({
+            invalid_type_error: intl.formatMessage({
+              defaultMessage: 'Enter a valid password',
+              id: 'TZm4bq',
+            }),
             required_error: intl.formatMessage({
-              defaultMessage: 'Password is required',
-              id: 'uiFoFm',
+              defaultMessage: 'Enter a password',
+              id: '9pBa/R',
             }),
           })
           .min(MIN_PASSWORD_LENGTH, {

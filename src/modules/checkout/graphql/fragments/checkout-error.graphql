@@ -1,0 +1,4 @@
+fragment checkoutError on CheckoutError {
+  field
+  code
+}

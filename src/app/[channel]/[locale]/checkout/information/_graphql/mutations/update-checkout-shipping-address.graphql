@@ -1,0 +1,10 @@
+mutation updateCheckoutShippingAddress(
+  $id: ID!
+  $shippingAddress: AddressInput!
+) {
+  checkoutShippingAddressUpdate(id: $id, shippingAddress: $shippingAddress) {
+    errors {
+      ...checkoutError
+    }
+  }
+}

@@ -4,8 +4,7 @@ import {useSetAtom} from 'jotai';
 import {useCallback} from 'react';
 
 import {FormattedMessage} from '@/i18n/react-intl';
-import {RadioGroup} from '@/lib/components/ui/radio-group/RadioGroup';
-import {RadioGroupItem} from '@/lib/components/ui/radio-group/RadioGroupItem';
+import {RadioGroup, RadioGroupItem} from '@/lib/components/ui/Radio';
 import {cn} from '@/lib/tools/cn';
 
 import {loadingStyleAtom} from '../_tools/loading-style-atom';

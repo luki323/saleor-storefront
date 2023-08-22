@@ -4,7 +4,7 @@ import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {cn} from '@/lib/tools/cn';
 
 import {fetchHeaderMenu} from '../_tools/fetch-header-menu';
-import {SearchInput} from './search-input/SearchInput';
+import {SearchTextField} from './search-input/SearchTextField';
 import {HeaderLinks} from './ui/HeaderLinks';
 import {HomeLink} from './ui/HomeLink';
 import {MenuButton} from './ui/MenuButton';
@@ -28,7 +28,7 @@ export async function Header() {
       </div>
       <div className={cn('flex basis-1/3 items-center justify-center')}>
         <div className={cn('flex-1 max-lg:hidden')}>
-          <SearchInput />
+          <SearchTextField />
         </div>
         <div className={cn('lg:hidden')}>
           <HomeLink />

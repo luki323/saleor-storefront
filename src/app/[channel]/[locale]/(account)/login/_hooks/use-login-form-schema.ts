@@ -3,6 +3,8 @@ import * as zod from 'zod';
 
 import {useIntl} from '@/i18n/react-intl';
 
+import {FIELDS} from '../_consts';
+
 export type LoginFormSchema = zod.infer<ReturnType<typeof useLoginFormSchema>>;
 
 export function useLoginFormSchema() {
@@ -11,16 +13,24 @@ export function useLoginFormSchema() {
   return useMemo(
     () =>
       zod.object({
-        email: zod.string({
+        [FIELDS.EMAIL]: zod.string({
+          invalid_type_error: intl.formatMessage({
+            defaultMessage: 'Enter a valid email',
+            id: 'PFfzPv',
+          }),
           required_error: intl.formatMessage({
-            defaultMessage: 'Email is required',
-            id: 'cU/aSG',
+            defaultMessage: 'Enter a email',
+            id: '+m0IDF',
           }),
         }),
-        password: zod.string({
+        [FIELDS.PASSWORD]: zod.string({
+          invalid_type_error: intl.formatMessage({
+            defaultMessage: 'Enter a valid password',
+            id: 'TZm4bq',
+          }),
           required_error: intl.formatMessage({
-            defaultMessage: 'Password is required',
-            id: 'uiFoFm',
+            defaultMessage: 'Enter a password',
+            id: '9pBa/R',
           }),
         }),
       }),

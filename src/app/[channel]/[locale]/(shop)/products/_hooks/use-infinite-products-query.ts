@@ -1,8 +1,7 @@
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query';
 import {useSearchParams} from 'next/navigation';
 
-import {useChannel} from '@/i18n/context/channel-context';
-import {useLocale} from '@/i18n/context/locale-context';
+import {useBasePath} from '@/i18n/hooks/use-base-path';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {getKeyByHookName} from '@/lib/tools/get-key-by-hook-name';
 
@@ -10,8 +9,7 @@ import {DEFAULT_PAGE_SIZE} from '../_consts';
 import {fetchProducts} from '../_tools/fetch-products';
 
 export function useInfiniteProductsQuery() {
-  const channel = useChannel();
-  const locale = useLocale();
+  const [channel, locale] = useBasePath();
 
   const searchParams = useSearchParams();
   const searchValue = searchParams.get('search') ?? '';

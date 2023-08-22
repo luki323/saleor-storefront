@@ -82,12 +82,79 @@ export type GetProductsVariables = Types.Exact<{
 
 export type GetProducts = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, isAvailable?: boolean | null, translation?: { __typename?: 'ProductTranslation', name?: string | null } | null, defaultVariant?: { __typename?: 'ProductVariant', id: string, media?: Array<{ __typename?: 'ProductMedia', id: string, alt: string, url: string }> | null, pricing?: { __typename?: 'VariantPricingInfo', onSale?: boolean | null, discount?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, priceUndiscounted?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null } }>, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, hasNextPage: boolean, endCursor?: string | null, hasPreviousPage: boolean } } | null };
 
+export type Address = { __typename?: 'Address', firstName: string, lastName: string, streetAddress1: string, streetAddress2: string, city: string, countryArea: string, postalCode: string, country: { __typename?: 'CountryDisplay', code: string, country: string } };
+
+export type GetAddressValidationRulesVariables = Types.Exact<{
+  countryCode: Types.CountryCode;
+}>;
+
+
+export type GetAddressValidationRules = { __typename?: 'Query', addressValidationRules?: { __typename?: 'AddressValidationData', postalCodeMatchers: Array<string>, postalCodeExamples: Array<string>, addressFormat: string, countryAreaType: string, countryAreaChoices: Array<{ __typename?: 'ChoiceValue', raw?: string | null, verbose?: string | null }> } | null };
+
+export type GetCheckoutVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+}>;
+
+
+export type GetCheckout = { __typename?: 'Query', checkout?: { __typename?: 'Checkout', billingAddress?: { __typename?: 'Address', firstName: string, lastName: string, streetAddress1: string, streetAddress2: string, city: string, countryArea: string, postalCode: string, country: { __typename?: 'CountryDisplay', code: string, country: string } } | null, shippingAddress?: { __typename?: 'Address', firstName: string, lastName: string, streetAddress1: string, streetAddress2: string, city: string, countryArea: string, postalCode: string, country: { __typename?: 'CountryDisplay', code: string, country: string } } | null } | null };
+
+export type GetCountryCodesVariables = Types.Exact<{
+  channel: Types.Scalars['String']['input'];
+}>;
+
+
+export type GetCountryCodes = { __typename?: 'Query', channel?: { __typename?: 'Channel', countries?: Array<{ __typename?: 'CountryDisplay', code: string }> | null } | null };
+
+export type UpdateCheckoutBillingAddressVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+  billingAddress: Types.AddressInput;
+}>;
+
+
+export type UpdateCheckoutBillingAddress = { __typename?: 'Mutation', checkoutBillingAddressUpdate?: { __typename?: 'CheckoutBillingAddressUpdate', errors: Array<{ __typename?: 'CheckoutError', field?: string | null, code: Types.CheckoutErrorCode }> } | null };
+
+export type UpdateCheckoutShippingAddressVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+  shippingAddress: Types.AddressInput;
+}>;
+
+
+export type UpdateCheckoutShippingAddress = { __typename?: 'Mutation', checkoutShippingAddressUpdate?: { __typename?: 'CheckoutShippingAddressUpdate', errors: Array<{ __typename?: 'CheckoutError', field?: string | null, code: Types.CheckoutErrorCode }> } | null };
+
 export type RefreshAccessTokenVariables = Types.Exact<{
   refreshToken: Types.Scalars['String']['input'];
 }>;
 
 
 export type RefreshAccessToken = { __typename?: 'Mutation', tokenRefresh?: { __typename?: 'RefreshToken', token?: string | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, code: Types.AccountErrorCode }> } | null };
+
+export type CheckoutError = { __typename?: 'CheckoutError', field?: string | null, code: Types.CheckoutErrorCode };
+
+export type AddCheckoutLineVariables = Types.Exact<{
+  id?: Types.InputMaybe<Types.Scalars['ID']['input']>;
+  line: Types.CheckoutLineInput;
+}>;
+
+
+export type AddCheckoutLine = { __typename?: 'Mutation', checkoutLinesAdd?: { __typename?: 'CheckoutLinesAdd', errors: Array<{ __typename?: 'CheckoutError', field?: string | null, code: Types.CheckoutErrorCode }> } | null };
+
+export type CreateCheckoutVariables = Types.Exact<{
+  lines: Array<Types.CheckoutLineInput> | Types.CheckoutLineInput;
+  channel: Types.Scalars['String']['input'];
+  languageCode: Types.LanguageCodeEnum;
+  email?: Types.InputMaybe<Types.Scalars['String']['input']>;
+}>;
+
+
+export type CreateCheckout = { __typename?: 'Mutation', checkoutCreate?: { __typename?: 'CheckoutCreate', checkout?: { __typename?: 'Checkout', id: string } | null, errors: Array<{ __typename?: 'CheckoutError', field?: string | null, code: Types.CheckoutErrorCode }> } | null };
+
+export type GetCheckoutSummaryVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+  languageCode: Types.LanguageCodeEnum;
+}>;
+
+
+export type GetCheckoutSummary = { __typename?: 'Query', checkout?: { __typename?: 'Checkout', displayGrossPrices: boolean, lines: Array<{ __typename?: 'CheckoutLine', quantity: number, id: string, totalPrice: { __typename?: 'TaxedMoney', net: { __typename?: 'Money', amount: number }, gross: { __typename?: 'Money', amount: number } }, variant: { __typename?: 'ProductVariant', product: { __typename?: 'Product', name: string, translation?: { __typename?: 'ProductTranslation', name?: string | null } | null, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string }> | null } } }>, subtotalPrice: { __typename?: 'TaxedMoney', net: { __typename?: 'Money', amount: number }, gross: { __typename?: 'Money', amount: number } }, shippingPrice: { __typename?: 'TaxedMoney', net: { __typename?: 'Money', amount: number }, gross: { __typename?: 'Money', amount: number } }, totalPrice: { __typename?: 'TaxedMoney', currency: string, net: { __typename?: 'Money', amount: number }, gross: { __typename?: 'Money', amount: number } } } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -168,6 +235,27 @@ fragment productMedia on ProductMedia {
   alt
   url
 }`, {"fragmentName":"productListItem"}) as unknown as TypedDocumentString<ProductListItem, unknown>;
+export const Address = new TypedDocumentString(`
+    fragment address on Address {
+  country {
+    code
+    country
+  }
+  firstName
+  lastName
+  streetAddress1
+  streetAddress2
+  city
+  countryArea
+  postalCode
+}
+    `, {"fragmentName":"address"}) as unknown as TypedDocumentString<Address, unknown>;
+export const CheckoutError = new TypedDocumentString(`
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}
+    `, {"fragmentName":"checkoutError"}) as unknown as TypedDocumentString<CheckoutError, unknown>;
 export const LogInDocument = new TypedDocumentString(`
     mutation logIn($email: String!, $password: String!) {
   tokenCreate(email: $email, password: $password) {
@@ -333,6 +421,77 @@ fragment productMedia on ProductMedia {
   alt
   url
 }`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;
+export const GetAddressValidationRulesDocument = new TypedDocumentString(`
+    query getAddressValidationRules($countryCode: CountryCode!) {
+  addressValidationRules(countryCode: $countryCode) {
+    postalCodeMatchers
+    postalCodeExamples
+    addressFormat
+    countryAreaType
+    countryAreaChoices {
+      raw
+      verbose
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetAddressValidationRules, GetAddressValidationRulesVariables>;
+export const GetCheckoutDocument = new TypedDocumentString(`
+    query getCheckout($id: ID!) {
+  checkout(id: $id) {
+    billingAddress {
+      ...address
+    }
+    shippingAddress {
+      ...address
+    }
+  }
+}
+    fragment address on Address {
+  country {
+    code
+    country
+  }
+  firstName
+  lastName
+  streetAddress1
+  streetAddress2
+  city
+  countryArea
+  postalCode
+}`) as unknown as TypedDocumentString<GetCheckout, GetCheckoutVariables>;
+export const GetCountryCodesDocument = new TypedDocumentString(`
+    query getCountryCodes($channel: String!) {
+  channel(slug: $channel) {
+    countries {
+      code
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCountryCodes, GetCountryCodesVariables>;
+export const UpdateCheckoutBillingAddressDocument = new TypedDocumentString(`
+    mutation updateCheckoutBillingAddress($id: ID!, $billingAddress: AddressInput!) {
+  checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {
+    errors {
+      ...checkoutError
+    }
+  }
+}
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}`) as unknown as TypedDocumentString<UpdateCheckoutBillingAddress, UpdateCheckoutBillingAddressVariables>;
+export const UpdateCheckoutShippingAddressDocument = new TypedDocumentString(`
+    mutation updateCheckoutShippingAddress($id: ID!, $shippingAddress: AddressInput!) {
+  checkoutShippingAddressUpdate(id: $id, shippingAddress: $shippingAddress) {
+    errors {
+      ...checkoutError
+    }
+  }
+}
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}`) as unknown as TypedDocumentString<UpdateCheckoutShippingAddress, UpdateCheckoutShippingAddressVariables>;
 export const RefreshAccessTokenDocument = new TypedDocumentString(`
     mutation refreshAccessToken($refreshToken: String!) {
   tokenRefresh(refreshToken: $refreshToken) {
@@ -346,3 +505,88 @@ export const RefreshAccessTokenDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<RefreshAccessToken, RefreshAccessTokenVariables>;
+export const AddCheckoutLineDocument = new TypedDocumentString(`
+    mutation addCheckoutLine($id: ID, $line: CheckoutLineInput!) {
+  checkoutLinesAdd(id: $id, lines: [$line]) {
+    errors {
+      ...checkoutError
+    }
+  }
+}
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}`) as unknown as TypedDocumentString<AddCheckoutLine, AddCheckoutLineVariables>;
+export const CreateCheckoutDocument = new TypedDocumentString(`
+    mutation createCheckout($lines: [CheckoutLineInput!]!, $channel: String!, $languageCode: LanguageCodeEnum!, $email: String) {
+  checkoutCreate(
+    input: {channel: $channel, lines: $lines, languageCode: $languageCode, email: $email}
+  ) {
+    checkout {
+      id
+    }
+    errors {
+      ...checkoutError
+    }
+  }
+}
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}`) as unknown as TypedDocumentString<CreateCheckout, CreateCheckoutVariables>;
+export const GetCheckoutSummaryDocument = new TypedDocumentString(`
+    query getCheckoutSummary($id: ID!, $languageCode: LanguageCodeEnum!) {
+  checkout(id: $id) {
+    lines {
+      totalPrice {
+        net {
+          amount
+        }
+        gross {
+          amount
+        }
+      }
+      variant {
+        product {
+          name
+          translation(languageCode: $languageCode) {
+            name
+          }
+          media {
+            url
+            alt
+          }
+        }
+      }
+      quantity
+      id
+    }
+    displayGrossPrices
+    subtotalPrice {
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    shippingPrice {
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    totalPrice {
+      currency
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCheckoutSummary, GetCheckoutSummaryVariables>;

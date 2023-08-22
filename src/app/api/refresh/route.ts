@@ -1,7 +1,7 @@
 import {cookies} from 'next/headers';
 
-import {COOKIE_NAMES} from '@/lib/consts';
 import {isDefined} from '@/lib/tools/is-defined';
+import {COOKIE_NAMES} from '@/modules/account/consts';
 
 import {refreshAccessToken} from './_tools/refresh-access-token';
 import {refreshFailed} from './_tools/refresh-failed';

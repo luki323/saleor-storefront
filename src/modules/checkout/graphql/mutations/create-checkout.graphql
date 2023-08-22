@@ -1,0 +1,22 @@
+mutation createCheckout(
+  $lines: [CheckoutLineInput!]!
+  $channel: String!
+  $languageCode: LanguageCodeEnum!
+  $email: String
+) {
+  checkoutCreate(
+    input: {
+      channel: $channel
+      lines: $lines
+      languageCode: $languageCode
+      email: $email
+    }
+  ) {
+    checkout {
+      id
+    }
+    errors {
+      ...checkoutError
+    }
+  }
+}

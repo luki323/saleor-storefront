@@ -1,0 +1,54 @@
+query getCheckoutSummary($id: ID!, $languageCode: LanguageCodeEnum!) {
+  checkout(id: $id) {
+    lines {
+      totalPrice {
+        net {
+          amount
+        }
+        gross {
+          amount
+        }
+      }
+      variant {
+        product {
+          name
+          translation(languageCode: $languageCode) {
+            name
+          }
+          media {
+            url
+            alt
+          }
+        }
+      }
+      quantity
+      id
+    }
+    displayGrossPrices
+    subtotalPrice {
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    shippingPrice {
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    totalPrice {
+      currency
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+  }
+}

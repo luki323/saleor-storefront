@@ -21,7 +21,7 @@ export async function Pagination(props: Props) {
 
   const {
     products,
-    pageInfo: {__typename: _, ...restPageInfo},
+    pageInfo: {__typename: ___typename, ...restPageInfo},
   } = await fetchProducts({
     [pageSizeKey]: props[pageSizeKey] ?? DEFAULT_PAGE_SIZE,
     [cursorKey]: props[cursorKey] ?? null,

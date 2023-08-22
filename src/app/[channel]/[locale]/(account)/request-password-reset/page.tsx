@@ -2,10 +2,10 @@ import {FormattedMessage} from '@/i18n/react-intl';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/ui/Container';
-import {Description} from '../_components/ui/Description';
-import {Heading} from '../_components/ui/Heading';
-import {NavigationLink} from '../_components/ui/NavigationLink';
+import {Container} from '../_components/Container';
+import {Description} from '../_components/Description';
+import {Heading} from '../_components/Heading';
+import {NavigationLink} from '../_components/NavigationLink';
 import {RequestPasswordResetForm} from './_components/RequestPasswordResetForm';
 
 export default function RequestPasswordResetPage() {

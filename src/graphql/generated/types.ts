@@ -92,41 +92,42 @@ export type AccountError = {
 };
 
 /** An enumeration. */
-export type AccountErrorCode =
-  | 'ACCOUNT_NOT_CONFIRMED'
-  | 'ACTIVATE_OWN_ACCOUNT'
-  | 'ACTIVATE_SUPERUSER_ACCOUNT'
-  | 'CHANNEL_INACTIVE'
-  | 'DEACTIVATE_OWN_ACCOUNT'
-  | 'DEACTIVATE_SUPERUSER_ACCOUNT'
-  | 'DELETE_NON_STAFF_USER'
-  | 'DELETE_OWN_ACCOUNT'
-  | 'DELETE_STAFF_ACCOUNT'
-  | 'DELETE_SUPERUSER_ACCOUNT'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INACTIVE'
-  | 'INVALID'
-  | 'INVALID_CREDENTIALS'
-  | 'INVALID_PASSWORD'
-  | 'JWT_DECODE_ERROR'
-  | 'JWT_INVALID_CSRF_TOKEN'
-  | 'JWT_INVALID_TOKEN'
-  | 'JWT_MISSING_TOKEN'
-  | 'JWT_SIGNATURE_EXPIRED'
-  | 'LEFT_NOT_MANAGEABLE_PERMISSION'
-  | 'MISSING_CHANNEL_SLUG'
-  | 'NOT_FOUND'
-  | 'OUT_OF_SCOPE_GROUP'
-  | 'OUT_OF_SCOPE_PERMISSION'
-  | 'OUT_OF_SCOPE_USER'
-  | 'PASSWORD_ENTIRELY_NUMERIC'
-  | 'PASSWORD_RESET_ALREADY_REQUESTED'
-  | 'PASSWORD_TOO_COMMON'
-  | 'PASSWORD_TOO_SHORT'
-  | 'PASSWORD_TOO_SIMILAR'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum AccountErrorCode {
+  AccountNotConfirmed = 'ACCOUNT_NOT_CONFIRMED',
+  ActivateOwnAccount = 'ACTIVATE_OWN_ACCOUNT',
+  ActivateSuperuserAccount = 'ACTIVATE_SUPERUSER_ACCOUNT',
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  DeactivateOwnAccount = 'DEACTIVATE_OWN_ACCOUNT',
+  DeactivateSuperuserAccount = 'DEACTIVATE_SUPERUSER_ACCOUNT',
+  DeleteNonStaffUser = 'DELETE_NON_STAFF_USER',
+  DeleteOwnAccount = 'DELETE_OWN_ACCOUNT',
+  DeleteStaffAccount = 'DELETE_STAFF_ACCOUNT',
+  DeleteSuperuserAccount = 'DELETE_SUPERUSER_ACCOUNT',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Inactive = 'INACTIVE',
+  Invalid = 'INVALID',
+  InvalidCredentials = 'INVALID_CREDENTIALS',
+  InvalidPassword = 'INVALID_PASSWORD',
+  JwtDecodeError = 'JWT_DECODE_ERROR',
+  JwtInvalidCsrfToken = 'JWT_INVALID_CSRF_TOKEN',
+  JwtInvalidToken = 'JWT_INVALID_TOKEN',
+  JwtMissingToken = 'JWT_MISSING_TOKEN',
+  JwtSignatureExpired = 'JWT_SIGNATURE_EXPIRED',
+  LeftNotManageablePermission = 'LEFT_NOT_MANAGEABLE_PERMISSION',
+  MissingChannelSlug = 'MISSING_CHANNEL_SLUG',
+  NotFound = 'NOT_FOUND',
+  OutOfScopeGroup = 'OUT_OF_SCOPE_GROUP',
+  OutOfScopePermission = 'OUT_OF_SCOPE_PERMISSION',
+  OutOfScopeUser = 'OUT_OF_SCOPE_USER',
+  PasswordEntirelyNumeric = 'PASSWORD_ENTIRELY_NUMERIC',
+  PasswordResetAlreadyRequested = 'PASSWORD_RESET_ALREADY_REQUESTED',
+  PasswordTooCommon = 'PASSWORD_TOO_COMMON',
+  PasswordTooShort = 'PASSWORD_TOO_SHORT',
+  PasswordTooSimilar = 'PASSWORD_TOO_SIMILAR',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 /** Fields required to update the user. */
 export type AccountInput = {
@@ -424,9 +425,10 @@ export type AddressSetDefault = {
 };
 
 /** An enumeration. */
-export type AddressTypeEnum =
-  | 'BILLING'
-  | 'SHIPPING';
+export enum AddressTypeEnum {
+  Billing = 'BILLING',
+  Shipping = 'SHIPPING'
+}
 
 /**
  * Updates an address.
@@ -511,9 +513,10 @@ export type Allocation = Node & {
  *     PRIORITIZE_HIGH_STOCK - allocate stock in a warehouse with the most stock
  *
  */
-export type AllocationStrategyEnum =
-  | 'PRIORITIZE_HIGH_STOCK'
-  | 'PRIORITIZE_SORTING_ORDER';
+export enum AllocationStrategyEnum {
+  PrioritizeHighStock = 'PRIORITIZE_HIGH_STOCK',
+  PrioritizeSortingOrder = 'PRIORITIZE_SORTING_ORDER'
+}
 
 /** Represents app data. */
 export type App = Node & ObjectWithMetadata & {
@@ -822,22 +825,23 @@ export type AppError = {
 };
 
 /** An enumeration. */
-export type AppErrorCode =
-  | 'FORBIDDEN'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_CUSTOM_HEADERS'
-  | 'INVALID_MANIFEST_FORMAT'
-  | 'INVALID_PERMISSION'
-  | 'INVALID_STATUS'
-  | 'INVALID_URL_FORMAT'
-  | 'MANIFEST_URL_CANT_CONNECT'
-  | 'NOT_FOUND'
-  | 'OUT_OF_SCOPE_APP'
-  | 'OUT_OF_SCOPE_PERMISSION'
-  | 'REQUIRED'
-  | 'UNIQUE'
-  | 'UNSUPPORTED_SALEOR_VERSION';
+export enum AppErrorCode {
+  Forbidden = 'FORBIDDEN',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidCustomHeaders = 'INVALID_CUSTOM_HEADERS',
+  InvalidManifestFormat = 'INVALID_MANIFEST_FORMAT',
+  InvalidPermission = 'INVALID_PERMISSION',
+  InvalidStatus = 'INVALID_STATUS',
+  InvalidUrlFormat = 'INVALID_URL_FORMAT',
+  ManifestUrlCantConnect = 'MANIFEST_URL_CANT_CONNECT',
+  NotFound = 'NOT_FOUND',
+  OutOfScopeApp = 'OUT_OF_SCOPE_APP',
+  OutOfScopePermission = 'OUT_OF_SCOPE_PERMISSION',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE',
+  UnsupportedSaleorVersion = 'UNSUPPORTED_SALEOR_VERSION'
+}
 
 /** Represents app data. */
 export type AppExtension = Node & {
@@ -881,22 +885,23 @@ export type AppExtensionFilterInput = {
 };
 
 /** All places where app extension can be mounted. */
-export type AppExtensionMountEnum =
-  | 'CUSTOMER_DETAILS_MORE_ACTIONS'
-  | 'CUSTOMER_OVERVIEW_CREATE'
-  | 'CUSTOMER_OVERVIEW_MORE_ACTIONS'
-  | 'NAVIGATION_CATALOG'
-  | 'NAVIGATION_CUSTOMERS'
-  | 'NAVIGATION_DISCOUNTS'
-  | 'NAVIGATION_ORDERS'
-  | 'NAVIGATION_PAGES'
-  | 'NAVIGATION_TRANSLATIONS'
-  | 'ORDER_DETAILS_MORE_ACTIONS'
-  | 'ORDER_OVERVIEW_CREATE'
-  | 'ORDER_OVERVIEW_MORE_ACTIONS'
-  | 'PRODUCT_DETAILS_MORE_ACTIONS'
-  | 'PRODUCT_OVERVIEW_CREATE'
-  | 'PRODUCT_OVERVIEW_MORE_ACTIONS';
+export enum AppExtensionMountEnum {
+  CustomerDetailsMoreActions = 'CUSTOMER_DETAILS_MORE_ACTIONS',
+  CustomerOverviewCreate = 'CUSTOMER_OVERVIEW_CREATE',
+  CustomerOverviewMoreActions = 'CUSTOMER_OVERVIEW_MORE_ACTIONS',
+  NavigationCatalog = 'NAVIGATION_CATALOG',
+  NavigationCustomers = 'NAVIGATION_CUSTOMERS',
+  NavigationDiscounts = 'NAVIGATION_DISCOUNTS',
+  NavigationOrders = 'NAVIGATION_ORDERS',
+  NavigationPages = 'NAVIGATION_PAGES',
+  NavigationTranslations = 'NAVIGATION_TRANSLATIONS',
+  OrderDetailsMoreActions = 'ORDER_DETAILS_MORE_ACTIONS',
+  OrderOverviewCreate = 'ORDER_OVERVIEW_CREATE',
+  OrderOverviewMoreActions = 'ORDER_OVERVIEW_MORE_ACTIONS',
+  ProductDetailsMoreActions = 'PRODUCT_DETAILS_MORE_ACTIONS',
+  ProductOverviewCreate = 'PRODUCT_OVERVIEW_CREATE',
+  ProductOverviewMoreActions = 'PRODUCT_OVERVIEW_MORE_ACTIONS'
+}
 
 /**
  * All available ways of opening an app extension.
@@ -905,9 +910,10 @@ export type AppExtensionMountEnum =
  *     APP_PAGE - redirect to app's page
  *
  */
-export type AppExtensionTargetEnum =
-  | 'APP_PAGE'
-  | 'POPUP';
+export enum AppExtensionTargetEnum {
+  AppPage = 'APP_PAGE',
+  Popup = 'POPUP'
+}
 
 /**
  * Fetch and validate manifest.
@@ -1110,11 +1116,12 @@ export type AppRetryInstall = {
   errors: Array<AppError>;
 };
 
-export type AppSortField =
+export enum AppSortField {
   /** Sort apps by creation date. */
-  | 'CREATION_DATE'
+  CreationDate = 'CREATION_DATE',
   /** Sort apps by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
 export type AppSortingInput = {
   /** Specifies the direction in which to sort apps. */
@@ -1198,11 +1205,12 @@ export type AppTokenVerify = {
 };
 
 /** Enum determining type of your App. */
-export type AppTypeEnum =
+export enum AppTypeEnum {
   /** Local Saleor App. The app is fully manageable from dashboard. You can change assigned permissions, add webhooks, or authentication token */
-  | 'LOCAL'
+  Local = 'LOCAL',
   /** Third party external App. Installation is fully automated. Saleor uses a defined App manifest to gather all required information. */
-  | 'THIRDPARTY';
+  Thirdparty = 'THIRDPARTY'
+}
 
 /**
  * Updates an existing app.
@@ -1237,13 +1245,14 @@ export type AppUpdated = Event & {
 };
 
 /** An enumeration. */
-export type AreaUnitsEnum =
-  | 'SQ_CM'
-  | 'SQ_FT'
-  | 'SQ_INCH'
-  | 'SQ_KM'
-  | 'SQ_M'
-  | 'SQ_YD';
+export enum AreaUnitsEnum {
+  SqCm = 'SQ_CM',
+  SqFt = 'SQ_FT',
+  SqInch = 'SQ_INCH',
+  SqKm = 'SQ_KM',
+  SqM = 'SQ_M',
+  SqYd = 'SQ_YD'
+}
 
 /**
  * Assigns storefront's navigation menus.
@@ -1485,11 +1494,12 @@ export type AttributeBulkTranslateResult = {
   translation?: Maybe<AttributeTranslation>;
 };
 
-export type AttributeChoicesSortField =
+export enum AttributeChoicesSortField {
   /** Sort attribute choice by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort attribute choice by slug. */
-  | 'SLUG';
+  Slug = 'SLUG'
+}
 
 export type AttributeChoicesSortingInput = {
   /** Specifies the direction in which to sort attribute choices. */
@@ -1625,10 +1635,11 @@ export type AttributeDeleted = Event & {
 };
 
 /** An enumeration. */
-export type AttributeEntityTypeEnum =
-  | 'PAGE'
-  | 'PRODUCT'
-  | 'PRODUCT_VARIANT';
+export enum AttributeEntityTypeEnum {
+  Page = 'PAGE',
+  Product = 'PRODUCT',
+  ProductVariant = 'PRODUCT_VARIANT'
+}
 
 export type AttributeEntityTypeEnumFilterInput = {
   /** The value equal to. */
@@ -1648,13 +1659,14 @@ export type AttributeError = {
 };
 
 /** An enumeration. */
-export type AttributeErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum AttributeErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type AttributeFilterInput = {
   availableInGrid?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1694,18 +1706,19 @@ export type AttributeInput = {
 };
 
 /** An enumeration. */
-export type AttributeInputTypeEnum =
-  | 'BOOLEAN'
-  | 'DATE'
-  | 'DATE_TIME'
-  | 'DROPDOWN'
-  | 'FILE'
-  | 'MULTISELECT'
-  | 'NUMERIC'
-  | 'PLAIN_TEXT'
-  | 'REFERENCE'
-  | 'RICH_TEXT'
-  | 'SWATCH';
+export enum AttributeInputTypeEnum {
+  Boolean = 'BOOLEAN',
+  Date = 'DATE',
+  DateTime = 'DATE_TIME',
+  Dropdown = 'DROPDOWN',
+  File = 'FILE',
+  Multiselect = 'MULTISELECT',
+  Numeric = 'NUMERIC',
+  PlainText = 'PLAIN_TEXT',
+  Reference = 'REFERENCE',
+  RichText = 'RICH_TEXT',
+  Swatch = 'SWATCH'
+}
 
 export type AttributeInputTypeEnumFilterInput = {
   /** The value equal to. */
@@ -1728,25 +1741,26 @@ export type AttributeReorderValues = {
   errors: Array<AttributeError>;
 };
 
-export type AttributeSortField =
+export enum AttributeSortField {
   /** Sort attributes based on whether they can be displayed or not in a product grid. */
-  | 'AVAILABLE_IN_GRID'
+  AvailableInGrid = 'AVAILABLE_IN_GRID',
   /** Sort attributes by the filterable in dashboard flag */
-  | 'FILTERABLE_IN_DASHBOARD'
+  FilterableInDashboard = 'FILTERABLE_IN_DASHBOARD',
   /** Sort attributes by the filterable in storefront flag */
-  | 'FILTERABLE_IN_STOREFRONT'
+  FilterableInStorefront = 'FILTERABLE_IN_STOREFRONT',
   /** Sort attributes by the variant only flag */
-  | 'IS_VARIANT_ONLY'
+  IsVariantOnly = 'IS_VARIANT_ONLY',
   /** Sort attributes by name */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort attributes by slug */
-  | 'SLUG'
+  Slug = 'SLUG',
   /** Sort attributes by their position in storefront */
-  | 'STOREFRONT_SEARCH_POSITION'
+  StorefrontSearchPosition = 'STOREFRONT_SEARCH_POSITION',
   /** Sort attributes by the value required flag */
-  | 'VALUE_REQUIRED'
+  ValueRequired = 'VALUE_REQUIRED',
   /** Sort attributes by visibility in the storefront */
-  | 'VISIBLE_IN_STOREFRONT';
+  VisibleInStorefront = 'VISIBLE_IN_STOREFRONT'
+}
 
 export type AttributeSortingInput = {
   /** Specifies the direction in which to sort attributes. */
@@ -1787,11 +1801,12 @@ export type AttributeTranslate = {
 };
 
 /** An enumeration. */
-export type AttributeTranslateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum AttributeTranslateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 export type AttributeTranslation = Node & {
   __typename?: 'AttributeTranslation';
@@ -1802,9 +1817,10 @@ export type AttributeTranslation = Node & {
 };
 
 /** An enumeration. */
-export type AttributeTypeEnum =
-  | 'PAGE_TYPE'
-  | 'PRODUCT_TYPE';
+export enum AttributeTypeEnum {
+  PageType = 'PAGE_TYPE',
+  ProductType = 'PRODUCT_TYPE'
+}
 
 export type AttributeTypeEnumFilterInput = {
   /** The value equal to. */
@@ -2239,11 +2255,12 @@ export type AttributeValueTranslate = {
 };
 
 /** An enumeration. */
-export type AttributeValueTranslateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum AttributeValueTranslateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 export type AttributeValueTranslation = Node & {
   __typename?: 'AttributeValueTranslation';
@@ -2800,13 +2817,14 @@ export type CategoryInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CategorySortField =
+export enum CategorySortField {
   /** Sort categories by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort categories by product count. */
-  | 'PRODUCT_COUNT'
+  ProductCount = 'PRODUCT_COUNT',
   /** Sort categories by subcategory count. */
-  | 'SUBCATEGORY_COUNT';
+  SubcategoryCount = 'SUBCATEGORY_COUNT'
+}
 
 export type CategorySortingInput = {
   /**
@@ -3153,16 +3171,17 @@ export type ChannelError = {
 };
 
 /** An enumeration. */
-export type ChannelErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'CHANNELS_CURRENCY_MUST_BE_THE_SAME'
-  | 'CHANNEL_WITH_ORDERS'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum ChannelErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  ChannelsCurrencyMustBeTheSame = 'CHANNELS_CURRENCY_MUST_BE_THE_SAME',
+  ChannelWithOrders = 'CHANNEL_WITH_ORDERS',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type ChannelListingUpdateInput = {
   /** ID of a channel listing. */
@@ -3502,10 +3521,11 @@ export type CheckoutAddressValidationRules = {
  *     FULL - the cover funds covers the checkout's total
  *
  */
-export type CheckoutAuthorizeStatusEnum =
-  | 'FULL'
-  | 'NONE'
-  | 'PARTIAL';
+export enum CheckoutAuthorizeStatusEnum {
+  Full = 'FULL',
+  None = 'NONE',
+  Partial = 'PARTIAL'
+}
 
 /** Update billing address in the existing checkout. */
 export type CheckoutBillingAddressUpdate = {
@@ -3534,11 +3554,12 @@ export type CheckoutBillingAddressUpdate = {
  *     OVERCHARGED - the charged funds are bigger than checkout's total
  *
  */
-export type CheckoutChargeStatusEnum =
-  | 'FULL'
-  | 'NONE'
-  | 'OVERCHARGED'
-  | 'PARTIAL';
+export enum CheckoutChargeStatusEnum {
+  Full = 'FULL',
+  None = 'NONE',
+  Overcharged = 'OVERCHARGED',
+  Partial = 'PARTIAL'
+}
 
 /** Completes the checkout. As a result a new order is created and a payment charge is made. This action requires a successful payment before it can be performed. In case additional confirmation step as 3D secure is required confirmationNeeded flag will be set to True and no order created until payment is confirmed with second call of this mutation. */
 export type CheckoutComplete = {
@@ -3612,12 +3633,13 @@ export type CheckoutCreateFromOrderError = {
 };
 
 /** An enumeration. */
-export type CheckoutCreateFromOrderErrorCode =
-  | 'CHANNEL_INACTIVE'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'ORDER_NOT_FOUND'
-  | 'TAX_ERROR';
+export enum CheckoutCreateFromOrderErrorCode {
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  OrderNotFound = 'ORDER_NOT_FOUND',
+  TaxError = 'TAX_ERROR'
+}
 
 export type CheckoutCreateFromOrderUnavailableVariant = {
   __typename?: 'CheckoutCreateFromOrderUnavailableVariant';
@@ -3632,13 +3654,14 @@ export type CheckoutCreateFromOrderUnavailableVariant = {
 };
 
 /** An enumeration. */
-export type CheckoutCreateFromOrderUnavailableVariantErrorCode =
-  | 'INSUFFICIENT_STOCK'
-  | 'NOT_FOUND'
-  | 'PRODUCT_NOT_PUBLISHED'
-  | 'PRODUCT_UNAVAILABLE_FOR_PURCHASE'
-  | 'QUANTITY_GREATER_THAN_LIMIT'
-  | 'UNAVAILABLE_VARIANT_IN_CHANNEL';
+export enum CheckoutCreateFromOrderUnavailableVariantErrorCode {
+  InsufficientStock = 'INSUFFICIENT_STOCK',
+  NotFound = 'NOT_FOUND',
+  ProductNotPublished = 'PRODUCT_NOT_PUBLISHED',
+  ProductUnavailableForPurchase = 'PRODUCT_UNAVAILABLE_FOR_PURCHASE',
+  QuantityGreaterThanLimit = 'QUANTITY_GREATER_THAN_LIMIT',
+  UnavailableVariantInChannel = 'UNAVAILABLE_VARIANT_IN_CHANNEL'
+}
 
 export type CheckoutCreateInput = {
   /** Billing address of the customer. */
@@ -3747,35 +3770,36 @@ export type CheckoutError = {
 };
 
 /** An enumeration. */
-export type CheckoutErrorCode =
-  | 'BILLING_ADDRESS_NOT_SET'
-  | 'CHANNEL_INACTIVE'
-  | 'CHECKOUT_NOT_FULLY_PAID'
-  | 'DELIVERY_METHOD_NOT_APPLICABLE'
-  | 'EMAIL_NOT_SET'
-  | 'GIFT_CARD_NOT_APPLICABLE'
-  | 'GRAPHQL_ERROR'
-  | 'INACTIVE_PAYMENT'
-  | 'INSUFFICIENT_STOCK'
-  | 'INVALID'
-  | 'INVALID_SHIPPING_METHOD'
-  | 'MISSING_CHANNEL_SLUG'
-  | 'NOT_FOUND'
-  | 'NO_LINES'
-  | 'PAYMENT_ERROR'
-  | 'PRODUCT_NOT_PUBLISHED'
-  | 'PRODUCT_UNAVAILABLE_FOR_PURCHASE'
-  | 'QUANTITY_GREATER_THAN_LIMIT'
-  | 'REQUIRED'
-  | 'SHIPPING_ADDRESS_NOT_SET'
-  | 'SHIPPING_METHOD_NOT_APPLICABLE'
-  | 'SHIPPING_METHOD_NOT_SET'
-  | 'SHIPPING_NOT_REQUIRED'
-  | 'TAX_ERROR'
-  | 'UNAVAILABLE_VARIANT_IN_CHANNEL'
-  | 'UNIQUE'
-  | 'VOUCHER_NOT_APPLICABLE'
-  | 'ZERO_QUANTITY';
+export enum CheckoutErrorCode {
+  BillingAddressNotSet = 'BILLING_ADDRESS_NOT_SET',
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  CheckoutNotFullyPaid = 'CHECKOUT_NOT_FULLY_PAID',
+  DeliveryMethodNotApplicable = 'DELIVERY_METHOD_NOT_APPLICABLE',
+  EmailNotSet = 'EMAIL_NOT_SET',
+  GiftCardNotApplicable = 'GIFT_CARD_NOT_APPLICABLE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  InactivePayment = 'INACTIVE_PAYMENT',
+  InsufficientStock = 'INSUFFICIENT_STOCK',
+  Invalid = 'INVALID',
+  InvalidShippingMethod = 'INVALID_SHIPPING_METHOD',
+  MissingChannelSlug = 'MISSING_CHANNEL_SLUG',
+  NotFound = 'NOT_FOUND',
+  NoLines = 'NO_LINES',
+  PaymentError = 'PAYMENT_ERROR',
+  ProductNotPublished = 'PRODUCT_NOT_PUBLISHED',
+  ProductUnavailableForPurchase = 'PRODUCT_UNAVAILABLE_FOR_PURCHASE',
+  QuantityGreaterThanLimit = 'QUANTITY_GREATER_THAN_LIMIT',
+  Required = 'REQUIRED',
+  ShippingAddressNotSet = 'SHIPPING_ADDRESS_NOT_SET',
+  ShippingMethodNotApplicable = 'SHIPPING_METHOD_NOT_APPLICABLE',
+  ShippingMethodNotSet = 'SHIPPING_METHOD_NOT_SET',
+  ShippingNotRequired = 'SHIPPING_NOT_REQUIRED',
+  TaxError = 'TAX_ERROR',
+  UnavailableVariantInChannel = 'UNAVAILABLE_VARIANT_IN_CHANNEL',
+  Unique = 'UNIQUE',
+  VoucherNotApplicable = 'VOUCHER_NOT_APPLICABLE',
+  ZeroQuantity = 'ZERO_QUANTITY'
+}
 
 export type CheckoutFilterInput = {
   authorizeStatus?: InputMaybe<Array<CheckoutAuthorizeStatusEnum>>;
@@ -4102,13 +4126,14 @@ export type CheckoutShippingMethodUpdate = {
   errors: Array<CheckoutError>;
 };
 
-export type CheckoutSortField =
+export enum CheckoutSortField {
   /** Sort checkouts by creation date. */
-  | 'CREATION_DATE'
+  CreationDate = 'CREATION_DATE',
   /** Sort checkouts by customer. */
-  | 'CUSTOMER'
+  Customer = 'CUSTOMER',
   /** Sort checkouts by payment. */
-  | 'PAYMENT';
+  Payment = 'PAYMENT'
+}
 
 export type CheckoutSortingInput = {
   /** Specifies the direction in which to sort checkouts. */
@@ -4510,14 +4535,15 @@ export type CollectionError = {
 };
 
 /** An enumeration. */
-export type CollectionErrorCode =
-  | 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum CollectionErrorCode {
+  CannotManageProductWithoutVariant = 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type CollectionFilterInput = {
   /**
@@ -4601,9 +4627,10 @@ export type CollectionMetadataUpdatedCollectionArgs = {
   channel?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CollectionPublished =
-  | 'HIDDEN'
-  | 'PUBLISHED';
+export enum CollectionPublished {
+  Hidden = 'HIDDEN',
+  Published = 'PUBLISHED'
+}
 
 /**
  * Remove products from a collection.
@@ -4633,29 +4660,30 @@ export type CollectionReorderProducts = {
   errors: Array<CollectionError>;
 };
 
-export type CollectionSortField =
+export enum CollectionSortField {
   /**
    * Sort collections by availability.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'AVAILABILITY'
+  Availability = 'AVAILABILITY',
   /** Sort collections by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort collections by product count. */
-  | 'PRODUCT_COUNT'
+  ProductCount = 'PRODUCT_COUNT',
   /**
    * Sort collections by publication date.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PUBLICATION_DATE'
+  PublicationDate = 'PUBLICATION_DATE',
   /**
    * Sort collections by publication date.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PUBLISHED_AT';
+  PublishedAt = 'PUBLISHED_AT'
+}
 
 export type CollectionSortingInput = {
   /**
@@ -4804,14 +4832,15 @@ export type ConfigurationItemInput = {
 };
 
 /** An enumeration. */
-export type ConfigurationTypeFieldEnum =
-  | 'BOOLEAN'
-  | 'MULTILINE'
-  | 'OUTPUT'
-  | 'PASSWORD'
-  | 'SECRET'
-  | 'SECRETMULTILINE'
-  | 'STRING';
+export enum ConfigurationTypeFieldEnum {
+  Boolean = 'BOOLEAN',
+  Multiline = 'MULTILINE',
+  Output = 'OUTPUT',
+  Password = 'PASSWORD',
+  Secret = 'SECRET',
+  Secretmultiline = 'SECRETMULTILINE',
+  String = 'STRING'
+}
 
 /** Confirm user account with token sent by email during registration. */
 export type ConfirmAccount = {
@@ -4838,257 +4867,258 @@ export type ConfirmEmailChange = {
 };
 
 /** An enumeration. */
-export type CountryCode =
-  | 'AD'
-  | 'AE'
-  | 'AF'
-  | 'AG'
-  | 'AI'
-  | 'AL'
-  | 'AM'
-  | 'AO'
-  | 'AQ'
-  | 'AR'
-  | 'AS'
-  | 'AT'
-  | 'AU'
-  | 'AW'
-  | 'AX'
-  | 'AZ'
-  | 'BA'
-  | 'BB'
-  | 'BD'
-  | 'BE'
-  | 'BF'
-  | 'BG'
-  | 'BH'
-  | 'BI'
-  | 'BJ'
-  | 'BL'
-  | 'BM'
-  | 'BN'
-  | 'BO'
-  | 'BQ'
-  | 'BR'
-  | 'BS'
-  | 'BT'
-  | 'BV'
-  | 'BW'
-  | 'BY'
-  | 'BZ'
-  | 'CA'
-  | 'CC'
-  | 'CD'
-  | 'CF'
-  | 'CG'
-  | 'CH'
-  | 'CI'
-  | 'CK'
-  | 'CL'
-  | 'CM'
-  | 'CN'
-  | 'CO'
-  | 'CR'
-  | 'CU'
-  | 'CV'
-  | 'CW'
-  | 'CX'
-  | 'CY'
-  | 'CZ'
-  | 'DE'
-  | 'DJ'
-  | 'DK'
-  | 'DM'
-  | 'DO'
-  | 'DZ'
-  | 'EC'
-  | 'EE'
-  | 'EG'
-  | 'EH'
-  | 'ER'
-  | 'ES'
-  | 'ET'
-  | 'EU'
-  | 'FI'
-  | 'FJ'
-  | 'FK'
-  | 'FM'
-  | 'FO'
-  | 'FR'
-  | 'GA'
-  | 'GB'
-  | 'GD'
-  | 'GE'
-  | 'GF'
-  | 'GG'
-  | 'GH'
-  | 'GI'
-  | 'GL'
-  | 'GM'
-  | 'GN'
-  | 'GP'
-  | 'GQ'
-  | 'GR'
-  | 'GS'
-  | 'GT'
-  | 'GU'
-  | 'GW'
-  | 'GY'
-  | 'HK'
-  | 'HM'
-  | 'HN'
-  | 'HR'
-  | 'HT'
-  | 'HU'
-  | 'ID'
-  | 'IE'
-  | 'IL'
-  | 'IM'
-  | 'IN'
-  | 'IO'
-  | 'IQ'
-  | 'IR'
-  | 'IS'
-  | 'IT'
-  | 'JE'
-  | 'JM'
-  | 'JO'
-  | 'JP'
-  | 'KE'
-  | 'KG'
-  | 'KH'
-  | 'KI'
-  | 'KM'
-  | 'KN'
-  | 'KP'
-  | 'KR'
-  | 'KW'
-  | 'KY'
-  | 'KZ'
-  | 'LA'
-  | 'LB'
-  | 'LC'
-  | 'LI'
-  | 'LK'
-  | 'LR'
-  | 'LS'
-  | 'LT'
-  | 'LU'
-  | 'LV'
-  | 'LY'
-  | 'MA'
-  | 'MC'
-  | 'MD'
-  | 'ME'
-  | 'MF'
-  | 'MG'
-  | 'MH'
-  | 'MK'
-  | 'ML'
-  | 'MM'
-  | 'MN'
-  | 'MO'
-  | 'MP'
-  | 'MQ'
-  | 'MR'
-  | 'MS'
-  | 'MT'
-  | 'MU'
-  | 'MV'
-  | 'MW'
-  | 'MX'
-  | 'MY'
-  | 'MZ'
-  | 'NA'
-  | 'NC'
-  | 'NE'
-  | 'NF'
-  | 'NG'
-  | 'NI'
-  | 'NL'
-  | 'NO'
-  | 'NP'
-  | 'NR'
-  | 'NU'
-  | 'NZ'
-  | 'OM'
-  | 'PA'
-  | 'PE'
-  | 'PF'
-  | 'PG'
-  | 'PH'
-  | 'PK'
-  | 'PL'
-  | 'PM'
-  | 'PN'
-  | 'PR'
-  | 'PS'
-  | 'PT'
-  | 'PW'
-  | 'PY'
-  | 'QA'
-  | 'RE'
-  | 'RO'
-  | 'RS'
-  | 'RU'
-  | 'RW'
-  | 'SA'
-  | 'SB'
-  | 'SC'
-  | 'SD'
-  | 'SE'
-  | 'SG'
-  | 'SH'
-  | 'SI'
-  | 'SJ'
-  | 'SK'
-  | 'SL'
-  | 'SM'
-  | 'SN'
-  | 'SO'
-  | 'SR'
-  | 'SS'
-  | 'ST'
-  | 'SV'
-  | 'SX'
-  | 'SY'
-  | 'SZ'
-  | 'TC'
-  | 'TD'
-  | 'TF'
-  | 'TG'
-  | 'TH'
-  | 'TJ'
-  | 'TK'
-  | 'TL'
-  | 'TM'
-  | 'TN'
-  | 'TO'
-  | 'TR'
-  | 'TT'
-  | 'TV'
-  | 'TW'
-  | 'TZ'
-  | 'UA'
-  | 'UG'
-  | 'UM'
-  | 'US'
-  | 'UY'
-  | 'UZ'
-  | 'VA'
-  | 'VC'
-  | 'VE'
-  | 'VG'
-  | 'VI'
-  | 'VN'
-  | 'VU'
-  | 'WF'
-  | 'WS'
-  | 'YE'
-  | 'YT'
-  | 'ZA'
-  | 'ZM'
-  | 'ZW';
+export enum CountryCode {
+  Ad = 'AD',
+  Ae = 'AE',
+  Af = 'AF',
+  Ag = 'AG',
+  Ai = 'AI',
+  Al = 'AL',
+  Am = 'AM',
+  Ao = 'AO',
+  Aq = 'AQ',
+  Ar = 'AR',
+  As = 'AS',
+  At = 'AT',
+  Au = 'AU',
+  Aw = 'AW',
+  Ax = 'AX',
+  Az = 'AZ',
+  Ba = 'BA',
+  Bb = 'BB',
+  Bd = 'BD',
+  Be = 'BE',
+  Bf = 'BF',
+  Bg = 'BG',
+  Bh = 'BH',
+  Bi = 'BI',
+  Bj = 'BJ',
+  Bl = 'BL',
+  Bm = 'BM',
+  Bn = 'BN',
+  Bo = 'BO',
+  Bq = 'BQ',
+  Br = 'BR',
+  Bs = 'BS',
+  Bt = 'BT',
+  Bv = 'BV',
+  Bw = 'BW',
+  By = 'BY',
+  Bz = 'BZ',
+  Ca = 'CA',
+  Cc = 'CC',
+  Cd = 'CD',
+  Cf = 'CF',
+  Cg = 'CG',
+  Ch = 'CH',
+  Ci = 'CI',
+  Ck = 'CK',
+  Cl = 'CL',
+  Cm = 'CM',
+  Cn = 'CN',
+  Co = 'CO',
+  Cr = 'CR',
+  Cu = 'CU',
+  Cv = 'CV',
+  Cw = 'CW',
+  Cx = 'CX',
+  Cy = 'CY',
+  Cz = 'CZ',
+  De = 'DE',
+  Dj = 'DJ',
+  Dk = 'DK',
+  Dm = 'DM',
+  Do = 'DO',
+  Dz = 'DZ',
+  Ec = 'EC',
+  Ee = 'EE',
+  Eg = 'EG',
+  Eh = 'EH',
+  Er = 'ER',
+  Es = 'ES',
+  Et = 'ET',
+  Eu = 'EU',
+  Fi = 'FI',
+  Fj = 'FJ',
+  Fk = 'FK',
+  Fm = 'FM',
+  Fo = 'FO',
+  Fr = 'FR',
+  Ga = 'GA',
+  Gb = 'GB',
+  Gd = 'GD',
+  Ge = 'GE',
+  Gf = 'GF',
+  Gg = 'GG',
+  Gh = 'GH',
+  Gi = 'GI',
+  Gl = 'GL',
+  Gm = 'GM',
+  Gn = 'GN',
+  Gp = 'GP',
+  Gq = 'GQ',
+  Gr = 'GR',
+  Gs = 'GS',
+  Gt = 'GT',
+  Gu = 'GU',
+  Gw = 'GW',
+  Gy = 'GY',
+  Hk = 'HK',
+  Hm = 'HM',
+  Hn = 'HN',
+  Hr = 'HR',
+  Ht = 'HT',
+  Hu = 'HU',
+  Id = 'ID',
+  Ie = 'IE',
+  Il = 'IL',
+  Im = 'IM',
+  In = 'IN',
+  Io = 'IO',
+  Iq = 'IQ',
+  Ir = 'IR',
+  Is = 'IS',
+  It = 'IT',
+  Je = 'JE',
+  Jm = 'JM',
+  Jo = 'JO',
+  Jp = 'JP',
+  Ke = 'KE',
+  Kg = 'KG',
+  Kh = 'KH',
+  Ki = 'KI',
+  Km = 'KM',
+  Kn = 'KN',
+  Kp = 'KP',
+  Kr = 'KR',
+  Kw = 'KW',
+  Ky = 'KY',
+  Kz = 'KZ',
+  La = 'LA',
+  Lb = 'LB',
+  Lc = 'LC',
+  Li = 'LI',
+  Lk = 'LK',
+  Lr = 'LR',
+  Ls = 'LS',
+  Lt = 'LT',
+  Lu = 'LU',
+  Lv = 'LV',
+  Ly = 'LY',
+  Ma = 'MA',
+  Mc = 'MC',
+  Md = 'MD',
+  Me = 'ME',
+  Mf = 'MF',
+  Mg = 'MG',
+  Mh = 'MH',
+  Mk = 'MK',
+  Ml = 'ML',
+  Mm = 'MM',
+  Mn = 'MN',
+  Mo = 'MO',
+  Mp = 'MP',
+  Mq = 'MQ',
+  Mr = 'MR',
+  Ms = 'MS',
+  Mt = 'MT',
+  Mu = 'MU',
+  Mv = 'MV',
+  Mw = 'MW',
+  Mx = 'MX',
+  My = 'MY',
+  Mz = 'MZ',
+  Na = 'NA',
+  Nc = 'NC',
+  Ne = 'NE',
+  Nf = 'NF',
+  Ng = 'NG',
+  Ni = 'NI',
+  Nl = 'NL',
+  No = 'NO',
+  Np = 'NP',
+  Nr = 'NR',
+  Nu = 'NU',
+  Nz = 'NZ',
+  Om = 'OM',
+  Pa = 'PA',
+  Pe = 'PE',
+  Pf = 'PF',
+  Pg = 'PG',
+  Ph = 'PH',
+  Pk = 'PK',
+  Pl = 'PL',
+  Pm = 'PM',
+  Pn = 'PN',
+  Pr = 'PR',
+  Ps = 'PS',
+  Pt = 'PT',
+  Pw = 'PW',
+  Py = 'PY',
+  Qa = 'QA',
+  Re = 'RE',
+  Ro = 'RO',
+  Rs = 'RS',
+  Ru = 'RU',
+  Rw = 'RW',
+  Sa = 'SA',
+  Sb = 'SB',
+  Sc = 'SC',
+  Sd = 'SD',
+  Se = 'SE',
+  Sg = 'SG',
+  Sh = 'SH',
+  Si = 'SI',
+  Sj = 'SJ',
+  Sk = 'SK',
+  Sl = 'SL',
+  Sm = 'SM',
+  Sn = 'SN',
+  So = 'SO',
+  Sr = 'SR',
+  Ss = 'SS',
+  St = 'ST',
+  Sv = 'SV',
+  Sx = 'SX',
+  Sy = 'SY',
+  Sz = 'SZ',
+  Tc = 'TC',
+  Td = 'TD',
+  Tf = 'TF',
+  Tg = 'TG',
+  Th = 'TH',
+  Tj = 'TJ',
+  Tk = 'TK',
+  Tl = 'TL',
+  Tm = 'TM',
+  Tn = 'TN',
+  To = 'TO',
+  Tr = 'TR',
+  Tt = 'TT',
+  Tv = 'TV',
+  Tw = 'TW',
+  Tz = 'TZ',
+  Ua = 'UA',
+  Ug = 'UG',
+  Um = 'UM',
+  Us = 'US',
+  Uy = 'UY',
+  Uz = 'UZ',
+  Va = 'VA',
+  Vc = 'VC',
+  Ve = 'VE',
+  Vg = 'VG',
+  Vi = 'VI',
+  Vn = 'VN',
+  Vu = 'VU',
+  Wf = 'WF',
+  Ws = 'WS',
+  Ye = 'YE',
+  Yt = 'YT',
+  Za = 'ZA',
+  Zm = 'ZM',
+  Zw = 'ZW'
+}
 
 export type CountryDisplay = {
   __typename?: 'CountryDisplay';
@@ -5203,15 +5233,16 @@ export type CustomerBulkUpdateError = {
 };
 
 /** An enumeration. */
-export type CustomerBulkUpdateErrorCode =
-  | 'BLANK'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'MAX_LENGTH'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum CustomerBulkUpdateErrorCode {
+  Blank = 'BLANK',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  MaxLength = 'MAX_LENGTH',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type CustomerBulkUpdateInput = {
   /** External ID of a customer to update. */
@@ -5290,22 +5321,23 @@ export type CustomerEvent = Node & {
 };
 
 /** An enumeration. */
-export type CustomerEventsEnum =
-  | 'ACCOUNT_ACTIVATED'
-  | 'ACCOUNT_CREATED'
-  | 'ACCOUNT_DEACTIVATED'
-  | 'CUSTOMER_DELETED'
-  | 'DIGITAL_LINK_DOWNLOADED'
-  | 'EMAIL_ASSIGNED'
-  | 'EMAIL_CHANGED'
-  | 'EMAIL_CHANGED_REQUEST'
-  | 'NAME_ASSIGNED'
-  | 'NOTE_ADDED'
-  | 'NOTE_ADDED_TO_ORDER'
-  | 'PASSWORD_CHANGED'
-  | 'PASSWORD_RESET'
-  | 'PASSWORD_RESET_LINK_SENT'
-  | 'PLACED_ORDER';
+export enum CustomerEventsEnum {
+  AccountActivated = 'ACCOUNT_ACTIVATED',
+  AccountCreated = 'ACCOUNT_CREATED',
+  AccountDeactivated = 'ACCOUNT_DEACTIVATED',
+  CustomerDeleted = 'CUSTOMER_DELETED',
+  DigitalLinkDownloaded = 'DIGITAL_LINK_DOWNLOADED',
+  EmailAssigned = 'EMAIL_ASSIGNED',
+  EmailChanged = 'EMAIL_CHANGED',
+  EmailChangedRequest = 'EMAIL_CHANGED_REQUEST',
+  NameAssigned = 'NAME_ASSIGNED',
+  NoteAdded = 'NOTE_ADDED',
+  NoteAddedToOrder = 'NOTE_ADDED_TO_ORDER',
+  PasswordChanged = 'PASSWORD_CHANGED',
+  PasswordReset = 'PASSWORD_RESET',
+  PasswordResetLinkSent = 'PASSWORD_RESET_LINK_SENT',
+  PlacedOrder = 'PLACED_ORDER'
+}
 
 export type CustomerFilterInput = {
   dateJoined?: InputMaybe<DateRangeInput>;
@@ -5709,33 +5741,37 @@ export type DiscountError = {
 };
 
 /** An enumeration. */
-export type DiscountErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum DiscountErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  CannotManageProductWithoutVariant = 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
-export type DiscountStatusEnum =
-  | 'ACTIVE'
-  | 'EXPIRED'
-  | 'SCHEDULED';
+export enum DiscountStatusEnum {
+  Active = 'ACTIVE',
+  Expired = 'EXPIRED',
+  Scheduled = 'SCHEDULED'
+}
 
-export type DiscountValueTypeEnum =
-  | 'FIXED'
-  | 'PERCENTAGE';
+export enum DiscountValueTypeEnum {
+  Fixed = 'FIXED',
+  Percentage = 'PERCENTAGE'
+}
 
 /** An enumeration. */
-export type DistanceUnitsEnum =
-  | 'CM'
-  | 'FT'
-  | 'INCH'
-  | 'KM'
-  | 'M'
-  | 'YD';
+export enum DistanceUnitsEnum {
+  Cm = 'CM',
+  Ft = 'FT',
+  Inch = 'INCH',
+  Km = 'KM',
+  M = 'M',
+  Yd = 'YD'
+}
 
 /** Represents shop's domain. */
 export type Domain = {
@@ -5946,13 +5982,14 @@ export type DraftOrderUpdated = Event & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-export type ErrorPolicyEnum =
+export enum ErrorPolicyEnum {
   /** Save what is possible within a single row. If there are errors in an input data row, try to save it partially and skip the invalid part. */
-  | 'IGNORE_FAILED'
+  IgnoreFailed = 'IGNORE_FAILED',
   /** Reject all rows if there is at least one error in any of them. */
-  | 'REJECT_EVERYTHING'
+  RejectEverything = 'REJECT_EVERYTHING',
   /** Reject rows with errors. */
-  | 'REJECT_FAILED_ROWS';
+  RejectFailedRows = 'REJECT_FAILED_ROWS'
+}
 
 export type Event = {
   /** Time of the event. */
@@ -6029,9 +6066,10 @@ export type EventDeliveryAttemptCountableEdge = {
   node: EventDeliveryAttempt;
 };
 
-export type EventDeliveryAttemptSortField =
+export enum EventDeliveryAttemptSortField {
   /** Sort event delivery attempts by created at. */
-  | 'CREATED_AT';
+  CreatedAt = 'CREATED_AT'
+}
 
 export type EventDeliveryAttemptSortingInput = {
   /** Specifies the direction in which to sort attempts. */
@@ -6074,9 +6112,10 @@ export type EventDeliveryRetry = {
   errors: Array<WebhookError>;
 };
 
-export type EventDeliverySortField =
+export enum EventDeliverySortField {
   /** Sort event deliveries by created at. */
-  | 'CREATED_AT';
+  CreatedAt = 'CREATED_AT'
+}
 
 export type EventDeliverySortingInput = {
   /** Specifies the direction in which to sort deliveries. */
@@ -6085,10 +6124,11 @@ export type EventDeliverySortingInput = {
   field: EventDeliverySortField;
 };
 
-export type EventDeliveryStatusEnum =
-  | 'FAILED'
-  | 'PENDING'
-  | 'SUCCESS';
+export enum EventDeliveryStatusEnum {
+  Failed = 'FAILED',
+  Pending = 'PENDING',
+  Success = 'SUCCESS'
+}
 
 export type ExportError = {
   __typename?: 'ExportError';
@@ -6101,11 +6141,12 @@ export type ExportError = {
 };
 
 /** An enumeration. */
-export type ExportErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum ExportErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 /** History log of export file. */
 export type ExportEvent = Node & {
@@ -6125,13 +6166,14 @@ export type ExportEvent = Node & {
 };
 
 /** An enumeration. */
-export type ExportEventsEnum =
-  | 'EXPORTED_FILE_SENT'
-  | 'EXPORT_DELETED'
-  | 'EXPORT_FAILED'
-  | 'EXPORT_FAILED_INFO_SENT'
-  | 'EXPORT_PENDING'
-  | 'EXPORT_SUCCESS';
+export enum ExportEventsEnum {
+  ExportedFileSent = 'EXPORTED_FILE_SENT',
+  ExportDeleted = 'EXPORT_DELETED',
+  ExportFailed = 'EXPORT_FAILED',
+  ExportFailedInfoSent = 'EXPORT_FAILED_INFO_SENT',
+  ExportPending = 'EXPORT_PENDING',
+  ExportSuccess = 'EXPORT_SUCCESS'
+}
 
 /** Represents a job data of exported file. */
 export type ExportFile = Job & Node & {
@@ -6178,11 +6220,12 @@ export type ExportFileFilterInput = {
   user?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ExportFileSortField =
-  | 'CREATED_AT'
-  | 'LAST_MODIFIED_AT'
-  | 'STATUS'
-  | 'UPDATED_AT';
+export enum ExportFileSortField {
+  CreatedAt = 'CREATED_AT',
+  LastModifiedAt = 'LAST_MODIFIED_AT',
+  Status = 'STATUS',
+  UpdatedAt = 'UPDATED_AT'
+}
 
 export type ExportFileSortingInput = {
   /** Specifies the direction in which to sort export file. */
@@ -6254,13 +6297,14 @@ export type ExportProductsInput = {
   scope: ExportScope;
 };
 
-export type ExportScope =
+export enum ExportScope {
   /** Export all products. */
-  | 'ALL'
+  All = 'ALL',
   /** Export the filtered products. */
-  | 'FILTER'
+  Filter = 'FILTER',
   /** Export products with given ids. */
-  | 'IDS';
+  Ids = 'IDS'
+}
 
 export type ExternalAuthentication = {
   __typename?: 'ExternalAuthentication';
@@ -6301,11 +6345,12 @@ export type ExternalNotificationError = {
 };
 
 /** An enumeration. */
-export type ExternalNotificationErrorCodes =
-  | 'CHANNEL_INACTIVE'
-  | 'INVALID_MODEL_TYPE'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum ExternalNotificationErrorCodes {
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  InvalidModelType = 'INVALID_MODEL_TYPE',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 /**
  * Trigger sending a notification with the notify plugin method. Serializes nodes provided as ids parameter and includes this data in the notification payload.
@@ -6381,9 +6426,10 @@ export type File = {
 };
 
 /** An enumeration. */
-export type FileTypesEnum =
-  | 'CSV'
-  | 'XLSX';
+export enum FileTypesEnum {
+  Csv = 'CSV',
+  Xlsx = 'XLSX'
+}
 
 /**
  * Upload a file. This mutation must be sent as a `multipart` request. More detailed specs of the upload format can be found here: https://github.com/jaydenseric/graphql-multipart-request-spec
@@ -6646,14 +6692,15 @@ export type FulfillmentReturnProducts = {
 };
 
 /** An enumeration. */
-export type FulfillmentStatus =
-  | 'CANCELED'
-  | 'FULFILLED'
-  | 'REFUNDED'
-  | 'REFUNDED_AND_RETURNED'
-  | 'REPLACED'
-  | 'RETURNED'
-  | 'WAITING_FOR_APPROVAL';
+export enum FulfillmentStatus {
+  Canceled = 'CANCELED',
+  Fulfilled = 'FULFILLED',
+  Refunded = 'REFUNDED',
+  RefundedAndReturned = 'REFUNDED_AND_RETURNED',
+  Replaced = 'REPLACED',
+  Returned = 'RETURNED',
+  WaitingForApproval = 'WAITING_FOR_APPROVAL'
+}
 
 /**
  * Updates a fulfillment for an order.
@@ -7125,15 +7172,16 @@ export type GiftCardError = {
 };
 
 /** An enumeration. */
-export type GiftCardErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'EXPIRED_GIFT_CARD'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum GiftCardErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  ExpiredGiftCard = 'EXPIRED_GIFT_CARD',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 /**
  * History log of the gift card.
@@ -7189,19 +7237,20 @@ export type GiftCardEventFilterInput = {
 };
 
 /** An enumeration. */
-export type GiftCardEventsEnum =
-  | 'ACTIVATED'
-  | 'BALANCE_RESET'
-  | 'BOUGHT'
-  | 'DEACTIVATED'
-  | 'EXPIRY_DATE_UPDATED'
-  | 'ISSUED'
-  | 'NOTE_ADDED'
-  | 'RESENT'
-  | 'SENT_TO_CUSTOMER'
-  | 'TAGS_UPDATED'
-  | 'UPDATED'
-  | 'USED_IN_ORDER';
+export enum GiftCardEventsEnum {
+  Activated = 'ACTIVATED',
+  BalanceReset = 'BALANCE_RESET',
+  Bought = 'BOUGHT',
+  Deactivated = 'DEACTIVATED',
+  ExpiryDateUpdated = 'EXPIRY_DATE_UPDATED',
+  Issued = 'ISSUED',
+  NoteAdded = 'NOTE_ADDED',
+  Resent = 'RESENT',
+  SentToCustomer = 'SENT_TO_CUSTOMER',
+  TagsUpdated = 'TAGS_UPDATED',
+  Updated = 'UPDATED',
+  UsedInOrder = 'USED_IN_ORDER'
+}
 
 export type GiftCardFilterInput = {
   code?: InputMaybe<Scalars['String']['input']>;
@@ -7303,15 +7352,17 @@ export type GiftCardSettingsError = {
 };
 
 /** An enumeration. */
-export type GiftCardSettingsErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'REQUIRED';
+export enum GiftCardSettingsErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  Required = 'REQUIRED'
+}
 
 /** An enumeration. */
-export type GiftCardSettingsExpiryTypeEnum =
-  | 'EXPIRY_PERIOD'
-  | 'NEVER_EXPIRE';
+export enum GiftCardSettingsExpiryTypeEnum {
+  ExpiryPeriod = 'EXPIRY_PERIOD',
+  NeverExpire = 'NEVER_EXPIRE'
+}
 
 /**
  * Update gift card settings.
@@ -7332,19 +7383,20 @@ export type GiftCardSettingsUpdateInput = {
   expiryType?: InputMaybe<GiftCardSettingsExpiryTypeEnum>;
 };
 
-export type GiftCardSortField =
+export enum GiftCardSortField {
   /**
    * Sort gift cards by created at.
    *
    * Added in Saleor 3.8.
    */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /** Sort gift cards by current balance. */
-  | 'CURRENT_BALANCE'
+  CurrentBalance = 'CURRENT_BALANCE',
   /** Sort gift cards by product. */
-  | 'PRODUCT'
+  Product = 'PRODUCT',
   /** Sort gift cards by used by. */
-  | 'USED_BY';
+  UsedBy = 'USED_BY'
+}
 
 export type GiftCardSortingInput = {
   /** Specifies the direction in which to sort gift cards. */
@@ -7540,9 +7592,10 @@ export type GroupCountableEdge = {
 };
 
 /** Thumbnail formats for icon images. */
-export type IconThumbnailFormatEnum =
-  | 'ORIGINAL'
-  | 'WEBP';
+export enum IconThumbnailFormatEnum {
+  Original = 'ORIGINAL',
+  Webp = 'WEBP'
+}
 
 /** Represents an image. */
 export type Image = {
@@ -7727,15 +7780,16 @@ export type InvoiceError = {
 };
 
 /** An enumeration. */
-export type InvoiceErrorCode =
-  | 'EMAIL_NOT_SET'
-  | 'INVALID_STATUS'
-  | 'NOT_FOUND'
-  | 'NOT_READY'
-  | 'NO_INVOICE_PLUGIN'
-  | 'NUMBER_NOT_SET'
-  | 'REQUIRED'
-  | 'URL_NOT_SET';
+export enum InvoiceErrorCode {
+  EmailNotSet = 'EMAIL_NOT_SET',
+  InvalidStatus = 'INVALID_STATUS',
+  NotFound = 'NOT_FOUND',
+  NotReady = 'NOT_READY',
+  NoInvoicePlugin = 'NO_INVOICE_PLUGIN',
+  NumberNotSet = 'NUMBER_NOT_SET',
+  Required = 'REQUIRED',
+  UrlNotSet = 'URL_NOT_SET'
+}
 
 /**
  * Request an invoice for the order using plugin.
@@ -7855,793 +7909,795 @@ export type Job = {
 };
 
 /** An enumeration. */
-export type JobStatusEnum =
-  | 'DELETED'
-  | 'FAILED'
-  | 'PENDING'
-  | 'SUCCESS';
+export enum JobStatusEnum {
+  Deleted = 'DELETED',
+  Failed = 'FAILED',
+  Pending = 'PENDING',
+  Success = 'SUCCESS'
+}
 
 /** An enumeration. */
-export type LanguageCodeEnum =
-  | 'AF'
-  | 'AF_NA'
-  | 'AF_ZA'
-  | 'AGQ'
-  | 'AGQ_CM'
-  | 'AK'
-  | 'AK_GH'
-  | 'AM'
-  | 'AM_ET'
-  | 'AR'
-  | 'AR_AE'
-  | 'AR_BH'
-  | 'AR_DJ'
-  | 'AR_DZ'
-  | 'AR_EG'
-  | 'AR_EH'
-  | 'AR_ER'
-  | 'AR_IL'
-  | 'AR_IQ'
-  | 'AR_JO'
-  | 'AR_KM'
-  | 'AR_KW'
-  | 'AR_LB'
-  | 'AR_LY'
-  | 'AR_MA'
-  | 'AR_MR'
-  | 'AR_OM'
-  | 'AR_PS'
-  | 'AR_QA'
-  | 'AR_SA'
-  | 'AR_SD'
-  | 'AR_SO'
-  | 'AR_SS'
-  | 'AR_SY'
-  | 'AR_TD'
-  | 'AR_TN'
-  | 'AR_YE'
-  | 'AS'
-  | 'ASA'
-  | 'ASA_TZ'
-  | 'AST'
-  | 'AST_ES'
-  | 'AS_IN'
-  | 'AZ'
-  | 'AZ_CYRL'
-  | 'AZ_CYRL_AZ'
-  | 'AZ_LATN'
-  | 'AZ_LATN_AZ'
-  | 'BAS'
-  | 'BAS_CM'
-  | 'BE'
-  | 'BEM'
-  | 'BEM_ZM'
-  | 'BEZ'
-  | 'BEZ_TZ'
-  | 'BE_BY'
-  | 'BG'
-  | 'BG_BG'
-  | 'BM'
-  | 'BM_ML'
-  | 'BN'
-  | 'BN_BD'
-  | 'BN_IN'
-  | 'BO'
-  | 'BO_CN'
-  | 'BO_IN'
-  | 'BR'
-  | 'BRX'
-  | 'BRX_IN'
-  | 'BR_FR'
-  | 'BS'
-  | 'BS_CYRL'
-  | 'BS_CYRL_BA'
-  | 'BS_LATN'
-  | 'BS_LATN_BA'
-  | 'CA'
-  | 'CA_AD'
-  | 'CA_ES'
-  | 'CA_ES_VALENCIA'
-  | 'CA_FR'
-  | 'CA_IT'
-  | 'CCP'
-  | 'CCP_BD'
-  | 'CCP_IN'
-  | 'CE'
-  | 'CEB'
-  | 'CEB_PH'
-  | 'CE_RU'
-  | 'CGG'
-  | 'CGG_UG'
-  | 'CHR'
-  | 'CHR_US'
-  | 'CKB'
-  | 'CKB_IQ'
-  | 'CKB_IR'
-  | 'CS'
-  | 'CS_CZ'
-  | 'CU'
-  | 'CU_RU'
-  | 'CY'
-  | 'CY_GB'
-  | 'DA'
-  | 'DAV'
-  | 'DAV_KE'
-  | 'DA_DK'
-  | 'DA_GL'
-  | 'DE'
-  | 'DE_AT'
-  | 'DE_BE'
-  | 'DE_CH'
-  | 'DE_DE'
-  | 'DE_IT'
-  | 'DE_LI'
-  | 'DE_LU'
-  | 'DJE'
-  | 'DJE_NE'
-  | 'DSB'
-  | 'DSB_DE'
-  | 'DUA'
-  | 'DUA_CM'
-  | 'DYO'
-  | 'DYO_SN'
-  | 'DZ'
-  | 'DZ_BT'
-  | 'EBU'
-  | 'EBU_KE'
-  | 'EE'
-  | 'EE_GH'
-  | 'EE_TG'
-  | 'EL'
-  | 'EL_CY'
-  | 'EL_GR'
-  | 'EN'
-  | 'EN_AE'
-  | 'EN_AG'
-  | 'EN_AI'
-  | 'EN_AS'
-  | 'EN_AT'
-  | 'EN_AU'
-  | 'EN_BB'
-  | 'EN_BE'
-  | 'EN_BI'
-  | 'EN_BM'
-  | 'EN_BS'
-  | 'EN_BW'
-  | 'EN_BZ'
-  | 'EN_CA'
-  | 'EN_CC'
-  | 'EN_CH'
-  | 'EN_CK'
-  | 'EN_CM'
-  | 'EN_CX'
-  | 'EN_CY'
-  | 'EN_DE'
-  | 'EN_DG'
-  | 'EN_DK'
-  | 'EN_DM'
-  | 'EN_ER'
-  | 'EN_FI'
-  | 'EN_FJ'
-  | 'EN_FK'
-  | 'EN_FM'
-  | 'EN_GB'
-  | 'EN_GD'
-  | 'EN_GG'
-  | 'EN_GH'
-  | 'EN_GI'
-  | 'EN_GM'
-  | 'EN_GU'
-  | 'EN_GY'
-  | 'EN_HK'
-  | 'EN_IE'
-  | 'EN_IL'
-  | 'EN_IM'
-  | 'EN_IN'
-  | 'EN_IO'
-  | 'EN_JE'
-  | 'EN_JM'
-  | 'EN_KE'
-  | 'EN_KI'
-  | 'EN_KN'
-  | 'EN_KY'
-  | 'EN_LC'
-  | 'EN_LR'
-  | 'EN_LS'
-  | 'EN_MG'
-  | 'EN_MH'
-  | 'EN_MO'
-  | 'EN_MP'
-  | 'EN_MS'
-  | 'EN_MT'
-  | 'EN_MU'
-  | 'EN_MW'
-  | 'EN_MY'
-  | 'EN_NA'
-  | 'EN_NF'
-  | 'EN_NG'
-  | 'EN_NL'
-  | 'EN_NR'
-  | 'EN_NU'
-  | 'EN_NZ'
-  | 'EN_PG'
-  | 'EN_PH'
-  | 'EN_PK'
-  | 'EN_PN'
-  | 'EN_PR'
-  | 'EN_PW'
-  | 'EN_RW'
-  | 'EN_SB'
-  | 'EN_SC'
-  | 'EN_SD'
-  | 'EN_SE'
-  | 'EN_SG'
-  | 'EN_SH'
-  | 'EN_SI'
-  | 'EN_SL'
-  | 'EN_SS'
-  | 'EN_SX'
-  | 'EN_SZ'
-  | 'EN_TC'
-  | 'EN_TK'
-  | 'EN_TO'
-  | 'EN_TT'
-  | 'EN_TV'
-  | 'EN_TZ'
-  | 'EN_UG'
-  | 'EN_UM'
-  | 'EN_US'
-  | 'EN_VC'
-  | 'EN_VG'
-  | 'EN_VI'
-  | 'EN_VU'
-  | 'EN_WS'
-  | 'EN_ZA'
-  | 'EN_ZM'
-  | 'EN_ZW'
-  | 'EO'
-  | 'ES'
-  | 'ES_AR'
-  | 'ES_BO'
-  | 'ES_BR'
-  | 'ES_BZ'
-  | 'ES_CL'
-  | 'ES_CO'
-  | 'ES_CR'
-  | 'ES_CU'
-  | 'ES_DO'
-  | 'ES_EA'
-  | 'ES_EC'
-  | 'ES_ES'
-  | 'ES_GQ'
-  | 'ES_GT'
-  | 'ES_HN'
-  | 'ES_IC'
-  | 'ES_MX'
-  | 'ES_NI'
-  | 'ES_PA'
-  | 'ES_PE'
-  | 'ES_PH'
-  | 'ES_PR'
-  | 'ES_PY'
-  | 'ES_SV'
-  | 'ES_US'
-  | 'ES_UY'
-  | 'ES_VE'
-  | 'ET'
-  | 'ET_EE'
-  | 'EU'
-  | 'EU_ES'
-  | 'EWO'
-  | 'EWO_CM'
-  | 'FA'
-  | 'FA_AF'
-  | 'FA_IR'
-  | 'FF'
-  | 'FF_ADLM'
-  | 'FF_ADLM_BF'
-  | 'FF_ADLM_CM'
-  | 'FF_ADLM_GH'
-  | 'FF_ADLM_GM'
-  | 'FF_ADLM_GN'
-  | 'FF_ADLM_GW'
-  | 'FF_ADLM_LR'
-  | 'FF_ADLM_MR'
-  | 'FF_ADLM_NE'
-  | 'FF_ADLM_NG'
-  | 'FF_ADLM_SL'
-  | 'FF_ADLM_SN'
-  | 'FF_LATN'
-  | 'FF_LATN_BF'
-  | 'FF_LATN_CM'
-  | 'FF_LATN_GH'
-  | 'FF_LATN_GM'
-  | 'FF_LATN_GN'
-  | 'FF_LATN_GW'
-  | 'FF_LATN_LR'
-  | 'FF_LATN_MR'
-  | 'FF_LATN_NE'
-  | 'FF_LATN_NG'
-  | 'FF_LATN_SL'
-  | 'FF_LATN_SN'
-  | 'FI'
-  | 'FIL'
-  | 'FIL_PH'
-  | 'FI_FI'
-  | 'FO'
-  | 'FO_DK'
-  | 'FO_FO'
-  | 'FR'
-  | 'FR_BE'
-  | 'FR_BF'
-  | 'FR_BI'
-  | 'FR_BJ'
-  | 'FR_BL'
-  | 'FR_CA'
-  | 'FR_CD'
-  | 'FR_CF'
-  | 'FR_CG'
-  | 'FR_CH'
-  | 'FR_CI'
-  | 'FR_CM'
-  | 'FR_DJ'
-  | 'FR_DZ'
-  | 'FR_FR'
-  | 'FR_GA'
-  | 'FR_GF'
-  | 'FR_GN'
-  | 'FR_GP'
-  | 'FR_GQ'
-  | 'FR_HT'
-  | 'FR_KM'
-  | 'FR_LU'
-  | 'FR_MA'
-  | 'FR_MC'
-  | 'FR_MF'
-  | 'FR_MG'
-  | 'FR_ML'
-  | 'FR_MQ'
-  | 'FR_MR'
-  | 'FR_MU'
-  | 'FR_NC'
-  | 'FR_NE'
-  | 'FR_PF'
-  | 'FR_PM'
-  | 'FR_RE'
-  | 'FR_RW'
-  | 'FR_SC'
-  | 'FR_SN'
-  | 'FR_SY'
-  | 'FR_TD'
-  | 'FR_TG'
-  | 'FR_TN'
-  | 'FR_VU'
-  | 'FR_WF'
-  | 'FR_YT'
-  | 'FUR'
-  | 'FUR_IT'
-  | 'FY'
-  | 'FY_NL'
-  | 'GA'
-  | 'GA_GB'
-  | 'GA_IE'
-  | 'GD'
-  | 'GD_GB'
-  | 'GL'
-  | 'GL_ES'
-  | 'GSW'
-  | 'GSW_CH'
-  | 'GSW_FR'
-  | 'GSW_LI'
-  | 'GU'
-  | 'GUZ'
-  | 'GUZ_KE'
-  | 'GU_IN'
-  | 'GV'
-  | 'GV_IM'
-  | 'HA'
-  | 'HAW'
-  | 'HAW_US'
-  | 'HA_GH'
-  | 'HA_NE'
-  | 'HA_NG'
-  | 'HE'
-  | 'HE_IL'
-  | 'HI'
-  | 'HI_IN'
-  | 'HR'
-  | 'HR_BA'
-  | 'HR_HR'
-  | 'HSB'
-  | 'HSB_DE'
-  | 'HU'
-  | 'HU_HU'
-  | 'HY'
-  | 'HY_AM'
-  | 'IA'
-  | 'ID'
-  | 'ID_ID'
-  | 'IG'
-  | 'IG_NG'
-  | 'II'
-  | 'II_CN'
-  | 'IS'
-  | 'IS_IS'
-  | 'IT'
-  | 'IT_CH'
-  | 'IT_IT'
-  | 'IT_SM'
-  | 'IT_VA'
-  | 'JA'
-  | 'JA_JP'
-  | 'JGO'
-  | 'JGO_CM'
-  | 'JMC'
-  | 'JMC_TZ'
-  | 'JV'
-  | 'JV_ID'
-  | 'KA'
-  | 'KAB'
-  | 'KAB_DZ'
-  | 'KAM'
-  | 'KAM_KE'
-  | 'KA_GE'
-  | 'KDE'
-  | 'KDE_TZ'
-  | 'KEA'
-  | 'KEA_CV'
-  | 'KHQ'
-  | 'KHQ_ML'
-  | 'KI'
-  | 'KI_KE'
-  | 'KK'
-  | 'KKJ'
-  | 'KKJ_CM'
-  | 'KK_KZ'
-  | 'KL'
-  | 'KLN'
-  | 'KLN_KE'
-  | 'KL_GL'
-  | 'KM'
-  | 'KM_KH'
-  | 'KN'
-  | 'KN_IN'
-  | 'KO'
-  | 'KOK'
-  | 'KOK_IN'
-  | 'KO_KP'
-  | 'KO_KR'
-  | 'KS'
-  | 'KSB'
-  | 'KSB_TZ'
-  | 'KSF'
-  | 'KSF_CM'
-  | 'KSH'
-  | 'KSH_DE'
-  | 'KS_ARAB'
-  | 'KS_ARAB_IN'
-  | 'KU'
-  | 'KU_TR'
-  | 'KW'
-  | 'KW_GB'
-  | 'KY'
-  | 'KY_KG'
-  | 'LAG'
-  | 'LAG_TZ'
-  | 'LB'
-  | 'LB_LU'
-  | 'LG'
-  | 'LG_UG'
-  | 'LKT'
-  | 'LKT_US'
-  | 'LN'
-  | 'LN_AO'
-  | 'LN_CD'
-  | 'LN_CF'
-  | 'LN_CG'
-  | 'LO'
-  | 'LO_LA'
-  | 'LRC'
-  | 'LRC_IQ'
-  | 'LRC_IR'
-  | 'LT'
-  | 'LT_LT'
-  | 'LU'
-  | 'LUO'
-  | 'LUO_KE'
-  | 'LUY'
-  | 'LUY_KE'
-  | 'LU_CD'
-  | 'LV'
-  | 'LV_LV'
-  | 'MAI'
-  | 'MAI_IN'
-  | 'MAS'
-  | 'MAS_KE'
-  | 'MAS_TZ'
-  | 'MER'
-  | 'MER_KE'
-  | 'MFE'
-  | 'MFE_MU'
-  | 'MG'
-  | 'MGH'
-  | 'MGH_MZ'
-  | 'MGO'
-  | 'MGO_CM'
-  | 'MG_MG'
-  | 'MI'
-  | 'MI_NZ'
-  | 'MK'
-  | 'MK_MK'
-  | 'ML'
-  | 'ML_IN'
-  | 'MN'
-  | 'MNI'
-  | 'MNI_BENG'
-  | 'MNI_BENG_IN'
-  | 'MN_MN'
-  | 'MR'
-  | 'MR_IN'
-  | 'MS'
-  | 'MS_BN'
-  | 'MS_ID'
-  | 'MS_MY'
-  | 'MS_SG'
-  | 'MT'
-  | 'MT_MT'
-  | 'MUA'
-  | 'MUA_CM'
-  | 'MY'
-  | 'MY_MM'
-  | 'MZN'
-  | 'MZN_IR'
-  | 'NAQ'
-  | 'NAQ_NA'
-  | 'NB'
-  | 'NB_NO'
-  | 'NB_SJ'
-  | 'ND'
-  | 'NDS'
-  | 'NDS_DE'
-  | 'NDS_NL'
-  | 'ND_ZW'
-  | 'NE'
-  | 'NE_IN'
-  | 'NE_NP'
-  | 'NL'
-  | 'NL_AW'
-  | 'NL_BE'
-  | 'NL_BQ'
-  | 'NL_CW'
-  | 'NL_NL'
-  | 'NL_SR'
-  | 'NL_SX'
-  | 'NMG'
-  | 'NMG_CM'
-  | 'NN'
-  | 'NNH'
-  | 'NNH_CM'
-  | 'NN_NO'
-  | 'NUS'
-  | 'NUS_SS'
-  | 'NYN'
-  | 'NYN_UG'
-  | 'OM'
-  | 'OM_ET'
-  | 'OM_KE'
-  | 'OR'
-  | 'OR_IN'
-  | 'OS'
-  | 'OS_GE'
-  | 'OS_RU'
-  | 'PA'
-  | 'PA_ARAB'
-  | 'PA_ARAB_PK'
-  | 'PA_GURU'
-  | 'PA_GURU_IN'
-  | 'PCM'
-  | 'PCM_NG'
-  | 'PL'
-  | 'PL_PL'
-  | 'PRG'
-  | 'PS'
-  | 'PS_AF'
-  | 'PS_PK'
-  | 'PT'
-  | 'PT_AO'
-  | 'PT_BR'
-  | 'PT_CH'
-  | 'PT_CV'
-  | 'PT_GQ'
-  | 'PT_GW'
-  | 'PT_LU'
-  | 'PT_MO'
-  | 'PT_MZ'
-  | 'PT_PT'
-  | 'PT_ST'
-  | 'PT_TL'
-  | 'QU'
-  | 'QU_BO'
-  | 'QU_EC'
-  | 'QU_PE'
-  | 'RM'
-  | 'RM_CH'
-  | 'RN'
-  | 'RN_BI'
-  | 'RO'
-  | 'ROF'
-  | 'ROF_TZ'
-  | 'RO_MD'
-  | 'RO_RO'
-  | 'RU'
-  | 'RU_BY'
-  | 'RU_KG'
-  | 'RU_KZ'
-  | 'RU_MD'
-  | 'RU_RU'
-  | 'RU_UA'
-  | 'RW'
-  | 'RWK'
-  | 'RWK_TZ'
-  | 'RW_RW'
-  | 'SAH'
-  | 'SAH_RU'
-  | 'SAQ'
-  | 'SAQ_KE'
-  | 'SAT'
-  | 'SAT_OLCK'
-  | 'SAT_OLCK_IN'
-  | 'SBP'
-  | 'SBP_TZ'
-  | 'SD'
-  | 'SD_ARAB'
-  | 'SD_ARAB_PK'
-  | 'SD_DEVA'
-  | 'SD_DEVA_IN'
-  | 'SE'
-  | 'SEH'
-  | 'SEH_MZ'
-  | 'SES'
-  | 'SES_ML'
-  | 'SE_FI'
-  | 'SE_NO'
-  | 'SE_SE'
-  | 'SG'
-  | 'SG_CF'
-  | 'SHI'
-  | 'SHI_LATN'
-  | 'SHI_LATN_MA'
-  | 'SHI_TFNG'
-  | 'SHI_TFNG_MA'
-  | 'SI'
-  | 'SI_LK'
-  | 'SK'
-  | 'SK_SK'
-  | 'SL'
-  | 'SL_SI'
-  | 'SMN'
-  | 'SMN_FI'
-  | 'SN'
-  | 'SN_ZW'
-  | 'SO'
-  | 'SO_DJ'
-  | 'SO_ET'
-  | 'SO_KE'
-  | 'SO_SO'
-  | 'SQ'
-  | 'SQ_AL'
-  | 'SQ_MK'
-  | 'SQ_XK'
-  | 'SR'
-  | 'SR_CYRL'
-  | 'SR_CYRL_BA'
-  | 'SR_CYRL_ME'
-  | 'SR_CYRL_RS'
-  | 'SR_CYRL_XK'
-  | 'SR_LATN'
-  | 'SR_LATN_BA'
-  | 'SR_LATN_ME'
-  | 'SR_LATN_RS'
-  | 'SR_LATN_XK'
-  | 'SU'
-  | 'SU_LATN'
-  | 'SU_LATN_ID'
-  | 'SV'
-  | 'SV_AX'
-  | 'SV_FI'
-  | 'SV_SE'
-  | 'SW'
-  | 'SW_CD'
-  | 'SW_KE'
-  | 'SW_TZ'
-  | 'SW_UG'
-  | 'TA'
-  | 'TA_IN'
-  | 'TA_LK'
-  | 'TA_MY'
-  | 'TA_SG'
-  | 'TE'
-  | 'TEO'
-  | 'TEO_KE'
-  | 'TEO_UG'
-  | 'TE_IN'
-  | 'TG'
-  | 'TG_TJ'
-  | 'TH'
-  | 'TH_TH'
-  | 'TI'
-  | 'TI_ER'
-  | 'TI_ET'
-  | 'TK'
-  | 'TK_TM'
-  | 'TO'
-  | 'TO_TO'
-  | 'TR'
-  | 'TR_CY'
-  | 'TR_TR'
-  | 'TT'
-  | 'TT_RU'
-  | 'TWQ'
-  | 'TWQ_NE'
-  | 'TZM'
-  | 'TZM_MA'
-  | 'UG'
-  | 'UG_CN'
-  | 'UK'
-  | 'UK_UA'
-  | 'UR'
-  | 'UR_IN'
-  | 'UR_PK'
-  | 'UZ'
-  | 'UZ_ARAB'
-  | 'UZ_ARAB_AF'
-  | 'UZ_CYRL'
-  | 'UZ_CYRL_UZ'
-  | 'UZ_LATN'
-  | 'UZ_LATN_UZ'
-  | 'VAI'
-  | 'VAI_LATN'
-  | 'VAI_LATN_LR'
-  | 'VAI_VAII'
-  | 'VAI_VAII_LR'
-  | 'VI'
-  | 'VI_VN'
-  | 'VO'
-  | 'VUN'
-  | 'VUN_TZ'
-  | 'WAE'
-  | 'WAE_CH'
-  | 'WO'
-  | 'WO_SN'
-  | 'XH'
-  | 'XH_ZA'
-  | 'XOG'
-  | 'XOG_UG'
-  | 'YAV'
-  | 'YAV_CM'
-  | 'YI'
-  | 'YO'
-  | 'YO_BJ'
-  | 'YO_NG'
-  | 'YUE'
-  | 'YUE_HANS'
-  | 'YUE_HANS_CN'
-  | 'YUE_HANT'
-  | 'YUE_HANT_HK'
-  | 'ZGH'
-  | 'ZGH_MA'
-  | 'ZH'
-  | 'ZH_HANS'
-  | 'ZH_HANS_CN'
-  | 'ZH_HANS_HK'
-  | 'ZH_HANS_MO'
-  | 'ZH_HANS_SG'
-  | 'ZH_HANT'
-  | 'ZH_HANT_HK'
-  | 'ZH_HANT_MO'
-  | 'ZH_HANT_TW'
-  | 'ZU'
-  | 'ZU_ZA';
+export enum LanguageCodeEnum {
+  Af = 'AF',
+  AfNa = 'AF_NA',
+  AfZa = 'AF_ZA',
+  Agq = 'AGQ',
+  AgqCm = 'AGQ_CM',
+  Ak = 'AK',
+  AkGh = 'AK_GH',
+  Am = 'AM',
+  AmEt = 'AM_ET',
+  Ar = 'AR',
+  ArAe = 'AR_AE',
+  ArBh = 'AR_BH',
+  ArDj = 'AR_DJ',
+  ArDz = 'AR_DZ',
+  ArEg = 'AR_EG',
+  ArEh = 'AR_EH',
+  ArEr = 'AR_ER',
+  ArIl = 'AR_IL',
+  ArIq = 'AR_IQ',
+  ArJo = 'AR_JO',
+  ArKm = 'AR_KM',
+  ArKw = 'AR_KW',
+  ArLb = 'AR_LB',
+  ArLy = 'AR_LY',
+  ArMa = 'AR_MA',
+  ArMr = 'AR_MR',
+  ArOm = 'AR_OM',
+  ArPs = 'AR_PS',
+  ArQa = 'AR_QA',
+  ArSa = 'AR_SA',
+  ArSd = 'AR_SD',
+  ArSo = 'AR_SO',
+  ArSs = 'AR_SS',
+  ArSy = 'AR_SY',
+  ArTd = 'AR_TD',
+  ArTn = 'AR_TN',
+  ArYe = 'AR_YE',
+  As = 'AS',
+  Asa = 'ASA',
+  AsaTz = 'ASA_TZ',
+  Ast = 'AST',
+  AstEs = 'AST_ES',
+  AsIn = 'AS_IN',
+  Az = 'AZ',
+  AzCyrl = 'AZ_CYRL',
+  AzCyrlAz = 'AZ_CYRL_AZ',
+  AzLatn = 'AZ_LATN',
+  AzLatnAz = 'AZ_LATN_AZ',
+  Bas = 'BAS',
+  BasCm = 'BAS_CM',
+  Be = 'BE',
+  Bem = 'BEM',
+  BemZm = 'BEM_ZM',
+  Bez = 'BEZ',
+  BezTz = 'BEZ_TZ',
+  BeBy = 'BE_BY',
+  Bg = 'BG',
+  BgBg = 'BG_BG',
+  Bm = 'BM',
+  BmMl = 'BM_ML',
+  Bn = 'BN',
+  BnBd = 'BN_BD',
+  BnIn = 'BN_IN',
+  Bo = 'BO',
+  BoCn = 'BO_CN',
+  BoIn = 'BO_IN',
+  Br = 'BR',
+  Brx = 'BRX',
+  BrxIn = 'BRX_IN',
+  BrFr = 'BR_FR',
+  Bs = 'BS',
+  BsCyrl = 'BS_CYRL',
+  BsCyrlBa = 'BS_CYRL_BA',
+  BsLatn = 'BS_LATN',
+  BsLatnBa = 'BS_LATN_BA',
+  Ca = 'CA',
+  CaAd = 'CA_AD',
+  CaEs = 'CA_ES',
+  CaEsValencia = 'CA_ES_VALENCIA',
+  CaFr = 'CA_FR',
+  CaIt = 'CA_IT',
+  Ccp = 'CCP',
+  CcpBd = 'CCP_BD',
+  CcpIn = 'CCP_IN',
+  Ce = 'CE',
+  Ceb = 'CEB',
+  CebPh = 'CEB_PH',
+  CeRu = 'CE_RU',
+  Cgg = 'CGG',
+  CggUg = 'CGG_UG',
+  Chr = 'CHR',
+  ChrUs = 'CHR_US',
+  Ckb = 'CKB',
+  CkbIq = 'CKB_IQ',
+  CkbIr = 'CKB_IR',
+  Cs = 'CS',
+  CsCz = 'CS_CZ',
+  Cu = 'CU',
+  CuRu = 'CU_RU',
+  Cy = 'CY',
+  CyGb = 'CY_GB',
+  Da = 'DA',
+  Dav = 'DAV',
+  DavKe = 'DAV_KE',
+  DaDk = 'DA_DK',
+  DaGl = 'DA_GL',
+  De = 'DE',
+  DeAt = 'DE_AT',
+  DeBe = 'DE_BE',
+  DeCh = 'DE_CH',
+  DeDe = 'DE_DE',
+  DeIt = 'DE_IT',
+  DeLi = 'DE_LI',
+  DeLu = 'DE_LU',
+  Dje = 'DJE',
+  DjeNe = 'DJE_NE',
+  Dsb = 'DSB',
+  DsbDe = 'DSB_DE',
+  Dua = 'DUA',
+  DuaCm = 'DUA_CM',
+  Dyo = 'DYO',
+  DyoSn = 'DYO_SN',
+  Dz = 'DZ',
+  DzBt = 'DZ_BT',
+  Ebu = 'EBU',
+  EbuKe = 'EBU_KE',
+  Ee = 'EE',
+  EeGh = 'EE_GH',
+  EeTg = 'EE_TG',
+  El = 'EL',
+  ElCy = 'EL_CY',
+  ElGr = 'EL_GR',
+  En = 'EN',
+  EnAe = 'EN_AE',
+  EnAg = 'EN_AG',
+  EnAi = 'EN_AI',
+  EnAs = 'EN_AS',
+  EnAt = 'EN_AT',
+  EnAu = 'EN_AU',
+  EnBb = 'EN_BB',
+  EnBe = 'EN_BE',
+  EnBi = 'EN_BI',
+  EnBm = 'EN_BM',
+  EnBs = 'EN_BS',
+  EnBw = 'EN_BW',
+  EnBz = 'EN_BZ',
+  EnCa = 'EN_CA',
+  EnCc = 'EN_CC',
+  EnCh = 'EN_CH',
+  EnCk = 'EN_CK',
+  EnCm = 'EN_CM',
+  EnCx = 'EN_CX',
+  EnCy = 'EN_CY',
+  EnDe = 'EN_DE',
+  EnDg = 'EN_DG',
+  EnDk = 'EN_DK',
+  EnDm = 'EN_DM',
+  EnEr = 'EN_ER',
+  EnFi = 'EN_FI',
+  EnFj = 'EN_FJ',
+  EnFk = 'EN_FK',
+  EnFm = 'EN_FM',
+  EnGb = 'EN_GB',
+  EnGd = 'EN_GD',
+  EnGg = 'EN_GG',
+  EnGh = 'EN_GH',
+  EnGi = 'EN_GI',
+  EnGm = 'EN_GM',
+  EnGu = 'EN_GU',
+  EnGy = 'EN_GY',
+  EnHk = 'EN_HK',
+  EnIe = 'EN_IE',
+  EnIl = 'EN_IL',
+  EnIm = 'EN_IM',
+  EnIn = 'EN_IN',
+  EnIo = 'EN_IO',
+  EnJe = 'EN_JE',
+  EnJm = 'EN_JM',
+  EnKe = 'EN_KE',
+  EnKi = 'EN_KI',
+  EnKn = 'EN_KN',
+  EnKy = 'EN_KY',
+  EnLc = 'EN_LC',
+  EnLr = 'EN_LR',
+  EnLs = 'EN_LS',
+  EnMg = 'EN_MG',
+  EnMh = 'EN_MH',
+  EnMo = 'EN_MO',
+  EnMp = 'EN_MP',
+  EnMs = 'EN_MS',
+  EnMt = 'EN_MT',
+  EnMu = 'EN_MU',
+  EnMw = 'EN_MW',
+  EnMy = 'EN_MY',
+  EnNa = 'EN_NA',
+  EnNf = 'EN_NF',
+  EnNg = 'EN_NG',
+  EnNl = 'EN_NL',
+  EnNr = 'EN_NR',
+  EnNu = 'EN_NU',
+  EnNz = 'EN_NZ',
+  EnPg = 'EN_PG',
+  EnPh = 'EN_PH',
+  EnPk = 'EN_PK',
+  EnPn = 'EN_PN',
+  EnPr = 'EN_PR',
+  EnPw = 'EN_PW',
+  EnRw = 'EN_RW',
+  EnSb = 'EN_SB',
+  EnSc = 'EN_SC',
+  EnSd = 'EN_SD',
+  EnSe = 'EN_SE',
+  EnSg = 'EN_SG',
+  EnSh = 'EN_SH',
+  EnSi = 'EN_SI',
+  EnSl = 'EN_SL',
+  EnSs = 'EN_SS',
+  EnSx = 'EN_SX',
+  EnSz = 'EN_SZ',
+  EnTc = 'EN_TC',
+  EnTk = 'EN_TK',
+  EnTo = 'EN_TO',
+  EnTt = 'EN_TT',
+  EnTv = 'EN_TV',
+  EnTz = 'EN_TZ',
+  EnUg = 'EN_UG',
+  EnUm = 'EN_UM',
+  EnUs = 'EN_US',
+  EnVc = 'EN_VC',
+  EnVg = 'EN_VG',
+  EnVi = 'EN_VI',
+  EnVu = 'EN_VU',
+  EnWs = 'EN_WS',
+  EnZa = 'EN_ZA',
+  EnZm = 'EN_ZM',
+  EnZw = 'EN_ZW',
+  Eo = 'EO',
+  Es = 'ES',
+  EsAr = 'ES_AR',
+  EsBo = 'ES_BO',
+  EsBr = 'ES_BR',
+  EsBz = 'ES_BZ',
+  EsCl = 'ES_CL',
+  EsCo = 'ES_CO',
+  EsCr = 'ES_CR',
+  EsCu = 'ES_CU',
+  EsDo = 'ES_DO',
+  EsEa = 'ES_EA',
+  EsEc = 'ES_EC',
+  EsEs = 'ES_ES',
+  EsGq = 'ES_GQ',
+  EsGt = 'ES_GT',
+  EsHn = 'ES_HN',
+  EsIc = 'ES_IC',
+  EsMx = 'ES_MX',
+  EsNi = 'ES_NI',
+  EsPa = 'ES_PA',
+  EsPe = 'ES_PE',
+  EsPh = 'ES_PH',
+  EsPr = 'ES_PR',
+  EsPy = 'ES_PY',
+  EsSv = 'ES_SV',
+  EsUs = 'ES_US',
+  EsUy = 'ES_UY',
+  EsVe = 'ES_VE',
+  Et = 'ET',
+  EtEe = 'ET_EE',
+  Eu = 'EU',
+  EuEs = 'EU_ES',
+  Ewo = 'EWO',
+  EwoCm = 'EWO_CM',
+  Fa = 'FA',
+  FaAf = 'FA_AF',
+  FaIr = 'FA_IR',
+  Ff = 'FF',
+  FfAdlm = 'FF_ADLM',
+  FfAdlmBf = 'FF_ADLM_BF',
+  FfAdlmCm = 'FF_ADLM_CM',
+  FfAdlmGh = 'FF_ADLM_GH',
+  FfAdlmGm = 'FF_ADLM_GM',
+  FfAdlmGn = 'FF_ADLM_GN',
+  FfAdlmGw = 'FF_ADLM_GW',
+  FfAdlmLr = 'FF_ADLM_LR',
+  FfAdlmMr = 'FF_ADLM_MR',
+  FfAdlmNe = 'FF_ADLM_NE',
+  FfAdlmNg = 'FF_ADLM_NG',
+  FfAdlmSl = 'FF_ADLM_SL',
+  FfAdlmSn = 'FF_ADLM_SN',
+  FfLatn = 'FF_LATN',
+  FfLatnBf = 'FF_LATN_BF',
+  FfLatnCm = 'FF_LATN_CM',
+  FfLatnGh = 'FF_LATN_GH',
+  FfLatnGm = 'FF_LATN_GM',
+  FfLatnGn = 'FF_LATN_GN',
+  FfLatnGw = 'FF_LATN_GW',
+  FfLatnLr = 'FF_LATN_LR',
+  FfLatnMr = 'FF_LATN_MR',
+  FfLatnNe = 'FF_LATN_NE',
+  FfLatnNg = 'FF_LATN_NG',
+  FfLatnSl = 'FF_LATN_SL',
+  FfLatnSn = 'FF_LATN_SN',
+  Fi = 'FI',
+  Fil = 'FIL',
+  FilPh = 'FIL_PH',
+  FiFi = 'FI_FI',
+  Fo = 'FO',
+  FoDk = 'FO_DK',
+  FoFo = 'FO_FO',
+  Fr = 'FR',
+  FrBe = 'FR_BE',
+  FrBf = 'FR_BF',
+  FrBi = 'FR_BI',
+  FrBj = 'FR_BJ',
+  FrBl = 'FR_BL',
+  FrCa = 'FR_CA',
+  FrCd = 'FR_CD',
+  FrCf = 'FR_CF',
+  FrCg = 'FR_CG',
+  FrCh = 'FR_CH',
+  FrCi = 'FR_CI',
+  FrCm = 'FR_CM',
+  FrDj = 'FR_DJ',
+  FrDz = 'FR_DZ',
+  FrFr = 'FR_FR',
+  FrGa = 'FR_GA',
+  FrGf = 'FR_GF',
+  FrGn = 'FR_GN',
+  FrGp = 'FR_GP',
+  FrGq = 'FR_GQ',
+  FrHt = 'FR_HT',
+  FrKm = 'FR_KM',
+  FrLu = 'FR_LU',
+  FrMa = 'FR_MA',
+  FrMc = 'FR_MC',
+  FrMf = 'FR_MF',
+  FrMg = 'FR_MG',
+  FrMl = 'FR_ML',
+  FrMq = 'FR_MQ',
+  FrMr = 'FR_MR',
+  FrMu = 'FR_MU',
+  FrNc = 'FR_NC',
+  FrNe = 'FR_NE',
+  FrPf = 'FR_PF',
+  FrPm = 'FR_PM',
+  FrRe = 'FR_RE',
+  FrRw = 'FR_RW',
+  FrSc = 'FR_SC',
+  FrSn = 'FR_SN',
+  FrSy = 'FR_SY',
+  FrTd = 'FR_TD',
+  FrTg = 'FR_TG',
+  FrTn = 'FR_TN',
+  FrVu = 'FR_VU',
+  FrWf = 'FR_WF',
+  FrYt = 'FR_YT',
+  Fur = 'FUR',
+  FurIt = 'FUR_IT',
+  Fy = 'FY',
+  FyNl = 'FY_NL',
+  Ga = 'GA',
+  GaGb = 'GA_GB',
+  GaIe = 'GA_IE',
+  Gd = 'GD',
+  GdGb = 'GD_GB',
+  Gl = 'GL',
+  GlEs = 'GL_ES',
+  Gsw = 'GSW',
+  GswCh = 'GSW_CH',
+  GswFr = 'GSW_FR',
+  GswLi = 'GSW_LI',
+  Gu = 'GU',
+  Guz = 'GUZ',
+  GuzKe = 'GUZ_KE',
+  GuIn = 'GU_IN',
+  Gv = 'GV',
+  GvIm = 'GV_IM',
+  Ha = 'HA',
+  Haw = 'HAW',
+  HawUs = 'HAW_US',
+  HaGh = 'HA_GH',
+  HaNe = 'HA_NE',
+  HaNg = 'HA_NG',
+  He = 'HE',
+  HeIl = 'HE_IL',
+  Hi = 'HI',
+  HiIn = 'HI_IN',
+  Hr = 'HR',
+  HrBa = 'HR_BA',
+  HrHr = 'HR_HR',
+  Hsb = 'HSB',
+  HsbDe = 'HSB_DE',
+  Hu = 'HU',
+  HuHu = 'HU_HU',
+  Hy = 'HY',
+  HyAm = 'HY_AM',
+  Ia = 'IA',
+  Id = 'ID',
+  IdId = 'ID_ID',
+  Ig = 'IG',
+  IgNg = 'IG_NG',
+  Ii = 'II',
+  IiCn = 'II_CN',
+  Is = 'IS',
+  IsIs = 'IS_IS',
+  It = 'IT',
+  ItCh = 'IT_CH',
+  ItIt = 'IT_IT',
+  ItSm = 'IT_SM',
+  ItVa = 'IT_VA',
+  Ja = 'JA',
+  JaJp = 'JA_JP',
+  Jgo = 'JGO',
+  JgoCm = 'JGO_CM',
+  Jmc = 'JMC',
+  JmcTz = 'JMC_TZ',
+  Jv = 'JV',
+  JvId = 'JV_ID',
+  Ka = 'KA',
+  Kab = 'KAB',
+  KabDz = 'KAB_DZ',
+  Kam = 'KAM',
+  KamKe = 'KAM_KE',
+  KaGe = 'KA_GE',
+  Kde = 'KDE',
+  KdeTz = 'KDE_TZ',
+  Kea = 'KEA',
+  KeaCv = 'KEA_CV',
+  Khq = 'KHQ',
+  KhqMl = 'KHQ_ML',
+  Ki = 'KI',
+  KiKe = 'KI_KE',
+  Kk = 'KK',
+  Kkj = 'KKJ',
+  KkjCm = 'KKJ_CM',
+  KkKz = 'KK_KZ',
+  Kl = 'KL',
+  Kln = 'KLN',
+  KlnKe = 'KLN_KE',
+  KlGl = 'KL_GL',
+  Km = 'KM',
+  KmKh = 'KM_KH',
+  Kn = 'KN',
+  KnIn = 'KN_IN',
+  Ko = 'KO',
+  Kok = 'KOK',
+  KokIn = 'KOK_IN',
+  KoKp = 'KO_KP',
+  KoKr = 'KO_KR',
+  Ks = 'KS',
+  Ksb = 'KSB',
+  KsbTz = 'KSB_TZ',
+  Ksf = 'KSF',
+  KsfCm = 'KSF_CM',
+  Ksh = 'KSH',
+  KshDe = 'KSH_DE',
+  KsArab = 'KS_ARAB',
+  KsArabIn = 'KS_ARAB_IN',
+  Ku = 'KU',
+  KuTr = 'KU_TR',
+  Kw = 'KW',
+  KwGb = 'KW_GB',
+  Ky = 'KY',
+  KyKg = 'KY_KG',
+  Lag = 'LAG',
+  LagTz = 'LAG_TZ',
+  Lb = 'LB',
+  LbLu = 'LB_LU',
+  Lg = 'LG',
+  LgUg = 'LG_UG',
+  Lkt = 'LKT',
+  LktUs = 'LKT_US',
+  Ln = 'LN',
+  LnAo = 'LN_AO',
+  LnCd = 'LN_CD',
+  LnCf = 'LN_CF',
+  LnCg = 'LN_CG',
+  Lo = 'LO',
+  LoLa = 'LO_LA',
+  Lrc = 'LRC',
+  LrcIq = 'LRC_IQ',
+  LrcIr = 'LRC_IR',
+  Lt = 'LT',
+  LtLt = 'LT_LT',
+  Lu = 'LU',
+  Luo = 'LUO',
+  LuoKe = 'LUO_KE',
+  Luy = 'LUY',
+  LuyKe = 'LUY_KE',
+  LuCd = 'LU_CD',
+  Lv = 'LV',
+  LvLv = 'LV_LV',
+  Mai = 'MAI',
+  MaiIn = 'MAI_IN',
+  Mas = 'MAS',
+  MasKe = 'MAS_KE',
+  MasTz = 'MAS_TZ',
+  Mer = 'MER',
+  MerKe = 'MER_KE',
+  Mfe = 'MFE',
+  MfeMu = 'MFE_MU',
+  Mg = 'MG',
+  Mgh = 'MGH',
+  MghMz = 'MGH_MZ',
+  Mgo = 'MGO',
+  MgoCm = 'MGO_CM',
+  MgMg = 'MG_MG',
+  Mi = 'MI',
+  MiNz = 'MI_NZ',
+  Mk = 'MK',
+  MkMk = 'MK_MK',
+  Ml = 'ML',
+  MlIn = 'ML_IN',
+  Mn = 'MN',
+  Mni = 'MNI',
+  MniBeng = 'MNI_BENG',
+  MniBengIn = 'MNI_BENG_IN',
+  MnMn = 'MN_MN',
+  Mr = 'MR',
+  MrIn = 'MR_IN',
+  Ms = 'MS',
+  MsBn = 'MS_BN',
+  MsId = 'MS_ID',
+  MsMy = 'MS_MY',
+  MsSg = 'MS_SG',
+  Mt = 'MT',
+  MtMt = 'MT_MT',
+  Mua = 'MUA',
+  MuaCm = 'MUA_CM',
+  My = 'MY',
+  MyMm = 'MY_MM',
+  Mzn = 'MZN',
+  MznIr = 'MZN_IR',
+  Naq = 'NAQ',
+  NaqNa = 'NAQ_NA',
+  Nb = 'NB',
+  NbNo = 'NB_NO',
+  NbSj = 'NB_SJ',
+  Nd = 'ND',
+  Nds = 'NDS',
+  NdsDe = 'NDS_DE',
+  NdsNl = 'NDS_NL',
+  NdZw = 'ND_ZW',
+  Ne = 'NE',
+  NeIn = 'NE_IN',
+  NeNp = 'NE_NP',
+  Nl = 'NL',
+  NlAw = 'NL_AW',
+  NlBe = 'NL_BE',
+  NlBq = 'NL_BQ',
+  NlCw = 'NL_CW',
+  NlNl = 'NL_NL',
+  NlSr = 'NL_SR',
+  NlSx = 'NL_SX',
+  Nmg = 'NMG',
+  NmgCm = 'NMG_CM',
+  Nn = 'NN',
+  Nnh = 'NNH',
+  NnhCm = 'NNH_CM',
+  NnNo = 'NN_NO',
+  Nus = 'NUS',
+  NusSs = 'NUS_SS',
+  Nyn = 'NYN',
+  NynUg = 'NYN_UG',
+  Om = 'OM',
+  OmEt = 'OM_ET',
+  OmKe = 'OM_KE',
+  Or = 'OR',
+  OrIn = 'OR_IN',
+  Os = 'OS',
+  OsGe = 'OS_GE',
+  OsRu = 'OS_RU',
+  Pa = 'PA',
+  PaArab = 'PA_ARAB',
+  PaArabPk = 'PA_ARAB_PK',
+  PaGuru = 'PA_GURU',
+  PaGuruIn = 'PA_GURU_IN',
+  Pcm = 'PCM',
+  PcmNg = 'PCM_NG',
+  Pl = 'PL',
+  PlPl = 'PL_PL',
+  Prg = 'PRG',
+  Ps = 'PS',
+  PsAf = 'PS_AF',
+  PsPk = 'PS_PK',
+  Pt = 'PT',
+  PtAo = 'PT_AO',
+  PtBr = 'PT_BR',
+  PtCh = 'PT_CH',
+  PtCv = 'PT_CV',
+  PtGq = 'PT_GQ',
+  PtGw = 'PT_GW',
+  PtLu = 'PT_LU',
+  PtMo = 'PT_MO',
+  PtMz = 'PT_MZ',
+  PtPt = 'PT_PT',
+  PtSt = 'PT_ST',
+  PtTl = 'PT_TL',
+  Qu = 'QU',
+  QuBo = 'QU_BO',
+  QuEc = 'QU_EC',
+  QuPe = 'QU_PE',
+  Rm = 'RM',
+  RmCh = 'RM_CH',
+  Rn = 'RN',
+  RnBi = 'RN_BI',
+  Ro = 'RO',
+  Rof = 'ROF',
+  RofTz = 'ROF_TZ',
+  RoMd = 'RO_MD',
+  RoRo = 'RO_RO',
+  Ru = 'RU',
+  RuBy = 'RU_BY',
+  RuKg = 'RU_KG',
+  RuKz = 'RU_KZ',
+  RuMd = 'RU_MD',
+  RuRu = 'RU_RU',
+  RuUa = 'RU_UA',
+  Rw = 'RW',
+  Rwk = 'RWK',
+  RwkTz = 'RWK_TZ',
+  RwRw = 'RW_RW',
+  Sah = 'SAH',
+  SahRu = 'SAH_RU',
+  Saq = 'SAQ',
+  SaqKe = 'SAQ_KE',
+  Sat = 'SAT',
+  SatOlck = 'SAT_OLCK',
+  SatOlckIn = 'SAT_OLCK_IN',
+  Sbp = 'SBP',
+  SbpTz = 'SBP_TZ',
+  Sd = 'SD',
+  SdArab = 'SD_ARAB',
+  SdArabPk = 'SD_ARAB_PK',
+  SdDeva = 'SD_DEVA',
+  SdDevaIn = 'SD_DEVA_IN',
+  Se = 'SE',
+  Seh = 'SEH',
+  SehMz = 'SEH_MZ',
+  Ses = 'SES',
+  SesMl = 'SES_ML',
+  SeFi = 'SE_FI',
+  SeNo = 'SE_NO',
+  SeSe = 'SE_SE',
+  Sg = 'SG',
+  SgCf = 'SG_CF',
+  Shi = 'SHI',
+  ShiLatn = 'SHI_LATN',
+  ShiLatnMa = 'SHI_LATN_MA',
+  ShiTfng = 'SHI_TFNG',
+  ShiTfngMa = 'SHI_TFNG_MA',
+  Si = 'SI',
+  SiLk = 'SI_LK',
+  Sk = 'SK',
+  SkSk = 'SK_SK',
+  Sl = 'SL',
+  SlSi = 'SL_SI',
+  Smn = 'SMN',
+  SmnFi = 'SMN_FI',
+  Sn = 'SN',
+  SnZw = 'SN_ZW',
+  So = 'SO',
+  SoDj = 'SO_DJ',
+  SoEt = 'SO_ET',
+  SoKe = 'SO_KE',
+  SoSo = 'SO_SO',
+  Sq = 'SQ',
+  SqAl = 'SQ_AL',
+  SqMk = 'SQ_MK',
+  SqXk = 'SQ_XK',
+  Sr = 'SR',
+  SrCyrl = 'SR_CYRL',
+  SrCyrlBa = 'SR_CYRL_BA',
+  SrCyrlMe = 'SR_CYRL_ME',
+  SrCyrlRs = 'SR_CYRL_RS',
+  SrCyrlXk = 'SR_CYRL_XK',
+  SrLatn = 'SR_LATN',
+  SrLatnBa = 'SR_LATN_BA',
+  SrLatnMe = 'SR_LATN_ME',
+  SrLatnRs = 'SR_LATN_RS',
+  SrLatnXk = 'SR_LATN_XK',
+  Su = 'SU',
+  SuLatn = 'SU_LATN',
+  SuLatnId = 'SU_LATN_ID',
+  Sv = 'SV',
+  SvAx = 'SV_AX',
+  SvFi = 'SV_FI',
+  SvSe = 'SV_SE',
+  Sw = 'SW',
+  SwCd = 'SW_CD',
+  SwKe = 'SW_KE',
+  SwTz = 'SW_TZ',
+  SwUg = 'SW_UG',
+  Ta = 'TA',
+  TaIn = 'TA_IN',
+  TaLk = 'TA_LK',
+  TaMy = 'TA_MY',
+  TaSg = 'TA_SG',
+  Te = 'TE',
+  Teo = 'TEO',
+  TeoKe = 'TEO_KE',
+  TeoUg = 'TEO_UG',
+  TeIn = 'TE_IN',
+  Tg = 'TG',
+  TgTj = 'TG_TJ',
+  Th = 'TH',
+  ThTh = 'TH_TH',
+  Ti = 'TI',
+  TiEr = 'TI_ER',
+  TiEt = 'TI_ET',
+  Tk = 'TK',
+  TkTm = 'TK_TM',
+  To = 'TO',
+  ToTo = 'TO_TO',
+  Tr = 'TR',
+  TrCy = 'TR_CY',
+  TrTr = 'TR_TR',
+  Tt = 'TT',
+  TtRu = 'TT_RU',
+  Twq = 'TWQ',
+  TwqNe = 'TWQ_NE',
+  Tzm = 'TZM',
+  TzmMa = 'TZM_MA',
+  Ug = 'UG',
+  UgCn = 'UG_CN',
+  Uk = 'UK',
+  UkUa = 'UK_UA',
+  Ur = 'UR',
+  UrIn = 'UR_IN',
+  UrPk = 'UR_PK',
+  Uz = 'UZ',
+  UzArab = 'UZ_ARAB',
+  UzArabAf = 'UZ_ARAB_AF',
+  UzCyrl = 'UZ_CYRL',
+  UzCyrlUz = 'UZ_CYRL_UZ',
+  UzLatn = 'UZ_LATN',
+  UzLatnUz = 'UZ_LATN_UZ',
+  Vai = 'VAI',
+  VaiLatn = 'VAI_LATN',
+  VaiLatnLr = 'VAI_LATN_LR',
+  VaiVaii = 'VAI_VAII',
+  VaiVaiiLr = 'VAI_VAII_LR',
+  Vi = 'VI',
+  ViVn = 'VI_VN',
+  Vo = 'VO',
+  Vun = 'VUN',
+  VunTz = 'VUN_TZ',
+  Wae = 'WAE',
+  WaeCh = 'WAE_CH',
+  Wo = 'WO',
+  WoSn = 'WO_SN',
+  Xh = 'XH',
+  XhZa = 'XH_ZA',
+  Xog = 'XOG',
+  XogUg = 'XOG_UG',
+  Yav = 'YAV',
+  YavCm = 'YAV_CM',
+  Yi = 'YI',
+  Yo = 'YO',
+  YoBj = 'YO_BJ',
+  YoNg = 'YO_NG',
+  Yue = 'YUE',
+  YueHans = 'YUE_HANS',
+  YueHansCn = 'YUE_HANS_CN',
+  YueHant = 'YUE_HANT',
+  YueHantHk = 'YUE_HANT_HK',
+  Zgh = 'ZGH',
+  ZghMa = 'ZGH_MA',
+  Zh = 'ZH',
+  ZhHans = 'ZH_HANS',
+  ZhHansCn = 'ZH_HANS_CN',
+  ZhHansHk = 'ZH_HANS_HK',
+  ZhHansMo = 'ZH_HANS_MO',
+  ZhHansSg = 'ZH_HANS_SG',
+  ZhHant = 'ZH_HANT',
+  ZhHantHk = 'ZH_HANT_HK',
+  ZhHantMo = 'ZH_HANT_MO',
+  ZhHantTw = 'ZH_HANT_TW',
+  Zu = 'ZU',
+  ZuZa = 'ZU_ZA'
+}
 
 export type LanguageDisplay = {
   __typename?: 'LanguageDisplay';
@@ -8747,42 +8803,44 @@ export type Margin = {
  *
  *
  */
-export type MarkAsPaidStrategyEnum =
-  | 'PAYMENT_FLOW'
-  | 'TRANSACTION_FLOW';
+export enum MarkAsPaidStrategyEnum {
+  PaymentFlow = 'PAYMENT_FLOW',
+  TransactionFlow = 'TRANSACTION_FLOW'
+}
 
 /** An enumeration. */
-export type MeasurementUnitsEnum =
-  | 'ACRE_FT'
-  | 'ACRE_IN'
-  | 'CM'
-  | 'CUBIC_CENTIMETER'
-  | 'CUBIC_DECIMETER'
-  | 'CUBIC_FOOT'
-  | 'CUBIC_INCH'
-  | 'CUBIC_METER'
-  | 'CUBIC_MILLIMETER'
-  | 'CUBIC_YARD'
-  | 'FL_OZ'
-  | 'FT'
-  | 'G'
-  | 'INCH'
-  | 'KG'
-  | 'KM'
-  | 'LB'
-  | 'LITER'
-  | 'M'
-  | 'OZ'
-  | 'PINT'
-  | 'QT'
-  | 'SQ_CM'
-  | 'SQ_FT'
-  | 'SQ_INCH'
-  | 'SQ_KM'
-  | 'SQ_M'
-  | 'SQ_YD'
-  | 'TONNE'
-  | 'YD';
+export enum MeasurementUnitsEnum {
+  AcreFt = 'ACRE_FT',
+  AcreIn = 'ACRE_IN',
+  Cm = 'CM',
+  CubicCentimeter = 'CUBIC_CENTIMETER',
+  CubicDecimeter = 'CUBIC_DECIMETER',
+  CubicFoot = 'CUBIC_FOOT',
+  CubicInch = 'CUBIC_INCH',
+  CubicMeter = 'CUBIC_METER',
+  CubicMillimeter = 'CUBIC_MILLIMETER',
+  CubicYard = 'CUBIC_YARD',
+  FlOz = 'FL_OZ',
+  Ft = 'FT',
+  G = 'G',
+  Inch = 'INCH',
+  Kg = 'KG',
+  Km = 'KM',
+  Lb = 'LB',
+  Liter = 'LITER',
+  M = 'M',
+  Oz = 'OZ',
+  Pint = 'PINT',
+  Qt = 'QT',
+  SqCm = 'SQ_CM',
+  SqFt = 'SQ_FT',
+  SqInch = 'SQ_INCH',
+  SqKm = 'SQ_KM',
+  SqM = 'SQ_M',
+  SqYd = 'SQ_YD',
+  Tonne = 'TONNE',
+  Yd = 'YD'
+}
 
 export type MeasurementUnitsEnumFilterInput = {
   /** The value equal to. */
@@ -8791,9 +8849,10 @@ export type MeasurementUnitsEnumFilterInput = {
   oneOf?: InputMaybe<Array<MeasurementUnitsEnum>>;
 };
 
-export type MediaChoicesSortField =
+export enum MediaChoicesSortField {
   /** Sort media by ID. */
-  | 'ID';
+  Id = 'ID'
+}
 
 export type MediaInput = {
   /** Alt text for a product media. */
@@ -9019,16 +9078,17 @@ export type MenuError = {
 };
 
 /** An enumeration. */
-export type MenuErrorCode =
-  | 'CANNOT_ASSIGN_NODE'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_MENU_ITEM'
-  | 'NOT_FOUND'
-  | 'NO_MENU_ITEM_PROVIDED'
-  | 'REQUIRED'
-  | 'TOO_MANY_MENU_ITEMS'
-  | 'UNIQUE';
+export enum MenuErrorCode {
+  CannotAssignNode = 'CANNOT_ASSIGN_NODE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidMenuItem = 'INVALID_MENU_ITEM',
+  NotFound = 'NOT_FOUND',
+  NoMenuItemProvided = 'NO_MENU_ITEM_PROVIDED',
+  Required = 'REQUIRED',
+  TooManyMenuItems = 'TOO_MANY_MENU_ITEMS',
+  Unique = 'UNIQUE'
+}
 
 export type MenuFilterInput = {
   metadata?: InputMaybe<Array<MetadataFilter>>;
@@ -9395,15 +9455,17 @@ export type MenuItemUpdatedMenuItemArgs = {
   channel?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type MenuItemsSortField =
+export enum MenuItemsSortField {
   /** Sort menu items by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
-export type MenuSortField =
+export enum MenuSortField {
   /** Sort menus by items count. */
-  | 'ITEMS_COUNT'
+  ItemsCount = 'ITEMS_COUNT',
   /** Sort menus by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
 export type MenuSortingInput = {
   /** Specifies the direction in which to sort menus. */
@@ -9465,12 +9527,13 @@ export type MetadataError = {
 };
 
 /** An enumeration. */
-export type MetadataErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'NOT_UPDATED'
-  | 'REQUIRED';
+export enum MetadataErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  NotUpdated = 'NOT_UPDATED',
+  Required = 'REQUIRED'
+}
 
 export type MetadataFilter = {
   /** Key of a metadata item. */
@@ -13069,11 +13132,12 @@ export type NameTranslationInput = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type NavigationType =
+export enum NavigationType {
   /** Main storefront navigation. */
-  | 'MAIN'
+  Main = 'MAIN',
   /** Secondary storefront navigation. */
-  | 'SECONDARY';
+  Secondary = 'SECONDARY'
+}
 
 /** An object with an ID */
 export type Node = {
@@ -13475,15 +13539,16 @@ export type OrderPrivateMetafieldsArgs = {
   keys?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export type OrderAction =
+export enum OrderAction {
   /** Represents the capture action. */
-  | 'CAPTURE'
+  Capture = 'CAPTURE',
   /** Represents a mark-as-paid action. */
-  | 'MARK_AS_PAID'
+  MarkAsPaid = 'MARK_AS_PAID',
   /** Represents a refund action. */
-  | 'REFUND'
+  Refund = 'REFUND',
   /** Represents a void action. */
-  | 'VOID';
+  Void = 'VOID'
+}
 
 /**
  * Adds note to the order.
@@ -13523,10 +13588,11 @@ export type OrderAddNoteInput = {
  *     `order.total`-`order.totalGrantedRefund`
  *
  */
-export type OrderAuthorizeStatusEnum =
-  | 'FULL'
-  | 'NONE'
-  | 'PARTIAL';
+export enum OrderAuthorizeStatusEnum {
+  Full = 'FULL',
+  None = 'NONE',
+  Partial = 'PARTIAL'
+}
 
 /**
  * Cancels orders.
@@ -13594,25 +13660,26 @@ export type OrderBulkCreateError = {
 };
 
 /** An enumeration. */
-export type OrderBulkCreateErrorCode =
-  | 'BULK_LIMIT'
-  | 'FUTURE_DATE'
-  | 'GRAPHQL_ERROR'
-  | 'INCORRECT_CURRENCY'
-  | 'INSUFFICIENT_STOCK'
-  | 'INVALID'
-  | 'INVALID_QUANTITY'
-  | 'METADATA_KEY_REQUIRED'
-  | 'NEGATIVE_INDEX'
-  | 'NON_EXISTING_STOCK'
-  | 'NOTE_LENGTH'
-  | 'NOT_FOUND'
-  | 'NO_RELATED_ORDER_LINE'
-  | 'ORDER_LINE_FULFILLMENT_LINE_MISMATCH'
-  | 'PRICE_ERROR'
-  | 'REQUIRED'
-  | 'TOO_MANY_IDENTIFIERS'
-  | 'UNIQUE';
+export enum OrderBulkCreateErrorCode {
+  BulkLimit = 'BULK_LIMIT',
+  FutureDate = 'FUTURE_DATE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  IncorrectCurrency = 'INCORRECT_CURRENCY',
+  InsufficientStock = 'INSUFFICIENT_STOCK',
+  Invalid = 'INVALID',
+  InvalidQuantity = 'INVALID_QUANTITY',
+  MetadataKeyRequired = 'METADATA_KEY_REQUIRED',
+  NegativeIndex = 'NEGATIVE_INDEX',
+  NonExistingStock = 'NON_EXISTING_STOCK',
+  NoteLength = 'NOTE_LENGTH',
+  NotFound = 'NOT_FOUND',
+  NoRelatedOrderLine = 'NO_RELATED_ORDER_LINE',
+  OrderLineFulfillmentLineMismatch = 'ORDER_LINE_FULFILLMENT_LINE_MISMATCH',
+  PriceError = 'PRICE_ERROR',
+  Required = 'REQUIRED',
+  TooManyIdentifiers = 'TOO_MANY_IDENTIFIERS',
+  Unique = 'UNIQUE'
+}
 
 export type OrderBulkCreateFulfillmentInput = {
   /** List of items informing how to fulfill the order. */
@@ -13868,11 +13935,12 @@ export type OrderCapture = {
  *     `order.total`-`order.totalGrantedRefund`
  *
  */
-export type OrderChargeStatusEnum =
-  | 'FULL'
-  | 'NONE'
-  | 'OVERCHARGED'
-  | 'PARTIAL';
+export enum OrderChargeStatusEnum {
+  Full = 'FULL',
+  None = 'NONE',
+  Overcharged = 'OVERCHARGED',
+  Partial = 'PARTIAL'
+}
 
 /**
  * Confirms an unconfirmed order by changing status to unfulfilled.
@@ -13950,21 +14018,22 @@ export type OrderCreateFromCheckoutError = {
 };
 
 /** An enumeration. */
-export type OrderCreateFromCheckoutErrorCode =
-  | 'BILLING_ADDRESS_NOT_SET'
-  | 'CHANNEL_INACTIVE'
-  | 'CHECKOUT_NOT_FOUND'
-  | 'EMAIL_NOT_SET'
-  | 'GIFT_CARD_NOT_APPLICABLE'
-  | 'GRAPHQL_ERROR'
-  | 'INSUFFICIENT_STOCK'
-  | 'INVALID_SHIPPING_METHOD'
-  | 'NO_LINES'
-  | 'SHIPPING_ADDRESS_NOT_SET'
-  | 'SHIPPING_METHOD_NOT_SET'
-  | 'TAX_ERROR'
-  | 'UNAVAILABLE_VARIANT_IN_CHANNEL'
-  | 'VOUCHER_NOT_APPLICABLE';
+export enum OrderCreateFromCheckoutErrorCode {
+  BillingAddressNotSet = 'BILLING_ADDRESS_NOT_SET',
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  CheckoutNotFound = 'CHECKOUT_NOT_FOUND',
+  EmailNotSet = 'EMAIL_NOT_SET',
+  GiftCardNotApplicable = 'GIFT_CARD_NOT_APPLICABLE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  InsufficientStock = 'INSUFFICIENT_STOCK',
+  InvalidShippingMethod = 'INVALID_SHIPPING_METHOD',
+  NoLines = 'NO_LINES',
+  ShippingAddressNotSet = 'SHIPPING_ADDRESS_NOT_SET',
+  ShippingMethodNotSet = 'SHIPPING_METHOD_NOT_SET',
+  TaxError = 'TAX_ERROR',
+  UnavailableVariantInChannel = 'UNAVAILABLE_VARIANT_IN_CHANNEL',
+  VoucherNotApplicable = 'VOUCHER_NOT_APPLICABLE'
+}
 
 /**
  * Event sent when new order is created.
@@ -13985,11 +14054,12 @@ export type OrderCreated = Event & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-export type OrderDirection =
+export enum OrderDirection {
   /** Specifies an ascending sort order. */
-  | 'ASC'
+  Asc = 'ASC',
   /** Specifies a descending sort order. */
-  | 'DESC';
+  Desc = 'DESC'
+}
 
 /** Contains all details related to the applied discount to the order. */
 export type OrderDiscount = Node & {
@@ -14050,10 +14120,11 @@ export type OrderDiscountDelete = {
 };
 
 /** An enumeration. */
-export type OrderDiscountType =
-  | 'MANUAL'
-  | 'SALE'
-  | 'VOUCHER';
+export enum OrderDiscountType {
+  Manual = 'MANUAL',
+  Sale = 'SALE',
+  Voucher = 'VOUCHER'
+}
 
 /**
  * Update discount for the order.
@@ -14096,39 +14167,40 @@ export type OrderError = {
 };
 
 /** An enumeration. */
-export type OrderErrorCode =
-  | 'BILLING_ADDRESS_NOT_SET'
-  | 'CANNOT_CANCEL_FULFILLMENT'
-  | 'CANNOT_CANCEL_ORDER'
-  | 'CANNOT_DELETE'
-  | 'CANNOT_DISCOUNT'
-  | 'CANNOT_FULFILL_UNPAID_ORDER'
-  | 'CANNOT_REFUND'
-  | 'CAPTURE_INACTIVE_PAYMENT'
-  | 'CHANNEL_INACTIVE'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'FULFILL_ORDER_LINE'
-  | 'GIFT_CARD_LINE'
-  | 'GRAPHQL_ERROR'
-  | 'INSUFFICIENT_STOCK'
-  | 'INVALID'
-  | 'INVALID_QUANTITY'
-  | 'NOT_AVAILABLE_IN_CHANNEL'
-  | 'NOT_EDITABLE'
-  | 'NOT_FOUND'
-  | 'ORDER_NO_SHIPPING_ADDRESS'
-  | 'PAYMENT_ERROR'
-  | 'PAYMENT_MISSING'
-  | 'PRODUCT_NOT_PUBLISHED'
-  | 'PRODUCT_UNAVAILABLE_FOR_PURCHASE'
-  | 'REQUIRED'
-  | 'SHIPPING_METHOD_NOT_APPLICABLE'
-  | 'SHIPPING_METHOD_REQUIRED'
-  | 'TAX_ERROR'
-  | 'TRANSACTION_ERROR'
-  | 'UNIQUE'
-  | 'VOID_INACTIVE_PAYMENT'
-  | 'ZERO_QUANTITY';
+export enum OrderErrorCode {
+  BillingAddressNotSet = 'BILLING_ADDRESS_NOT_SET',
+  CannotCancelFulfillment = 'CANNOT_CANCEL_FULFILLMENT',
+  CannotCancelOrder = 'CANNOT_CANCEL_ORDER',
+  CannotDelete = 'CANNOT_DELETE',
+  CannotDiscount = 'CANNOT_DISCOUNT',
+  CannotFulfillUnpaidOrder = 'CANNOT_FULFILL_UNPAID_ORDER',
+  CannotRefund = 'CANNOT_REFUND',
+  CaptureInactivePayment = 'CAPTURE_INACTIVE_PAYMENT',
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  FulfillOrderLine = 'FULFILL_ORDER_LINE',
+  GiftCardLine = 'GIFT_CARD_LINE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  InsufficientStock = 'INSUFFICIENT_STOCK',
+  Invalid = 'INVALID',
+  InvalidQuantity = 'INVALID_QUANTITY',
+  NotAvailableInChannel = 'NOT_AVAILABLE_IN_CHANNEL',
+  NotEditable = 'NOT_EDITABLE',
+  NotFound = 'NOT_FOUND',
+  OrderNoShippingAddress = 'ORDER_NO_SHIPPING_ADDRESS',
+  PaymentError = 'PAYMENT_ERROR',
+  PaymentMissing = 'PAYMENT_MISSING',
+  ProductNotPublished = 'PRODUCT_NOT_PUBLISHED',
+  ProductUnavailableForPurchase = 'PRODUCT_UNAVAILABLE_FOR_PURCHASE',
+  Required = 'REQUIRED',
+  ShippingMethodNotApplicable = 'SHIPPING_METHOD_NOT_APPLICABLE',
+  ShippingMethodRequired = 'SHIPPING_METHOD_REQUIRED',
+  TaxError = 'TAX_ERROR',
+  TransactionError = 'TRANSACTION_ERROR',
+  Unique = 'UNIQUE',
+  VoidInactivePayment = 'VOID_INACTIVE_PAYMENT',
+  ZeroQuantity = 'ZERO_QUANTITY'
+}
 
 /** History log of the order. */
 export type OrderEvent = Node & {
@@ -14235,71 +14307,73 @@ export type OrderEventOrderLineObject = {
 };
 
 /** An enumeration. */
-export type OrderEventsEmailsEnum =
-  | 'CONFIRMED'
-  | 'DIGITAL_LINKS'
-  | 'FULFILLMENT_CONFIRMATION'
-  | 'ORDER_CANCEL'
-  | 'ORDER_CONFIRMATION'
-  | 'ORDER_REFUND'
-  | 'PAYMENT_CONFIRMATION'
-  | 'SHIPPING_CONFIRMATION'
-  | 'TRACKING_UPDATED';
+export enum OrderEventsEmailsEnum {
+  Confirmed = 'CONFIRMED',
+  DigitalLinks = 'DIGITAL_LINKS',
+  FulfillmentConfirmation = 'FULFILLMENT_CONFIRMATION',
+  OrderCancel = 'ORDER_CANCEL',
+  OrderConfirmation = 'ORDER_CONFIRMATION',
+  OrderRefund = 'ORDER_REFUND',
+  PaymentConfirmation = 'PAYMENT_CONFIRMATION',
+  ShippingConfirmation = 'SHIPPING_CONFIRMATION',
+  TrackingUpdated = 'TRACKING_UPDATED'
+}
 
 /** The different order event types.  */
-export type OrderEventsEnum =
-  | 'ADDED_PRODUCTS'
-  | 'CANCELED'
-  | 'CONFIRMED'
-  | 'DRAFT_CREATED'
-  | 'DRAFT_CREATED_FROM_REPLACE'
-  | 'EMAIL_SENT'
-  | 'EXPIRED'
-  | 'EXTERNAL_SERVICE_NOTIFICATION'
-  | 'FULFILLMENT_AWAITS_APPROVAL'
-  | 'FULFILLMENT_CANCELED'
-  | 'FULFILLMENT_FULFILLED_ITEMS'
-  | 'FULFILLMENT_REFUNDED'
-  | 'FULFILLMENT_REPLACED'
-  | 'FULFILLMENT_RESTOCKED_ITEMS'
-  | 'FULFILLMENT_RETURNED'
-  | 'INVOICE_GENERATED'
-  | 'INVOICE_REQUESTED'
-  | 'INVOICE_SENT'
-  | 'INVOICE_UPDATED'
-  | 'NOTE_ADDED'
-  | 'ORDER_DISCOUNT_ADDED'
-  | 'ORDER_DISCOUNT_AUTOMATICALLY_UPDATED'
-  | 'ORDER_DISCOUNT_DELETED'
-  | 'ORDER_DISCOUNT_UPDATED'
-  | 'ORDER_FULLY_PAID'
-  | 'ORDER_LINE_DISCOUNT_REMOVED'
-  | 'ORDER_LINE_DISCOUNT_UPDATED'
-  | 'ORDER_LINE_PRODUCT_DELETED'
-  | 'ORDER_LINE_VARIANT_DELETED'
-  | 'ORDER_MARKED_AS_PAID'
-  | 'ORDER_REPLACEMENT_CREATED'
-  | 'OTHER'
-  | 'OVERSOLD_ITEMS'
-  | 'PAYMENT_AUTHORIZED'
-  | 'PAYMENT_CAPTURED'
-  | 'PAYMENT_FAILED'
-  | 'PAYMENT_REFUNDED'
-  | 'PAYMENT_VOIDED'
-  | 'PLACED'
-  | 'PLACED_FROM_DRAFT'
-  | 'REMOVED_PRODUCTS'
-  | 'TRACKING_UPDATED'
-  | 'TRANSACTION_CANCEL_REQUESTED'
+export enum OrderEventsEnum {
+  AddedProducts = 'ADDED_PRODUCTS',
+  Canceled = 'CANCELED',
+  Confirmed = 'CONFIRMED',
+  DraftCreated = 'DRAFT_CREATED',
+  DraftCreatedFromReplace = 'DRAFT_CREATED_FROM_REPLACE',
+  EmailSent = 'EMAIL_SENT',
+  Expired = 'EXPIRED',
+  ExternalServiceNotification = 'EXTERNAL_SERVICE_NOTIFICATION',
+  FulfillmentAwaitsApproval = 'FULFILLMENT_AWAITS_APPROVAL',
+  FulfillmentCanceled = 'FULFILLMENT_CANCELED',
+  FulfillmentFulfilledItems = 'FULFILLMENT_FULFILLED_ITEMS',
+  FulfillmentRefunded = 'FULFILLMENT_REFUNDED',
+  FulfillmentReplaced = 'FULFILLMENT_REPLACED',
+  FulfillmentRestockedItems = 'FULFILLMENT_RESTOCKED_ITEMS',
+  FulfillmentReturned = 'FULFILLMENT_RETURNED',
+  InvoiceGenerated = 'INVOICE_GENERATED',
+  InvoiceRequested = 'INVOICE_REQUESTED',
+  InvoiceSent = 'INVOICE_SENT',
+  InvoiceUpdated = 'INVOICE_UPDATED',
+  NoteAdded = 'NOTE_ADDED',
+  OrderDiscountAdded = 'ORDER_DISCOUNT_ADDED',
+  OrderDiscountAutomaticallyUpdated = 'ORDER_DISCOUNT_AUTOMATICALLY_UPDATED',
+  OrderDiscountDeleted = 'ORDER_DISCOUNT_DELETED',
+  OrderDiscountUpdated = 'ORDER_DISCOUNT_UPDATED',
+  OrderFullyPaid = 'ORDER_FULLY_PAID',
+  OrderLineDiscountRemoved = 'ORDER_LINE_DISCOUNT_REMOVED',
+  OrderLineDiscountUpdated = 'ORDER_LINE_DISCOUNT_UPDATED',
+  OrderLineProductDeleted = 'ORDER_LINE_PRODUCT_DELETED',
+  OrderLineVariantDeleted = 'ORDER_LINE_VARIANT_DELETED',
+  OrderMarkedAsPaid = 'ORDER_MARKED_AS_PAID',
+  OrderReplacementCreated = 'ORDER_REPLACEMENT_CREATED',
+  Other = 'OTHER',
+  OversoldItems = 'OVERSOLD_ITEMS',
+  PaymentAuthorized = 'PAYMENT_AUTHORIZED',
+  PaymentCaptured = 'PAYMENT_CAPTURED',
+  PaymentFailed = 'PAYMENT_FAILED',
+  PaymentRefunded = 'PAYMENT_REFUNDED',
+  PaymentVoided = 'PAYMENT_VOIDED',
+  Placed = 'PLACED',
+  PlacedFromDraft = 'PLACED_FROM_DRAFT',
+  RemovedProducts = 'REMOVED_PRODUCTS',
+  TrackingUpdated = 'TRACKING_UPDATED',
+  TransactionCancelRequested = 'TRANSACTION_CANCEL_REQUESTED',
   /** This field will be removed in Saleor 3.15 (Preview Feature). Use `TRANSACTION_CHARGE_REQUESTED` instead. */
-  | 'TRANSACTION_CAPTURE_REQUESTED'
-  | 'TRANSACTION_CHARGE_REQUESTED'
-  | 'TRANSACTION_EVENT'
-  | 'TRANSACTION_MARK_AS_PAID_FAILED'
-  | 'TRANSACTION_REFUND_REQUESTED'
+  TransactionCaptureRequested = 'TRANSACTION_CAPTURE_REQUESTED',
+  TransactionChargeRequested = 'TRANSACTION_CHARGE_REQUESTED',
+  TransactionEvent = 'TRANSACTION_EVENT',
+  TransactionMarkAsPaidFailed = 'TRANSACTION_MARK_AS_PAID_FAILED',
+  TransactionRefundRequested = 'TRANSACTION_REFUND_REQUESTED',
   /** This field will be removed in Saleor 3.15 (Preview Feature). Use `TRANSACTION_CANCEL_REQUESTED` instead. */
-  | 'TRANSACTION_VOID_REQUESTED'
-  | 'UPDATED_ADDRESS';
+  TransactionVoidRequested = 'TRANSACTION_VOID_REQUESTED',
+  UpdatedAddress = 'UPDATED_ADDRESS'
+}
 
 /**
  * Event sent when order becomes expired.
@@ -14500,9 +14574,10 @@ export type OrderGrantRefundCreateError = {
 };
 
 /** An enumeration. */
-export type OrderGrantRefundCreateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'NOT_FOUND';
+export enum OrderGrantRefundCreateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  NotFound = 'NOT_FOUND'
+}
 
 export type OrderGrantRefundCreateInput = {
   /** Amount of the granted refund. */
@@ -14541,10 +14616,11 @@ export type OrderGrantRefundUpdateError = {
 };
 
 /** An enumeration. */
-export type OrderGrantRefundUpdateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum OrderGrantRefundUpdateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 export type OrderGrantRefundUpdateInput = {
   /** Amount of the granted refund. */
@@ -14874,11 +14950,12 @@ export type OrderMetadataUpdated = Event & {
 export type OrderOrCheckout = Checkout | Order;
 
 /** An enumeration. */
-export type OrderOriginEnum =
-  | 'BULK_CREATE'
-  | 'CHECKOUT'
-  | 'DRAFT'
-  | 'REISSUE';
+export enum OrderOriginEnum {
+  BulkCreate = 'BULK_CREATE',
+  Checkout = 'CHECKOUT',
+  Draft = 'DRAFT',
+  Reissue = 'REISSUE'
+}
 
 /**
  * Payment has been made. The order may be partially or fully paid.
@@ -15046,8 +15123,9 @@ export type OrderSettingsError = {
 };
 
 /** An enumeration. */
-export type OrderSettingsErrorCode =
-  | 'INVALID';
+export enum OrderSettingsErrorCode {
+  Invalid = 'INVALID'
+}
 
 export type OrderSettingsInput = {
   /** When disabled, all new orders from checkout will be marked as unconfirmed. When enabled orders from checkout will become unfulfilled immediately. By default set to True */
@@ -15111,31 +15189,32 @@ export type OrderSettingsUpdateInput = {
   automaticallyFulfillNonShippableGiftCard?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type OrderSortField =
+export enum OrderSortField {
   /**
    * Sort orders by creation date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /**
    * Sort orders by creation date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'CREATION_DATE'
+  CreationDate = 'CREATION_DATE',
   /** Sort orders by customer. */
-  | 'CUSTOMER'
+  Customer = 'CUSTOMER',
   /** Sort orders by fulfillment status. */
-  | 'FULFILLMENT_STATUS'
+  FulfillmentStatus = 'FULFILLMENT_STATUS',
   /** Sort orders by last modified at. */
-  | 'LAST_MODIFIED_AT'
+  LastModifiedAt = 'LAST_MODIFIED_AT',
   /** Sort orders by number. */
-  | 'NUMBER'
+  Number = 'NUMBER',
   /** Sort orders by payment. */
-  | 'PAYMENT'
+  Payment = 'PAYMENT',
   /** Sort orders by rank. Note: This option is available only with the `search` filter. */
-  | 'RANK';
+  Rank = 'RANK'
+}
 
 export type OrderSortingInput = {
   /** Specifies the direction in which to sort orders. */
@@ -15145,25 +15224,27 @@ export type OrderSortingInput = {
 };
 
 /** An enumeration. */
-export type OrderStatus =
-  | 'CANCELED'
-  | 'DRAFT'
-  | 'EXPIRED'
-  | 'FULFILLED'
-  | 'PARTIALLY_FULFILLED'
-  | 'PARTIALLY_RETURNED'
-  | 'RETURNED'
-  | 'UNCONFIRMED'
-  | 'UNFULFILLED';
+export enum OrderStatus {
+  Canceled = 'CANCELED',
+  Draft = 'DRAFT',
+  Expired = 'EXPIRED',
+  Fulfilled = 'FULFILLED',
+  PartiallyFulfilled = 'PARTIALLY_FULFILLED',
+  PartiallyReturned = 'PARTIALLY_RETURNED',
+  Returned = 'RETURNED',
+  Unconfirmed = 'UNCONFIRMED',
+  Unfulfilled = 'UNFULFILLED'
+}
 
-export type OrderStatusFilter =
-  | 'CANCELED'
-  | 'FULFILLED'
-  | 'PARTIALLY_FULFILLED'
-  | 'READY_TO_CAPTURE'
-  | 'READY_TO_FULFILL'
-  | 'UNCONFIRMED'
-  | 'UNFULFILLED';
+export enum OrderStatusFilter {
+  Canceled = 'CANCELED',
+  Fulfilled = 'FULFILLED',
+  PartiallyFulfilled = 'PARTIALLY_FULFILLED',
+  ReadyToCapture = 'READY_TO_CAPTURE',
+  ReadyToFulfill = 'READY_TO_FULFILL',
+  Unconfirmed = 'UNCONFIRMED',
+  Unfulfilled = 'UNFULFILLED'
+}
 
 /**
  * Updates an order.
@@ -15538,14 +15619,15 @@ export type PageError = {
 };
 
 /** An enumeration. */
-export type PageErrorCode =
-  | 'ATTRIBUTE_ALREADY_ASSIGNED'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum PageErrorCode {
+  AttributeAlreadyAssigned = 'ATTRIBUTE_ALREADY_ASSIGNED',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type PageFilterInput = {
   ids?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -15613,37 +15695,38 @@ export type PageReorderAttributeValues = {
   pageErrors: Array<PageError>;
 };
 
-export type PageSortField =
+export enum PageSortField {
   /**
    * Sort pages by creation date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /**
    * Sort pages by creation date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'CREATION_DATE'
+  CreationDate = 'CREATION_DATE',
   /**
    * Sort pages by publication date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'PUBLICATION_DATE'
+  PublicationDate = 'PUBLICATION_DATE',
   /**
    * Sort pages by publication date.
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  | 'PUBLISHED_AT'
+  PublishedAt = 'PUBLISHED_AT',
   /** Sort pages by slug. */
-  | 'SLUG'
+  Slug = 'SLUG',
   /** Sort pages by title. */
-  | 'TITLE'
+  Title = 'TITLE',
   /** Sort pages by visibility. */
-  | 'VISIBILITY';
+  Visibility = 'VISIBILITY'
+}
 
 export type PageSortingInput = {
   /** Specifies the direction in which to sort pages. */
@@ -15955,11 +16038,12 @@ export type PageTypeReorderAttributes = {
   pageType?: Maybe<PageType>;
 };
 
-export type PageTypeSortField =
+export enum PageTypeSortField {
   /** Sort page types by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort page types by slug. */
-  | 'SLUG';
+  Slug = 'SLUG'
+}
 
 export type PageTypeSortingInput = {
   /** Specifies the direction in which to sort page types. */
@@ -16226,15 +16310,16 @@ export type PaymentCaptureEvent = Event & {
 };
 
 /** An enumeration. */
-export type PaymentChargeStatusEnum =
-  | 'CANCELLED'
-  | 'FULLY_CHARGED'
-  | 'FULLY_REFUNDED'
-  | 'NOT_CHARGED'
-  | 'PARTIALLY_CHARGED'
-  | 'PARTIALLY_REFUNDED'
-  | 'PENDING'
-  | 'REFUSED';
+export enum PaymentChargeStatusEnum {
+  Cancelled = 'CANCELLED',
+  FullyCharged = 'FULLY_CHARGED',
+  FullyRefunded = 'FULLY_REFUNDED',
+  NotCharged = 'NOT_CHARGED',
+  PartiallyCharged = 'PARTIALLY_CHARGED',
+  PartiallyRefunded = 'PARTIALLY_REFUNDED',
+  Pending = 'PENDING',
+  Refused = 'REFUSED'
+}
 
 /** Check payment balance. */
 export type PaymentCheckBalance = {
@@ -16306,24 +16391,25 @@ export type PaymentError = {
 };
 
 /** An enumeration. */
-export type PaymentErrorCode =
-  | 'BALANCE_CHECK_ERROR'
-  | 'BILLING_ADDRESS_NOT_SET'
-  | 'CHANNEL_INACTIVE'
-  | 'CHECKOUT_EMAIL_NOT_SET'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_SHIPPING_METHOD'
-  | 'NOT_FOUND'
-  | 'NOT_SUPPORTED_GATEWAY'
-  | 'NO_CHECKOUT_LINES'
-  | 'PARTIAL_PAYMENT_NOT_ALLOWED'
-  | 'PAYMENT_ERROR'
-  | 'REQUIRED'
-  | 'SHIPPING_ADDRESS_NOT_SET'
-  | 'SHIPPING_METHOD_NOT_SET'
-  | 'UNAVAILABLE_VARIANT_IN_CHANNEL'
-  | 'UNIQUE';
+export enum PaymentErrorCode {
+  BalanceCheckError = 'BALANCE_CHECK_ERROR',
+  BillingAddressNotSet = 'BILLING_ADDRESS_NOT_SET',
+  ChannelInactive = 'CHANNEL_INACTIVE',
+  CheckoutEmailNotSet = 'CHECKOUT_EMAIL_NOT_SET',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidShippingMethod = 'INVALID_SHIPPING_METHOD',
+  NotFound = 'NOT_FOUND',
+  NotSupportedGateway = 'NOT_SUPPORTED_GATEWAY',
+  NoCheckoutLines = 'NO_CHECKOUT_LINES',
+  PartialPaymentNotAllowed = 'PARTIAL_PAYMENT_NOT_ALLOWED',
+  PaymentError = 'PAYMENT_ERROR',
+  Required = 'REQUIRED',
+  ShippingAddressNotSet = 'SHIPPING_ADDRESS_NOT_SET',
+  ShippingMethodNotSet = 'SHIPPING_METHOD_NOT_SET',
+  UnavailableVariantInChannel = 'UNAVAILABLE_VARIANT_IN_CHANNEL',
+  Unique = 'UNIQUE'
+}
 
 export type PaymentFilterInput = {
   checkouts?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -16368,10 +16454,11 @@ export type PaymentGatewayConfigError = {
 };
 
 /** An enumeration. */
-export type PaymentGatewayConfigErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum PaymentGatewayConfigErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Initializes a payment gateway session. It triggers the webhook `PAYMENT_GATEWAY_INITIALIZE_SESSION`, to the requested `paymentGateways`. If `paymentGateways` is not provided, the webhook will be send to all subscribed payment gateways.
@@ -16397,10 +16484,11 @@ export type PaymentGatewayInitializeError = {
 };
 
 /** An enumeration. */
-export type PaymentGatewayInitializeErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum PaymentGatewayInitializeErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Event sent when user wants to initialize the payment gateway.
@@ -16610,31 +16698,32 @@ export type Permission = {
 };
 
 /** An enumeration. */
-export type PermissionEnum =
-  | 'HANDLE_CHECKOUTS'
-  | 'HANDLE_PAYMENTS'
-  | 'HANDLE_TAXES'
-  | 'IMPERSONATE_USER'
-  | 'MANAGE_APPS'
-  | 'MANAGE_CHANNELS'
-  | 'MANAGE_CHECKOUTS'
-  | 'MANAGE_DISCOUNTS'
-  | 'MANAGE_GIFT_CARD'
-  | 'MANAGE_MENUS'
-  | 'MANAGE_OBSERVABILITY'
-  | 'MANAGE_ORDERS'
-  | 'MANAGE_ORDERS_IMPORT'
-  | 'MANAGE_PAGES'
-  | 'MANAGE_PAGE_TYPES_AND_ATTRIBUTES'
-  | 'MANAGE_PLUGINS'
-  | 'MANAGE_PRODUCTS'
-  | 'MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES'
-  | 'MANAGE_SETTINGS'
-  | 'MANAGE_SHIPPING'
-  | 'MANAGE_STAFF'
-  | 'MANAGE_TAXES'
-  | 'MANAGE_TRANSLATIONS'
-  | 'MANAGE_USERS';
+export enum PermissionEnum {
+  HandleCheckouts = 'HANDLE_CHECKOUTS',
+  HandlePayments = 'HANDLE_PAYMENTS',
+  HandleTaxes = 'HANDLE_TAXES',
+  ImpersonateUser = 'IMPERSONATE_USER',
+  ManageApps = 'MANAGE_APPS',
+  ManageChannels = 'MANAGE_CHANNELS',
+  ManageCheckouts = 'MANAGE_CHECKOUTS',
+  ManageDiscounts = 'MANAGE_DISCOUNTS',
+  ManageGiftCard = 'MANAGE_GIFT_CARD',
+  ManageMenus = 'MANAGE_MENUS',
+  ManageObservability = 'MANAGE_OBSERVABILITY',
+  ManageOrders = 'MANAGE_ORDERS',
+  ManageOrdersImport = 'MANAGE_ORDERS_IMPORT',
+  ManagePages = 'MANAGE_PAGES',
+  ManagePageTypesAndAttributes = 'MANAGE_PAGE_TYPES_AND_ATTRIBUTES',
+  ManagePlugins = 'MANAGE_PLUGINS',
+  ManageProducts = 'MANAGE_PRODUCTS',
+  ManageProductTypesAndAttributes = 'MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES',
+  ManageSettings = 'MANAGE_SETTINGS',
+  ManageShipping = 'MANAGE_SHIPPING',
+  ManageStaff = 'MANAGE_STAFF',
+  ManageTaxes = 'MANAGE_TAXES',
+  ManageTranslations = 'MANAGE_TRANSLATIONS',
+  ManageUsers = 'MANAGE_USERS'
+}
 
 /**
  * Create new permission group. Apps are not allowed to perform this mutation.
@@ -16742,16 +16831,17 @@ export type PermissionGroupError = {
 };
 
 /** An enumeration. */
-export type PermissionGroupErrorCode =
-  | 'ASSIGN_NON_STAFF_MEMBER'
-  | 'CANNOT_REMOVE_FROM_LAST_GROUP'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'LEFT_NOT_MANAGEABLE_PERMISSION'
-  | 'OUT_OF_SCOPE_CHANNEL'
-  | 'OUT_OF_SCOPE_PERMISSION'
-  | 'OUT_OF_SCOPE_USER'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum PermissionGroupErrorCode {
+  AssignNonStaffMember = 'ASSIGN_NON_STAFF_MEMBER',
+  CannotRemoveFromLastGroup = 'CANNOT_REMOVE_FROM_LAST_GROUP',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  LeftNotManageablePermission = 'LEFT_NOT_MANAGEABLE_PERMISSION',
+  OutOfScopeChannel = 'OUT_OF_SCOPE_CHANNEL',
+  OutOfScopePermission = 'OUT_OF_SCOPE_PERMISSION',
+  OutOfScopeUser = 'OUT_OF_SCOPE_USER',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type PermissionGroupFilterInput = {
   ids?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -16759,9 +16849,10 @@ export type PermissionGroupFilterInput = {
 };
 
 /** Sorting options for permission groups. */
-export type PermissionGroupSortField =
+export enum PermissionGroupSortField {
   /** Sort permission group accounts by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
 export type PermissionGroupSortingInput = {
   /** Specifies the direction in which to sort permission group. */
@@ -16865,9 +16956,10 @@ export type PluginConfiguration = {
   configuration?: Maybe<Array<ConfigurationItem>>;
 };
 
-export type PluginConfigurationType =
-  | 'GLOBAL'
-  | 'PER_CHANNEL';
+export enum PluginConfigurationType {
+  Global = 'GLOBAL',
+  PerChannel = 'PER_CHANNEL'
+}
 
 export type PluginCountableConnection = {
   __typename?: 'PluginCountableConnection';
@@ -16897,13 +16989,14 @@ export type PluginError = {
 };
 
 /** An enumeration. */
-export type PluginErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'PLUGIN_MISCONFIGURED'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum PluginErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  PluginMisconfigured = 'PLUGIN_MISCONFIGURED',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type PluginFilterInput = {
   search?: InputMaybe<Scalars['String']['input']>;
@@ -16911,9 +17004,10 @@ export type PluginFilterInput = {
   type?: InputMaybe<PluginConfigurationType>;
 };
 
-export type PluginSortField =
-  | 'IS_ACTIVE'
-  | 'NAME';
+export enum PluginSortField {
+  IsActive = 'IS_ACTIVE',
+  Name = 'NAME'
+}
 
 export type PluginSortingInput = {
   /** Specifies the direction in which to sort plugins. */
@@ -16948,9 +17042,10 @@ export type PluginUpdateInput = {
 };
 
 /** An enumeration. */
-export type PostalCodeRuleInclusionTypeEnum =
-  | 'EXCLUDE'
-  | 'INCLUDE';
+export enum PostalCodeRuleInclusionTypeEnum {
+  Exclude = 'EXCLUDE',
+  Include = 'INCLUDE'
+}
 
 /** Represents preorder settings for product variant. */
 export type PreorderData = {
@@ -17281,9 +17376,10 @@ export type ProductAttributeAssignmentUpdateInput = {
   variantSelection: Scalars['Boolean']['input'];
 };
 
-export type ProductAttributeType =
-  | 'PRODUCT'
-  | 'VARIANT';
+export enum ProductAttributeType {
+  Product = 'PRODUCT',
+  Variant = 'VARIANT'
+}
 
 /**
  * Un-assign attributes from a given product type.
@@ -17336,22 +17432,23 @@ export type ProductBulkCreateError = {
 };
 
 /** An enumeration. */
-export type ProductBulkCreateErrorCode =
-  | 'ATTRIBUTE_ALREADY_ASSIGNED'
-  | 'ATTRIBUTE_CANNOT_BE_ASSIGNED'
-  | 'ATTRIBUTE_VARIANTS_DISABLED'
-  | 'BLANK'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_PRICE'
-  | 'MAX_LENGTH'
-  | 'NOT_FOUND'
-  | 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL'
-  | 'PRODUCT_WITHOUT_CATEGORY'
-  | 'REQUIRED'
-  | 'UNIQUE'
-  | 'UNSUPPORTED_MEDIA_PROVIDER';
+export enum ProductBulkCreateErrorCode {
+  AttributeAlreadyAssigned = 'ATTRIBUTE_ALREADY_ASSIGNED',
+  AttributeCannotBeAssigned = 'ATTRIBUTE_CANNOT_BE_ASSIGNED',
+  AttributeVariantsDisabled = 'ATTRIBUTE_VARIANTS_DISABLED',
+  Blank = 'BLANK',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidPrice = 'INVALID_PRICE',
+  MaxLength = 'MAX_LENGTH',
+  NotFound = 'NOT_FOUND',
+  ProductNotAssignedToChannel = 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL',
+  ProductWithoutCategory = 'PRODUCT_WITHOUT_CATEGORY',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE',
+  UnsupportedMediaProvider = 'UNSUPPORTED_MEDIA_PROVIDER'
+}
 
 export type ProductBulkCreateInput = {
   /** List of attributes. */
@@ -17749,41 +17846,43 @@ export type ProductError = {
 };
 
 /** An enumeration. */
-export type ProductErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'ATTRIBUTE_ALREADY_ASSIGNED'
-  | 'ATTRIBUTE_CANNOT_BE_ASSIGNED'
-  | 'ATTRIBUTE_VARIANTS_DISABLED'
-  | 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_PRICE'
-  | 'MEDIA_ALREADY_ASSIGNED'
-  | 'NOT_FOUND'
-  | 'NOT_PRODUCTS_IMAGE'
-  | 'NOT_PRODUCTS_VARIANT'
-  | 'PREORDER_VARIANT_CANNOT_BE_DEACTIVATED'
-  | 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL'
-  | 'PRODUCT_WITHOUT_CATEGORY'
-  | 'REQUIRED'
-  | 'UNIQUE'
-  | 'UNSUPPORTED_MEDIA_PROVIDER'
-  | 'VARIANT_NO_DIGITAL_CONTENT';
+export enum ProductErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  AttributeAlreadyAssigned = 'ATTRIBUTE_ALREADY_ASSIGNED',
+  AttributeCannotBeAssigned = 'ATTRIBUTE_CANNOT_BE_ASSIGNED',
+  AttributeVariantsDisabled = 'ATTRIBUTE_VARIANTS_DISABLED',
+  CannotManageProductWithoutVariant = 'CANNOT_MANAGE_PRODUCT_WITHOUT_VARIANT',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidPrice = 'INVALID_PRICE',
+  MediaAlreadyAssigned = 'MEDIA_ALREADY_ASSIGNED',
+  NotFound = 'NOT_FOUND',
+  NotProductsImage = 'NOT_PRODUCTS_IMAGE',
+  NotProductsVariant = 'NOT_PRODUCTS_VARIANT',
+  PreorderVariantCannotBeDeactivated = 'PREORDER_VARIANT_CANNOT_BE_DEACTIVATED',
+  ProductNotAssignedToChannel = 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL',
+  ProductWithoutCategory = 'PRODUCT_WITHOUT_CATEGORY',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE',
+  UnsupportedMediaProvider = 'UNSUPPORTED_MEDIA_PROVIDER',
+  VariantNoDigitalContent = 'VARIANT_NO_DIGITAL_CONTENT'
+}
 
-export type ProductFieldEnum =
-  | 'CATEGORY'
-  | 'CHARGE_TAXES'
-  | 'COLLECTIONS'
-  | 'DESCRIPTION'
-  | 'NAME'
-  | 'PRODUCT_MEDIA'
-  | 'PRODUCT_TYPE'
-  | 'PRODUCT_WEIGHT'
-  | 'VARIANT_ID'
-  | 'VARIANT_MEDIA'
-  | 'VARIANT_SKU'
-  | 'VARIANT_WEIGHT';
+export enum ProductFieldEnum {
+  Category = 'CATEGORY',
+  ChargeTaxes = 'CHARGE_TAXES',
+  Collections = 'COLLECTIONS',
+  Description = 'DESCRIPTION',
+  Name = 'NAME',
+  ProductMedia = 'PRODUCT_MEDIA',
+  ProductType = 'PRODUCT_TYPE',
+  ProductWeight = 'PRODUCT_WEIGHT',
+  VariantId = 'VARIANT_ID',
+  VariantMedia = 'VARIANT_MEDIA',
+  VariantSku = 'VARIANT_SKU',
+  VariantWeight = 'VARIANT_WEIGHT'
+}
 
 export type ProductFilterInput = {
   attributes?: InputMaybe<Array<AttributeInput>>;
@@ -18121,9 +18220,10 @@ export type ProductMediaReorder = {
 };
 
 /** An enumeration. */
-export type ProductMediaType =
-  | 'IMAGE'
-  | 'VIDEO';
+export enum ProductMediaType {
+  Image = 'IMAGE',
+  Video = 'VIDEO'
+}
 
 /**
  * Updates a product media.
@@ -18212,63 +18312,64 @@ export type ProductOrder = {
   field?: InputMaybe<ProductOrderField>;
 };
 
-export type ProductOrderField =
+export enum ProductOrderField {
   /**
    * Sort products by collection. Note: This option is available only for the `Collection.products` query.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'COLLECTION'
+  Collection = 'COLLECTION',
   /**
    * Sort products by creation date.
    *
    * Added in Saleor 3.8.
    */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /** Sort products by update date. */
-  | 'DATE'
+  Date = 'DATE',
   /** Sort products by update date. */
-  | 'LAST_MODIFIED'
+  LastModified = 'LAST_MODIFIED',
   /** Sort products by update date. */
-  | 'LAST_MODIFIED_AT'
+  LastModifiedAt = 'LAST_MODIFIED_AT',
   /**
    * Sort products by a minimal price of a product's variant.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'MINIMAL_PRICE'
+  MinimalPrice = 'MINIMAL_PRICE',
   /** Sort products by name. */
-  | 'NAME'
+  Name = 'NAME',
   /**
    * Sort products by price.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PRICE'
+  Price = 'PRICE',
   /**
    * Sort products by publication date.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PUBLICATION_DATE'
+  PublicationDate = 'PUBLICATION_DATE',
   /**
    * Sort products by publication status.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PUBLISHED'
+  Published = 'PUBLISHED',
   /**
    * Sort products by publication date.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'PUBLISHED_AT'
+  PublishedAt = 'PUBLISHED_AT',
   /** Sort products by rank. Note: This option is available only with the `search` filter. */
-  | 'RANK'
+  Rank = 'RANK',
   /** Sort products by rating. */
-  | 'RATING'
+  Rating = 'RATING',
   /** Sort products by type. */
-  | 'TYPE';
+  Type = 'TYPE'
+}
 
 /** Represents availability of a product in the storefront. */
 export type ProductPricingInfo = {
@@ -18543,9 +18644,10 @@ export type ProductTypeBulkDelete = {
   productErrors: Array<ProductError>;
 };
 
-export type ProductTypeConfigurable =
-  | 'CONFIGURABLE'
-  | 'SIMPLE';
+export enum ProductTypeConfigurable {
+  Configurable = 'CONFIGURABLE',
+  Simple = 'SIMPLE'
+}
 
 export type ProductTypeCountableConnection = {
   __typename?: 'ProductTypeCountableConnection';
@@ -18590,9 +18692,10 @@ export type ProductTypeDelete = {
   productType?: Maybe<ProductType>;
 };
 
-export type ProductTypeEnum =
-  | 'DIGITAL'
-  | 'SHIPPABLE';
+export enum ProductTypeEnum {
+  Digital = 'DIGITAL',
+  Shippable = 'SHIPPABLE'
+}
 
 export type ProductTypeFilterInput = {
   configurable?: InputMaybe<ProductTypeConfigurable>;
@@ -18634,9 +18737,10 @@ export type ProductTypeInput = {
 };
 
 /** An enumeration. */
-export type ProductTypeKindEnum =
-  | 'GIFT_CARD'
-  | 'NORMAL';
+export enum ProductTypeKindEnum {
+  GiftCard = 'GIFT_CARD',
+  Normal = 'NORMAL'
+}
 
 /**
  * Reorder the attributes of a product type.
@@ -18652,13 +18756,14 @@ export type ProductTypeReorderAttributes = {
   productType?: Maybe<ProductType>;
 };
 
-export type ProductTypeSortField =
+export enum ProductTypeSortField {
   /** Sort products by type. */
-  | 'DIGITAL'
+  Digital = 'DIGITAL',
   /** Sort products by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort products by shipping. */
-  | 'SHIPPING_REQUIRED';
+  ShippingRequired = 'SHIPPING_REQUIRED'
+}
 
 export type ProductTypeSortingInput = {
   /** Specifies the direction in which to sort product types. */
@@ -19052,19 +19157,20 @@ export type ProductVariantBulkError = {
 };
 
 /** An enumeration. */
-export type ProductVariantBulkErrorCode =
-  | 'ATTRIBUTE_ALREADY_ASSIGNED'
-  | 'ATTRIBUTE_CANNOT_BE_ASSIGNED'
-  | 'ATTRIBUTE_VARIANTS_DISABLED'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_PRICE'
-  | 'NOT_FOUND'
-  | 'NOT_PRODUCTS_VARIANT'
-  | 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum ProductVariantBulkErrorCode {
+  AttributeAlreadyAssigned = 'ATTRIBUTE_ALREADY_ASSIGNED',
+  AttributeCannotBeAssigned = 'ATTRIBUTE_CANNOT_BE_ASSIGNED',
+  AttributeVariantsDisabled = 'ATTRIBUTE_VARIANTS_DISABLED',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidPrice = 'INVALID_PRICE',
+  NotFound = 'NOT_FOUND',
+  NotProductsVariant = 'NOT_PRODUCTS_VARIANT',
+  ProductNotAssignedToChannel = 'PRODUCT_NOT_ASSIGNED_TO_CHANNEL',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type ProductVariantBulkResult = {
   __typename?: 'ProductVariantBulkResult';
@@ -19531,9 +19637,10 @@ export type ProductVariantSetDefault = {
   productErrors: Array<ProductError>;
 };
 
-export type ProductVariantSortField =
+export enum ProductVariantSortField {
   /** Sort products variants by last modified at. */
-  | 'LAST_MODIFIED_AT';
+  LastModifiedAt = 'LAST_MODIFIED_AT'
+}
 
 export type ProductVariantSortingInput = {
   /** Specifies the direction in which to sort productVariants. */
@@ -20795,9 +20902,10 @@ export type ReorderInput = {
   sortOrder?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type ReportingPeriod =
-  | 'THIS_MONTH'
-  | 'TODAY';
+export enum ReportingPeriod {
+  ThisMonth = 'THIS_MONTH',
+  Today = 'TODAY'
+}
 
 /**
  * Request email change of the logged in user.
@@ -21182,25 +21290,26 @@ export type SaleRemoveCatalogues = {
   sale?: Maybe<Sale>;
 };
 
-export type SaleSortField =
+export enum SaleSortField {
   /** Sort sales by created at. */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /** Sort sales by end date. */
-  | 'END_DATE'
+  EndDate = 'END_DATE',
   /** Sort sales by last modified at. */
-  | 'LAST_MODIFIED_AT'
+  LastModifiedAt = 'LAST_MODIFIED_AT',
   /** Sort sales by name. */
-  | 'NAME'
+  Name = 'NAME',
   /** Sort sales by start date. */
-  | 'START_DATE'
+  StartDate = 'START_DATE',
   /** Sort sales by type. */
-  | 'TYPE'
+  Type = 'TYPE',
   /**
    * Sort sales by value.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'VALUE';
+  Value = 'VALUE'
+}
 
 export type SaleSortingInput = {
   /**
@@ -21289,9 +21398,10 @@ export type SaleTranslation = Node & {
   name?: Maybe<Scalars['String']['output']>;
 };
 
-export type SaleType =
-  | 'FIXED'
-  | 'PERCENTAGE';
+export enum SaleType {
+  Fixed = 'FIXED',
+  Percentage = 'PERCENTAGE'
+}
 
 /**
  * Updates a sale.
@@ -21382,15 +21492,16 @@ export type ShippingError = {
 };
 
 /** An enumeration. */
-export type ShippingErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'MAX_LESS_THAN_MIN'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum ShippingErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  MaxLessThanMin = 'MAX_LESS_THAN_MIN',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 /**
  * List shipping methods for checkout.
@@ -21739,9 +21850,10 @@ export type ShippingMethodTypeTranslationArgs = {
 };
 
 /** An enumeration. */
-export type ShippingMethodTypeEnum =
-  | 'PRICE'
-  | 'WEIGHT';
+export enum ShippingMethodTypeEnum {
+  Price = 'PRICE',
+  Weight = 'WEIGHT'
+}
 
 /**
  * List of shipping methods available for the country.
@@ -22564,14 +22676,15 @@ export type ShopError = {
 };
 
 /** An enumeration. */
-export type ShopErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'CANNOT_FETCH_TAX_RATES'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum ShopErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  CannotFetchTaxRates = 'CANNOT_FETCH_TAX_RATES',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 /**
  * Fetch tax rates.
@@ -22840,11 +22953,12 @@ export type StaffError = {
 };
 
 /** Represents status of a staff account. */
-export type StaffMemberStatus =
+export enum StaffMemberStatus {
   /** User account has been activated. */
-  | 'ACTIVE'
+  Active = 'ACTIVE',
   /** User account has not been activated yet. */
-  | 'DEACTIVATED';
+  Deactivated = 'DEACTIVATED'
+}
 
 /** Represents a recipient of email notifications send by Saleor, such as notifications about new orders. Notifications can be assigned to staff users or arbitrary email addresses. */
 export type StaffNotificationRecipient = Node & {
@@ -23000,9 +23114,10 @@ export type Stock = Node & {
   warehouse: Warehouse;
 };
 
-export type StockAvailability =
-  | 'IN_STOCK'
-  | 'OUT_OF_STOCK';
+export enum StockAvailability {
+  InStock = 'IN_STOCK',
+  OutOfStock = 'OUT_OF_STOCK'
+}
 
 export type StockBulkResult = {
   __typename?: 'StockBulkResult';
@@ -23041,11 +23156,12 @@ export type StockBulkUpdateError = {
 };
 
 /** An enumeration. */
-export type StockBulkUpdateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum StockBulkUpdateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 export type StockBulkUpdateInput = {
   /** Quantity of items available for sell. */
@@ -23088,13 +23204,14 @@ export type StockError = {
 };
 
 /** An enumeration. */
-export type StockErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum StockErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type StockFilterInput = {
   quantity?: InputMaybe<Scalars['Float']['input']>;
@@ -23139,19 +23256,21 @@ export type StockUpdateInput = {
  *     FORCE - force update, if there is not enough stock.
  *
  */
-export type StockUpdatePolicyEnum =
-  | 'FORCE'
-  | 'SKIP'
-  | 'UPDATE';
+export enum StockUpdatePolicyEnum {
+  Force = 'FORCE',
+  Skip = 'SKIP',
+  Update = 'UPDATE'
+}
 
 /** Enum representing the type of a payment storage in a gateway. */
-export type StorePaymentMethodEnum =
+export enum StorePaymentMethodEnum {
   /** Storage is disabled. The payment is not stored. */
-  | 'NONE'
+  None = 'NONE',
   /** Off session storage type. The payment is stored to be reused even if the customer is absent. */
-  | 'OFF_SESSION'
+  OffSession = 'OFF_SESSION',
   /** On session storage type. The payment is stored only to be reused when the customer is present in the checkout flow. */
-  | 'ON_SESSION';
+  OnSession = 'ON_SESSION'
+}
 
 /**
  * Define the filtering options for string fields.
@@ -23177,9 +23296,10 @@ export type Subscription = {
   event?: Maybe<Event>;
 };
 
-export type TaxCalculationStrategy =
-  | 'FLAT_RATES'
-  | 'TAX_APP';
+export enum TaxCalculationStrategy {
+  FlatRates = 'FLAT_RATES',
+  TaxApp = 'TAX_APP'
+}
 
 /**
  * Tax class is a named object used to define tax rates per country. Tax class can be assigned to product types, products and shipping methods to define their tax rates.
@@ -23334,10 +23454,11 @@ export type TaxClassCreateError = {
 };
 
 /** An enumeration. */
-export type TaxClassCreateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TaxClassCreateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 export type TaxClassCreateInput = {
   /** List of country-specific tax rates to create for this tax class. */
@@ -23370,10 +23491,11 @@ export type TaxClassDeleteError = {
 };
 
 /** An enumeration. */
-export type TaxClassDeleteErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TaxClassDeleteErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 export type TaxClassFilterInput = {
   countries?: InputMaybe<Array<CountryCode>>;
@@ -23388,9 +23510,10 @@ export type TaxClassRateInput = {
   taxClassId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type TaxClassSortField =
+export enum TaxClassSortField {
   /** Sort tax classes by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
 export type TaxClassSortingInput = {
   /** Specifies the direction in which to sort tax classes. */
@@ -23425,11 +23548,12 @@ export type TaxClassUpdateError = {
 };
 
 /** An enumeration. */
-export type TaxClassUpdateErrorCode =
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TaxClassUpdateErrorCode {
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 export type TaxClassUpdateInput = {
   /** Name of the tax class. */
@@ -23619,11 +23743,12 @@ export type TaxConfigurationUpdateError = {
 };
 
 /** An enumeration. */
-export type TaxConfigurationUpdateErrorCode =
-  | 'DUPLICATED_INPUT_ITEM'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TaxConfigurationUpdateErrorCode {
+  DuplicatedInputItem = 'DUPLICATED_INPUT_ITEM',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 export type TaxConfigurationUpdateInput = {
   /** Determines whether taxes are charged in the given channel. */
@@ -23678,10 +23803,11 @@ export type TaxCountryConfigurationDeleteError = {
 };
 
 /** An enumeration. */
-export type TaxCountryConfigurationDeleteErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TaxCountryConfigurationDeleteErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Update tax class rates for a specific country.
@@ -23710,12 +23836,13 @@ export type TaxCountryConfigurationUpdateError = {
 };
 
 /** An enumeration. */
-export type TaxCountryConfigurationUpdateErrorCode =
-  | 'CANNOT_CREATE_NEGATIVE_RATE'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'ONLY_ONE_DEFAULT_COUNTRY_RATE_ALLOWED';
+export enum TaxCountryConfigurationUpdateErrorCode {
+  CannotCreateNegativeRate = 'CANNOT_CREATE_NEGATIVE_RATE',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  OnlyOneDefaultCountryRateAllowed = 'ONLY_ONE_DEFAULT_COUNTRY_RATE_ALLOWED'
+}
 
 /**
  * Exempt checkout or order from charging the taxes. When tax exemption is enabled, taxes won't be charged for the checkout or order. Taxes may still be calculated in cases when product prices are entered with the tax included and the net price needs to be known.
@@ -23741,11 +23868,12 @@ export type TaxExemptionManageError = {
 };
 
 /** An enumeration. */
-export type TaxExemptionManageErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_EDITABLE_ORDER'
-  | 'NOT_FOUND';
+export enum TaxExemptionManageErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotEditableOrder = 'NOT_EDITABLE_ORDER',
+  NotFound = 'NOT_FOUND'
+}
 
 export type TaxSourceLine = CheckoutLine | OrderLine;
 
@@ -23880,10 +24008,11 @@ export type ThumbnailCreated = Event & {
 };
 
 /** An enumeration. */
-export type ThumbnailFormatEnum =
-  | 'AVIF'
-  | 'ORIGINAL'
-  | 'WEBP';
+export enum ThumbnailFormatEnum {
+  Avif = 'AVIF',
+  Original = 'ORIGINAL',
+  Webp = 'WEBP'
+}
 
 export type TimePeriod = {
   __typename?: 'TimePeriod';
@@ -23901,11 +24030,12 @@ export type TimePeriodInputType = {
 };
 
 /** An enumeration. */
-export type TimePeriodTypeEnum =
-  | 'DAY'
-  | 'MONTH'
-  | 'WEEK'
-  | 'YEAR';
+export enum TimePeriodTypeEnum {
+  Day = 'DAY',
+  Month = 'MONTH',
+  Week = 'WEEK',
+  Year = 'YEAR'
+}
 
 /** An object representing a single payment. */
 export type Transaction = Node & {
@@ -23941,11 +24071,12 @@ export type TransactionAction = {
  *     CANCEL - Represents a cancel action. Added in Saleor 3.12.
  *
  */
-export type TransactionActionEnum =
-  | 'CANCEL'
-  | 'CHARGE'
-  | 'REFUND'
-  | 'VOID';
+export enum TransactionActionEnum {
+  Cancel = 'CANCEL',
+  Charge = 'CHARGE',
+  Refund = 'REFUND',
+  Void = 'VOID'
+}
 
 /**
  * Event sent when transaction action is requested.
@@ -24042,13 +24173,14 @@ export type TransactionCreateError = {
 };
 
 /** An enumeration. */
-export type TransactionCreateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INCORRECT_CURRENCY'
-  | 'INVALID'
-  | 'METADATA_KEY_REQUIRED'
-  | 'NOT_FOUND'
-  | 'UNIQUE';
+export enum TransactionCreateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  IncorrectCurrency = 'INCORRECT_CURRENCY',
+  Invalid = 'INVALID',
+  MetadataKeyRequired = 'METADATA_KEY_REQUIRED',
+  NotFound = 'NOT_FOUND',
+  Unique = 'UNIQUE'
+}
 
 export type TransactionCreateInput = {
   /** Amount authorized by this transaction. */
@@ -24242,12 +24374,13 @@ export type TransactionEventReportError = {
 };
 
 /** An enumeration. */
-export type TransactionEventReportErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'GRAPHQL_ERROR'
-  | 'INCORRECT_DETAILS'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TransactionEventReportErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  GraphqlError = 'GRAPHQL_ERROR',
+  IncorrectDetails = 'INCORRECT_DETAILS',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Represents possible event types.
@@ -24277,25 +24410,26 @@ export type TransactionEventReportErrorCode =
  *     INFO - represents info event.
  *
  */
-export type TransactionEventTypeEnum =
-  | 'AUTHORIZATION_ACTION_REQUIRED'
-  | 'AUTHORIZATION_ADJUSTMENT'
-  | 'AUTHORIZATION_FAILURE'
-  | 'AUTHORIZATION_REQUEST'
-  | 'AUTHORIZATION_SUCCESS'
-  | 'CANCEL_FAILURE'
-  | 'CANCEL_REQUEST'
-  | 'CANCEL_SUCCESS'
-  | 'CHARGE_ACTION_REQUIRED'
-  | 'CHARGE_BACK'
-  | 'CHARGE_FAILURE'
-  | 'CHARGE_REQUEST'
-  | 'CHARGE_SUCCESS'
-  | 'INFO'
-  | 'REFUND_FAILURE'
-  | 'REFUND_REQUEST'
-  | 'REFUND_REVERSE'
-  | 'REFUND_SUCCESS';
+export enum TransactionEventTypeEnum {
+  AuthorizationActionRequired = 'AUTHORIZATION_ACTION_REQUIRED',
+  AuthorizationAdjustment = 'AUTHORIZATION_ADJUSTMENT',
+  AuthorizationFailure = 'AUTHORIZATION_FAILURE',
+  AuthorizationRequest = 'AUTHORIZATION_REQUEST',
+  AuthorizationSuccess = 'AUTHORIZATION_SUCCESS',
+  CancelFailure = 'CANCEL_FAILURE',
+  CancelRequest = 'CANCEL_REQUEST',
+  CancelSuccess = 'CANCEL_SUCCESS',
+  ChargeActionRequired = 'CHARGE_ACTION_REQUIRED',
+  ChargeBack = 'CHARGE_BACK',
+  ChargeFailure = 'CHARGE_FAILURE',
+  ChargeRequest = 'CHARGE_REQUEST',
+  ChargeSuccess = 'CHARGE_SUCCESS',
+  Info = 'INFO',
+  RefundFailure = 'REFUND_FAILURE',
+  RefundRequest = 'REFUND_REQUEST',
+  RefundReverse = 'REFUND_REVERSE',
+  RefundSuccess = 'REFUND_SUCCESS'
+}
 
 /**
  * Determine the transaction flow strategy.
@@ -24304,9 +24438,10 @@ export type TransactionEventTypeEnum =
  *     CHARGE - the processed transaction should be charged.
  *
  */
-export type TransactionFlowStrategyEnum =
-  | 'AUTHORIZATION'
-  | 'CHARGE';
+export enum TransactionFlowStrategyEnum {
+  Authorization = 'AUTHORIZATION',
+  Charge = 'CHARGE'
+}
 
 /**
  * Initializes a transaction session. It triggers the webhook `TRANSACTION_INITIALIZE_SESSION`, to the requested `paymentGateways`.
@@ -24337,10 +24472,11 @@ export type TransactionInitializeError = {
 };
 
 /** An enumeration. */
-export type TransactionInitializeErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND';
+export enum TransactionInitializeErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Event sent when user starts processing the payment.
@@ -24590,17 +24726,18 @@ export type TransactionItemMetadataUpdated = Event & {
 };
 
 /** An enumeration. */
-export type TransactionKind =
-  | 'ACTION_TO_CONFIRM'
-  | 'AUTH'
-  | 'CANCEL'
-  | 'CAPTURE'
-  | 'CONFIRM'
-  | 'EXTERNAL'
-  | 'PENDING'
-  | 'REFUND'
-  | 'REFUND_ONGOING'
-  | 'VOID';
+export enum TransactionKind {
+  ActionToConfirm = 'ACTION_TO_CONFIRM',
+  Auth = 'AUTH',
+  Cancel = 'CANCEL',
+  Capture = 'CAPTURE',
+  Confirm = 'CONFIRM',
+  External = 'EXTERNAL',
+  Pending = 'PENDING',
+  Refund = 'REFUND',
+  RefundOngoing = 'REFUND_ONGOING',
+  Void = 'VOID'
+}
 
 /**
  * Processes a transaction session. It triggers the webhook `TRANSACTION_PROCESS_SESSION`, to the assigned `paymentGateways`.
@@ -24640,13 +24777,14 @@ export type TransactionProcessError = {
 };
 
 /** An enumeration. */
-export type TransactionProcessErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'MISSING_PAYMENT_APP'
-  | 'MISSING_PAYMENT_APP_RELATION'
-  | 'NOT_FOUND'
-  | 'TRANSACTION_ALREADY_PROCESSED';
+export enum TransactionProcessErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  MissingPaymentApp = 'MISSING_PAYMENT_APP',
+  MissingPaymentAppRelation = 'MISSING_PAYMENT_APP_RELATION',
+  NotFound = 'NOT_FOUND',
+  TransactionAlreadyProcessed = 'TRANSACTION_ALREADY_PROCESSED'
+}
 
 /**
  * Event sent when user has additional payment action to process.
@@ -24726,11 +24864,12 @@ export type TransactionRequestActionError = {
 };
 
 /** An enumeration. */
-export type TransactionRequestActionErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'MISSING_TRANSACTION_ACTION_REQUEST_WEBHOOK'
-  | 'NOT_FOUND';
+export enum TransactionRequestActionErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  MissingTransactionActionRequestWebhook = 'MISSING_TRANSACTION_ACTION_REQUEST_WEBHOOK',
+  NotFound = 'NOT_FOUND'
+}
 
 /**
  * Represents a status of payment transaction.
@@ -24741,10 +24880,11 @@ export type TransactionRequestActionErrorCode =
  *     PENDING - Represents a pending action.
  *
  */
-export type TransactionStatus =
-  | 'FAILURE'
-  | 'PENDING'
-  | 'SUCCESS';
+export enum TransactionStatus {
+  Failure = 'FAILURE',
+  Pending = 'PENDING',
+  Success = 'SUCCESS'
+}
 
 /**
  * Update transaction.
@@ -24772,13 +24912,14 @@ export type TransactionUpdateError = {
 };
 
 /** An enumeration. */
-export type TransactionUpdateErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INCORRECT_CURRENCY'
-  | 'INVALID'
-  | 'METADATA_KEY_REQUIRED'
-  | 'NOT_FOUND'
-  | 'UNIQUE';
+export enum TransactionUpdateErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  IncorrectCurrency = 'INCORRECT_CURRENCY',
+  Invalid = 'INVALID',
+  MetadataKeyRequired = 'METADATA_KEY_REQUIRED',
+  NotFound = 'NOT_FOUND',
+  Unique = 'UNIQUE'
+}
 
 export type TransactionUpdateInput = {
   /** Amount authorized by this transaction. */
@@ -24868,18 +25009,19 @@ export type TranslatableItemEdge = {
   node: TranslatableItem;
 };
 
-export type TranslatableKinds =
-  | 'ATTRIBUTE'
-  | 'ATTRIBUTE_VALUE'
-  | 'CATEGORY'
-  | 'COLLECTION'
-  | 'MENU_ITEM'
-  | 'PAGE'
-  | 'PRODUCT'
-  | 'SALE'
-  | 'SHIPPING_METHOD'
-  | 'VARIANT'
-  | 'VOUCHER';
+export enum TranslatableKinds {
+  Attribute = 'ATTRIBUTE',
+  AttributeValue = 'ATTRIBUTE_VALUE',
+  Category = 'CATEGORY',
+  Collection = 'COLLECTION',
+  MenuItem = 'MENU_ITEM',
+  Page = 'PAGE',
+  Product = 'PRODUCT',
+  Sale = 'SALE',
+  ShippingMethod = 'SHIPPING_METHOD',
+  Variant = 'VARIANT',
+  Voucher = 'VOUCHER'
+}
 
 /**
  * Event sent when new translation is created.
@@ -24911,11 +25053,12 @@ export type TranslationError = {
 };
 
 /** An enumeration. */
-export type TranslationErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED';
+export enum TranslationErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED'
+}
 
 export type TranslationInput = {
   /**
@@ -24998,8 +25141,9 @@ export type UploadError = {
 };
 
 /** An enumeration. */
-export type UploadErrorCode =
-  | 'GRAPHQL_ERROR';
+export enum UploadErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR'
+}
 
 /** Represents user data. */
 export type User = Node & ObjectWithMetadata & {
@@ -25322,19 +25466,20 @@ export type UserPermissionSourcePermissionGroupsArgs = {
   userId: Scalars['ID']['input'];
 };
 
-export type UserSortField =
+export enum UserSortField {
   /** Sort users by created at. */
-  | 'CREATED_AT'
+  CreatedAt = 'CREATED_AT',
   /** Sort users by email. */
-  | 'EMAIL'
+  Email = 'EMAIL',
   /** Sort users by first name. */
-  | 'FIRST_NAME'
+  FirstName = 'FIRST_NAME',
   /** Sort users by last modified at. */
-  | 'LAST_MODIFIED_AT'
+  LastModifiedAt = 'LAST_MODIFIED_AT',
   /** Sort users by last name. */
-  | 'LAST_NAME'
+  LastName = 'LAST_NAME',
   /** Sort users by order count. */
-  | 'ORDER_COUNT';
+  OrderCount = 'ORDER_COUNT'
+}
 
 export type UserSortingInput = {
   /** Specifies the direction in which to sort users. */
@@ -25354,10 +25499,11 @@ export type Vat = {
   standardRate?: Maybe<Scalars['Float']['output']>;
 };
 
-export type VariantAttributeScope =
-  | 'ALL'
-  | 'NOT_VARIANT_SELECTION'
-  | 'VARIANT_SELECTION';
+export enum VariantAttributeScope {
+  All = 'ALL',
+  NotVariantSelection = 'NOT_VARIANT_SELECTION',
+  VariantSelection = 'VARIANT_SELECTION'
+}
 
 /**
  * Assign an media to a product variant.
@@ -25419,20 +25565,21 @@ export type VerifyToken = {
 };
 
 /** An enumeration. */
-export type VolumeUnitsEnum =
-  | 'ACRE_FT'
-  | 'ACRE_IN'
-  | 'CUBIC_CENTIMETER'
-  | 'CUBIC_DECIMETER'
-  | 'CUBIC_FOOT'
-  | 'CUBIC_INCH'
-  | 'CUBIC_METER'
-  | 'CUBIC_MILLIMETER'
-  | 'CUBIC_YARD'
-  | 'FL_OZ'
-  | 'LITER'
-  | 'PINT'
-  | 'QT';
+export enum VolumeUnitsEnum {
+  AcreFt = 'ACRE_FT',
+  AcreIn = 'ACRE_IN',
+  CubicCentimeter = 'CUBIC_CENTIMETER',
+  CubicDecimeter = 'CUBIC_DECIMETER',
+  CubicFoot = 'CUBIC_FOOT',
+  CubicInch = 'CUBIC_INCH',
+  CubicMeter = 'CUBIC_METER',
+  CubicMillimeter = 'CUBIC_MILLIMETER',
+  CubicYard = 'CUBIC_YARD',
+  FlOz = 'FL_OZ',
+  Liter = 'LITER',
+  Pint = 'PINT',
+  Qt = 'QT'
+}
 
 /** Vouchers allow giving discounts to particular customers on categories, collections or specific products. They can be used during checkout by providing valid voucher codes. */
 export type Voucher = Node & ObjectWithMetadata & {
@@ -25767,10 +25914,11 @@ export type VoucherDeletedVoucherArgs = {
   channel?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type VoucherDiscountType =
-  | 'FIXED'
-  | 'PERCENTAGE'
-  | 'SHIPPING';
+export enum VoucherDiscountType {
+  Fixed = 'FIXED',
+  Percentage = 'PERCENTAGE',
+  Shipping = 'SHIPPING'
+}
 
 export type VoucherFilterInput = {
   discountType?: InputMaybe<Array<VoucherDiscountType>>;
@@ -25864,29 +26012,30 @@ export type VoucherRemoveCatalogues = {
   voucher?: Maybe<Voucher>;
 };
 
-export type VoucherSortField =
+export enum VoucherSortField {
   /** Sort vouchers by code. */
-  | 'CODE'
+  Code = 'CODE',
   /** Sort vouchers by end date. */
-  | 'END_DATE'
+  EndDate = 'END_DATE',
   /**
    * Sort vouchers by minimum spent amount.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'MINIMUM_SPENT_AMOUNT'
+  MinimumSpentAmount = 'MINIMUM_SPENT_AMOUNT',
   /** Sort vouchers by start date. */
-  | 'START_DATE'
+  StartDate = 'START_DATE',
   /** Sort vouchers by type. */
-  | 'TYPE'
+  Type = 'TYPE',
   /** Sort vouchers by usage limit. */
-  | 'USAGE_LIMIT'
+  UsageLimit = 'USAGE_LIMIT',
   /**
    * Sort vouchers by value.
    *
    * This option requires a channel filter to work as the values can vary between channels.
    */
-  | 'VALUE';
+  Value = 'VALUE'
+}
 
 export type VoucherSortingInput = {
   /**
@@ -25942,10 +26091,11 @@ export type VoucherTranslation = Node & {
   name?: Maybe<Scalars['String']['output']>;
 };
 
-export type VoucherTypeEnum =
-  | 'ENTIRE_ORDER'
-  | 'SHIPPING'
-  | 'SPECIFIC_PRODUCT';
+export enum VoucherTypeEnum {
+  EntireOrder = 'ENTIRE_ORDER',
+  Shipping = 'SHIPPING',
+  SpecificProduct = 'SPECIFIC_PRODUCT'
+}
 
 /**
  * Updates a voucher.
@@ -26092,10 +26242,11 @@ export type WarehouseShippingZonesArgs = {
 };
 
 /** An enumeration. */
-export type WarehouseClickAndCollectOptionEnum =
-  | 'ALL'
-  | 'DISABLED'
-  | 'LOCAL';
+export enum WarehouseClickAndCollectOptionEnum {
+  All = 'ALL',
+  Disabled = 'DISABLED',
+  Local = 'LOCAL'
+}
 
 export type WarehouseCountableConnection = {
   __typename?: 'WarehouseCountableConnection';
@@ -26214,13 +26365,14 @@ export type WarehouseError = {
 };
 
 /** An enumeration. */
-export type WarehouseErrorCode =
-  | 'ALREADY_EXISTS'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'UNIQUE';
+export enum WarehouseErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Unique = 'UNIQUE'
+}
 
 export type WarehouseFilterInput = {
   channels?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -26276,9 +26428,10 @@ export type WarehouseShippingZoneUnassign = {
   warehouseErrors: Array<WarehouseError>;
 };
 
-export type WarehouseSortField =
+export enum WarehouseSortField {
   /** Sort warehouses by name. */
-  | 'NAME';
+  Name = 'NAME'
+}
 
 export type WarehouseSortingInput = {
   /** Specifies the direction in which to sort warehouses. */
@@ -26491,16 +26644,17 @@ export type WebhookDryRunError = {
 };
 
 /** An enumeration. */
-export type WebhookDryRunErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID_ID'
-  | 'MISSING_EVENT'
-  | 'MISSING_PERMISSION'
-  | 'MISSING_SUBSCRIPTION'
-  | 'NOT_FOUND'
-  | 'SYNTAX'
-  | 'TYPE_NOT_SUPPORTED'
-  | 'UNABLE_TO_PARSE';
+export enum WebhookDryRunErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  InvalidId = 'INVALID_ID',
+  MissingEvent = 'MISSING_EVENT',
+  MissingPermission = 'MISSING_PERMISSION',
+  MissingSubscription = 'MISSING_SUBSCRIPTION',
+  NotFound = 'NOT_FOUND',
+  Syntax = 'SYNTAX',
+  TypeNotSupported = 'TYPE_NOT_SUPPORTED',
+  UnableToParse = 'UNABLE_TO_PARSE'
+}
 
 export type WebhookError = {
   __typename?: 'WebhookError';
@@ -26513,18 +26667,19 @@ export type WebhookError = {
 };
 
 /** An enumeration. */
-export type WebhookErrorCode =
-  | 'DELETE_FAILED'
-  | 'GRAPHQL_ERROR'
-  | 'INVALID'
-  | 'INVALID_CUSTOM_HEADERS'
-  | 'MISSING_EVENT'
-  | 'MISSING_SUBSCRIPTION'
-  | 'NOT_FOUND'
-  | 'REQUIRED'
-  | 'SYNTAX'
-  | 'UNABLE_TO_PARSE'
-  | 'UNIQUE';
+export enum WebhookErrorCode {
+  DeleteFailed = 'DELETE_FAILED',
+  GraphqlError = 'GRAPHQL_ERROR',
+  Invalid = 'INVALID',
+  InvalidCustomHeaders = 'INVALID_CUSTOM_HEADERS',
+  MissingEvent = 'MISSING_EVENT',
+  MissingSubscription = 'MISSING_SUBSCRIPTION',
+  NotFound = 'NOT_FOUND',
+  Required = 'REQUIRED',
+  Syntax = 'SYNTAX',
+  UnableToParse = 'UNABLE_TO_PARSE',
+  Unique = 'UNIQUE'
+}
 
 /** Webhook event. */
 export type WebhookEvent = {
@@ -26554,112 +26709,112 @@ export type WebhookEventSync = {
 };
 
 /** Enum determining type of webhook. */
-export type WebhookEventTypeAsyncEnum =
+export enum WebhookEventTypeAsyncEnum {
   /** A new address created. */
-  | 'ADDRESS_CREATED'
+  AddressCreated = 'ADDRESS_CREATED',
   /** An address deleted. */
-  | 'ADDRESS_DELETED'
+  AddressDeleted = 'ADDRESS_DELETED',
   /** An address updated. */
-  | 'ADDRESS_UPDATED'
+  AddressUpdated = 'ADDRESS_UPDATED',
   /** All the events. */
-  | 'ANY_EVENTS'
+  AnyEvents = 'ANY_EVENTS',
   /** An app deleted. */
-  | 'APP_DELETED'
+  AppDeleted = 'APP_DELETED',
   /** A new app installed. */
-  | 'APP_INSTALLED'
+  AppInstalled = 'APP_INSTALLED',
   /** An app status is changed. */
-  | 'APP_STATUS_CHANGED'
+  AppStatusChanged = 'APP_STATUS_CHANGED',
   /** An app updated. */
-  | 'APP_UPDATED'
+  AppUpdated = 'APP_UPDATED',
   /** A new attribute is created. */
-  | 'ATTRIBUTE_CREATED'
+  AttributeCreated = 'ATTRIBUTE_CREATED',
   /** An attribute is deleted. */
-  | 'ATTRIBUTE_DELETED'
+  AttributeDeleted = 'ATTRIBUTE_DELETED',
   /** An attribute is updated. */
-  | 'ATTRIBUTE_UPDATED'
+  AttributeUpdated = 'ATTRIBUTE_UPDATED',
   /** A new attribute value is created. */
-  | 'ATTRIBUTE_VALUE_CREATED'
+  AttributeValueCreated = 'ATTRIBUTE_VALUE_CREATED',
   /** An attribute value is deleted. */
-  | 'ATTRIBUTE_VALUE_DELETED'
+  AttributeValueDeleted = 'ATTRIBUTE_VALUE_DELETED',
   /** An attribute value is updated. */
-  | 'ATTRIBUTE_VALUE_UPDATED'
+  AttributeValueUpdated = 'ATTRIBUTE_VALUE_UPDATED',
   /** A new category created. */
-  | 'CATEGORY_CREATED'
+  CategoryCreated = 'CATEGORY_CREATED',
   /** A category is deleted. */
-  | 'CATEGORY_DELETED'
+  CategoryDeleted = 'CATEGORY_DELETED',
   /** A category is updated. */
-  | 'CATEGORY_UPDATED'
+  CategoryUpdated = 'CATEGORY_UPDATED',
   /** A new channel created. */
-  | 'CHANNEL_CREATED'
+  ChannelCreated = 'CHANNEL_CREATED',
   /** A channel is deleted. */
-  | 'CHANNEL_DELETED'
+  ChannelDeleted = 'CHANNEL_DELETED',
   /** A channel status is changed. */
-  | 'CHANNEL_STATUS_CHANGED'
+  ChannelStatusChanged = 'CHANNEL_STATUS_CHANGED',
   /** A channel is updated. */
-  | 'CHANNEL_UPDATED'
+  ChannelUpdated = 'CHANNEL_UPDATED',
   /** A new checkout is created. */
-  | 'CHECKOUT_CREATED'
-  | 'CHECKOUT_FULLY_PAID'
+  CheckoutCreated = 'CHECKOUT_CREATED',
+  CheckoutFullyPaid = 'CHECKOUT_FULLY_PAID',
   /**
    * A checkout metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'CHECKOUT_METADATA_UPDATED'
+  CheckoutMetadataUpdated = 'CHECKOUT_METADATA_UPDATED',
   /** A checkout is updated. It also triggers all updates related to the checkout. */
-  | 'CHECKOUT_UPDATED'
+  CheckoutUpdated = 'CHECKOUT_UPDATED',
   /** A new collection is created. */
-  | 'COLLECTION_CREATED'
+  CollectionCreated = 'COLLECTION_CREATED',
   /** A collection is deleted. */
-  | 'COLLECTION_DELETED'
+  CollectionDeleted = 'COLLECTION_DELETED',
   /**
    * A collection metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'COLLECTION_METADATA_UPDATED'
+  CollectionMetadataUpdated = 'COLLECTION_METADATA_UPDATED',
   /** A collection is updated. */
-  | 'COLLECTION_UPDATED'
+  CollectionUpdated = 'COLLECTION_UPDATED',
   /** A new customer account is created. */
-  | 'CUSTOMER_CREATED'
+  CustomerCreated = 'CUSTOMER_CREATED',
   /** A customer account is deleted. */
-  | 'CUSTOMER_DELETED'
+  CustomerDeleted = 'CUSTOMER_DELETED',
   /**
    * A customer account metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'CUSTOMER_METADATA_UPDATED'
+  CustomerMetadataUpdated = 'CUSTOMER_METADATA_UPDATED',
   /** A customer account is updated. */
-  | 'CUSTOMER_UPDATED'
+  CustomerUpdated = 'CUSTOMER_UPDATED',
   /** A draft order is created. */
-  | 'DRAFT_ORDER_CREATED'
+  DraftOrderCreated = 'DRAFT_ORDER_CREATED',
   /** A draft order is deleted. */
-  | 'DRAFT_ORDER_DELETED'
+  DraftOrderDeleted = 'DRAFT_ORDER_DELETED',
   /** A draft order is updated. */
-  | 'DRAFT_ORDER_UPDATED'
+  DraftOrderUpdated = 'DRAFT_ORDER_UPDATED',
   /** A fulfillment is approved. */
-  | 'FULFILLMENT_APPROVED'
+  FulfillmentApproved = 'FULFILLMENT_APPROVED',
   /** A fulfillment is cancelled. */
-  | 'FULFILLMENT_CANCELED'
+  FulfillmentCanceled = 'FULFILLMENT_CANCELED',
   /** A new fulfillment is created. */
-  | 'FULFILLMENT_CREATED'
+  FulfillmentCreated = 'FULFILLMENT_CREATED',
   /**
    * A fulfillment metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'FULFILLMENT_METADATA_UPDATED'
+  FulfillmentMetadataUpdated = 'FULFILLMENT_METADATA_UPDATED',
   /** A new gift card created. */
-  | 'GIFT_CARD_CREATED'
+  GiftCardCreated = 'GIFT_CARD_CREATED',
   /** A gift card is deleted. */
-  | 'GIFT_CARD_DELETED'
+  GiftCardDeleted = 'GIFT_CARD_DELETED',
   /**
    * A gift card metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'GIFT_CARD_METADATA_UPDATED'
+  GiftCardMetadataUpdated = 'GIFT_CARD_METADATA_UPDATED',
   /**
    * A gift card has been sent.
    *
@@ -26667,33 +26822,33 @@ export type WebhookEventTypeAsyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'GIFT_CARD_SENT'
+  GiftCardSent = 'GIFT_CARD_SENT',
   /** A gift card status is changed. */
-  | 'GIFT_CARD_STATUS_CHANGED'
+  GiftCardStatusChanged = 'GIFT_CARD_STATUS_CHANGED',
   /** A gift card is updated. */
-  | 'GIFT_CARD_UPDATED'
+  GiftCardUpdated = 'GIFT_CARD_UPDATED',
   /** An invoice is deleted. */
-  | 'INVOICE_DELETED'
+  InvoiceDeleted = 'INVOICE_DELETED',
   /** An invoice for order requested. */
-  | 'INVOICE_REQUESTED'
+  InvoiceRequested = 'INVOICE_REQUESTED',
   /** Invoice has been sent. */
-  | 'INVOICE_SENT'
+  InvoiceSent = 'INVOICE_SENT',
   /** A new menu created. */
-  | 'MENU_CREATED'
+  MenuCreated = 'MENU_CREATED',
   /** A menu is deleted. */
-  | 'MENU_DELETED'
+  MenuDeleted = 'MENU_DELETED',
   /** A new menu item created. */
-  | 'MENU_ITEM_CREATED'
+  MenuItemCreated = 'MENU_ITEM_CREATED',
   /** A menu item is deleted. */
-  | 'MENU_ITEM_DELETED'
+  MenuItemDeleted = 'MENU_ITEM_DELETED',
   /** A menu item is updated. */
-  | 'MENU_ITEM_UPDATED'
+  MenuItemUpdated = 'MENU_ITEM_UPDATED',
   /** A menu is updated. */
-  | 'MENU_UPDATED'
+  MenuUpdated = 'MENU_UPDATED',
   /** User notification triggered. */
-  | 'NOTIFY_USER'
+  NotifyUser = 'NOTIFY_USER',
   /** An observability event is created. */
-  | 'OBSERVABILITY'
+  Observability = 'OBSERVABILITY',
   /**
    * Orders are imported.
    *
@@ -26701,19 +26856,19 @@ export type WebhookEventTypeAsyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_BULK_CREATED'
+  OrderBulkCreated = 'ORDER_BULK_CREATED',
   /** An order is cancelled. */
-  | 'ORDER_CANCELLED'
+  OrderCancelled = 'ORDER_CANCELLED',
   /** An order is confirmed (status change unconfirmed -> unfulfilled) by a staff user using the OrderConfirm mutation. It also triggers when the user completes the checkout and the shop setting `automatically_confirm_all_new_orders` is enabled. */
-  | 'ORDER_CONFIRMED'
+  OrderConfirmed = 'ORDER_CONFIRMED',
   /** A new order is placed. */
-  | 'ORDER_CREATED'
+  OrderCreated = 'ORDER_CREATED',
   /** An order is expired. */
-  | 'ORDER_EXPIRED'
+  OrderExpired = 'ORDER_EXPIRED',
   /** An order is fulfilled. */
-  | 'ORDER_FULFILLED'
+  OrderFulfilled = 'ORDER_FULFILLED',
   /** Payment is made and an order is fully paid. */
-  | 'ORDER_FULLY_PAID'
+  OrderFullyPaid = 'ORDER_FULLY_PAID',
   /**
    * The order is fully refunded.
    *
@@ -26721,13 +26876,13 @@ export type WebhookEventTypeAsyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_FULLY_REFUNDED'
+  OrderFullyRefunded = 'ORDER_FULLY_REFUNDED',
   /**
    * An order metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'ORDER_METADATA_UPDATED'
+  OrderMetadataUpdated = 'ORDER_METADATA_UPDATED',
   /**
    * Payment has been made. The order may be partially or fully paid.
    *
@@ -26735,7 +26890,7 @@ export type WebhookEventTypeAsyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_PAID'
+  OrderPaid = 'ORDER_PAID',
   /**
    * The order received a refund. The order may be partially or fully refunded.
    *
@@ -26743,269 +26898,270 @@ export type WebhookEventTypeAsyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_REFUNDED'
+  OrderRefunded = 'ORDER_REFUNDED',
   /** An order is updated; triggered for all changes related to an order; covers all other order webhooks, except for ORDER_CREATED. */
-  | 'ORDER_UPDATED'
+  OrderUpdated = 'ORDER_UPDATED',
   /** A new page is created. */
-  | 'PAGE_CREATED'
+  PageCreated = 'PAGE_CREATED',
   /** A page is deleted. */
-  | 'PAGE_DELETED'
+  PageDeleted = 'PAGE_DELETED',
   /** A new page type is created. */
-  | 'PAGE_TYPE_CREATED'
+  PageTypeCreated = 'PAGE_TYPE_CREATED',
   /** A page type is deleted. */
-  | 'PAGE_TYPE_DELETED'
+  PageTypeDeleted = 'PAGE_TYPE_DELETED',
   /** A page type is updated. */
-  | 'PAGE_TYPE_UPDATED'
+  PageTypeUpdated = 'PAGE_TYPE_UPDATED',
   /** A page is updated. */
-  | 'PAGE_UPDATED'
+  PageUpdated = 'PAGE_UPDATED',
   /** A new permission group is created. */
-  | 'PERMISSION_GROUP_CREATED'
+  PermissionGroupCreated = 'PERMISSION_GROUP_CREATED',
   /** A permission group is deleted. */
-  | 'PERMISSION_GROUP_DELETED'
+  PermissionGroupDeleted = 'PERMISSION_GROUP_DELETED',
   /** A permission group is updated. */
-  | 'PERMISSION_GROUP_UPDATED'
+  PermissionGroupUpdated = 'PERMISSION_GROUP_UPDATED',
   /** A new product is created. */
-  | 'PRODUCT_CREATED'
+  ProductCreated = 'PRODUCT_CREATED',
   /** A product is deleted. */
-  | 'PRODUCT_DELETED'
+  ProductDeleted = 'PRODUCT_DELETED',
   /**
    * A new product media is created.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_CREATED'
+  ProductMediaCreated = 'PRODUCT_MEDIA_CREATED',
   /**
    * A product media is deleted.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_DELETED'
+  ProductMediaDeleted = 'PRODUCT_MEDIA_DELETED',
   /**
    * A product media is updated.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_UPDATED'
+  ProductMediaUpdated = 'PRODUCT_MEDIA_UPDATED',
   /**
    * A product metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'PRODUCT_METADATA_UPDATED'
+  ProductMetadataUpdated = 'PRODUCT_METADATA_UPDATED',
   /** A product is updated. */
-  | 'PRODUCT_UPDATED'
+  ProductUpdated = 'PRODUCT_UPDATED',
   /** A product variant is back in stock. */
-  | 'PRODUCT_VARIANT_BACK_IN_STOCK'
+  ProductVariantBackInStock = 'PRODUCT_VARIANT_BACK_IN_STOCK',
   /** A new product variant is created. */
-  | 'PRODUCT_VARIANT_CREATED'
+  ProductVariantCreated = 'PRODUCT_VARIANT_CREATED',
   /** A product variant is deleted. */
-  | 'PRODUCT_VARIANT_DELETED'
+  ProductVariantDeleted = 'PRODUCT_VARIANT_DELETED',
   /**
    * A product variant metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'PRODUCT_VARIANT_METADATA_UPDATED'
+  ProductVariantMetadataUpdated = 'PRODUCT_VARIANT_METADATA_UPDATED',
   /** A product variant is out of stock. */
-  | 'PRODUCT_VARIANT_OUT_OF_STOCK'
+  ProductVariantOutOfStock = 'PRODUCT_VARIANT_OUT_OF_STOCK',
   /** A product variant stock is updated */
-  | 'PRODUCT_VARIANT_STOCK_UPDATED'
+  ProductVariantStockUpdated = 'PRODUCT_VARIANT_STOCK_UPDATED',
   /** A product variant is updated. */
-  | 'PRODUCT_VARIANT_UPDATED'
+  ProductVariantUpdated = 'PRODUCT_VARIANT_UPDATED',
   /** A sale is created. */
-  | 'SALE_CREATED'
+  SaleCreated = 'SALE_CREATED',
   /** A sale is deleted. */
-  | 'SALE_DELETED'
+  SaleDeleted = 'SALE_DELETED',
   /** A sale is activated or deactivated. */
-  | 'SALE_TOGGLE'
+  SaleToggle = 'SALE_TOGGLE',
   /** A sale is updated. */
-  | 'SALE_UPDATED'
+  SaleUpdated = 'SALE_UPDATED',
   /** A new shipping price is created. */
-  | 'SHIPPING_PRICE_CREATED'
+  ShippingPriceCreated = 'SHIPPING_PRICE_CREATED',
   /** A shipping price is deleted. */
-  | 'SHIPPING_PRICE_DELETED'
+  ShippingPriceDeleted = 'SHIPPING_PRICE_DELETED',
   /** A shipping price is updated. */
-  | 'SHIPPING_PRICE_UPDATED'
+  ShippingPriceUpdated = 'SHIPPING_PRICE_UPDATED',
   /** A new shipping zone is created. */
-  | 'SHIPPING_ZONE_CREATED'
+  ShippingZoneCreated = 'SHIPPING_ZONE_CREATED',
   /** A shipping zone is deleted. */
-  | 'SHIPPING_ZONE_DELETED'
+  ShippingZoneDeleted = 'SHIPPING_ZONE_DELETED',
   /**
    * A shipping zone metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'SHIPPING_ZONE_METADATA_UPDATED'
+  ShippingZoneMetadataUpdated = 'SHIPPING_ZONE_METADATA_UPDATED',
   /** A shipping zone is updated. */
-  | 'SHIPPING_ZONE_UPDATED'
+  ShippingZoneUpdated = 'SHIPPING_ZONE_UPDATED',
   /** A new staff user is created. */
-  | 'STAFF_CREATED'
+  StaffCreated = 'STAFF_CREATED',
   /** A staff user is deleted. */
-  | 'STAFF_DELETED'
+  StaffDeleted = 'STAFF_DELETED',
   /** A staff user is updated. */
-  | 'STAFF_UPDATED'
+  StaffUpdated = 'STAFF_UPDATED',
   /**
    * A thumbnail is created.
    *
    * Added in Saleor 3.12.
    */
-  | 'THUMBNAIL_CREATED'
+  ThumbnailCreated = 'THUMBNAIL_CREATED',
   /**
    * An action requested for transaction.
    *
    * DEPRECATED: this subscription will be removed in Saleor 3.14 (Preview Feature). Use `TRANSACTION_CHARGE_REQUESTED`, `TRANSACTION_REFUND_REQUESTED`, `TRANSACTION_CANCELATION_REQUESTED` instead.
    */
-  | 'TRANSACTION_ACTION_REQUEST'
+  TransactionActionRequest = 'TRANSACTION_ACTION_REQUEST',
   /**
    * Transaction item metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'TRANSACTION_ITEM_METADATA_UPDATED'
+  TransactionItemMetadataUpdated = 'TRANSACTION_ITEM_METADATA_UPDATED',
   /** A new translation is created. */
-  | 'TRANSLATION_CREATED'
+  TranslationCreated = 'TRANSLATION_CREATED',
   /** A translation is updated. */
-  | 'TRANSLATION_UPDATED'
+  TranslationUpdated = 'TRANSLATION_UPDATED',
   /** A new voucher created. */
-  | 'VOUCHER_CREATED'
+  VoucherCreated = 'VOUCHER_CREATED',
   /** A voucher is deleted. */
-  | 'VOUCHER_DELETED'
+  VoucherDeleted = 'VOUCHER_DELETED',
   /**
    * A voucher metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'VOUCHER_METADATA_UPDATED'
+  VoucherMetadataUpdated = 'VOUCHER_METADATA_UPDATED',
   /** A voucher is updated. */
-  | 'VOUCHER_UPDATED'
+  VoucherUpdated = 'VOUCHER_UPDATED',
   /** A new warehouse created. */
-  | 'WAREHOUSE_CREATED'
+  WarehouseCreated = 'WAREHOUSE_CREATED',
   /** A warehouse is deleted. */
-  | 'WAREHOUSE_DELETED'
+  WarehouseDeleted = 'WAREHOUSE_DELETED',
   /**
    * A warehouse metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'WAREHOUSE_METADATA_UPDATED'
+  WarehouseMetadataUpdated = 'WAREHOUSE_METADATA_UPDATED',
   /** A warehouse is updated. */
-  | 'WAREHOUSE_UPDATED';
+  WarehouseUpdated = 'WAREHOUSE_UPDATED'
+}
 
 /** Enum determining type of webhook. */
-export type WebhookEventTypeEnum =
+export enum WebhookEventTypeEnum {
   /** A new address created. */
-  | 'ADDRESS_CREATED'
+  AddressCreated = 'ADDRESS_CREATED',
   /** An address deleted. */
-  | 'ADDRESS_DELETED'
+  AddressDeleted = 'ADDRESS_DELETED',
   /** An address updated. */
-  | 'ADDRESS_UPDATED'
+  AddressUpdated = 'ADDRESS_UPDATED',
   /** All the events. */
-  | 'ANY_EVENTS'
+  AnyEvents = 'ANY_EVENTS',
   /** An app deleted. */
-  | 'APP_DELETED'
+  AppDeleted = 'APP_DELETED',
   /** A new app installed. */
-  | 'APP_INSTALLED'
+  AppInstalled = 'APP_INSTALLED',
   /** An app status is changed. */
-  | 'APP_STATUS_CHANGED'
+  AppStatusChanged = 'APP_STATUS_CHANGED',
   /** An app updated. */
-  | 'APP_UPDATED'
+  AppUpdated = 'APP_UPDATED',
   /** A new attribute is created. */
-  | 'ATTRIBUTE_CREATED'
+  AttributeCreated = 'ATTRIBUTE_CREATED',
   /** An attribute is deleted. */
-  | 'ATTRIBUTE_DELETED'
+  AttributeDeleted = 'ATTRIBUTE_DELETED',
   /** An attribute is updated. */
-  | 'ATTRIBUTE_UPDATED'
+  AttributeUpdated = 'ATTRIBUTE_UPDATED',
   /** A new attribute value is created. */
-  | 'ATTRIBUTE_VALUE_CREATED'
+  AttributeValueCreated = 'ATTRIBUTE_VALUE_CREATED',
   /** An attribute value is deleted. */
-  | 'ATTRIBUTE_VALUE_DELETED'
+  AttributeValueDeleted = 'ATTRIBUTE_VALUE_DELETED',
   /** An attribute value is updated. */
-  | 'ATTRIBUTE_VALUE_UPDATED'
+  AttributeValueUpdated = 'ATTRIBUTE_VALUE_UPDATED',
   /** A new category created. */
-  | 'CATEGORY_CREATED'
+  CategoryCreated = 'CATEGORY_CREATED',
   /** A category is deleted. */
-  | 'CATEGORY_DELETED'
+  CategoryDeleted = 'CATEGORY_DELETED',
   /** A category is updated. */
-  | 'CATEGORY_UPDATED'
+  CategoryUpdated = 'CATEGORY_UPDATED',
   /** A new channel created. */
-  | 'CHANNEL_CREATED'
+  ChannelCreated = 'CHANNEL_CREATED',
   /** A channel is deleted. */
-  | 'CHANNEL_DELETED'
+  ChannelDeleted = 'CHANNEL_DELETED',
   /** A channel status is changed. */
-  | 'CHANNEL_STATUS_CHANGED'
+  ChannelStatusChanged = 'CHANNEL_STATUS_CHANGED',
   /** A channel is updated. */
-  | 'CHANNEL_UPDATED'
+  ChannelUpdated = 'CHANNEL_UPDATED',
   /**
    * Event called for checkout tax calculation.
    *
    * Added in Saleor 3.6.
    */
-  | 'CHECKOUT_CALCULATE_TAXES'
+  CheckoutCalculateTaxes = 'CHECKOUT_CALCULATE_TAXES',
   /** A new checkout is created. */
-  | 'CHECKOUT_CREATED'
+  CheckoutCreated = 'CHECKOUT_CREATED',
   /** Filter shipping methods for checkout. */
-  | 'CHECKOUT_FILTER_SHIPPING_METHODS'
-  | 'CHECKOUT_FULLY_PAID'
+  CheckoutFilterShippingMethods = 'CHECKOUT_FILTER_SHIPPING_METHODS',
+  CheckoutFullyPaid = 'CHECKOUT_FULLY_PAID',
   /**
    * A checkout metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'CHECKOUT_METADATA_UPDATED'
+  CheckoutMetadataUpdated = 'CHECKOUT_METADATA_UPDATED',
   /** A checkout is updated. It also triggers all updates related to the checkout. */
-  | 'CHECKOUT_UPDATED'
+  CheckoutUpdated = 'CHECKOUT_UPDATED',
   /** A new collection is created. */
-  | 'COLLECTION_CREATED'
+  CollectionCreated = 'COLLECTION_CREATED',
   /** A collection is deleted. */
-  | 'COLLECTION_DELETED'
+  CollectionDeleted = 'COLLECTION_DELETED',
   /**
    * A collection metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'COLLECTION_METADATA_UPDATED'
+  CollectionMetadataUpdated = 'COLLECTION_METADATA_UPDATED',
   /** A collection is updated. */
-  | 'COLLECTION_UPDATED'
+  CollectionUpdated = 'COLLECTION_UPDATED',
   /** A new customer account is created. */
-  | 'CUSTOMER_CREATED'
+  CustomerCreated = 'CUSTOMER_CREATED',
   /** A customer account is deleted. */
-  | 'CUSTOMER_DELETED'
+  CustomerDeleted = 'CUSTOMER_DELETED',
   /**
    * A customer account metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'CUSTOMER_METADATA_UPDATED'
+  CustomerMetadataUpdated = 'CUSTOMER_METADATA_UPDATED',
   /** A customer account is updated. */
-  | 'CUSTOMER_UPDATED'
+  CustomerUpdated = 'CUSTOMER_UPDATED',
   /** A draft order is created. */
-  | 'DRAFT_ORDER_CREATED'
+  DraftOrderCreated = 'DRAFT_ORDER_CREATED',
   /** A draft order is deleted. */
-  | 'DRAFT_ORDER_DELETED'
+  DraftOrderDeleted = 'DRAFT_ORDER_DELETED',
   /** A draft order is updated. */
-  | 'DRAFT_ORDER_UPDATED'
+  DraftOrderUpdated = 'DRAFT_ORDER_UPDATED',
   /** A fulfillment is approved. */
-  | 'FULFILLMENT_APPROVED'
+  FulfillmentApproved = 'FULFILLMENT_APPROVED',
   /** A fulfillment is cancelled. */
-  | 'FULFILLMENT_CANCELED'
+  FulfillmentCanceled = 'FULFILLMENT_CANCELED',
   /** A new fulfillment is created. */
-  | 'FULFILLMENT_CREATED'
+  FulfillmentCreated = 'FULFILLMENT_CREATED',
   /**
    * A fulfillment metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'FULFILLMENT_METADATA_UPDATED'
+  FulfillmentMetadataUpdated = 'FULFILLMENT_METADATA_UPDATED',
   /** A new gift card created. */
-  | 'GIFT_CARD_CREATED'
+  GiftCardCreated = 'GIFT_CARD_CREATED',
   /** A gift card is deleted. */
-  | 'GIFT_CARD_DELETED'
+  GiftCardDeleted = 'GIFT_CARD_DELETED',
   /**
    * A gift card metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'GIFT_CARD_METADATA_UPDATED'
+  GiftCardMetadataUpdated = 'GIFT_CARD_METADATA_UPDATED',
   /**
    * A gift card has been sent.
    *
@@ -27013,33 +27169,33 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'GIFT_CARD_SENT'
+  GiftCardSent = 'GIFT_CARD_SENT',
   /** A gift card status is changed. */
-  | 'GIFT_CARD_STATUS_CHANGED'
+  GiftCardStatusChanged = 'GIFT_CARD_STATUS_CHANGED',
   /** A gift card is updated. */
-  | 'GIFT_CARD_UPDATED'
+  GiftCardUpdated = 'GIFT_CARD_UPDATED',
   /** An invoice is deleted. */
-  | 'INVOICE_DELETED'
+  InvoiceDeleted = 'INVOICE_DELETED',
   /** An invoice for order requested. */
-  | 'INVOICE_REQUESTED'
+  InvoiceRequested = 'INVOICE_REQUESTED',
   /** Invoice has been sent. */
-  | 'INVOICE_SENT'
+  InvoiceSent = 'INVOICE_SENT',
   /** A new menu created. */
-  | 'MENU_CREATED'
+  MenuCreated = 'MENU_CREATED',
   /** A menu is deleted. */
-  | 'MENU_DELETED'
+  MenuDeleted = 'MENU_DELETED',
   /** A new menu item created. */
-  | 'MENU_ITEM_CREATED'
+  MenuItemCreated = 'MENU_ITEM_CREATED',
   /** A menu item is deleted. */
-  | 'MENU_ITEM_DELETED'
+  MenuItemDeleted = 'MENU_ITEM_DELETED',
   /** A menu item is updated. */
-  | 'MENU_ITEM_UPDATED'
+  MenuItemUpdated = 'MENU_ITEM_UPDATED',
   /** A menu is updated. */
-  | 'MENU_UPDATED'
+  MenuUpdated = 'MENU_UPDATED',
   /** User notification triggered. */
-  | 'NOTIFY_USER'
+  NotifyUser = 'NOTIFY_USER',
   /** An observability event is created. */
-  | 'OBSERVABILITY'
+  Observability = 'OBSERVABILITY',
   /**
    * Orders are imported.
    *
@@ -27047,27 +27203,27 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_BULK_CREATED'
+  OrderBulkCreated = 'ORDER_BULK_CREATED',
   /**
    * Event called for order tax calculation.
    *
    * Added in Saleor 3.6.
    */
-  | 'ORDER_CALCULATE_TAXES'
+  OrderCalculateTaxes = 'ORDER_CALCULATE_TAXES',
   /** An order is cancelled. */
-  | 'ORDER_CANCELLED'
+  OrderCancelled = 'ORDER_CANCELLED',
   /** An order is confirmed (status change unconfirmed -> unfulfilled) by a staff user using the OrderConfirm mutation. It also triggers when the user completes the checkout and the shop setting `automatically_confirm_all_new_orders` is enabled. */
-  | 'ORDER_CONFIRMED'
+  OrderConfirmed = 'ORDER_CONFIRMED',
   /** A new order is placed. */
-  | 'ORDER_CREATED'
+  OrderCreated = 'ORDER_CREATED',
   /** An order is expired. */
-  | 'ORDER_EXPIRED'
+  OrderExpired = 'ORDER_EXPIRED',
   /** Filter shipping methods for order. */
-  | 'ORDER_FILTER_SHIPPING_METHODS'
+  OrderFilterShippingMethods = 'ORDER_FILTER_SHIPPING_METHODS',
   /** An order is fulfilled. */
-  | 'ORDER_FULFILLED'
+  OrderFulfilled = 'ORDER_FULFILLED',
   /** Payment is made and an order is fully paid. */
-  | 'ORDER_FULLY_PAID'
+  OrderFullyPaid = 'ORDER_FULLY_PAID',
   /**
    * The order is fully refunded.
    *
@@ -27075,13 +27231,13 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_FULLY_REFUNDED'
+  OrderFullyRefunded = 'ORDER_FULLY_REFUNDED',
   /**
    * An order metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'ORDER_METADATA_UPDATED'
+  OrderMetadataUpdated = 'ORDER_METADATA_UPDATED',
   /**
    * Payment has been made. The order may be partially or fully paid.
    *
@@ -27089,7 +27245,7 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_PAID'
+  OrderPaid = 'ORDER_PAID',
   /**
    * The order received a refund. The order may be partially or fully refunded.
    *
@@ -27097,136 +27253,136 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'ORDER_REFUNDED'
+  OrderRefunded = 'ORDER_REFUNDED',
   /** An order is updated; triggered for all changes related to an order; covers all other order webhooks, except for ORDER_CREATED. */
-  | 'ORDER_UPDATED'
+  OrderUpdated = 'ORDER_UPDATED',
   /** A new page is created. */
-  | 'PAGE_CREATED'
+  PageCreated = 'PAGE_CREATED',
   /** A page is deleted. */
-  | 'PAGE_DELETED'
+  PageDeleted = 'PAGE_DELETED',
   /** A new page type is created. */
-  | 'PAGE_TYPE_CREATED'
+  PageTypeCreated = 'PAGE_TYPE_CREATED',
   /** A page type is deleted. */
-  | 'PAGE_TYPE_DELETED'
+  PageTypeDeleted = 'PAGE_TYPE_DELETED',
   /** A page type is updated. */
-  | 'PAGE_TYPE_UPDATED'
+  PageTypeUpdated = 'PAGE_TYPE_UPDATED',
   /** A page is updated. */
-  | 'PAGE_UPDATED'
+  PageUpdated = 'PAGE_UPDATED',
   /** Authorize payment. */
-  | 'PAYMENT_AUTHORIZE'
+  PaymentAuthorize = 'PAYMENT_AUTHORIZE',
   /** Capture payment. */
-  | 'PAYMENT_CAPTURE'
+  PaymentCapture = 'PAYMENT_CAPTURE',
   /** Confirm payment. */
-  | 'PAYMENT_CONFIRM'
-  | 'PAYMENT_GATEWAY_INITIALIZE_SESSION'
+  PaymentConfirm = 'PAYMENT_CONFIRM',
+  PaymentGatewayInitializeSession = 'PAYMENT_GATEWAY_INITIALIZE_SESSION',
   /** Listing available payment gateways. */
-  | 'PAYMENT_LIST_GATEWAYS'
+  PaymentListGateways = 'PAYMENT_LIST_GATEWAYS',
   /** Process payment. */
-  | 'PAYMENT_PROCESS'
+  PaymentProcess = 'PAYMENT_PROCESS',
   /** Refund payment. */
-  | 'PAYMENT_REFUND'
+  PaymentRefund = 'PAYMENT_REFUND',
   /** Void payment. */
-  | 'PAYMENT_VOID'
+  PaymentVoid = 'PAYMENT_VOID',
   /** A new permission group is created. */
-  | 'PERMISSION_GROUP_CREATED'
+  PermissionGroupCreated = 'PERMISSION_GROUP_CREATED',
   /** A permission group is deleted. */
-  | 'PERMISSION_GROUP_DELETED'
+  PermissionGroupDeleted = 'PERMISSION_GROUP_DELETED',
   /** A permission group is updated. */
-  | 'PERMISSION_GROUP_UPDATED'
+  PermissionGroupUpdated = 'PERMISSION_GROUP_UPDATED',
   /** A new product is created. */
-  | 'PRODUCT_CREATED'
+  ProductCreated = 'PRODUCT_CREATED',
   /** A product is deleted. */
-  | 'PRODUCT_DELETED'
+  ProductDeleted = 'PRODUCT_DELETED',
   /**
    * A new product media is created.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_CREATED'
+  ProductMediaCreated = 'PRODUCT_MEDIA_CREATED',
   /**
    * A product media is deleted.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_DELETED'
+  ProductMediaDeleted = 'PRODUCT_MEDIA_DELETED',
   /**
    * A product media is updated.
    *
    * Added in Saleor 3.12.
    */
-  | 'PRODUCT_MEDIA_UPDATED'
+  ProductMediaUpdated = 'PRODUCT_MEDIA_UPDATED',
   /**
    * A product metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'PRODUCT_METADATA_UPDATED'
+  ProductMetadataUpdated = 'PRODUCT_METADATA_UPDATED',
   /** A product is updated. */
-  | 'PRODUCT_UPDATED'
+  ProductUpdated = 'PRODUCT_UPDATED',
   /** A product variant is back in stock. */
-  | 'PRODUCT_VARIANT_BACK_IN_STOCK'
+  ProductVariantBackInStock = 'PRODUCT_VARIANT_BACK_IN_STOCK',
   /** A new product variant is created. */
-  | 'PRODUCT_VARIANT_CREATED'
+  ProductVariantCreated = 'PRODUCT_VARIANT_CREATED',
   /** A product variant is deleted. */
-  | 'PRODUCT_VARIANT_DELETED'
+  ProductVariantDeleted = 'PRODUCT_VARIANT_DELETED',
   /**
    * A product variant metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'PRODUCT_VARIANT_METADATA_UPDATED'
+  ProductVariantMetadataUpdated = 'PRODUCT_VARIANT_METADATA_UPDATED',
   /** A product variant is out of stock. */
-  | 'PRODUCT_VARIANT_OUT_OF_STOCK'
+  ProductVariantOutOfStock = 'PRODUCT_VARIANT_OUT_OF_STOCK',
   /** A product variant stock is updated */
-  | 'PRODUCT_VARIANT_STOCK_UPDATED'
+  ProductVariantStockUpdated = 'PRODUCT_VARIANT_STOCK_UPDATED',
   /** A product variant is updated. */
-  | 'PRODUCT_VARIANT_UPDATED'
+  ProductVariantUpdated = 'PRODUCT_VARIANT_UPDATED',
   /** A sale is created. */
-  | 'SALE_CREATED'
+  SaleCreated = 'SALE_CREATED',
   /** A sale is deleted. */
-  | 'SALE_DELETED'
+  SaleDeleted = 'SALE_DELETED',
   /** A sale is activated or deactivated. */
-  | 'SALE_TOGGLE'
+  SaleToggle = 'SALE_TOGGLE',
   /** A sale is updated. */
-  | 'SALE_UPDATED'
+  SaleUpdated = 'SALE_UPDATED',
   /** Fetch external shipping methods for checkout. */
-  | 'SHIPPING_LIST_METHODS_FOR_CHECKOUT'
+  ShippingListMethodsForCheckout = 'SHIPPING_LIST_METHODS_FOR_CHECKOUT',
   /** A new shipping price is created. */
-  | 'SHIPPING_PRICE_CREATED'
+  ShippingPriceCreated = 'SHIPPING_PRICE_CREATED',
   /** A shipping price is deleted. */
-  | 'SHIPPING_PRICE_DELETED'
+  ShippingPriceDeleted = 'SHIPPING_PRICE_DELETED',
   /** A shipping price is updated. */
-  | 'SHIPPING_PRICE_UPDATED'
+  ShippingPriceUpdated = 'SHIPPING_PRICE_UPDATED',
   /** A new shipping zone is created. */
-  | 'SHIPPING_ZONE_CREATED'
+  ShippingZoneCreated = 'SHIPPING_ZONE_CREATED',
   /** A shipping zone is deleted. */
-  | 'SHIPPING_ZONE_DELETED'
+  ShippingZoneDeleted = 'SHIPPING_ZONE_DELETED',
   /**
    * A shipping zone metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'SHIPPING_ZONE_METADATA_UPDATED'
+  ShippingZoneMetadataUpdated = 'SHIPPING_ZONE_METADATA_UPDATED',
   /** A shipping zone is updated. */
-  | 'SHIPPING_ZONE_UPDATED'
+  ShippingZoneUpdated = 'SHIPPING_ZONE_UPDATED',
   /** A new staff user is created. */
-  | 'STAFF_CREATED'
+  StaffCreated = 'STAFF_CREATED',
   /** A staff user is deleted. */
-  | 'STAFF_DELETED'
+  StaffDeleted = 'STAFF_DELETED',
   /** A staff user is updated. */
-  | 'STAFF_UPDATED'
+  StaffUpdated = 'STAFF_UPDATED',
   /**
    * A thumbnail is created.
    *
    * Added in Saleor 3.12.
    */
-  | 'THUMBNAIL_CREATED'
+  ThumbnailCreated = 'THUMBNAIL_CREATED',
   /**
    * An action requested for transaction.
    *
    * DEPRECATED: this subscription will be removed in Saleor 3.14 (Preview Feature). Use `TRANSACTION_CHARGE_REQUESTED`, `TRANSACTION_REFUND_REQUESTED`, `TRANSACTION_CANCELATION_REQUESTED` instead.
    */
-  | 'TRANSACTION_ACTION_REQUEST'
+  TransactionActionRequest = 'TRANSACTION_ACTION_REQUEST',
   /**
    * Event called when cancel has been requested for transaction.
    *
@@ -27234,7 +27390,7 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_CANCELATION_REQUESTED'
+  TransactionCancelationRequested = 'TRANSACTION_CANCELATION_REQUESTED',
   /**
    * Event called when charge has been requested for transaction.
    *
@@ -27242,15 +27398,15 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_CHARGE_REQUESTED'
-  | 'TRANSACTION_INITIALIZE_SESSION'
+  TransactionChargeRequested = 'TRANSACTION_CHARGE_REQUESTED',
+  TransactionInitializeSession = 'TRANSACTION_INITIALIZE_SESSION',
   /**
    * Transaction item metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'TRANSACTION_ITEM_METADATA_UPDATED'
-  | 'TRANSACTION_PROCESS_SESSION'
+  TransactionItemMetadataUpdated = 'TRANSACTION_ITEM_METADATA_UPDATED',
+  TransactionProcessSession = 'TRANSACTION_PROCESS_SESSION',
   /**
    * Event called when refund has been requested for transaction.
    *
@@ -27258,71 +27414,72 @@ export type WebhookEventTypeEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_REFUND_REQUESTED'
+  TransactionRefundRequested = 'TRANSACTION_REFUND_REQUESTED',
   /** A new translation is created. */
-  | 'TRANSLATION_CREATED'
+  TranslationCreated = 'TRANSLATION_CREATED',
   /** A translation is updated. */
-  | 'TRANSLATION_UPDATED'
+  TranslationUpdated = 'TRANSLATION_UPDATED',
   /** A new voucher created. */
-  | 'VOUCHER_CREATED'
+  VoucherCreated = 'VOUCHER_CREATED',
   /** A voucher is deleted. */
-  | 'VOUCHER_DELETED'
+  VoucherDeleted = 'VOUCHER_DELETED',
   /**
    * A voucher metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'VOUCHER_METADATA_UPDATED'
+  VoucherMetadataUpdated = 'VOUCHER_METADATA_UPDATED',
   /** A voucher is updated. */
-  | 'VOUCHER_UPDATED'
+  VoucherUpdated = 'VOUCHER_UPDATED',
   /** A new warehouse created. */
-  | 'WAREHOUSE_CREATED'
+  WarehouseCreated = 'WAREHOUSE_CREATED',
   /** A warehouse is deleted. */
-  | 'WAREHOUSE_DELETED'
+  WarehouseDeleted = 'WAREHOUSE_DELETED',
   /**
    * A warehouse metadata is updated.
    *
    * Added in Saleor 3.8.
    */
-  | 'WAREHOUSE_METADATA_UPDATED'
+  WarehouseMetadataUpdated = 'WAREHOUSE_METADATA_UPDATED',
   /** A warehouse is updated. */
-  | 'WAREHOUSE_UPDATED';
+  WarehouseUpdated = 'WAREHOUSE_UPDATED'
+}
 
 /** Enum determining type of webhook. */
-export type WebhookEventTypeSyncEnum =
+export enum WebhookEventTypeSyncEnum {
   /**
    * Event called for checkout tax calculation.
    *
    * Added in Saleor 3.6.
    */
-  | 'CHECKOUT_CALCULATE_TAXES'
+  CheckoutCalculateTaxes = 'CHECKOUT_CALCULATE_TAXES',
   /** Filter shipping methods for checkout. */
-  | 'CHECKOUT_FILTER_SHIPPING_METHODS'
+  CheckoutFilterShippingMethods = 'CHECKOUT_FILTER_SHIPPING_METHODS',
   /**
    * Event called for order tax calculation.
    *
    * Added in Saleor 3.6.
    */
-  | 'ORDER_CALCULATE_TAXES'
+  OrderCalculateTaxes = 'ORDER_CALCULATE_TAXES',
   /** Filter shipping methods for order. */
-  | 'ORDER_FILTER_SHIPPING_METHODS'
+  OrderFilterShippingMethods = 'ORDER_FILTER_SHIPPING_METHODS',
   /** Authorize payment. */
-  | 'PAYMENT_AUTHORIZE'
+  PaymentAuthorize = 'PAYMENT_AUTHORIZE',
   /** Capture payment. */
-  | 'PAYMENT_CAPTURE'
+  PaymentCapture = 'PAYMENT_CAPTURE',
   /** Confirm payment. */
-  | 'PAYMENT_CONFIRM'
-  | 'PAYMENT_GATEWAY_INITIALIZE_SESSION'
+  PaymentConfirm = 'PAYMENT_CONFIRM',
+  PaymentGatewayInitializeSession = 'PAYMENT_GATEWAY_INITIALIZE_SESSION',
   /** Listing available payment gateways. */
-  | 'PAYMENT_LIST_GATEWAYS'
+  PaymentListGateways = 'PAYMENT_LIST_GATEWAYS',
   /** Process payment. */
-  | 'PAYMENT_PROCESS'
+  PaymentProcess = 'PAYMENT_PROCESS',
   /** Refund payment. */
-  | 'PAYMENT_REFUND'
+  PaymentRefund = 'PAYMENT_REFUND',
   /** Void payment. */
-  | 'PAYMENT_VOID'
+  PaymentVoid = 'PAYMENT_VOID',
   /** Fetch external shipping methods for checkout. */
-  | 'SHIPPING_LIST_METHODS_FOR_CHECKOUT'
+  ShippingListMethodsForCheckout = 'SHIPPING_LIST_METHODS_FOR_CHECKOUT',
   /**
    * Event called when cancel has been requested for transaction.
    *
@@ -27330,7 +27487,7 @@ export type WebhookEventTypeSyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_CANCELATION_REQUESTED'
+  TransactionCancelationRequested = 'TRANSACTION_CANCELATION_REQUESTED',
   /**
    * Event called when charge has been requested for transaction.
    *
@@ -27338,9 +27495,9 @@ export type WebhookEventTypeSyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_CHARGE_REQUESTED'
-  | 'TRANSACTION_INITIALIZE_SESSION'
-  | 'TRANSACTION_PROCESS_SESSION'
+  TransactionChargeRequested = 'TRANSACTION_CHARGE_REQUESTED',
+  TransactionInitializeSession = 'TRANSACTION_INITIALIZE_SESSION',
+  TransactionProcessSession = 'TRANSACTION_PROCESS_SESSION',
   /**
    * Event called when refund has been requested for transaction.
    *
@@ -27348,128 +27505,130 @@ export type WebhookEventTypeSyncEnum =
    *
    * Note: this API is currently in Feature Preview and can be subject to changes at later point.
    */
-  | 'TRANSACTION_REFUND_REQUESTED';
+  TransactionRefundRequested = 'TRANSACTION_REFUND_REQUESTED'
+}
 
 /** An enumeration. */
-export type WebhookSampleEventTypeEnum =
-  | 'ADDRESS_CREATED'
-  | 'ADDRESS_DELETED'
-  | 'ADDRESS_UPDATED'
-  | 'APP_DELETED'
-  | 'APP_INSTALLED'
-  | 'APP_STATUS_CHANGED'
-  | 'APP_UPDATED'
-  | 'ATTRIBUTE_CREATED'
-  | 'ATTRIBUTE_DELETED'
-  | 'ATTRIBUTE_UPDATED'
-  | 'ATTRIBUTE_VALUE_CREATED'
-  | 'ATTRIBUTE_VALUE_DELETED'
-  | 'ATTRIBUTE_VALUE_UPDATED'
-  | 'CATEGORY_CREATED'
-  | 'CATEGORY_DELETED'
-  | 'CATEGORY_UPDATED'
-  | 'CHANNEL_CREATED'
-  | 'CHANNEL_DELETED'
-  | 'CHANNEL_STATUS_CHANGED'
-  | 'CHANNEL_UPDATED'
-  | 'CHECKOUT_CREATED'
-  | 'CHECKOUT_FULLY_PAID'
-  | 'CHECKOUT_METADATA_UPDATED'
-  | 'CHECKOUT_UPDATED'
-  | 'COLLECTION_CREATED'
-  | 'COLLECTION_DELETED'
-  | 'COLLECTION_METADATA_UPDATED'
-  | 'COLLECTION_UPDATED'
-  | 'CUSTOMER_CREATED'
-  | 'CUSTOMER_DELETED'
-  | 'CUSTOMER_METADATA_UPDATED'
-  | 'CUSTOMER_UPDATED'
-  | 'DRAFT_ORDER_CREATED'
-  | 'DRAFT_ORDER_DELETED'
-  | 'DRAFT_ORDER_UPDATED'
-  | 'FULFILLMENT_APPROVED'
-  | 'FULFILLMENT_CANCELED'
-  | 'FULFILLMENT_CREATED'
-  | 'FULFILLMENT_METADATA_UPDATED'
-  | 'GIFT_CARD_CREATED'
-  | 'GIFT_CARD_DELETED'
-  | 'GIFT_CARD_METADATA_UPDATED'
-  | 'GIFT_CARD_SENT'
-  | 'GIFT_CARD_STATUS_CHANGED'
-  | 'GIFT_CARD_UPDATED'
-  | 'INVOICE_DELETED'
-  | 'INVOICE_REQUESTED'
-  | 'INVOICE_SENT'
-  | 'MENU_CREATED'
-  | 'MENU_DELETED'
-  | 'MENU_ITEM_CREATED'
-  | 'MENU_ITEM_DELETED'
-  | 'MENU_ITEM_UPDATED'
-  | 'MENU_UPDATED'
-  | 'NOTIFY_USER'
-  | 'OBSERVABILITY'
-  | 'ORDER_BULK_CREATED'
-  | 'ORDER_CANCELLED'
-  | 'ORDER_CONFIRMED'
-  | 'ORDER_CREATED'
-  | 'ORDER_EXPIRED'
-  | 'ORDER_FULFILLED'
-  | 'ORDER_FULLY_PAID'
-  | 'ORDER_FULLY_REFUNDED'
-  | 'ORDER_METADATA_UPDATED'
-  | 'ORDER_PAID'
-  | 'ORDER_REFUNDED'
-  | 'ORDER_UPDATED'
-  | 'PAGE_CREATED'
-  | 'PAGE_DELETED'
-  | 'PAGE_TYPE_CREATED'
-  | 'PAGE_TYPE_DELETED'
-  | 'PAGE_TYPE_UPDATED'
-  | 'PAGE_UPDATED'
-  | 'PERMISSION_GROUP_CREATED'
-  | 'PERMISSION_GROUP_DELETED'
-  | 'PERMISSION_GROUP_UPDATED'
-  | 'PRODUCT_CREATED'
-  | 'PRODUCT_DELETED'
-  | 'PRODUCT_MEDIA_CREATED'
-  | 'PRODUCT_MEDIA_DELETED'
-  | 'PRODUCT_MEDIA_UPDATED'
-  | 'PRODUCT_METADATA_UPDATED'
-  | 'PRODUCT_UPDATED'
-  | 'PRODUCT_VARIANT_BACK_IN_STOCK'
-  | 'PRODUCT_VARIANT_CREATED'
-  | 'PRODUCT_VARIANT_DELETED'
-  | 'PRODUCT_VARIANT_METADATA_UPDATED'
-  | 'PRODUCT_VARIANT_OUT_OF_STOCK'
-  | 'PRODUCT_VARIANT_STOCK_UPDATED'
-  | 'PRODUCT_VARIANT_UPDATED'
-  | 'SALE_CREATED'
-  | 'SALE_DELETED'
-  | 'SALE_TOGGLE'
-  | 'SALE_UPDATED'
-  | 'SHIPPING_PRICE_CREATED'
-  | 'SHIPPING_PRICE_DELETED'
-  | 'SHIPPING_PRICE_UPDATED'
-  | 'SHIPPING_ZONE_CREATED'
-  | 'SHIPPING_ZONE_DELETED'
-  | 'SHIPPING_ZONE_METADATA_UPDATED'
-  | 'SHIPPING_ZONE_UPDATED'
-  | 'STAFF_CREATED'
-  | 'STAFF_DELETED'
-  | 'STAFF_UPDATED'
-  | 'THUMBNAIL_CREATED'
-  | 'TRANSACTION_ACTION_REQUEST'
-  | 'TRANSACTION_ITEM_METADATA_UPDATED'
-  | 'TRANSLATION_CREATED'
-  | 'TRANSLATION_UPDATED'
-  | 'VOUCHER_CREATED'
-  | 'VOUCHER_DELETED'
-  | 'VOUCHER_METADATA_UPDATED'
-  | 'VOUCHER_UPDATED'
-  | 'WAREHOUSE_CREATED'
-  | 'WAREHOUSE_DELETED'
-  | 'WAREHOUSE_METADATA_UPDATED'
-  | 'WAREHOUSE_UPDATED';
+export enum WebhookSampleEventTypeEnum {
+  AddressCreated = 'ADDRESS_CREATED',
+  AddressDeleted = 'ADDRESS_DELETED',
+  AddressUpdated = 'ADDRESS_UPDATED',
+  AppDeleted = 'APP_DELETED',
+  AppInstalled = 'APP_INSTALLED',
+  AppStatusChanged = 'APP_STATUS_CHANGED',
+  AppUpdated = 'APP_UPDATED',
+  AttributeCreated = 'ATTRIBUTE_CREATED',
+  AttributeDeleted = 'ATTRIBUTE_DELETED',
+  AttributeUpdated = 'ATTRIBUTE_UPDATED',
+  AttributeValueCreated = 'ATTRIBUTE_VALUE_CREATED',
+  AttributeValueDeleted = 'ATTRIBUTE_VALUE_DELETED',
+  AttributeValueUpdated = 'ATTRIBUTE_VALUE_UPDATED',
+  CategoryCreated = 'CATEGORY_CREATED',
+  CategoryDeleted = 'CATEGORY_DELETED',
+  CategoryUpdated = 'CATEGORY_UPDATED',
+  ChannelCreated = 'CHANNEL_CREATED',
+  ChannelDeleted = 'CHANNEL_DELETED',
+  ChannelStatusChanged = 'CHANNEL_STATUS_CHANGED',
+  ChannelUpdated = 'CHANNEL_UPDATED',
+  CheckoutCreated = 'CHECKOUT_CREATED',
+  CheckoutFullyPaid = 'CHECKOUT_FULLY_PAID',
+  CheckoutMetadataUpdated = 'CHECKOUT_METADATA_UPDATED',
+  CheckoutUpdated = 'CHECKOUT_UPDATED',
+  CollectionCreated = 'COLLECTION_CREATED',
+  CollectionDeleted = 'COLLECTION_DELETED',
+  CollectionMetadataUpdated = 'COLLECTION_METADATA_UPDATED',
+  CollectionUpdated = 'COLLECTION_UPDATED',
+  CustomerCreated = 'CUSTOMER_CREATED',
+  CustomerDeleted = 'CUSTOMER_DELETED',
+  CustomerMetadataUpdated = 'CUSTOMER_METADATA_UPDATED',
+  CustomerUpdated = 'CUSTOMER_UPDATED',
+  DraftOrderCreated = 'DRAFT_ORDER_CREATED',
+  DraftOrderDeleted = 'DRAFT_ORDER_DELETED',
+  DraftOrderUpdated = 'DRAFT_ORDER_UPDATED',
+  FulfillmentApproved = 'FULFILLMENT_APPROVED',
+  FulfillmentCanceled = 'FULFILLMENT_CANCELED',
+  FulfillmentCreated = 'FULFILLMENT_CREATED',
+  FulfillmentMetadataUpdated = 'FULFILLMENT_METADATA_UPDATED',
+  GiftCardCreated = 'GIFT_CARD_CREATED',
+  GiftCardDeleted = 'GIFT_CARD_DELETED',
+  GiftCardMetadataUpdated = 'GIFT_CARD_METADATA_UPDATED',
+  GiftCardSent = 'GIFT_CARD_SENT',
+  GiftCardStatusChanged = 'GIFT_CARD_STATUS_CHANGED',
+  GiftCardUpdated = 'GIFT_CARD_UPDATED',
+  InvoiceDeleted = 'INVOICE_DELETED',
+  InvoiceRequested = 'INVOICE_REQUESTED',
+  InvoiceSent = 'INVOICE_SENT',
+  MenuCreated = 'MENU_CREATED',
+  MenuDeleted = 'MENU_DELETED',
+  MenuItemCreated = 'MENU_ITEM_CREATED',
+  MenuItemDeleted = 'MENU_ITEM_DELETED',
+  MenuItemUpdated = 'MENU_ITEM_UPDATED',
+  MenuUpdated = 'MENU_UPDATED',
+  NotifyUser = 'NOTIFY_USER',
+  Observability = 'OBSERVABILITY',
+  OrderBulkCreated = 'ORDER_BULK_CREATED',
+  OrderCancelled = 'ORDER_CANCELLED',
+  OrderConfirmed = 'ORDER_CONFIRMED',
+  OrderCreated = 'ORDER_CREATED',
+  OrderExpired = 'ORDER_EXPIRED',
+  OrderFulfilled = 'ORDER_FULFILLED',
+  OrderFullyPaid = 'ORDER_FULLY_PAID',
+  OrderFullyRefunded = 'ORDER_FULLY_REFUNDED',
+  OrderMetadataUpdated = 'ORDER_METADATA_UPDATED',
+  OrderPaid = 'ORDER_PAID',
+  OrderRefunded = 'ORDER_REFUNDED',
+  OrderUpdated = 'ORDER_UPDATED',
+  PageCreated = 'PAGE_CREATED',
+  PageDeleted = 'PAGE_DELETED',
+  PageTypeCreated = 'PAGE_TYPE_CREATED',
+  PageTypeDeleted = 'PAGE_TYPE_DELETED',
+  PageTypeUpdated = 'PAGE_TYPE_UPDATED',
+  PageUpdated = 'PAGE_UPDATED',
+  PermissionGroupCreated = 'PERMISSION_GROUP_CREATED',
+  PermissionGroupDeleted = 'PERMISSION_GROUP_DELETED',
+  PermissionGroupUpdated = 'PERMISSION_GROUP_UPDATED',
+  ProductCreated = 'PRODUCT_CREATED',
+  ProductDeleted = 'PRODUCT_DELETED',
+  ProductMediaCreated = 'PRODUCT_MEDIA_CREATED',
+  ProductMediaDeleted = 'PRODUCT_MEDIA_DELETED',
+  ProductMediaUpdated = 'PRODUCT_MEDIA_UPDATED',
+  ProductMetadataUpdated = 'PRODUCT_METADATA_UPDATED',
+  ProductUpdated = 'PRODUCT_UPDATED',
+  ProductVariantBackInStock = 'PRODUCT_VARIANT_BACK_IN_STOCK',
+  ProductVariantCreated = 'PRODUCT_VARIANT_CREATED',
+  ProductVariantDeleted = 'PRODUCT_VARIANT_DELETED',
+  ProductVariantMetadataUpdated = 'PRODUCT_VARIANT_METADATA_UPDATED',
+  ProductVariantOutOfStock = 'PRODUCT_VARIANT_OUT_OF_STOCK',
+  ProductVariantStockUpdated = 'PRODUCT_VARIANT_STOCK_UPDATED',
+  ProductVariantUpdated = 'PRODUCT_VARIANT_UPDATED',
+  SaleCreated = 'SALE_CREATED',
+  SaleDeleted = 'SALE_DELETED',
+  SaleToggle = 'SALE_TOGGLE',
+  SaleUpdated = 'SALE_UPDATED',
+  ShippingPriceCreated = 'SHIPPING_PRICE_CREATED',
+  ShippingPriceDeleted = 'SHIPPING_PRICE_DELETED',
+  ShippingPriceUpdated = 'SHIPPING_PRICE_UPDATED',
+  ShippingZoneCreated = 'SHIPPING_ZONE_CREATED',
+  ShippingZoneDeleted = 'SHIPPING_ZONE_DELETED',
+  ShippingZoneMetadataUpdated = 'SHIPPING_ZONE_METADATA_UPDATED',
+  ShippingZoneUpdated = 'SHIPPING_ZONE_UPDATED',
+  StaffCreated = 'STAFF_CREATED',
+  StaffDeleted = 'STAFF_DELETED',
+  StaffUpdated = 'STAFF_UPDATED',
+  ThumbnailCreated = 'THUMBNAIL_CREATED',
+  TransactionActionRequest = 'TRANSACTION_ACTION_REQUEST',
+  TransactionItemMetadataUpdated = 'TRANSACTION_ITEM_METADATA_UPDATED',
+  TranslationCreated = 'TRANSLATION_CREATED',
+  TranslationUpdated = 'TRANSLATION_UPDATED',
+  VoucherCreated = 'VOUCHER_CREATED',
+  VoucherDeleted = 'VOUCHER_DELETED',
+  VoucherMetadataUpdated = 'VOUCHER_METADATA_UPDATED',
+  VoucherUpdated = 'VOUCHER_UPDATED',
+  WarehouseCreated = 'WAREHOUSE_CREATED',
+  WarehouseDeleted = 'WAREHOUSE_DELETED',
+  WarehouseMetadataUpdated = 'WAREHOUSE_METADATA_UPDATED',
+  WarehouseUpdated = 'WAREHOUSE_UPDATED'
+}
 
 /**
  * Trigger a webhook event. Supports a single event (the first, if multiple provided in the `webhook.subscription_query`). Requires permission relevant to processed event. Successfully delivered webhook returns `delivery` with status='PENDING' and empty payload.
@@ -27497,17 +27656,18 @@ export type WebhookTriggerError = {
 };
 
 /** An enumeration. */
-export type WebhookTriggerErrorCode =
-  | 'GRAPHQL_ERROR'
-  | 'INVALID_ID'
-  | 'MISSING_EVENT'
-  | 'MISSING_PERMISSION'
-  | 'MISSING_QUERY'
-  | 'MISSING_SUBSCRIPTION'
-  | 'NOT_FOUND'
-  | 'SYNTAX'
-  | 'TYPE_NOT_SUPPORTED'
-  | 'UNABLE_TO_PARSE';
+export enum WebhookTriggerErrorCode {
+  GraphqlError = 'GRAPHQL_ERROR',
+  InvalidId = 'INVALID_ID',
+  MissingEvent = 'MISSING_EVENT',
+  MissingPermission = 'MISSING_PERMISSION',
+  MissingQuery = 'MISSING_QUERY',
+  MissingSubscription = 'MISSING_SUBSCRIPTION',
+  NotFound = 'NOT_FOUND',
+  Syntax = 'SYNTAX',
+  TypeNotSupported = 'TYPE_NOT_SUPPORTED',
+  UnableToParse = 'UNABLE_TO_PARSE'
+}
 
 /**
  * Updates a webhook subscription.
@@ -27573,12 +27733,13 @@ export type Weight = {
 };
 
 /** An enumeration. */
-export type WeightUnitsEnum =
-  | 'G'
-  | 'KG'
-  | 'LB'
-  | 'OZ'
-  | 'TONNE';
+export enum WeightUnitsEnum {
+  G = 'G',
+  Kg = 'KG',
+  Lb = 'LB',
+  Oz = 'OZ',
+  Tonne = 'TONNE'
+}
 
 /** _Entity union as defined by Federation spec. */
 export type _Entity = Address | App | Category | Collection | Group | Order | PageType | Product | ProductMedia | ProductType | ProductVariant | User;

@@ -3,9 +3,9 @@
 import invariant from 'tiny-invariant';
 
 import type {ChangePasswordVariables} from '@/graphql/generated/documents';
-import {CSRF_TOKEN_NAME} from '@/lib/consts';
-import {setAccessToken, setRefreshToken} from '@/lib/tools/cookies';
+import {setAccessToken, setRefreshToken} from '@/modules/account/tools/cookies';
 
+import {CSRF_TOKEN_NAME} from '../../_consts';
 import {changePassword} from './change-password';
 
 export async function changePasswordAction(variables: ChangePasswordVariables) {

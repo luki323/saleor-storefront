@@ -8,8 +8,12 @@ const config: Config = {
         ring: 'hsl(var(--ring))',
         input: 'hsl(var(--input))',
         white: 'hsl(var(--white))',
-        grey: 'hsl(var(--grey))',
         background: 'hsl(var(--background))',
+        'faded-black': 'hsl(var(--faded-black))',
+        grey: {
+          DEFAULT: 'hsl(var(--grey))',
+          foreground: 'hsl(var(--grey-foreground))',
+        },
         muted: {
           foreground: 'hsl(var(--muted-foreground))',
         },
@@ -25,6 +29,10 @@ const config: Config = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        blue: {
+          DEFAULT: 'hsl(var(--blue))',
+          foreground: 'hsl(var(--blue-foreground))',
+        },
       },
       borderRadius: {
         md: `calc(var(--radius) - 2px)`,
@@ -38,7 +46,7 @@ const config: Config = {
       sans: ['var(--font-sans)'],
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };
 
 export default config;

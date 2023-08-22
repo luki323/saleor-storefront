@@ -1,0 +1,12 @@
+query getAddressValidationRules($countryCode: CountryCode!) {
+  addressValidationRules(countryCode: $countryCode) {
+    postalCodeMatchers
+    postalCodeExamples
+    addressFormat
+    countryAreaType
+    countryAreaChoices {
+      raw
+      verbose
+    }
+  }
+}

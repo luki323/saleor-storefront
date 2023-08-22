@@ -3,10 +3,10 @@ import {cookies} from 'next/headers';
 import {GRAPHQL_ENDPOINT} from '@/env/env';
 import {GetUserEmailDocument} from '@/graphql/generated/documents';
 import {FormattedMessage} from '@/i18n/react-intl';
-import {RefreshAccessToken} from '@/lib/components/refresh-access-token';
-import {COOKIE_NAMES} from '@/lib/consts';
 import {fetchQuery} from '@/lib/tools/fetch-query';
 import {isDefined} from '@/lib/tools/is-defined';
+import {RefreshAccessToken} from '@/modules/account/components/RefreshAccessToken';
+import {COOKIE_NAMES} from '@/modules/account/consts';
 
 export default async function UserPage() {
   const accessToken = cookies().get(COOKIE_NAMES.ACCESS_TOKEN);

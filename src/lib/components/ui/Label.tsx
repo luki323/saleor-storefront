@@ -7,9 +7,10 @@ import {cn} from '@/lib/tools/cn';
 
 type Props = ComponentPropsWithoutRef<(typeof LabelPrimitive)['Root']>;
 
-export function Label({children, className, ...restProps}: Props) {
+export function Label({children, className, htmlFor, id, ...restProps}: Props) {
   return (
     <LabelPrimitive.Root
+      htmlFor={htmlFor ?? id}
       className={cn('text-sm font-medium leading-none', className)}
       {...restProps}>
       {children}

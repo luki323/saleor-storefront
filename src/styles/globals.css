@@ -8,11 +8,18 @@
   --input: 240 5.9% 90%;
 
   --white: 0 0% 100%;
-  --grey: 240 5% 40%;
 
   --background: 0 0% 98%;
 
+  --faded-black: 0, 0%, 20%;
+
   --muted-foreground: 240 5% 64.9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --grey: 240 5% 40%;
+  --grey-foreground: 0, 0%, 51%;
 
   --primary: 240 5.9% 10%;
   --primary-foreground: 0 0% 98%;
@@ -20,13 +27,18 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
 
-  --radius: 0.5rem;
+  --blue: 212 100% 48%;
+  --blue-foreground: 213 100% 38%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --radius: 0.5rem;
 
   --toast-desktop-width: 365px;
   --toast-mobile-width: calc(100% -32px);
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {

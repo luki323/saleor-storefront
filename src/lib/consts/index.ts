@@ -6,14 +6,11 @@ export const APP_ROUTES = {
   CONFIRM_ACCOUNT: 'confirm-account',
   REQUEST_PASSWORD_RESET: 'request-password-reset',
   CHANGE_PASSWORD: 'change-password',
+  CHECKOUT: {
+    INFORMATION: ['checkout', 'information'],
+    BILLING: ['checkout', 'billing'],
+  },
   API: {
     REFRESH: ['api', 'refresh'],
   },
 };
-
-export const COOKIE_NAMES = {
-  ACCESS_TOKEN: '__Host-accessToken',
-  REFRESH_TOKEN: '__Secure-refreshToken',
-};
-
-export const CSRF_TOKEN_NAME = 'csrfToken';

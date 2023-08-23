@@ -1,7 +1,7 @@
 import {useFormContext} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/react-intl';
-import {FormField, FormItem} from '@/lib/components/form/FormField/FormField';
+import {FormField, FormItem} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 
 import {Checkbox} from '../../../_components/Checkbox';

@@ -1,4 +1,4 @@
-import {FormItem as FormItemImpl} from '@/lib/components/form/FormField/FormField';
+import {FormItem as FormItemImpl} from '@/lib/components/form/form-field/FormField';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 

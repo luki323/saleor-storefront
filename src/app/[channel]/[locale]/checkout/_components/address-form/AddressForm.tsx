@@ -6,7 +6,7 @@ import type {AnyZodObject} from 'zod';
 
 import {FormattedMessage, useIntl} from '@/i18n/react-intl';
 import {Form} from '@/lib/components/form/Form';
-import {FormField} from '@/lib/components/form/FormField/FormField';
+import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
 import {ErrorText} from '@/lib/components/ui/ErrorText';

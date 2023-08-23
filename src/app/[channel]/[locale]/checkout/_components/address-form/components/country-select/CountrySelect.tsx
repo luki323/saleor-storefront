@@ -1,7 +1,7 @@
 import {useFormContext} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/react-intl';
-import {FormField} from '@/lib/components/form/FormField/FormField';
+import {FormField} from '@/lib/components/form/form-field/FormField';
 
 import {FIELDS} from '../../fields';
 import type {AddressSchema} from '../../types';

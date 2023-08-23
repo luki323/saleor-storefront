@@ -2,7 +2,7 @@ import type {FieldValues} from 'react-hook-form';
 
 import type {FormProps} from '@/lib/components/form/Form';
 import {Form as FormImpl} from '@/lib/components/form/Form';
-import {FormItem as FormItemImpl} from '@/lib/components/form/FormField/FormField';
+import {FormItem as FormItemImpl} from '@/lib/components/form/form-field/FormField';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 

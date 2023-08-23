@@ -5,7 +5,7 @@ import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/react-intl';
-import {FormField} from '@/lib/components/form/FormField/FormField';
+import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldDescription} from '@/lib/components/form/FormFieldDescription';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';

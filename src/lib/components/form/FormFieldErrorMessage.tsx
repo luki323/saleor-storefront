@@ -2,7 +2,7 @@ import {Slot} from '@radix-ui/react-slot';
 
 import type {PropsWithChildren} from '@/lib/types/react';
 
-import {useFormField} from './FormField/use-form-field';
+import {useFormField} from './form-field/use-form-field';
 
 export function FormFieldErrorMessage({children}: PropsWithChildren) {
   const {error, formErrorMessageId} = useFormField();

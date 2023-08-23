@@ -9,12 +9,14 @@ import type {PropsWithChildren} from '@/lib/types/react';
 const [FormFieldNameContext, useFormFieldName] =
   createBoundaryContext<string>('formFieldName');
 
+export {useFormFieldName};
+
 interface FormFieldProps<
   FormSchema extends FieldValues,
   FieldName extends FieldPath<FormSchema>,
 > extends ControllerProps<FormSchema, FieldName> {}
 
-function FormField<
+export function FormField<
   FormSchema extends FieldValues,
   FieldName extends FieldPath<FormSchema>,
 >(props: FormFieldProps<FormSchema, FieldName>) {
@@ -28,16 +30,19 @@ function FormField<
 const [FormItemIdContext, useFormItemId] =
   createBoundaryContext<ReturnType<typeof useId>>('formItemId');
 
+export {useFormItemId};
+
 interface FormItemProps {
   readonly className?: string;
 }
 
-function FormItem({children, className}: PropsWithChildren<FormItemProps>) {
+export function FormItem({
+  children,
+  className,
+}: PropsWithChildren<FormItemProps>) {
   return (
     <FormItemIdContext.Provider value={useId()}>
       <div className={cn(className)}>{children}</div>
     </FormItemIdContext.Provider>
   );
 }
-
-export {FormField, FormItem, useFormFieldName, useFormItemId};

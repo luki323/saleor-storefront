@@ -1,7 +1,7 @@
 import type {ProductCardPricing} from '@/graphql/generated/documents';
 import {FormattedPrice} from '@/i18n/components/FormattedPrice';
 import {cn} from '@/lib/tools/cn';
-import type {RequiredNonNullable} from '@/lib/types';
+import type {RequiredNonNullable} from '@/lib/types/utils';
 
 import {Badge} from './Bage';
 

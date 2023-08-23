@@ -14,7 +14,7 @@ import {ErrorText} from '@/lib/components/ui/ErrorText';
 import {Label} from '@/lib/components/ui/Label';
 import {TextField} from '@/lib/components/ui/TextField';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
-import {focusInput} from '@/lib/tools/focus-input';
+import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
 import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {SubmitButton} from '../../_components/SubmitButton';
@@ -56,7 +56,7 @@ export function ChangePasswordForm({email, token}: Props) {
                 type="password"
                 autoComplete="new-password"
                 value={value}
-                ref={refMountCallback(ref, focusInput)}
+                ref={refMountCallback(ref, deferInputFocus)}
                 required
                 {...restField}
               />

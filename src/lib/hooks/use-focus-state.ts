@@ -16,12 +16,10 @@ export function useFocusState() {
     }: Partial<RegisterFocusStateMethods>): RegisterFocusStateMethods => ({
       onFocus: (event) => {
         onFocus?.(event);
-
         setIsFocused(true);
       },
       onBlur: (event) => {
         onBlur?.(event);
-
         setIsFocused(false);
       },
     }),

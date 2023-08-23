@@ -1,6 +1,6 @@
 import {CountryCode} from '@/graphql/generated/types';
-import {uppercaseFirstLetter} from '@/lib/tools/uppercase-first-letter';
+import {capitalize} from '@/lib/tools/capitalize';
 
 export function isCountryCode(value: string): value is CountryCode {
-  return uppercaseFirstLetter(value) in CountryCode;
+  return capitalize(value) in CountryCode;
 }

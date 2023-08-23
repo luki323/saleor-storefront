@@ -2,7 +2,7 @@ import {toArray} from './to-array';
 import {isArray} from './type-guards/is-array';
 import {isDefined} from './type-guards/is-defined';
 
-// // See: https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1568
+// See: https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1568
 type SearchParamValue = string | number;
 
 type SearchParams = Record<

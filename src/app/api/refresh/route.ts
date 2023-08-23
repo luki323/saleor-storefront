@@ -1,6 +1,6 @@
 import {cookies} from 'next/headers';
 
-import {isDefined} from '@/lib/tools/is-defined';
+import {isDefined} from '@/lib/tools/type-guards/is-defined';
 import {COOKIE_NAMES} from '@/modules/account/consts';
 
 import {refreshAccessToken} from './_tools/refresh-access-token';

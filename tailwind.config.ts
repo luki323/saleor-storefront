@@ -41,6 +41,19 @@ const config: Config = {
         'toast-dektop': 'var(--toast-desktop-width)',
         'toast-mobile': 'var(--toast-mobile-width)',
       },
+      keyframes: {
+        fadeIn: {
+          from: {
+            opacity: '0.3',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn .4s ease-in-out',
+      },
     },
     fontFamily: {
       sans: ['var(--font-sans)'],

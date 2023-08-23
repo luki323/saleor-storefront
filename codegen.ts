@@ -4,6 +4,8 @@ const codegenConfig: CodegenConfig = {
   schema: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
   documents: 'src/**/*.graphql',
   config: {
+    skipTypename: true,
+    immutableTypes: true,
     useTypeImports: true,
   },
   generates: {

@@ -1,10 +1,9 @@
 import {cn} from '@/lib/tools/cn';
 
-import {LoadingStyleRadioGroup} from './_components/LoadingStyleRadioGroup';
-import {LoadingStyleSwitcher} from './_components/LoadingStyleSwitcher';
-import {LoadMore} from './_components/LoadMore';
+import {CategoryLinks} from './_components/CategoryLinks';
+import {CollectionLinks} from './_components/CollectionLinks';
 import {Pagination} from './_components/Pagination';
-import type {SearchParams} from './_types/types';
+import type {SearchParams} from './_types';
 
 interface Props {
   readonly searchParams?: SearchParams;
@@ -12,17 +11,21 @@ interface Props {
 
 export default function ProductsPage({searchParams = {}}: Props) {
   return (
-    <div className={cn('flex')}>
-      <div className={cn('min-h-full flex-1 basis-48')} />
-      <div className={cn('mb-3 max-w-7xl basis-3/5')}>
-        <LoadingStyleSwitcher
-          pagination={<Pagination {...searchParams} />}
-          loadMore={<LoadMore />}
-        />
+    <div
+      className={cn(
+        'mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 md:flex-row',
+      )}>
+      <div
+        className={cn('order-1 flex flex-none basis-[125px] flex-col gap-6')}>
+        <CategoryLinks searchParams={searchParams} />
+        <CollectionLinks searchParams={searchParams} />
       </div>
-      <div className={cn('min-h-full flex-1 basis-48 pl-6')}>
-        <LoadingStyleRadioGroup />
+      <div className={cn('order-1')}>
+        <Pagination searchParams={searchParams} />
       </div>
+      <div
+        className={cn('order-1 flex-none basis-[125px] max-sm:order-first')}
+      />
     </div>
   );
 }

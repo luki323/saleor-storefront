@@ -68,7 +68,7 @@ export class Request<
         break;
       }
       default: {
-        throw new Error(`HTTP Method Invalid or Not Supported: ${method}`);
+        throw new Error(`HTTP method invalid or not supported: ${method}`);
       }
     }
   }

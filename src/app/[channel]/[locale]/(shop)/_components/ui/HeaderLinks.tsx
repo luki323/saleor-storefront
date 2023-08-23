@@ -16,7 +16,7 @@ export function HeaderLinks({menu}: Props) {
         <li key={slug}>
           <IntlLink
             href={formatPathname(APP_ROUTES.PRODUCTS, slug)}
-            className={cn('hover:underline')}>
+            className={cn('text-grey hover:text-inherit hover:underline')}>
             {name}
           </IntlLink>
         </li>

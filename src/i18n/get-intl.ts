@@ -5,9 +5,10 @@ import {cache} from 'react';
 
 import type {AvailableLocale} from './consts';
 import {DEFAULT_LOCALE} from './consts';
+import {getLocale} from './context/get-locale';
 import {loadCompiledMessages} from './tools/load-compiled-messages';
 
-export const getIntl = cache(async (locale: AvailableLocale) => {
+const getIntlFn = cache(async (locale: AvailableLocale) => {
   const messages = await loadCompiledMessages(locale);
 
   return createIntl(
@@ -15,3 +16,7 @@ export const getIntl = cache(async (locale: AvailableLocale) => {
     createIntlCache(),
   );
 });
+
+export async function getIntl(locale?: AvailableLocale) {
+  return await getIntlFn(locale ?? getLocale());
+}

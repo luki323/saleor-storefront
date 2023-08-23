@@ -11,9 +11,6 @@
   "/V1GsM": {
     "defaultMessage": "Country/Region"
   },
-  "00LcfG": {
-    "defaultMessage": "Load more"
-  },
   "06/qxx": {
     "defaultMessage": "Reset link was sent to {email} mailbox"
   },
@@ -119,6 +116,9 @@
   "UKxoV8": {
     "defaultMessage": "Welcome back"
   },
+  "VKb1MS": {
+    "defaultMessage": "Categories"
+  },
   "VmFv3C": {
     "defaultMessage": "Enter confirm password"
   },
@@ -134,9 +134,6 @@
   "WxJYBG": {
     "defaultMessage": "Loading user data..."
   },
-  "ZATT08": {
-    "defaultMessage": "Pagination"
-  },
   "ZAqkJ0": {
     "defaultMessage": "Entera valid email"
   },
@@ -146,6 +143,9 @@
   "atD3r4": {
     "defaultMessage": "Confirm password:"
   },
+  "cPhKTw": {
+    "defaultMessage": "Not available"
+  },
   "cyR7Kh": {
     "defaultMessage": "Back"
   },
@@ -154,6 +154,9 @@
   },
   "e6Ph5+": {
     "defaultMessage": "Address"
+  },
+  "gUIhhI": {
+    "defaultMessage": "Search for products"
   },
   "h/zqNr": {
     "defaultMessage": "Enter your new password"
@@ -166,9 +169,6 @@
   },
   "k9hDFZ": {
     "defaultMessage": "Previous page"
-  },
-  "kXVvh3": {
-    "defaultMessage": "Contact details"
   },
   "ku+mDU": {
     "defaultMessage": "State"
@@ -199,6 +199,9 @@
   },
   "u1JzBg": {
     "defaultMessage": "Enter a city"
+  },
+  "ulh3kf": {
+    "defaultMessage": "Collections"
   },
   "un+VWt": {
     "defaultMessage": "Search products"

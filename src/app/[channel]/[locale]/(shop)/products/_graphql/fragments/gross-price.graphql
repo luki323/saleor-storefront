@@ -1,6 +1,0 @@
-fragment grossPrice on TaxedMoney {
-  gross {
-    currency
-    amount
-  }
-}

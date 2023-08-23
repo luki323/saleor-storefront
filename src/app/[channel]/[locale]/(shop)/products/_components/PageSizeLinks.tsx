@@ -3,15 +3,20 @@ import {buttonStyles} from '@/lib/components/ui/Button';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
-import {isDefined} from '@/lib/tools/is-defined';
+import {sortAsc} from '@/lib/tools/sort-asc';
+import {isDefined} from '@/lib/tools/type-guards/is-defined';
 
-import {PAGE_SIZES} from '../_consts';
-import type {SearchParams} from '../_types/types';
+import {DEFAULT_PAGE_SIZE} from '../_consts';
+import type {SearchParams} from '../_types';
 
-type Props = SearchParams;
+const PAGE_SIZES = sortAsc([DEFAULT_PAGE_SIZE, 10, 30]);
 
-export function PageSizes(props: Props) {
-  const pageSizeKey = isDefined(props.last) ? 'last' : 'first';
+interface Props {
+  readonly searchParams: SearchParams;
+}
+
+export function PageSizeLinks({searchParams}: Props) {
+  const pageSizeKey = isDefined(searchParams.last) ? 'last' : 'first';
 
   return (
     <div className={cn('flex items-center gap-1')}>
@@ -21,7 +26,7 @@ export function PageSizes(props: Props) {
             <IntlLink
               href={{
                 pathname: formatPathname(APP_ROUTES.PRODUCTS),
-                query: {...props, [pageSizeKey]: pageSize},
+                query: {...searchParams, [pageSizeKey]: pageSize},
               }}
               className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>
               {pageSize}

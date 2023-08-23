@@ -1,53 +1,58 @@
-import {ArrowLeftIcon, ArrowRightIcon} from '@heroicons/react/24/outline';
+import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 
 import type {PageInfo} from '@/graphql/generated/documents';
-import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
+import {getNextPrevPage} from '@/lib/tools/pagination/get-next-prev-page';
+import {isDefined} from '@/lib/tools/type-guards/is-defined';
 
 import {DEFAULT_PAGE_SIZE} from '../_consts';
-import type {SearchParams} from '../_types/types';
+import type {SearchParams} from '../_types';
 import {NavigationIcon} from './NavigationIcon';
 
-type Props = SearchParams & Omit<PageInfo, '__typename'>;
+interface Props {
+  readonly searchParams: SearchParams;
+  readonly pageInfo: PageInfo;
+}
 
-export async function PaginationLinks({search, ...restProps}: Props) {
-  const intl = await getIntl(getLocale());
-
-  const pageSize = Number(
-    restProps.last ?? restProps.first ?? DEFAULT_PAGE_SIZE,
+export async function PaginationLinks({searchParams, pageInfo}: Props) {
+  const {nextPage, prevPage} = getNextPrevPage(
+    searchParams,
+    pageInfo,
+    DEFAULT_PAGE_SIZE,
   );
+  const intl = await getIntl();
 
   return (
     <ul className={cn('flex justify-between')}>
       <li>
         <NavigationIcon
-          disabled={!restProps.hasPreviousPage}
+          disabled={!isDefined(prevPage)}
           href={{
             pathname: formatPathname(APP_ROUTES.PRODUCTS),
-            query: {last: pageSize, before: restProps.startCursor, search},
+            query: prevPage?.toString(),
           }}
           label={intl.formatMessage({
             defaultMessage: 'Previous page',
             id: 'k9hDFZ',
           })}>
-          <ArrowLeftIcon className={cn('h-5')} />
+          <ChevronLeftIcon className={cn('h-4 w-4')} />
         </NavigationIcon>
       </li>
       <li>
         <NavigationIcon
-          disabled={!restProps.hasNextPage}
+          disabled={!nextPage}
           href={{
             pathname: formatPathname(APP_ROUTES.PRODUCTS),
-            query: {first: pageSize, after: restProps.endCursor, search},
+            query: nextPage?.toString(),
           }}
           label={intl.formatMessage({
             defaultMessage: 'Next page',
             id: 'rBj9Ib',
           })}>
-          <ArrowRightIcon className={cn('h-5')} />
+          <ChevronRightIcon className={cn('h-4 w-4')} />
         </NavigationIcon>
       </li>
     </ul>

@@ -1,5 +1,5 @@
 import {ciEquals} from '@/lib/tools/ci-equals';
-import {isDefined} from '@/lib/tools/is-defined';
+import {isDefined} from '@/lib/tools/type-guards/is-defined';
 
 import {AVAILABLE_LOCALES} from '../consts';
 

@@ -1,0 +1,4 @@
+fragment money on Money {
+  currency
+  amount
+}

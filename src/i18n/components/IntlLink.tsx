@@ -4,18 +4,21 @@ import type {LinkProps} from 'next/link';
 import Link from 'next/link';
 import {forwardRef} from 'react';
 
-import {useChannel} from '../context/channel-context';
-import {useLocale} from '../context/locale-context';
+import {formatPathname} from '@/lib/tools/format-pathname';
+
+import {useBasePath} from '../hooks/use-base-path';
 
 export const IntlLink: typeof Link = forwardRef(function IntlLink(
   {href: hrefProp, ...restProps},
   ref,
 ) {
-  const pathname = `/${useChannel()}/${useLocale()}${
-    typeof hrefProp === 'string' ? hrefProp : hrefProp.pathname
+  const hrefIsString = typeof hrefProp === 'string';
+
+  const pathname = `${formatPathname(...useBasePath())}${
+    hrefIsString ? hrefProp : hrefProp.pathname
   }`;
   const href: LinkProps['href'] = {
-    ...(typeof hrefProp !== 'string' && hrefProp),
+    ...(!hrefIsString && hrefProp),
     pathname,
   };
 

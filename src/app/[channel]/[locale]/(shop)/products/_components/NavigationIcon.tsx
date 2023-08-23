@@ -14,7 +14,7 @@ export function NavigationIcon({
   ...restProps
 }: Props) {
   const iconButton = (
-    <IconButton variant="ghost" disabled={disabled} label={label}>
+    <IconButton variant="outline" disabled={disabled} label={label}>
       {children}
     </IconButton>
   );

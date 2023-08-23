@@ -1,0 +1,9 @@
+query getCollectionIds($slugs: [String!]!, $channel: String) {
+  collections(first: 10, filter: {slugs: $slugs}, channel: $channel) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}

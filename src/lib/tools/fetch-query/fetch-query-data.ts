@@ -7,6 +7,7 @@ export async function fetchQueryData<Query, Variables extends ObjMap>(
   const {data, errors} = await fetchQuery(...params);
 
   if (errors?.length || !data) {
+    console.error(errors);
     throw new Error('Something went wrong');
   }
   return data;

@@ -10,6 +10,7 @@ export async function fetchQuery<Query, Variables extends ObjMap>(
   const response = await fetch(new Request(...params));
 
   if (!isValidResponse(response)) {
+    console.error(response);
     throw new Error('Something went wrong');
   }
   const result: FormattedExecutionResult<Query, Variables> =

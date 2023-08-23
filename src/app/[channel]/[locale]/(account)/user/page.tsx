@@ -4,7 +4,7 @@ import {GRAPHQL_ENDPOINT} from '@/env/env';
 import {GetUserEmailDocument} from '@/graphql/generated/documents';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {fetchQuery} from '@/lib/tools/fetch-query';
-import {isDefined} from '@/lib/tools/is-defined';
+import {isDefined} from '@/lib/tools/type-guards/is-defined';
 import {RefreshAccessToken} from '@/modules/account/components/RefreshAccessToken';
 import {COOKIE_NAMES} from '@/modules/account/consts';
 

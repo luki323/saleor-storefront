@@ -23,12 +23,6 @@
       "value": "Country/Region"
     }
   ],
-  "00LcfG": [
-    {
-      "type": 0,
-      "value": "Load more"
-    }
-  ],
   "06/qxx": [
     {
       "type": 0,
@@ -255,6 +249,12 @@
       "value": "Welcome back"
     }
   ],
+  "VKb1MS": [
+    {
+      "type": 0,
+      "value": "Categories"
+    }
+  ],
   "VmFv3C": [
     {
       "type": 0,
@@ -293,12 +293,6 @@
       "value": "Loading user data..."
     }
   ],
-  "ZATT08": [
-    {
-      "type": 0,
-      "value": "Pagination"
-    }
-  ],
   "ZAqkJ0": [
     {
       "type": 0,
@@ -317,6 +311,12 @@
       "value": "Confirm password:"
     }
   ],
+  "cPhKTw": [
+    {
+      "type": 0,
+      "value": "Not available"
+    }
+  ],
   "cyR7Kh": [
     {
       "type": 0,
@@ -333,6 +333,12 @@
     {
       "type": 0,
       "value": "Address"
+    }
+  ],
+  "gUIhhI": [
+    {
+      "type": 0,
+      "value": "Search for products"
     }
   ],
   "h/zqNr": [
@@ -357,12 +363,6 @@
     {
       "type": 0,
       "value": "Previous page"
-    }
-  ],
-  "kXVvh3": [
-    {
-      "type": 0,
-      "value": "Contact details"
     }
   ],
   "ku+mDU": [
@@ -423,6 +423,12 @@
     {
       "type": 0,
       "value": "Enter a city"
+    }
+  ],
+  "ulh3kf": [
+    {
+      "type": 0,
+      "value": "Collections"
     }
   ],
   "un+VWt": [

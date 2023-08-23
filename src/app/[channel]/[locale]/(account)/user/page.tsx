@@ -31,6 +31,7 @@ export default async function UserPage() {
       Authorization: `Bearer ${accessToken.value}`,
     },
   });
+
   if (errors?.length || !data?.me) {
     return (
       <RefreshAccessToken

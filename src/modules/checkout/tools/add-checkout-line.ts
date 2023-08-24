@@ -8,18 +8,18 @@ import type {
 import {AddCheckoutLineDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-import {getCheckoutid} from './checkout-id';
+import {getCheckoutId} from './cookies';
 import {createCheckout} from './create-checkout';
 
-type Variables = Pick<CreateCheckoutVariables, 'channel' | 'languageCode'> &
-  Pick<AddCheckoutLineVariables, 'line'>;
+type Variables = Pick<AddCheckoutLineVariables, 'line'> &
+  Pick<CreateCheckoutVariables, 'channel' | 'languageCode'>;
 
 export async function addCheckoutLine({
   channel,
   languageCode,
   line,
 }: Variables) {
-  const id = getCheckoutid();
+  const id = getCheckoutId();
 
   if (id) {
     return (

@@ -1,0 +1,1 @@
+export {InformationAddressForm} from './InformationAddressForm';

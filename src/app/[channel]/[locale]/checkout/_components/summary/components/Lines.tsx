@@ -1,13 +1,13 @@
 import Image from 'next/image';
 
 import {cn} from '@/lib/tools/cn';
-import type {PropsWithChildren} from '@/lib/types/react';
-
-import type {CheckoutSummary} from './types';
+import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 interface LinesProps {
   readonly displayGrossPrices: boolean;
-  readonly lines: CheckoutSummary['lines'];
+  readonly lines: NonNullable<
+    Awaited<ReturnType<typeof getCheckoutSummary>>
+  >['lines'];
 }
 
 export function Lines({displayGrossPrices, lines}: LinesProps) {
@@ -45,11 +45,12 @@ export function Lines({displayGrossPrices, lines}: LinesProps) {
                   {translation?.name ?? name}
                 </p>
               </div>
-              <Price>
+              <p className={cn('text-sm text-white')}>
+                {/* $ is mock value */}$
                 {displayGrossPrices
                   ? totalPrice['gross'].amount
                   : totalPrice['net'].amount}
-              </Price>
+              </p>
             </li>
           );
         },
@@ -71,9 +72,4 @@ function Quantity({value}: QuantityProps) {
       <p className={cn('text-xs text-white')}>{value}</p>
     </div>
   );
-}
-
-function Price({children}: PropsWithChildren) {
-  // $ is mock value
-  return <p className={cn('text-sm text-white')}>${children}</p>;
 }

@@ -2,13 +2,12 @@ import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
-
-import type {CheckoutSummary} from './types';
+import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 interface TotalProps
   extends Partial<
     Pick<
-      CheckoutSummary,
+      NonNullable<Awaited<ReturnType<typeof getCheckoutSummary>>>,
       'displayGrossPrices' | 'subtotalPrice' | 'shippingPrice' | 'totalPrice'
     >
   > {}
@@ -67,7 +66,7 @@ export async function Total({
           </Text>
         </Cell>
         <Cell>
-          <Price large>
+          <Price currency={totalPrice?.currency} large>
             {displayGrossPrices
               ? totalPrice?.gross.amount
               : totalPrice?.net.amount}
@@ -107,17 +106,25 @@ function Text({children, large}: PropsWithChildren<TextProps>) {
 }
 
 interface PriceProps {
+  readonly currency?: string | undefined;
   readonly large?: boolean;
 }
 
-function Price({children, large}: PropsWithChildren<PriceProps>) {
+function Price({children, currency, large}: PropsWithChildren<PriceProps>) {
   return (
-    <p
-      className={cn(
-        'ml-auto w-fit text-sm font-semibold text-white',
-        large && 'text-base font-bold',
-      )}>
-      {/* $ is mock value */}${children}
-    </p>
+    <div className={cn('ml-auto flex w-fit items-center gap-2')}>
+      {currency && (
+        <abbr className={cn('text-sm text-faded-black')} translate="yes">
+          {currency}
+        </abbr>
+      )}
+      <p
+        className={cn(
+          'text-sm font-semibold text-white',
+          large && 'text-base font-bold',
+        )}>
+        {/* $ is mock value */}${children}
+      </p>
+    </div>
   );
 }

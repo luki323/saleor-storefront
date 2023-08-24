@@ -110,7 +110,7 @@ export function LoginForm() {
           </FormItem>
         )}
       />
-      <SubmitButton loading={form.formState.isSubmitting}>
+      <SubmitButton disabled={form.formState.isSubmitting}>
         <FormattedMessage defaultMessage="Log in with email" id="vu1wqp" />
       </SubmitButton>
     </Form>

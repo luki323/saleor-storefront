@@ -115,7 +115,7 @@ export function ChangePasswordForm({email, token}: Props) {
           </FormItem>
         )}
       />
-      <SubmitButton loading={form.formState.isSubmitting}>
+      <SubmitButton disabled={form.formState.isSubmitting}>
         <FormattedMessage
           defaultMessage="Change password and log in"
           id="lTr7eP"

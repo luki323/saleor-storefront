@@ -1,16 +1,14 @@
 import 'server-only';
 
 import {GRAPHQL_ENDPOINT} from '@/env/env';
-import type {GetCheckoutSummaryVariables} from '@/graphql/generated/documents';
 import {GetCheckoutSummaryDocument} from '@/graphql/generated/documents';
+import type {LanguageCodeEnum} from '@/graphql/generated/types';
 import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-import {getCheckoutid} from './checkout-id';
+import {getCheckoutId} from './cookies';
 
-export async function getCheckoutSummary(
-  languageCode: GetCheckoutSummaryVariables['languageCode'],
-) {
-  const id = getCheckoutid();
+export async function getCheckoutSummary(languageCode: LanguageCodeEnum) {
+  const id = getCheckoutId();
 
   if (!id) {
     return null;

@@ -6,7 +6,7 @@ import {CreateCheckoutDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';
 import {raise} from '@/lib/tools/raise';
 
-import {setCheckoutId} from './checkout-id';
+import {setCheckoutId} from './cookies';
 
 export async function createCheckout(variables: CreateCheckoutVariables) {
   const {checkout, errors} =

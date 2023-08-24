@@ -157,7 +157,7 @@ export type GetCheckoutVariables = Types.Exact<{
 }>;
 
 
-export type GetCheckout = { readonly checkout?: { readonly billingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null, readonly shippingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null } | null };
+export type GetCheckout = { readonly checkout?: { readonly email?: string | null, readonly billingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null, readonly shippingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null } | null };
 
 export type GetCountryCodesVariables = Types.Exact<{
   channel: Types.Scalars['String']['input'];
@@ -165,6 +165,14 @@ export type GetCountryCodesVariables = Types.Exact<{
 
 
 export type GetCountryCodes = { readonly channel?: { readonly countries?: ReadonlyArray<{ readonly code: string }> | null } | null };
+
+export type UpdateCheckoutEmailVariables = Types.Exact<{
+  id: Types.Scalars['ID']['input'];
+  email: Types.Scalars['String']['input'];
+}>;
+
+
+export type UpdateCheckoutEmail = { readonly checkoutEmailUpdate?: { readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.CheckoutErrorCode }> } | null };
 
 export type UpdateCheckoutShippingAddressVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -687,6 +695,7 @@ export const GetAddressValidationRulesDocument = new TypedDocumentString(`
 export const GetCheckoutDocument = new TypedDocumentString(`
     query getCheckout($id: ID!) {
   checkout(id: $id) {
+    email
     billingAddress {
       ...address
     }
@@ -717,6 +726,18 @@ export const GetCountryCodesDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetCountryCodes, GetCountryCodesVariables>;
+export const UpdateCheckoutEmailDocument = new TypedDocumentString(`
+    mutation updateCheckoutEmail($id: ID!, $email: String!) {
+  checkoutEmailUpdate(id: $id, email: $email) {
+    errors {
+      ...checkoutError
+    }
+  }
+}
+    fragment checkoutError on CheckoutError {
+  field
+  code
+}`) as unknown as TypedDocumentString<UpdateCheckoutEmail, UpdateCheckoutEmailVariables>;
 export const UpdateCheckoutShippingAddressDocument = new TypedDocumentString(`
     mutation updateCheckoutShippingAddress($id: ID!, $shippingAddress: AddressInput!) {
   checkoutShippingAddressUpdate(id: $id, shippingAddress: $shippingAddress) {

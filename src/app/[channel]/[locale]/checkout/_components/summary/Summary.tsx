@@ -7,13 +7,11 @@ import {Lines} from './components/Lines';
 import {Total} from './components/Total';
 
 export async function Summary() {
-  const languageCode = localeToLangCode(getLocale());
-
   const {
     displayGrossPrices = false,
     lines = [],
     ...total
-  } = (await getCheckoutSummary(languageCode)) ?? {};
+  } = (await getCheckoutSummary(localeToLangCode(getLocale()))) ?? {};
 
   return (
     <div className={cn('w-[420px]')}>

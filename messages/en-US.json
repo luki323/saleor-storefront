@@ -1,4 +1,7 @@
 {
+  "+g+0OK": {
+    "defaultMessage": "Continue to payment"
+  },
   "+m0IDF": {
     "defaultMessage": "Enter a email"
   },
@@ -16,6 +19,9 @@
   },
   "0MqfPh": {
     "defaultMessage": "Apartment, suit, etc. (optional)"
+  },
+  "0s5kDf": {
+    "defaultMessage": "Continue to billing"
   },
   "0vL5u1": {
     "defaultMessage": "Create an account"
@@ -62,14 +68,17 @@
   "BKdjS1": {
     "defaultMessage": "Enter an address"
   },
-  "DgnS8R": {
-    "defaultMessage": "Continue to shipping"
-  },
   "DkQ5Q8": {
     "defaultMessage": "Send reset link"
   },
+  "E80WrK": {
+    "defaultMessage": "Information"
+  },
   "EyqsQj": {
     "defaultMessage": "Enter a valid country code"
+  },
+  "GntzCn": {
+    "defaultMessage": "Enter valid email"
   },
   "L4nXIc": {
     "defaultMessage": "Change password"
@@ -110,6 +119,9 @@
   "TZm4bq": {
     "defaultMessage": "Enter a valid password"
   },
+  "Tbo377": {
+    "defaultMessage": "Billing"
+  },
   "U3l+Q9": {
     "defaultMessage": "Home page"
   },
@@ -133,9 +145,6 @@
   },
   "WxJYBG": {
     "defaultMessage": "Loading user data..."
-  },
-  "ZAqkJ0": {
-    "defaultMessage": "Entera valid email"
   },
   "ZpVtCa": {
     "defaultMessage": "Shipping address"
@@ -167,6 +176,9 @@
   "hfuuOe": {
     "defaultMessage": "Login with Google"
   },
+  "k2CDuD": {
+    "defaultMessage": "Return to information"
+  },
   "k9hDFZ": {
     "defaultMessage": "Previous page"
   },
@@ -193,6 +205,9 @@
   },
   "rHnr4K": {
     "defaultMessage": "ZIP Code"
+  },
+  "sy+pv5": {
+    "defaultMessage": "Email"
   },
   "tKMlOc": {
     "defaultMessage": "Menu"
@@ -229,5 +244,8 @@
   },
   "y6WUKS": {
     "defaultMessage": "Enter a first name"
+  },
+  "zFegDD": {
+    "defaultMessage": "Contact"
   }
 }

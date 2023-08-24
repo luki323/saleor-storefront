@@ -1,4 +1,10 @@
 {
+  "+g+0OK": [
+    {
+      "type": 0,
+      "value": "Continue to payment"
+    }
+  ],
   "+m0IDF": [
     {
       "type": 0,
@@ -41,6 +47,12 @@
     {
       "type": 0,
       "value": "Apartment, suit, etc. (optional)"
+    }
+  ],
+  "0s5kDf": [
+    {
+      "type": 0,
+      "value": "Continue to billing"
     }
   ],
   "0vL5u1": [
@@ -133,22 +145,28 @@
       "value": "Enter an address"
     }
   ],
-  "DgnS8R": [
-    {
-      "type": 0,
-      "value": "Continue to shipping"
-    }
-  ],
   "DkQ5Q8": [
     {
       "type": 0,
       "value": "Send reset link"
     }
   ],
+  "E80WrK": [
+    {
+      "type": 0,
+      "value": "Information"
+    }
+  ],
   "EyqsQj": [
     {
       "type": 0,
       "value": "Enter a valid country code"
+    }
+  ],
+  "GntzCn": [
+    {
+      "type": 0,
+      "value": "Enter valid email"
     }
   ],
   "L4nXIc": [
@@ -237,6 +255,12 @@
       "value": "Enter a valid password"
     }
   ],
+  "Tbo377": [
+    {
+      "type": 0,
+      "value": "Billing"
+    }
+  ],
   "U3l+Q9": [
     {
       "type": 0,
@@ -291,12 +315,6 @@
     {
       "type": 0,
       "value": "Loading user data..."
-    }
-  ],
-  "ZAqkJ0": [
-    {
-      "type": 0,
-      "value": "Entera valid email"
     }
   ],
   "ZpVtCa": [
@@ -359,6 +377,12 @@
       "value": "Login with Google"
     }
   ],
+  "k2CDuD": [
+    {
+      "type": 0,
+      "value": "Return to information"
+    }
+  ],
   "k9hDFZ": [
     {
       "type": 0,
@@ -411,6 +435,12 @@
     {
       "type": 0,
       "value": "ZIP Code"
+    }
+  ],
+  "sy+pv5": [
+    {
+      "type": 0,
+      "value": "Email"
     }
   ],
   "tKMlOc": [
@@ -483,6 +513,12 @@
     {
       "type": 0,
       "value": "Enter a first name"
+    }
+  ],
+  "zFegDD": [
+    {
+      "type": 0,
+      "value": "Contact"
     }
   ]
 }

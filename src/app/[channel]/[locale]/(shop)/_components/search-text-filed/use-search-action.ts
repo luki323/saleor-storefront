@@ -1,12 +1,12 @@
-import {useRouter} from 'next/navigation';
 import invariant from 'tiny-invariant';
 
+import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/type-guards/is-defined';
 
 export function useSearchAction() {
-  const router = useRouter();
+  const intlRouter = useIntlRouter();
 
   return (formData: FormData) => {
     const searchValue = formData.get('search')?.toString();
@@ -17,6 +17,6 @@ export function useSearchAction() {
     if (searchValue) {
       href += `?search=${searchValue}`;
     }
-    router.push(href);
+    intlRouter.push(href);
   };
 }

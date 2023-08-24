@@ -31,6 +31,7 @@ const config: Config = {
         },
         blue: {
           DEFAULT: 'hsl(var(--blue))',
+          hovered: 'hsl(var(--blue-hovered))',
           foreground: 'hsl(var(--blue-foreground))',
         },
       },

@@ -73,7 +73,7 @@ export function RequestPasswordResetForm() {
           </FormItem>
         )}
       />
-      <SubmitButton loading={form.formState.isSubmitting}>
+      <SubmitButton disabled={form.formState.isSubmitting}>
         <FormattedMessage defaultMessage="Send reset link" id="DkQ5Q8" />
       </SubmitButton>
     </Form>

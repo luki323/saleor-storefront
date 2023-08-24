@@ -1,0 +1,7 @@
+mutation updateCheckoutEmail($id: ID!, $email: String!) {
+  checkoutEmailUpdate(id: $id, email: $email) {
+    errors {
+      ...checkoutError
+    }
+  }
+}

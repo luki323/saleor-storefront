@@ -1,13 +1,13 @@
 import {useQuery} from '@tanstack/react-query';
-import {useRouter} from 'next/navigation';
 
 import {useBasePath} from '@/i18n/hooks/use-base-path';
+import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {getKeyByHookName} from '@/lib/tools/get-key-by-hook-name';
 
 export function useRefreshAccessToken() {
-  const router = useRouter();
+  const intlRouter = useIntlRouter();
   const basePath = useBasePath();
 
   return useQuery({
@@ -22,9 +22,9 @@ export function useRefreshAccessToken() {
           throw null;
         }
       } catch {
-        router.push(formatPathname(...basePath, APP_ROUTES.LOGIN));
+        intlRouter.push(formatPathname(...basePath, APP_ROUTES.LOGIN));
       }
-      router.refresh();
+      intlRouter.refresh();
       return null;
     },
   });

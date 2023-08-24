@@ -19,8 +19,8 @@ export function useSignupFormSchema() {
         [FIELDS.EMAIL]: zod
           .string({
             invalid_type_error: intl.formatMessage({
-              defaultMessage: 'Entera  valid email',
-              id: 'ZAqkJ0',
+              defaultMessage: 'Enter valid email',
+              id: 'GntzCn',
             }),
             required_error: intl.formatMessage({
               defaultMessage: 'Enter a email',

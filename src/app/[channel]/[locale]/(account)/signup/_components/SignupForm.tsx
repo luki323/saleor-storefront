@@ -108,7 +108,7 @@ export function SignupForm() {
           </FormItem>
         )}
       />
-      <SubmitButton loading={form.formState.isSubmitting}>
+      <SubmitButton disabled={form.formState.isSubmitting}>
         <FormattedMessage defaultMessage="Sign up with email" id="pmu7Ih" />
       </SubmitButton>
     </Form>

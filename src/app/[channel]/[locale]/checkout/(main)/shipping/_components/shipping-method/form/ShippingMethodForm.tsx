@@ -17,20 +17,21 @@ import {shippingMethodSchema} from './consts/shipping-method-schema';
 import {ShippingMethodRadioItem, ShippingMethodRadioRoot} from './radio';
 import {useShippingMethodSubmit} from './use-shipping-method-submit';
 
+type Checkout = Awaited<ReturnType<typeof getCheckout>>;
+
 interface Props {
-  readonly shippingMethods: Awaited<
-    ReturnType<typeof getCheckout>
-  >['shippingMethods'];
+  readonly shippingMethod: Checkout['shippingMethod'];
+  readonly shippingMethods: Checkout['shippingMethods'];
 }
 
-export function ShippingMethodForm({shippingMethods}: Props) {
+export function ShippingMethodForm({shippingMethod, shippingMethods}: Props) {
   const form = useForm<Zod.infer<typeof shippingMethodSchema>>({
     resolver: zodResolver(shippingMethodSchema),
   });
 
   const {shippingMethodSubmit, routeIsPending} = useShippingMethodSubmit();
 
-  const defaultValue = shippingMethods.at(0)?.id;
+  const defaultValue = shippingMethod?.id ?? shippingMethods.at(0)?.id;
 
   return (
     <form

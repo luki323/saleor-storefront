@@ -1,6 +1,11 @@
 query getCheckout($id: ID!) {
   checkout(id: $id) {
     email
+    shippingMethod: deliveryMethod {
+      ... on ShippingMethod {
+        id
+      }
+    }
     shippingMethods {
       id
       maximumDeliveryDays

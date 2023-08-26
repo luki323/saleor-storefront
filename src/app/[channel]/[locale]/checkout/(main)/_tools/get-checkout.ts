@@ -8,8 +8,9 @@ import {toAddressSchema} from './to-address-schema';
 export async function getCheckout(variables: GetCheckoutVariables) {
   const {
     email,
-    billingAddress,
     shippingAddress,
+    billingAddress,
+    shippingMethod,
     shippingMethods = [],
   } = (
     await fetchQueryData(GRAPHQL_ENDPOINT, {
@@ -24,6 +25,7 @@ export async function getCheckout(variables: GetCheckoutVariables) {
   return {
     email,
     shippingMethods,
+    ...(shippingMethod && 'id' in shippingMethod && {shippingMethod}),
     ...(billingAddress && {
       billingAddress: toAddressSchema(billingAddress),
     }),

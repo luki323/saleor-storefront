@@ -6,13 +6,14 @@ import {Section} from '../../../_components/Section';
 import type {getCheckout} from '../../../_tools/get-checkout';
 import {ShippingMethodForm} from './form';
 
+type Checkout = Awaited<ReturnType<typeof getCheckout>>;
+
 interface Props {
-  readonly shippingMethods: Awaited<
-    ReturnType<typeof getCheckout>
-  >['shippingMethods'];
+  readonly shippingMethod: Checkout['shippingMethod'];
+  readonly shippingMethods: Checkout['shippingMethods'];
 }
 
-export async function ShippingMethod({shippingMethods}: Props) {
+export async function ShippingMethod({shippingMethod, shippingMethods}: Props) {
   const intl = await getIntl(getLocale());
 
   return (
@@ -23,7 +24,10 @@ export async function ShippingMethod({shippingMethods}: Props) {
           id: '4RD+CZ',
         })}
       </Heading>
-      <ShippingMethodForm shippingMethods={shippingMethods} />
+      <ShippingMethodForm
+        shippingMethod={shippingMethod}
+        shippingMethods={shippingMethods}
+      />
     </Section>
   );
 }

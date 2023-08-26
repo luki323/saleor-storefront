@@ -25,6 +25,8 @@ export default async function ShippingPage() {
     redirect(redirectUrl);
   }
 
+  const {shippingMethod, shippingMethods} = checkout;
+
   return (
     <Wrapper>
       <Breadcrumbs activePathname={SHIPPING_PATHNAME} checkout={checkout} />
@@ -32,7 +34,10 @@ export default async function ShippingPage() {
         contact={checkout.email}
         shipTo={getShipTo(checkout.shippingAddress)}
       />
-      <ShippingMethod shippingMethods={checkout.shippingMethods} />
+      <ShippingMethod
+        shippingMethod={shippingMethod}
+        shippingMethods={shippingMethods}
+      />
     </Wrapper>
   );
 }

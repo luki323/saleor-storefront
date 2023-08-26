@@ -157,7 +157,7 @@ export type GetCheckoutVariables = Types.Exact<{
 }>;
 
 
-export type GetCheckout = { readonly checkout?: { readonly email?: string | null, readonly shippingMethods: ReadonlyArray<{ readonly id: string, readonly maximumDeliveryDays?: number | null, readonly minimumDeliveryDays?: number | null, readonly active: boolean, readonly name: string, readonly price: { readonly currency: string, readonly amount: number } }>, readonly billingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null, readonly shippingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null } | null };
+export type GetCheckout = { readonly checkout?: { readonly email?: string | null, readonly shippingMethod?: { readonly id: string } | {} | null, readonly shippingMethods: ReadonlyArray<{ readonly id: string, readonly maximumDeliveryDays?: number | null, readonly minimumDeliveryDays?: number | null, readonly active: boolean, readonly name: string, readonly price: { readonly currency: string, readonly amount: number } }>, readonly billingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null, readonly shippingAddress?: { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } } | null } | null };
 
 export type GetCountryCodesVariables = Types.Exact<{
   channel: Types.Scalars['String']['input'];
@@ -704,6 +704,11 @@ export const GetCheckoutDocument = new TypedDocumentString(`
     query getCheckout($id: ID!) {
   checkout(id: $id) {
     email
+    shippingMethod: deliveryMethod {
+      ... on ShippingMethod {
+        id
+      }
+    }
     shippingMethods {
       id
       maximumDeliveryDays

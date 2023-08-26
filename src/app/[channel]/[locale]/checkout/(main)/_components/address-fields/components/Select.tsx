@@ -40,7 +40,7 @@ export function SelectContent({children}: PropsWithChildren) {
   return (
     <SelectPrimitive.Content
       className={cn(
-        'z-50 min-w-[var(--radix-select-trigger-width)] rounded-md border border-faded-black bg-black p-1 text-white shadow-md data-[side=bottom]:translate-y-1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        'z-50 max-h-64 min-w-[var(--radix-select-trigger-width)] overflow-scroll rounded-md border border-[#4c4c50] bg-grey-dark p-1 px-0 text-white shadow-md data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2',
       )}
       position="popper">
       {children}
@@ -58,10 +58,10 @@ export function SelectItem({children, value}: SelectItemProps) {
     <SelectPrimitive.Item
       value={value}
       className={cn(
-        'flex cursor-default select-none items-center rounded-sm py-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground',
+        'relative flex cursor-default select-none items-center rounded-sm pl-5 text-sm outline-none focus:bg-blue focus:text-white',
       )}>
       <SelectPrimitive.ItemIndicator>
-        <CheckIcon size={15} />
+        <CheckIcon size={15} className={cn('absolute left-[3px] top-[3px]')} />
       </SelectPrimitive.ItemIndicator>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>

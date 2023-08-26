@@ -19,14 +19,13 @@ import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
-import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupSubmit} from '../_hooks/use-signup-submit';
 
 export function SignupForm() {
   const signupFormSchema = useSignupFormSchema();
 
-  const form = useForm<SignupFormSchema>({
+  const form = useForm<Zod.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
   });
 
@@ -39,7 +38,7 @@ export function SignupForm() {
       <FormField
         name={FIELDS.EMAIL}
         control={form.control}
-        render={({field: {value, ref, ...restField}}) => (
+        render={({field: {ref, ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -51,7 +50,6 @@ export function SignupForm() {
                 type="email"
                 placeholder="name@example.com"
                 autoComplete="email"
-                value={value}
                 required
                 ref={refMountCallback(ref, deferInputFocus)}
                 {...restField}
@@ -76,7 +74,7 @@ export function SignupForm() {
       <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
-        render={({field: {value, ...restField}}) => (
+        render={({field}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -87,9 +85,8 @@ export function SignupForm() {
               <TextField
                 type="password"
                 autoComplete="new-password"
-                value={value}
                 required
-                {...restField}
+                {...field}
               />
             </FormFieldControl>
             <div>

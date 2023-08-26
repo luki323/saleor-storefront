@@ -3,6 +3,9 @@ import Image from 'next/image';
 import {cn} from '@/lib/tools/cn';
 import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
+import {Money} from '../../../Money';
+import {Quantity} from './Quantity';
+
 interface LinesProps {
   readonly displayGrossPrices: boolean;
   readonly lines: NonNullable<
@@ -45,31 +48,18 @@ export function Lines({displayGrossPrices, lines}: LinesProps) {
                   {translation?.name ?? name}
                 </p>
               </div>
-              <p className={cn('text-sm text-white')}>
-                {/* $ is mock value */}$
-                {displayGrossPrices
-                  ? totalPrice['gross'].amount
-                  : totalPrice['net'].amount}
-              </p>
+              <Money
+                value={
+                  displayGrossPrices
+                    ? totalPrice['gross'].amount
+                    : totalPrice['net'].amount
+                }
+                currency={totalPrice.currency}
+              />
             </li>
           );
         },
       )}
     </ul>
-  );
-}
-
-interface QuantityProps {
-  readonly value: number;
-}
-
-function Quantity({value}: QuantityProps) {
-  return (
-    <div
-      className={cn(
-        'flex h-5 w-5 items-center justify-center rounded-full bg-[#686868]',
-      )}>
-      <p className={cn('text-xs text-white')}>{value}</p>
-    </div>
   );
 }

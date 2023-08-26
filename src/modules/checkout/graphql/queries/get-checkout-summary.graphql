@@ -2,6 +2,7 @@ query getCheckoutSummary($id: ID!, $languageCode: LanguageCodeEnum!) {
   checkout(id: $id) {
     lines {
       totalPrice {
+        currency
         net {
           amount
         }
@@ -26,6 +27,7 @@ query getCheckoutSummary($id: ID!, $languageCode: LanguageCodeEnum!) {
     }
     displayGrossPrices
     subtotalPrice {
+      currency
       net {
         amount
       }
@@ -34,6 +36,7 @@ query getCheckoutSummary($id: ID!, $languageCode: LanguageCodeEnum!) {
       }
     }
     shippingPrice {
+      currency
       net {
         amount
       }

@@ -11,14 +11,12 @@ import {fetchQueryData} from '@/lib/tools/fetch-query';
 import {getCheckoutId} from './cookies';
 import {createCheckout} from './create-checkout';
 
-type Variables = Pick<AddCheckoutLineVariables, 'line'> &
-  Pick<CreateCheckoutVariables, 'channel' | 'languageCode'>;
-
 export async function addCheckoutLine({
   channel,
   languageCode,
   line,
-}: Variables) {
+}: Pick<AddCheckoutLineVariables, 'line'> &
+  Pick<CreateCheckoutVariables, 'channel' | 'languageCode'>) {
   const id = getCheckoutId();
 
   if (id) {

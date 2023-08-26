@@ -1,8 +1,15 @@
+import type {VariantProps} from 'cva';
+import {cva} from 'cva';
+import invariant from 'tiny-invariant';
+
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
+
+import {Money} from '../../../Money';
+import {Text} from './Text';
 
 interface TotalProps
   extends Partial<
@@ -20,6 +27,10 @@ export async function Total({
 }: TotalProps) {
   const intl = await getIntl(getLocale());
 
+  invariant(subtotalPrice);
+  invariant(shippingPrice);
+  invariant(totalPrice);
+
   return (
     <div role="table" className={cn('mt-6 flex flex-col gap-2')}>
       <Row>
@@ -31,12 +42,16 @@ export async function Total({
             })}
           </Text>
         </Cell>
-        <Cell>
-          <Price>
-            {displayGrossPrices
-              ? subtotalPrice?.gross.amount
-              : subtotalPrice?.net.amount}
-          </Price>
+        <Cell justifyEnd>
+          <Money
+            value={
+              displayGrossPrices
+                ? subtotalPrice.gross.amount
+                : subtotalPrice.net.amount
+            }
+            currency={subtotalPrice.currency}
+            bold
+          />
         </Cell>
       </Row>
       <Row>
@@ -48,12 +63,15 @@ export async function Total({
             })}
           </Text>
         </Cell>
-        <Cell>
-          <Price>
-            {displayGrossPrices
-              ? shippingPrice?.gross.amount
-              : shippingPrice?.net.amount}
-          </Price>
+        <Cell justifyEnd>
+          <Money
+            value={
+              displayGrossPrices
+                ? shippingPrice.gross.amount
+                : shippingPrice.net.amount
+            }
+            currency={shippingPrice.currency}
+          />
         </Cell>
       </Row>
       <Row>
@@ -65,12 +83,17 @@ export async function Total({
             })}
           </Text>
         </Cell>
-        <Cell>
-          <Price currency={totalPrice?.currency} large>
-            {displayGrossPrices
-              ? totalPrice?.gross.amount
-              : totalPrice?.net.amount}
-          </Price>
+        <Cell justifyEnd>
+          <Money
+            value={
+              displayGrossPrices
+                ? totalPrice.gross.amount
+                : totalPrice.net.amount
+            }
+            currency={totalPrice.currency}
+            large
+            bold
+          />
         </Cell>
       </Row>
     </div>
@@ -85,46 +108,20 @@ function Row({children}: PropsWithChildren) {
   );
 }
 
-function Cell({children}: PropsWithChildren) {
+type CellProps = VariantProps<typeof cellStyles>;
+
+const cellStyles = cva('flex-1', {
+  variants: {
+    justifyEnd: {
+      true: 'flex justify-end',
+    },
+  },
+});
+
+function Cell({children, justifyEnd}: PropsWithChildren<CellProps>) {
   return (
-    <div role="cell" className={cn('flex-1')}>
+    <div role="cell" className={cn(cellStyles({justifyEnd}))}>
       {children}
-    </div>
-  );
-}
-
-interface TextProps {
-  readonly large?: boolean;
-}
-
-function Text({children, large}: PropsWithChildren<TextProps>) {
-  return (
-    <p className={cn('text-sm text-white', large && 'text-base font-semibold')}>
-      {children}
-    </p>
-  );
-}
-
-interface PriceProps {
-  readonly currency?: string | undefined;
-  readonly large?: boolean;
-}
-
-function Price({children, currency, large}: PropsWithChildren<PriceProps>) {
-  return (
-    <div className={cn('ml-auto flex w-fit items-center gap-2')}>
-      {currency && (
-        <abbr className={cn('text-sm text-faded-black')} translate="yes">
-          {currency}
-        </abbr>
-      )}
-      <p
-        className={cn(
-          'text-sm font-semibold text-white',
-          large && 'text-base font-bold',
-        )}>
-        {/* $ is mock value */}${children}
-      </p>
     </div>
   );
 }

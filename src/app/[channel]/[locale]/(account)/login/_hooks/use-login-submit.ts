@@ -2,7 +2,9 @@ import {useCallback} from 'react';
 import type {UseFormReturn} from 'react-hook-form';
 
 import {logInAction} from '../../_tools/log-in-action';
-import type {LoginFormSchema} from './use-login-form-schema';
+import type {useLoginFormSchema} from './use-login-form-schema';
+
+type LoginFormSchema = Zod.infer<ReturnType<typeof useLoginFormSchema>>;
 
 export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
   return useCallback(

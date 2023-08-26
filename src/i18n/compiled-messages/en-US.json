@@ -1,4 +1,10 @@
 {
+  "+JsDiH": [
+    {
+      "type": 0,
+      "value": "Ship to"
+    }
+  ],
   "+g+0OK": [
     {
       "type": 0,
@@ -79,16 +85,16 @@
       "value": "Enter a valid last name"
     }
   ],
+  "4RD+CZ": [
+    {
+      "type": 0,
+      "value": "Shipping method"
+    }
+  ],
   "4cSA+G": [
     {
       "type": 0,
       "value": "Or continue with"
-    }
-  ],
-  "4jBGA6": [
-    {
-      "type": 0,
-      "value": "Enter a country code"
     }
   ],
   "5mvFDZ": [
@@ -133,6 +139,12 @@
       "value": "Password description"
     }
   ],
+  "Akc1Gk": [
+    {
+      "type": 0,
+      "value": "Return to shipping"
+    }
+  ],
   "AyGauy": [
     {
       "type": 0,
@@ -145,6 +157,18 @@
       "value": "Enter an address"
     }
   ],
+  "BY343C": [
+    {
+      "type": 0,
+      "value": "Change"
+    }
+  ],
+  "DgnS8R": [
+    {
+      "type": 0,
+      "value": "Continue to shipping"
+    }
+  ],
   "DkQ5Q8": [
     {
       "type": 0,
@@ -155,12 +179,6 @@
     {
       "type": 0,
       "value": "Information"
-    }
-  ],
-  "EyqsQj": [
-    {
-      "type": 0,
-      "value": "Enter a valid country code"
     }
   ],
   "GntzCn": [
@@ -185,12 +203,6 @@
     {
       "type": 0,
       "value": "Total"
-    }
-  ],
-  "N0KmXz": [
-    {
-      "type": 0,
-      "value": "Enter a country"
     }
   ],
   "Nau+P4": [
@@ -329,6 +341,24 @@
       "value": "Confirm password:"
     }
   ],
+  "bHEjjM": [
+    {
+      "type": 1,
+      "value": "minimumDeliveryDays"
+    },
+    {
+      "type": 0,
+      "value": " to "
+    },
+    {
+      "type": 1,
+      "value": "maximumDeliveryDays"
+    },
+    {
+      "type": 0,
+      "value": " business days"
+    }
+  ],
   "cPhKTw": [
     {
       "type": 0,
@@ -339,12 +369,6 @@
     {
       "type": 0,
       "value": "Back"
-    }
-  ],
-  "dTZ0NV": [
-    {
-      "type": 0,
-      "value": "Enter a valid country"
     }
   ],
   "e6Ph5+": [

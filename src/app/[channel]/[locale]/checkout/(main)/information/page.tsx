@@ -32,7 +32,7 @@ export default async function InformationPage({searchParams}: Props) {
 
   return (
     <Wrapper>
-      <Breadcrumbs currentPathname={INFORMATION_PATHNAME} checkout={checkout} />
+      <Breadcrumbs activePathname={INFORMATION_PATHNAME} checkout={checkout} />
       <InformationSection
         email={checkout.email}
         shippingAddress={checkout.shippingAddress}

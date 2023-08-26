@@ -19,7 +19,6 @@ import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
-import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginSubmit} from '../_hooks/use-login-submit';
 import {RequestPasswordResetLink} from './RequestPasswordResetLink';
@@ -27,7 +26,7 @@ import {RequestPasswordResetLink} from './RequestPasswordResetLink';
 export function LoginForm() {
   const loginFormSchema = useLoginFormSchema();
 
-  const form = useForm<LoginFormSchema>({
+  const form = useForm<Zod.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
   });
 
@@ -40,7 +39,7 @@ export function LoginForm() {
       <FormField
         name={FIELDS.EMAIL}
         control={form.control}
-        render={({field: {value, ref, ...restField}}) => (
+        render={({field: {ref, ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -52,7 +51,6 @@ export function LoginForm() {
                 type="email"
                 placeholder="name@example.com"
                 autoComplete="email"
-                value={value}
                 required
                 ref={refMountCallback(ref, deferInputFocus)}
                 {...restField}
@@ -77,7 +75,7 @@ export function LoginForm() {
       <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
-        render={({field: {value, ...restField}}) => (
+        render={({field}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -88,9 +86,8 @@ export function LoginForm() {
               <TextField
                 type="password"
                 autoComplete="password"
-                value={value}
                 required
-                {...restField}
+                {...field}
               />
             </FormFieldControl>
             <div>

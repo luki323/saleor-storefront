@@ -32,7 +32,7 @@ export default async function BillingPage({searchParams}: Props) {
 
   return (
     <Wrapper>
-      <Breadcrumbs currentPathname={BILLING_PATHNAME} checkout={checkout} />
+      <Breadcrumbs activePathname={BILLING_PATHNAME} checkout={checkout} />
       <BillingSection
         billingAddress={checkout.billingAddress}
         country={getCountrySearchParam(searchParams)}

@@ -19,14 +19,13 @@ import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
-import type {RequestPasswordResetSchema} from '../_hooks/use-request-password-reset-schema';
 import {useRequestPasswordResetSchema} from '../_hooks/use-request-password-reset-schema';
 import {useRequestPasswordResetSubmit} from '../_hooks/use-request-password-reset-submit';
 
 export function RequestPasswordResetForm() {
   const requestPasswordResetSchema = useRequestPasswordResetSchema();
 
-  const form = useForm<RequestPasswordResetSchema>({
+  const form = useForm<Zod.infer<typeof requestPasswordResetSchema>>({
     resolver: zodResolver(requestPasswordResetSchema),
   });
 
@@ -39,7 +38,7 @@ export function RequestPasswordResetForm() {
       <FormField
         name={FIELDS.EMAIL}
         control={form.control}
-        render={({field: {value, ref, ...restField}}) => (
+        render={({field: {ref, ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -51,7 +50,6 @@ export function RequestPasswordResetForm() {
                 type="email"
                 placeholder="name@example.com"
                 autoComplete="email"
-                value={value}
                 required
                 ref={refMountCallback(ref, deferInputFocus)}
                 {...restField}

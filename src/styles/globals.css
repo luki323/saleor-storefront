@@ -19,6 +19,8 @@
   --destructive-foreground: 0 0% 98%;
 
   --grey: 240 5% 40%;
+  --grey-light: 0, 0%, 41%;
+  --grey-dark: 240 7% 14%;
   --grey-foreground: 0, 0%, 51%;
 
   --primary: 240 5.9% 10%;

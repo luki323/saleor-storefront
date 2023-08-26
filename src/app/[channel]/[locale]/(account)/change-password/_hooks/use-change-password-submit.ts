@@ -2,7 +2,11 @@ import {useCallback} from 'react';
 import type {UseFormReturn} from 'react-hook-form';
 
 import {changePasswordAction} from '../_tools/change-password-action';
-import type {ChangePasswordFormSchema} from './use-change-password-schema';
+import type {useChangePasswordSchema} from './use-change-password-schema';
+
+type ChangePasswordFormSchema = Zod.infer<
+  ReturnType<typeof useChangePasswordSchema>
+>;
 
 export function useChangePasswordSubmit(
   form: UseFormReturn<ChangePasswordFormSchema>,

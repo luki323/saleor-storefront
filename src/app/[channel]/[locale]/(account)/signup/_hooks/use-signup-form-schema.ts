@@ -6,10 +6,6 @@ import {useIntl} from '@/i18n/react-intl';
 import {MIN_PASSWORD_LENGTH} from '../../_consts';
 import {FIELDS} from '../_consts';
 
-export type SignupFormSchema = zod.infer<
-  ReturnType<typeof useSignupFormSchema>
->;
-
 export function useSignupFormSchema() {
   const intl = useIntl();
 

@@ -5,7 +5,7 @@ import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import type {useAddressSchema} from '../../../_hooks/use-address-schema';
-import {updateCheckoutBillingAddress} from '../../../_tools/update-checkout-billing-address';
+import {updateCheckoutBillingAddressAction} from '../../../_tools/update-checkout-billing-address-action';
 
 export function useBillingAddressSubmit() {
   const intlRouter = useIntlRouter();
@@ -20,7 +20,7 @@ export function useBillingAddressSubmit() {
       }: Zod.infer<ReturnType<typeof useAddressSchema>>) => {
         try {
           const {errors} =
-            (await updateCheckoutBillingAddress({
+            (await updateCheckoutBillingAddressAction({
               ...(streetAddress2 && {streetAddress2}),
               ...restBillingAddress,
             })) ?? {};
@@ -30,7 +30,7 @@ export function useBillingAddressSubmit() {
             console.error(errors);
           } else {
             startTransition(() => {
-              intlRouter.push(formatPathname(...APP_ROUTES.CHECKOUT.BILLING));
+              intlRouter.push(formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT));
             });
           }
         } catch (error) {

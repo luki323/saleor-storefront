@@ -1,14 +1,17 @@
 'use client';
 
 import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
+import type {ElementRef} from 'react';
+import {Controller, useForm} from 'react-hook-form';
 
 import {FormattedMessage, useIntl} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
 import {ErrorText} from '@/lib/components/ui/ErrorText';
+import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
 import {cn} from '@/lib/tools/cn';
+import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
 import {AddressFields} from '../../../_components/address-fields';
 import {FormItem} from '../../../_components/address-fields/components/Form';
@@ -22,8 +25,8 @@ import {useAddressSchema} from '../../../_hooks/use-address-schema';
 import type {getAddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import type {getCountryCodes} from '../../../_tools/get-country-codes';
 import {FIELDS} from './fields';
-import {useInformationAddressSubmit} from './hooks/use-information-address-submit';
 import {useInformationSchema} from './hooks/use-information-schema';
+import {useInformationSubmit} from './hooks/use-information-submit';
 
 interface Props {
   readonly defaultValues: Partial<
@@ -38,7 +41,7 @@ interface Props {
   >;
 }
 
-export function InformationAddressForm({
+export function InformationForm({
   defaultValues,
   countryCodes,
   addressValidationRules: {countryAreaChoices, postalCode, addressFormat},
@@ -61,7 +64,9 @@ export function InformationAddressForm({
     },
   });
 
-  const {shippingAddressSubmit, routeIsPending} = useInformationAddressSubmit();
+  const {shippingAddressSubmit, routeIsPending} = useInformationSubmit();
+
+  const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
   const intl = useIntl();
 
@@ -74,16 +79,17 @@ export function InformationAddressForm({
         <FormField
           name={FIELDS.EMAIL}
           control={form.control}
-          render={({field}) => (
+          render={({field: {ref, ...restField}}) => (
             <FormItem>
               <FormFieldControl>
                 <TextField
+                  ref={refMountCallback(ref, deferInputFocus)}
                   placeholder={intl.formatMessage({
                     defaultMessage: 'Email',
                     id: 'sy+pv5',
                   })}
                   required
-                  {...field}
+                  {...restField}
                 />
               </FormFieldControl>
               <FormFieldErrorMessage>
@@ -101,28 +107,24 @@ export function InformationAddressForm({
           countryCodes={countryCodes}
           countryAreaChoices={countryAreaChoices}
         />
-        <FormField
+        <Controller
           name={FIELDS.USE_SHIPPING_AS_BILLING_ADDRESS}
           control={form.control}
           render={({field}) => (
-            <FormItem>
-              <FormFieldControl>
-                <Checkbox
-                  checked={field.value ?? false}
-                  onCheckedChange={field.onChange}>
-                  <FormattedMessage
-                    defaultMessage="Use shipping address as billing address"
-                    id="2htJqw"
-                  />
-                </Checkbox>
-              </FormFieldControl>
-            </FormItem>
+            <Checkbox
+              checked={field.value ?? false}
+              onCheckedChange={field.onChange}>
+              <FormattedMessage
+                defaultMessage="Use shipping address as billing address"
+                id="2htJqw"
+              />
+            </Checkbox>
           )}
         />
       </Section>
       <div className={cn('self-end')}>
         <SubmitButton disabled={form.formState.isSubmitting || routeIsPending}>
-          <FormattedMessage defaultMessage="Continue to billing" id="0s5kDf" />
+          <FormattedMessage defaultMessage="Continue to shipping" id="DgnS8R" />
         </SubmitButton>
       </div>
     </Form>

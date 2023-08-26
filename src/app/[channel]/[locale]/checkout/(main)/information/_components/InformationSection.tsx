@@ -6,7 +6,7 @@ import {getAddressValidationRules} from '../../_tools/get-address-validation-rul
 import type {getCheckout} from '../../_tools/get-checkout';
 import {getCountryCodes} from '../../_tools/get-country-codes';
 import type {getCountrySearchParam} from '../../_tools/get-country-search-param';
-import {InformationAddressForm} from './information-address-form';
+import {InformationForm} from './information-form';
 
 type Checkout = Awaited<ReturnType<typeof getCheckout>>;
 
@@ -36,7 +36,7 @@ export async function InformationSection({
   ]);
 
   return (
-    <InformationAddressForm
+    <InformationForm
       defaultValues={{
         ...(email && {email}),
         ...shippingAddress,

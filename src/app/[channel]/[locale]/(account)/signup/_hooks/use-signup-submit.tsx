@@ -9,7 +9,9 @@ import {APP_ROUTES} from '@/lib/consts';
 
 import {logInAction} from '../../_tools/log-in-action';
 import {signUp} from '../_tools/sign-up';
-import type {SignupFormSchema} from './use-signup-form-schema';
+import type {useSignupFormSchema} from './use-signup-form-schema';
+
+type SignupFormSchema = Zod.infer<ReturnType<typeof useSignupFormSchema>>;
 
 export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
   const channel = useChannel();
@@ -18,13 +20,18 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
   return useCallback(
     async ({email, password}: SignupFormSchema) => {
       try {
-        const {accountRegister} = await signUp({
-          email,
-          password,
-          channel,
-          redirectUrl: new URL(APP_ROUTES.CONFIRM_ACCOUNT, ORIGIN).toString(),
-        });
-        const {requiresConfirmation, user} = accountRegister ?? {};
+        const {requiresConfirmation, user} =
+          (
+            await signUp({
+              email,
+              password,
+              channel,
+              redirectUrl: new URL(
+                APP_ROUTES.CONFIRM_ACCOUNT,
+                ORIGIN,
+              ).toString(),
+            })
+          ).accountRegister ?? {};
 
         if (requiresConfirmation && user) {
           toast.default({

@@ -19,7 +19,6 @@ import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
-import type {ChangePasswordFormSchema} from '../_hooks/use-change-password-schema';
 import {useChangePasswordSchema} from '../_hooks/use-change-password-schema';
 import {useChangePasswordSubmit} from '../_hooks/use-change-password-submit';
 
@@ -31,7 +30,7 @@ interface Props {
 export function ChangePasswordForm({email, token}: Props) {
   const changePasswordSchema = useChangePasswordSchema();
 
-  const form = useForm<ChangePasswordFormSchema>({
+  const form = useForm<Zod.infer<typeof changePasswordSchema>>({
     resolver: zodResolver(changePasswordSchema),
   });
 
@@ -44,7 +43,7 @@ export function ChangePasswordForm({email, token}: Props) {
       <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
-        render={({field: {value, ref, ...restField}}) => (
+        render={({field: {ref, ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -55,7 +54,6 @@ export function ChangePasswordForm({email, token}: Props) {
               <TextField
                 type="password"
                 autoComplete="new-password"
-                value={value}
                 ref={refMountCallback(ref, deferInputFocus)}
                 required
                 {...restField}

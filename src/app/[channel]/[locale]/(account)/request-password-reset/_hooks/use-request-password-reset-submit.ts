@@ -8,7 +8,11 @@ import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {APP_ROUTES} from '@/lib/consts';
 
 import {requestPasswordReset} from '../_tools/request-password-reset';
-import type {RequestPasswordResetSchema} from './use-request-password-reset-schema';
+import type {useRequestPasswordResetSchema} from './use-request-password-reset-schema';
+
+type RequestPasswordResetSchema = Zod.infer<
+  ReturnType<typeof useRequestPasswordResetSchema>
+>;
 
 export function useRequestPasswordResetSubmit(
   form: UseFormReturn<RequestPasswordResetSchema>,
@@ -19,12 +23,17 @@ export function useRequestPasswordResetSubmit(
   return useCallback(
     async ({email}: RequestPasswordResetSchema) => {
       try {
-        const response = await requestPasswordReset({
-          email,
-          channel,
-          redirectUrl: new URL(APP_ROUTES.CHANGE_PASSWORD, ORIGIN).toString(),
-        });
-        const {errors} = response.requestPasswordReset ?? {};
+        const {errors} =
+          (
+            await requestPasswordReset({
+              email,
+              channel,
+              redirectUrl: new URL(
+                APP_ROUTES.CHANGE_PASSWORD,
+                ORIGIN,
+              ).toString(),
+            })
+          ).requestPasswordReset ?? {};
 
         if (errors?.length) {
           // TODO: Display server error

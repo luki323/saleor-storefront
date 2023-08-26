@@ -1,4 +1,7 @@
 {
+  "+JsDiH": {
+    "defaultMessage": "Ship to"
+  },
   "+g+0OK": {
     "defaultMessage": "Continue to payment"
   },
@@ -35,11 +38,11 @@
   "3Gc+Ab": {
     "defaultMessage": "Enter a valid last name"
   },
+  "4RD+CZ": {
+    "defaultMessage": "Shipping method"
+  },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
-  },
-  "4jBGA6": {
-    "defaultMessage": "Enter a country code"
   },
   "5mvFDZ": {
     "defaultMessage": "Enter a valid city"
@@ -62,20 +65,26 @@
   "A4RrFD": {
     "defaultMessage": "Password description"
   },
+  "Akc1Gk": {
+    "defaultMessage": "Return to shipping"
+  },
   "AyGauy": {
     "defaultMessage": "Login"
   },
   "BKdjS1": {
     "defaultMessage": "Enter an address"
   },
+  "BY343C": {
+    "defaultMessage": "Change"
+  },
+  "DgnS8R": {
+    "defaultMessage": "Continue to shipping"
+  },
   "DkQ5Q8": {
     "defaultMessage": "Send reset link"
   },
   "E80WrK": {
     "defaultMessage": "Information"
-  },
-  "EyqsQj": {
-    "defaultMessage": "Enter a valid country code"
   },
   "GntzCn": {
     "defaultMessage": "Enter valid email"
@@ -88,9 +97,6 @@
   },
   "MJ2jZQ": {
     "defaultMessage": "Total"
-  },
-  "N0KmXz": {
-    "defaultMessage": "Enter a country"
   },
   "Nau+P4": {
     "defaultMessage": "Enter a last name"
@@ -152,14 +158,14 @@
   "atD3r4": {
     "defaultMessage": "Confirm password:"
   },
+  "bHEjjM": {
+    "defaultMessage": "{minimumDeliveryDays} to {maximumDeliveryDays} business days"
+  },
   "cPhKTw": {
     "defaultMessage": "Not available"
   },
   "cyR7Kh": {
     "defaultMessage": "Back"
-  },
-  "dTZ0NV": {
-    "defaultMessage": "Enter a valid country"
   },
   "e6Ph5+": {
     "defaultMessage": "Address"

@@ -5,10 +5,6 @@ import {useIntl} from '@/i18n/react-intl';
 
 import {MIN_PASSWORD_LENGTH} from '../../_consts';
 
-export type ChangePasswordFormSchema = zod.infer<
-  ReturnType<typeof useChangePasswordSchema>
->;
-
 export function useChangePasswordSchema() {
   const intl = useIntl();
 

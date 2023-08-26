@@ -56,11 +56,8 @@ export function BillingAddressForm({
         countryAreaChoices={countryAreaChoices}
       />
       <div className={cn('flex items-center justify-between')}>
-        <BackwardLink href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
-          <FormattedMessage
-            defaultMessage="Return to information"
-            id="k2CDuD"
-          />
+        <BackwardLink href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}>
+          <FormattedMessage defaultMessage="Return to shipping" id="Akc1Gk" />
         </BackwardLink>
         <div className={cn('w-fit')}>
           <SubmitButton

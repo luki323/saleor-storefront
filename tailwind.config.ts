@@ -12,6 +12,8 @@ const config: Config = {
         'faded-black': 'hsl(var(--faded-black))',
         grey: {
           DEFAULT: 'hsl(var(--grey))',
+          light: 'hsl(var(--grey-light))',
+          dark: 'hsl(var(--grey-dark))',
           foreground: 'hsl(var(--grey-foreground))',
         },
         muted: {

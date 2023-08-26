@@ -1,6 +1,18 @@
 query getCheckout($id: ID!) {
   checkout(id: $id) {
     email
+    shippingMethods {
+      id
+      maximumDeliveryDays
+      minimumDeliveryDays
+      active
+      price {
+        currency
+        amount
+      }
+      name
+      active
+    }
     billingAddress {
       ...address
     }

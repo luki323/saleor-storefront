@@ -20,23 +20,7 @@ export function useAddressSchema({
     const INPUT_MIN_LENGTH = 1;
 
     return zod.object({
-      [ADDRESS_FIELDS.COUNTRY]: zod
-        .string({
-          invalid_type_error: intl.formatMessage({
-            defaultMessage: 'Enter a valid country',
-            id: 'dTZ0NV',
-          }),
-          required_error: intl.formatMessage({
-            defaultMessage: 'Enter a country',
-            id: 'N0KmXz',
-          }),
-        })
-        .refine(isCountryCode, {
-          message: intl.formatMessage({
-            defaultMessage: 'Enter a valid country',
-            id: 'dTZ0NV',
-          }),
-        }),
+      [ADDRESS_FIELDS.COUNTRY]: zod.string().refine(isCountryCode),
       [ADDRESS_FIELDS.FIRST_NAME]: zod
         .string({
           invalid_type_error: intl.formatMessage({
@@ -106,16 +90,7 @@ export function useAddressSchema({
             id: 'u1JzBg',
           }),
         }),
-      [ADDRESS_FIELDS.COUNTRY_AREA]: zod.string({
-        invalid_type_error: intl.formatMessage({
-          defaultMessage: 'Enter a valid country code',
-          id: 'EyqsQj',
-        }),
-        required_error: intl.formatMessage({
-          defaultMessage: 'Enter a country code',
-          id: '4jBGA6',
-        }),
-      }),
+      [ADDRESS_FIELDS.COUNTRY_AREA]: zod.string(),
       [ADDRESS_FIELDS.POSTAL_CODE]: zod
         .string({
           invalid_type_error: intl.formatMessage({

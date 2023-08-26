@@ -7,7 +7,7 @@ import {fetchQueryData} from '@/lib/tools/fetch-query';
 import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
-export async function updateCheckoutEmail(
+export async function updateCheckoutEmailAction(
   email: UpdateCheckoutEmailVariables['email'],
 ) {
   const id = getCheckoutId() ?? raise('Checkout id is not defined');

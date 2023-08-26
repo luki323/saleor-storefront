@@ -1,5 +1,5 @@
+import {Divider} from '@/app/[channel]/[locale]/(account)/_components/Divider';
 import {FormattedMessage} from '@/i18n/react-intl';
-import {Divider} from '@/lib/components/ui/Divider';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 

@@ -3,8 +3,8 @@ import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 import {cn} from '@/lib/tools/cn';
 import {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
-import {Lines} from './components/Lines';
-import {Total} from './components/Total';
+import {Lines} from './components/lines';
+import {Total} from './components/total';
 
 export async function Summary() {
   const {

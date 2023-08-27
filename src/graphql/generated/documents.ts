@@ -150,7 +150,7 @@ export type GetAddressValidationRulesVariables = Types.Exact<{
 }>;
 
 
-export type GetAddressValidationRules = { readonly addressValidationRules?: { readonly postalCodeMatchers: ReadonlyArray<string>, readonly postalCodeExamples: ReadonlyArray<string>, readonly addressFormat: string, readonly countryAreaType: string, readonly countryAreaChoices: ReadonlyArray<{ readonly raw?: string | null, readonly verbose?: string | null }> } | null };
+export type GetAddressValidationRules = { readonly addressValidationRules?: { readonly postalCodeMatchers: ReadonlyArray<string>, readonly postalCodeExamples: ReadonlyArray<string>, readonly addressFormat: string, readonly countryAreaChoices: ReadonlyArray<{ readonly raw?: string | null, readonly verbose?: string | null }> } | null };
 
 export type GetCheckoutVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -692,7 +692,6 @@ export const GetAddressValidationRulesDocument = new TypedDocumentString(`
     postalCodeMatchers
     postalCodeExamples
     addressFormat
-    countryAreaType
     countryAreaChoices {
       raw
       verbose

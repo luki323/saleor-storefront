@@ -71,6 +71,7 @@ export function useInformationSubmit() {
           } else {
             startTransition(() => {
               intlRouter.push(formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING));
+              intlRouter.refresh();
             });
           }
         } catch (error) {

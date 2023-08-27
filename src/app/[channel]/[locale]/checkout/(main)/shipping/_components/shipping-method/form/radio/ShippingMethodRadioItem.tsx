@@ -10,11 +10,9 @@ import {cn} from '@/lib/tools/cn';
 import {Money} from '../../../../../../_components/Money';
 import type {getCheckout} from '../../../../../_tools/get-checkout';
 
-type ShippingMethod = Awaited<
+type Props = Awaited<
   ReturnType<typeof getCheckout>
->['shippingMethods'][number];
-
-type Props = ShippingMethod &
+>['shippingMethods'][number] &
   VariantProps<typeof shippingMethodRadioItemStyles>;
 
 const shippingMethodRadioItemStyles = cva(
@@ -37,9 +35,9 @@ const shippingMethodRadioItemStyles = cva(
 export function ShippingMethodRadioItem({
   id,
   name,
-  minimumDeliveryDays = 0,
-  maximumDeliveryDays = 0,
-  price: {amount, currency},
+  minimumDeliveryDays,
+  maximumDeliveryDays,
+  price,
   selected,
   roundedTop,
   roundedBottom,
@@ -72,15 +70,15 @@ export function ShippingMethodRadioItem({
             <FormattedMessage
               defaultMessage="{minimumDeliveryDays} to {maximumDeliveryDays} business days"
               values={{
-                minimumDeliveryDays,
-                maximumDeliveryDays,
+                minimumDeliveryDays: minimumDeliveryDays ?? 0,
+                maximumDeliveryDays: maximumDeliveryDays ?? 0,
               }}
               id="bHEjjM"
             />
           </span>
         </div>
         <div>
-          <Money value={amount} currency={currency} bold />
+          <Money value={price.amount} currency={price.currency} bold />
         </div>
       </div>
     </label>

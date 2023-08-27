@@ -16,7 +16,7 @@ export function SelectTrigger({children}: PropsWithChildren) {
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        'flex h-fit w-full flex-col items-start justify-start rounded-md border border-faded-black px-2.5 py-2 text-sm leading-tight text-white outline-none transition-all focus-within:border-blue focus-within:shadow-[0_0_0_1px] focus-within:shadow-blue',
+        'flex h-fit w-full flex-col items-start justify-start rounded-md border border-faded-black bg-black px-2.5 py-2 text-sm leading-tight text-white outline-none transition-all focus-within:border-blue focus-within:shadow-[0_0_0_1px] focus-within:shadow-blue',
       )}>
       <div className={cn('flex w-full items-center justify-between')}>
         <div className={cn('flex flex-col items-start')}>{children}</div>

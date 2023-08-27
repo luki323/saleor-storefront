@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/react-intl';
 import {APP_ROUTES} from '@/lib/consts';
+import {capitalize} from '@/lib/tools/capitalize';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -37,13 +38,15 @@ export function BillingAddressForm({
     addressFormat,
   });
 
+  const city = defaultValues.city;
   const countryArea = countryAreaChoices.at(0)?.raw;
 
   const form = useForm<Zod.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
-      ...(countryArea && {countryArea}),
       ...defaultValues,
+      ...(city && {city: capitalize(city)}),
+      ...(countryArea && {countryArea}),
     },
   });
 

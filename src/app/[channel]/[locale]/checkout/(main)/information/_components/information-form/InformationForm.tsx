@@ -10,6 +10,7 @@ import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
 import {ErrorText} from '@/lib/components/ui/ErrorText';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
+import {capitalize} from '@/lib/tools/capitalize';
 import {cn} from '@/lib/tools/cn';
 import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
@@ -52,6 +53,7 @@ export function InformationForm({
     addressFormat,
   });
 
+  const city = defaultValues.city;
   const countryArea = countryAreaChoices.at(0)?.raw;
 
   const form = useForm<
@@ -59,8 +61,9 @@ export function InformationForm({
   >({
     resolver: zodResolver(informationSchema.merge(addressSchema)),
     defaultValues: {
-      ...(countryArea && {countryArea}),
       ...defaultValues,
+      ...(city && {city: capitalize(city)}),
+      ...(countryArea && {countryArea}),
     },
   });
 

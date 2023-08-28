@@ -1,5 +1,0 @@
-query getUserEmail {
-  me {
-    email
-  }
-}

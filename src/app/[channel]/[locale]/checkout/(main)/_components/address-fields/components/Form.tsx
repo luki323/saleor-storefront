@@ -1,4 +1,4 @@
-import {FormItem as FormItemImpl} from '@/lib/components/form/form-field/FormField';
+import {FormItem as FormItem_} from '@/lib/components/form/form-field/FormField';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
@@ -8,8 +8,8 @@ export function FormGroup({children}: PropsWithChildren) {
 
 export function FormItem({children}: PropsWithChildren) {
   return (
-    <FormItemImpl className={cn('flex w-full flex-col gap-2')}>
+    <FormItem_ className={cn('flex w-full flex-col gap-2')}>
       {children}
-    </FormItemImpl>
+    </FormItem_>
   );
 }

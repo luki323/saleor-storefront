@@ -7,6 +7,10 @@ import {fetchQueryData} from '@/lib/tools/fetch-query';
 
 import {getCheckoutId} from './cookies';
 
+export type CheckoutSummary = NonNullable<
+  Awaited<ReturnType<typeof getCheckoutSummary>>
+>;
+
 export async function getCheckoutSummary(languageCode: LanguageCodeEnum) {
   const id = getCheckoutId();
 

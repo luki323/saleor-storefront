@@ -7,9 +7,10 @@ import type {IconButtonProps} from '@/lib/components/ui/IconButton';
 import {IconButton} from '@/lib/components/ui/IconButton';
 import {cn} from '@/lib/tools/cn';
 
-type Props = Omit<IconButtonProps, 'children' | 'label' | 'variant'> & {
+interface Props
+  extends Omit<IconButtonProps, 'children' | 'label' | 'variant'> {
   readonly className?: string;
-};
+}
 
 export function MenuButton(props: Props) {
   const intl = useIntl();

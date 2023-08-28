@@ -35,6 +35,12 @@
       "value": "Country/Region"
     }
   ],
+  "/uUIep": [
+    {
+      "type": 0,
+      "value": "User details"
+    }
+  ],
   "06/qxx": [
     {
       "type": 0,
@@ -65,12 +71,6 @@
     {
       "type": 0,
       "value": "Create an account"
-    }
-  ],
-  "1UUo5H": [
-    {
-      "type": 0,
-      "value": "Refreshing access token..."
     }
   ],
   "2htJqw": [
@@ -187,6 +187,18 @@
       "value": "Enter valid email"
     }
   ],
+  "HavxIp": [
+    {
+      "type": 0,
+      "value": "Enter first name"
+    }
+  ],
+  "JDSxM0": [
+    {
+      "type": 0,
+      "value": "Manage your account settings and orders."
+    }
+  ],
   "L4nXIc": [
     {
       "type": 0,
@@ -273,10 +285,22 @@
       "value": "Billing"
     }
   ],
+  "TwyMau": [
+    {
+      "type": 0,
+      "value": "Account"
+    }
+  ],
   "U3l+Q9": [
     {
       "type": 0,
       "value": "Home page"
+    }
+  ],
+  "U8vrFK": [
+    {
+      "type": 0,
+      "value": "Enter a confirm password"
     }
   ],
   "UKxoV8": [
@@ -289,12 +313,6 @@
     {
       "type": 0,
       "value": "Categories"
-    }
-  ],
-  "VmFv3C": [
-    {
-      "type": 0,
-      "value": "Enter confirm password"
     }
   ],
   "VxQzFj": [
@@ -323,10 +341,10 @@
       "value": "Request password reset"
     }
   ],
-  "WxJYBG": [
+  "X7jl6w": [
     {
       "type": 0,
-      "value": "Loading user data..."
+      "value": "Orders"
     }
   ],
   "ZpVtCa": [
@@ -401,6 +419,12 @@
       "value": "Login with Google"
     }
   ],
+  "hzSNj4": [
+    {
+      "type": 0,
+      "value": "Dashboard"
+    }
+  ],
   "k2CDuD": [
     {
       "type": 0,
@@ -411,6 +435,12 @@
     {
       "type": 0,
       "value": "Previous page"
+    }
+  ],
+  "kFjJxN": [
+    {
+      "type": 0,
+      "value": "Update your user details settings."
     }
   ],
   "ku+mDU": [
@@ -425,10 +455,28 @@
       "value": "Change password and log in"
     }
   ],
+  "o7nzDs": [
+    {
+      "type": 0,
+      "value": "User name"
+    }
+  ],
+  "p1iOq7": [
+    {
+      "type": 0,
+      "value": "First name description"
+    }
+  ],
   "pJi/8z": [
     {
       "type": 0,
       "value": "Enter a ZIP / postal code"
+    }
+  ],
+  "pONqz8": [
+    {
+      "type": 0,
+      "value": "First name"
     }
   ],
   "pmu7Ih": [
@@ -441,6 +489,12 @@
     {
       "type": 0,
       "value": "Enter an valid address"
+    }
+  ],
+  "qOefVu": [
+    {
+      "type": 0,
+      "value": "Last name description"
     }
   ],
   "qTs7Lh": [
@@ -471,6 +525,18 @@
     {
       "type": 0,
       "value": "Menu"
+    }
+  ],
+  "tS+q2C": [
+    {
+      "type": 0,
+      "value": "Update user name"
+    }
+  ],
+  "txUL0F": [
+    {
+      "type": 0,
+      "value": "Last name"
     }
   ],
   "u1JzBg": [

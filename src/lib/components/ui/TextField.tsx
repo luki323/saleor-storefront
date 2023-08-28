@@ -6,14 +6,13 @@ import {cn} from '@/lib/tools/cn';
 export const TextField = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
->(function TextField({value = '', className, ...restProps}, ref) {
+>(function TextField({className, ...restProps}, ref) {
   return (
     <input
       ref={ref}
-      value={value}
       spellCheck="false" // Turn off spell checking by default
       className={cn(
-        'h-10 rounded-md border border-input bg-white px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'h-10 rounded-md border border-input bg-white px-3 py-2 text-sm placeholder:font-light placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}
       {...restProps}

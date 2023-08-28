@@ -17,6 +17,9 @@
   "/V1GsM": {
     "defaultMessage": "Country/Region"
   },
+  "/uUIep": {
+    "defaultMessage": "User details"
+  },
   "06/qxx": {
     "defaultMessage": "Reset link was sent to {email} mailbox"
   },
@@ -28,9 +31,6 @@
   },
   "0vL5u1": {
     "defaultMessage": "Create an account"
-  },
-  "1UUo5H": {
-    "defaultMessage": "Refreshing access token..."
   },
   "2htJqw": {
     "defaultMessage": "Use shipping address as billing address"
@@ -89,6 +89,12 @@
   "GntzCn": {
     "defaultMessage": "Enter valid email"
   },
+  "HavxIp": {
+    "defaultMessage": "Enter first name"
+  },
+  "JDSxM0": {
+    "defaultMessage": "Manage your account settings and orders."
+  },
   "L4nXIc": {
     "defaultMessage": "Change password"
   },
@@ -128,17 +134,20 @@
   "Tbo377": {
     "defaultMessage": "Billing"
   },
+  "TwyMau": {
+    "defaultMessage": "Account"
+  },
   "U3l+Q9": {
     "defaultMessage": "Home page"
+  },
+  "U8vrFK": {
+    "defaultMessage": "Enter a confirm password"
   },
   "UKxoV8": {
     "defaultMessage": "Welcome back"
   },
   "VKb1MS": {
     "defaultMessage": "Categories"
-  },
-  "VmFv3C": {
-    "defaultMessage": "Enter confirm password"
   },
   "VxQzFj": {
     "defaultMessage": "Enter email and password to log in"
@@ -149,8 +158,8 @@
   "Wtffln": {
     "defaultMessage": "Request password reset"
   },
-  "WxJYBG": {
-    "defaultMessage": "Loading user data..."
+  "X7jl6w": {
+    "defaultMessage": "Orders"
   },
   "ZpVtCa": {
     "defaultMessage": "Shipping address"
@@ -182,11 +191,17 @@
   "hfuuOe": {
     "defaultMessage": "Login with Google"
   },
+  "hzSNj4": {
+    "defaultMessage": "Dashboard"
+  },
   "k2CDuD": {
     "defaultMessage": "Return to information"
   },
   "k9hDFZ": {
     "defaultMessage": "Previous page"
+  },
+  "kFjJxN": {
+    "defaultMessage": "Update your user details settings."
   },
   "ku+mDU": {
     "defaultMessage": "State"
@@ -194,14 +209,26 @@
   "lTr7eP": {
     "defaultMessage": "Change password and log in"
   },
+  "o7nzDs": {
+    "defaultMessage": "User name"
+  },
+  "p1iOq7": {
+    "defaultMessage": "First name description"
+  },
   "pJi/8z": {
     "defaultMessage": "Enter a ZIP / postal code"
+  },
+  "pONqz8": {
+    "defaultMessage": "First name"
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
   },
   "qF/pIW": {
     "defaultMessage": "Enter an valid address"
+  },
+  "qOefVu": {
+    "defaultMessage": "Last name description"
   },
   "qTs7Lh": {
     "defaultMessage": "Firstname"
@@ -217,6 +244,12 @@
   },
   "tKMlOc": {
     "defaultMessage": "Menu"
+  },
+  "tS+q2C": {
+    "defaultMessage": "Update user name"
+  },
+  "txUL0F": {
+    "defaultMessage": "Last name"
   },
   "u1JzBg": {
     "defaultMessage": "Enter a city"

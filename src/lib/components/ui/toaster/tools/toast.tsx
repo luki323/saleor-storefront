@@ -1,4 +1,4 @@
-import {toast as toastImpl} from 'sonner';
+import {toast as toast_} from 'sonner';
 
 import type {ToasterProps} from '../Toaster';
 import {Toaster} from '../Toaster';
@@ -7,22 +7,22 @@ type Props = Omit<ToasterProps, 'variant' | 'onClose'>;
 
 export const toast = {
   default: (props) => {
-    toastImpl.custom((id) => (
+    toast_.custom((id) => (
       <Toaster
         variant="default"
         onClose={() => {
-          toastImpl.dismiss(id);
+          toast_.dismiss(id);
         }}
         {...props}
       />
     ));
   },
   destructive: (props) => {
-    toastImpl.custom((id) => (
+    toast_.custom((id) => (
       <Toaster
         variant="destructive"
         onClose={() => {
-          toastImpl.dismiss(id);
+          toast_.dismiss(id);
         }}
         {...props}
       />

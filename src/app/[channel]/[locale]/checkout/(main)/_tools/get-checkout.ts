@@ -3,7 +3,9 @@ import type {GetCheckoutVariables} from '@/graphql/generated/documents';
 import {GetCheckoutDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';
 
-import {toAddressSchema} from './to-address-schema';
+import {toAddressFieldsSchema} from './to-address-fields-schema';
+
+export type Checkout = Awaited<ReturnType<typeof getCheckout>>;
 
 export async function getCheckout(variables: GetCheckoutVariables) {
   const {
@@ -27,10 +29,10 @@ export async function getCheckout(variables: GetCheckoutVariables) {
     shippingMethods,
     ...(shippingMethod && 'id' in shippingMethod && {shippingMethod}),
     ...(billingAddress && {
-      billingAddress: toAddressSchema(billingAddress),
+      billingAddress: toAddressFieldsSchema(billingAddress),
     }),
     ...(shippingAddress && {
-      shippingAddress: toAddressSchema(shippingAddress),
+      shippingAddress: toAddressFieldsSchema(shippingAddress),
     }),
   };
 }

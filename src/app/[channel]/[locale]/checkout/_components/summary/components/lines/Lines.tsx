@@ -1,19 +1,16 @@
 import Image from 'next/image';
 
 import {cn} from '@/lib/tools/cn';
-import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
+import type {CheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 import {Money} from '../../../Money';
 import {Quantity} from './Quantity';
 
-interface LinesProps {
+interface Props extends Pick<CheckoutSummary, 'lines'> {
   readonly displayGrossPrices: boolean;
-  readonly lines: NonNullable<
-    Awaited<ReturnType<typeof getCheckoutSummary>>
-  >['lines'];
 }
 
-export function Lines({displayGrossPrices, lines}: LinesProps) {
+export function Lines({lines, displayGrossPrices}: Props) {
   return (
     <ul className={cn('flex flex-col gap-4')}>
       {lines.map(
@@ -51,8 +48,8 @@ export function Lines({displayGrossPrices, lines}: LinesProps) {
               <Money
                 value={
                   displayGrossPrices
-                    ? totalPrice['gross'].amount
-                    : totalPrice['net'].amount
+                    ? totalPrice.gross.amount
+                    : totalPrice.net.amount
                 }
                 currency={totalPrice.currency}
               />

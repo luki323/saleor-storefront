@@ -12,8 +12,7 @@ query getCheckout($id: ID!) {
       minimumDeliveryDays
       active
       price {
-        currency
-        amount
+        ...money
       }
       name
       active

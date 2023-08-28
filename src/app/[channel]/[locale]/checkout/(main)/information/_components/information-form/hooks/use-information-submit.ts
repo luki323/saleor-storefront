@@ -5,14 +5,11 @@ import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import type {useAddressSchema} from '../../../../_hooks/use-address-schema';
+import type {AddressFieldsSchema} from '../../../../_hooks/use-address-fields-schema';
 import {updateCheckoutBillingAddressAction} from '../../../../_tools/update-checkout-billing-address-action';
 import {updateCheckoutEmailAction} from '../../../_tools/update-checkout-email-action';
 import {updateCheckoutShippingAddressAction} from '../../../_tools/update-checkout-shipping-address-action';
-import type {useInformationSchema} from './use-information-schema';
-
-type ShippingAddressSchema = Zod.infer<ReturnType<typeof useAddressSchema>> &
-  Zod.infer<ReturnType<typeof useInformationSchema>>;
+import type {InformationFieldsSchema} from './use-information-fields-schema';
 
 export function useInformationSubmit() {
   const intlRouter = useIntlRouter();
@@ -25,7 +22,7 @@ export function useInformationSubmit() {
         email,
         useShippingAsBillingAddress,
         ...shippingAddress
-      }: ShippingAddressSchema) => {
+      }: AddressFieldsSchema & InformationFieldsSchema) => {
         const {streetAddress2, ...restShippingAddress} = shippingAddress;
 
         const addressInput: AddressInput = {
@@ -44,7 +41,6 @@ export function useInformationSubmit() {
                     errors,
                   };
                 }
-
                 if (useShippingAsBillingAddress) {
                   const {errors} =
                     (await updateCheckoutBillingAddressAction(addressInput)) ??
@@ -56,7 +52,6 @@ export function useInformationSubmit() {
                     };
                   }
                 }
-
                 return null;
               },
             ),

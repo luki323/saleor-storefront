@@ -1,13 +1,12 @@
 import type {VariantProps} from 'cva';
 import {cva} from 'cva';
+import type {ComponentProps} from 'react';
 
 import {FormattedPrice} from '@/i18n/components/FormattedPrice';
 import {cn} from '@/lib/tools/cn';
 
-interface Props extends VariantProps<typeof styles> {
-  readonly value: number;
-  readonly currency: string;
-}
+type Props = ComponentProps<typeof FormattedPrice> &
+  VariantProps<typeof styles>;
 
 const styles = cva('text-white text-sm', {
   variants: {

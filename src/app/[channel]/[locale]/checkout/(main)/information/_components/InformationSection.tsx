@@ -3,12 +3,10 @@ import {localeToCountryCode} from '@/i18n/tools/locale-to-country-code';
 import {raise} from '@/lib/tools/raise';
 
 import {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
-import type {getCheckout} from '../../_tools/get-checkout';
+import type {Checkout} from '../../_tools/get-checkout';
 import {getCountryCodes} from '../../_tools/get-country-codes';
 import type {getCountrySearchParam} from '../../_tools/get-country-search-param';
 import {InformationForm} from './information-form';
-
-type Checkout = Awaited<ReturnType<typeof getCheckout>>;
 
 interface Props {
   readonly email: Checkout['email'];

@@ -2,7 +2,6 @@ query getAddressValidationRules($countryCode: CountryCode!) {
   addressValidationRules(countryCode: $countryCode) {
     postalCodeMatchers
     postalCodeExamples
-    addressFormat
     countryAreaChoices {
       raw
       verbose

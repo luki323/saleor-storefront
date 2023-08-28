@@ -4,7 +4,7 @@ import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import type {useAddressSchema} from '../../../_hooks/use-address-schema';
+import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import {updateCheckoutBillingAddressAction} from '../../../_tools/update-checkout-billing-address-action';
 
 export function useBillingAddressSubmit() {
@@ -14,10 +14,7 @@ export function useBillingAddressSubmit() {
   return {
     routeIsPending,
     billingAddressSubmit: useCallback(
-      async ({
-        streetAddress2,
-        ...restBillingAddress
-      }: Zod.infer<ReturnType<typeof useAddressSchema>>) => {
+      async ({streetAddress2, ...restBillingAddress}: AddressFieldsSchema) => {
         try {
           const {errors} =
             (await updateCheckoutBillingAddressAction({

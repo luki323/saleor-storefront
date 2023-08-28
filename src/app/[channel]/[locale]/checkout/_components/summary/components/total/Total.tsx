@@ -6,18 +6,17 @@ import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
-import type {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
+import type {CheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 import {Money} from '../../../Money';
 import {Text} from './Text';
 
-interface TotalProps
-  extends Partial<
-    Pick<
-      NonNullable<Awaited<ReturnType<typeof getCheckoutSummary>>>,
-      'displayGrossPrices' | 'subtotalPrice' | 'shippingPrice' | 'totalPrice'
-    >
-  > {}
+type TotalProps = Partial<
+  Pick<
+    CheckoutSummary,
+    'displayGrossPrices' | 'subtotalPrice' | 'shippingPrice' | 'totalPrice'
+  >
+>;
 
 export async function Total({
   displayGrossPrices,
@@ -84,6 +83,9 @@ export async function Total({
           </Text>
         </Cell>
         <Cell justifyEnd>
+          <abbr className={cn('mr-2 text-xs text-grey-light')}>
+            {totalPrice.currency}
+          </abbr>
           <Money
             value={
               displayGrossPrices
@@ -110,10 +112,10 @@ function Row({children}: PropsWithChildren) {
 
 type CellProps = VariantProps<typeof cellStyles>;
 
-const cellStyles = cva('flex-1', {
+const cellStyles = cva('flex-1 flex items-center', {
   variants: {
     justifyEnd: {
-      true: 'flex justify-end',
+      true: 'justify-end',
     },
   },
 });

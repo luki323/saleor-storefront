@@ -4,9 +4,7 @@ import {cva} from 'cva';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
-interface Props extends VariantProps<typeof styles> {
-  readonly large?: boolean;
-}
+type Props = VariantProps<typeof styles>;
 
 const styles = cva('text-sm text-white', {
   variants: {

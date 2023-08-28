@@ -3,6 +3,10 @@ import type {GetAddressValidationRulesVariables} from '@/graphql/generated/docum
 import {GetAddressValidationRulesDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';
 
+export type AddressValidationRules = Awaited<
+  ReturnType<typeof getAddressValidationRules>
+>;
+
 export async function getAddressValidationRules(
   variables: GetAddressValidationRulesVariables,
 ) {
@@ -10,7 +14,6 @@ export async function getAddressValidationRules(
     countryAreaChoices = [],
     postalCodeMatchers = [],
     postalCodeExamples = [],
-    addressFormat,
   } = (
     await fetchQueryData(GRAPHQL_ENDPOINT, {
       params: {
@@ -32,6 +35,5 @@ export async function getAddressValidationRules(
       matchers: postalCodeMatchers,
       examples: postalCodeExamples,
     },
-    addressFormat,
   };
 }

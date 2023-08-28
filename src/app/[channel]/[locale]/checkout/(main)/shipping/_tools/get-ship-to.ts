@@ -1,6 +1,6 @@
 import {capitalize} from '@/lib/tools/capitalize';
 
-import type {getCheckout} from '../../_tools/get-checkout';
+import type {Checkout} from '../../_tools/get-checkout';
 
 export function getShipTo({
   streetAddress1 = '',
@@ -8,7 +8,7 @@ export function getShipTo({
   countryArea = '',
   postalCode = '',
   country,
-}: Awaited<ReturnType<typeof getCheckout>>['shippingAddress'] = {}) {
+}: Checkout['shippingAddress'] = {}) {
   return [
     streetAddress1,
     [capitalize(city), countryArea, postalCode].filter(Boolean).join(' '),

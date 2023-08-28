@@ -4,7 +4,7 @@ import {FormattedMessage} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 
 import {ADDRESS_FIELDS} from '../../../../_consts';
-import type {useAddressSchema} from '../../../../_hooks/use-address-schema';
+import type {AddressFieldsSchema} from '../../../../_hooks/use-address-fields-schema';
 import {
   Select,
   SelectContent,
@@ -18,10 +18,11 @@ import {useSetCountrySearchParam} from './hooks/use-set-country-search-param';
 
 interface Props {
   readonly countryCodes: readonly string[];
+  readonly disabled: boolean;
 }
 
-export function CountrySelect({countryCodes}: Props) {
-  const form = useFormContext<Zod.infer<ReturnType<typeof useAddressSchema>>>();
+export function CountrySelect({countryCodes, disabled}: Props) {
+  const form = useFormContext<AddressFieldsSchema>();
 
   const countryOptions = useCountryOptions(countryCodes);
 
@@ -34,7 +35,7 @@ export function CountrySelect({countryCodes}: Props) {
       render={({field}) => (
         <Select
           value={field.value}
-          disabled={routeIsPending}
+          disabled={disabled || routeIsPending}
           onValueChange={(value) => {
             field.onChange(value);
 

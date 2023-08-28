@@ -8,8 +8,8 @@ import {ErrorText} from '@/lib/components/ui/ErrorText';
 import {cn} from '@/lib/tools/cn';
 
 import {ADDRESS_FIELDS} from '../../_consts';
-import type {useAddressSchema} from '../../_hooks/use-address-schema';
-import type {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
+import type {AddressFieldsSchema} from '../../_hooks/use-address-fields-schema';
+import type {AddressValidationRules} from '../../_tools/get-address-validation-rules';
 import {CountrySelect} from './components/country-select';
 import {FormGroup, FormItem} from './components/Form';
 import {
@@ -24,19 +24,22 @@ import {TextField} from './components/TextField';
 
 interface Props {
   readonly countryCodes: readonly string[];
-  readonly countryAreaChoices: Awaited<
-    ReturnType<typeof getAddressValidationRules>
-  >['countryAreaChoices'];
+  readonly countryAreaChoices: AddressValidationRules['countryAreaChoices'];
+  readonly disabled: boolean;
 }
 
-export function AddressFields({countryCodes, countryAreaChoices}: Props) {
-  const form = useFormContext<Zod.infer<ReturnType<typeof useAddressSchema>>>();
+export function AddressFields({
+  countryCodes,
+  countryAreaChoices,
+  disabled,
+}: Props) {
+  const form = useFormContext<AddressFieldsSchema>();
 
   const intl = useIntl();
 
   return (
     <div className={cn('flex flex-col gap-3.5')}>
-      <CountrySelect countryCodes={countryCodes} />
+      <CountrySelect countryCodes={countryCodes} disabled={disabled} />
       <FormGroup>
         <FormField
           name={ADDRESS_FIELDS.FIRST_NAME}
@@ -49,6 +52,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                     defaultMessage: 'Firstname',
                     id: 'qTs7Lh',
                   })}
+                  disabled={disabled}
                   required
                   {...field}
                 />
@@ -70,6 +74,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                     defaultMessage: 'Lastname',
                     id: '/Knt5/',
                   })}
+                  disabled={disabled}
                   required
                   {...field}
                 />
@@ -92,6 +97,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                   defaultMessage: 'Address',
                   id: 'e6Ph5+',
                 })}
+                disabled={disabled}
                 required
                 {...field}
               />
@@ -113,6 +119,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                   defaultMessage: 'Apartment, suit, etc. (optional)',
                   id: '0MqfPh',
                 })}
+                disabled={disabled}
                 {...field}
               />
             </FormFieldControl>
@@ -134,6 +141,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                     defaultMessage: 'City',
                     id: 'TE4fIS',
                   })}
+                  disabled={disabled}
                   required
                   {...field}
                 />
@@ -148,7 +156,11 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
           name={ADDRESS_FIELDS.COUNTRY_AREA}
           control={form.control}
           render={({field}) => (
-            <Select value={field.value} onValueChange={field.onChange} required>
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+              disabled={disabled}
+              required>
               <SelectTrigger>
                 <SelectPlaceholder>
                   <FormattedMessage defaultMessage="State" id="ku+mDU" />
@@ -176,6 +188,7 @@ export function AddressFields({countryCodes, countryAreaChoices}: Props) {
                     defaultMessage: 'ZIP Code',
                     id: 'rHnr4K',
                   })}
+                  disabled={disabled}
                   required
                   {...field}
                 />

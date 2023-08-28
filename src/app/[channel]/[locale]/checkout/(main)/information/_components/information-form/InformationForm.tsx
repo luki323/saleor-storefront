@@ -22,44 +22,37 @@ import {Form} from '../../../_components/Form';
 import {Heading} from '../../../_components/Heading';
 import {Section} from '../../../_components/Section';
 import {SubmitButton} from '../../../_components/SubmitButton';
-import {useAddressSchema} from '../../../_hooks/use-address-schema';
-import type {getAddressValidationRules} from '../../../_tools/get-address-validation-rules';
-import type {getCountryCodes} from '../../../_tools/get-country-codes';
+import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
+import {useAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
+import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {FIELDS} from './fields';
-import {useInformationSchema} from './hooks/use-information-schema';
+import type {InformationFieldsSchema} from './hooks/use-information-fields-schema';
+import {useInformationFieldsSchema} from './hooks/use-information-fields-schema';
 import {useInformationSubmit} from './hooks/use-information-submit';
 
 interface Props {
   readonly defaultValues: Partial<
-    Zod.infer<
-      ReturnType<typeof useAddressSchema> &
-        ReturnType<typeof useInformationSchema>
-    >
+    AddressFieldsSchema & InformationFieldsSchema
   >;
-  readonly countryCodes: Awaited<ReturnType<typeof getCountryCodes>>;
-  readonly addressValidationRules: Awaited<
-    ReturnType<typeof getAddressValidationRules>
-  >;
+  readonly countryCodes: readonly string[];
+  readonly addressValidationRules: AddressValidationRules;
 }
 
 export function InformationForm({
   defaultValues,
   countryCodes,
-  addressValidationRules: {countryAreaChoices, postalCode, addressFormat},
+  addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
-  const informationSchema = useInformationSchema();
-  const addressSchema = useAddressSchema({
+  const informationFieldsSchema = useInformationFieldsSchema();
+  const addressFieldsSchema = useAddressFieldsSchema({
     postalCode,
-    addressFormat,
   });
 
   const city = defaultValues.city;
   const countryArea = countryAreaChoices.at(0)?.raw;
 
-  const form = useForm<
-    Zod.infer<typeof addressSchema & typeof informationSchema>
-  >({
-    resolver: zodResolver(informationSchema.merge(addressSchema)),
+  const form = useForm<AddressFieldsSchema & InformationFieldsSchema>({
+    resolver: zodResolver(informationFieldsSchema.merge(addressFieldsSchema)),
     defaultValues: {
       ...defaultValues,
       ...(city && {city: capitalize(city)}),
@@ -87,10 +80,13 @@ export function InformationForm({
               <FormFieldControl>
                 <TextField
                   ref={refMountCallback(ref, deferInputFocus)}
+                  type="email"
                   placeholder={intl.formatMessage({
                     defaultMessage: 'Email',
                     id: 'sy+pv5',
                   })}
+                  autoComplete="email"
+                  disabled={form.formState.isSubmitting}
                   required
                   {...restField}
                 />
@@ -109,14 +105,16 @@ export function InformationForm({
         <AddressFields
           countryCodes={countryCodes}
           countryAreaChoices={countryAreaChoices}
+          disabled={form.formState.isSubmitting || routeIsPending}
         />
         <Controller
           name={FIELDS.USE_SHIPPING_AS_BILLING_ADDRESS}
           control={form.control}
-          render={({field}) => (
+          render={({field: {value = false, onChange}}) => (
             <Checkbox
-              checked={field.value ?? false}
-              onCheckedChange={field.onChange}>
+              checked={value}
+              disabled={form.formState.isSubmitting || routeIsPending}
+              onCheckedChange={onChange}>
               <FormattedMessage
                 defaultMessage="Use shipping address as billing address"
                 id="2htJqw"

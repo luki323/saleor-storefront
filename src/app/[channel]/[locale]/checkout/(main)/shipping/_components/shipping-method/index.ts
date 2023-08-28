@@ -1,1 +1,0 @@
-export {ShippingMethod} from './ShippingMethod';

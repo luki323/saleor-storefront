@@ -6,6 +6,11 @@ export const APP_ROUTES = {
   CONFIRM_ACCOUNT: 'confirm-account',
   REQUEST_PASSWORD_RESET: 'request-password-reset',
   CHANGE_PASSWORD: 'change-password',
+  DASHBOARD: {
+    ACCOUNT: {
+      USER_DETAILS: ['dashboard', 'account', 'user-details'],
+    },
+  },
   CHECKOUT: {
     INFORMATION: ['checkout', 'information'],
     SHIPPING: ['checkout', 'shipping'],

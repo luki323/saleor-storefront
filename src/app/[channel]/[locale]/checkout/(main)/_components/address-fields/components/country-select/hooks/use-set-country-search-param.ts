@@ -1,14 +1,13 @@
-import {usePathname, useSearchParams} from 'next/navigation';
+import {useSearchParams} from 'next/navigation';
 import {useCallback, useTransition} from 'react';
 
 import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
-import {formatPathname} from '@/lib/tools/format-pathname';
-import {splitPathname} from '@/lib/tools/split-pathname';
+import {useBasePathRelative} from '@/lib/hooks/use-base-path-relative';
 
 export const COUNTRY_SEARCH_PARAM_NAME = 'country';
 
 export function useSetCountrySearchParam() {
-  const pathname = usePathname();
+  const basePathRelative = useBasePathRelative();
   const searchParams = useSearchParams();
 
   const intlRouter = useIntlRouter();
@@ -23,15 +22,11 @@ export function useSetCountrySearchParam() {
         newSearchParams.set(COUNTRY_SEARCH_PARAM_NAME, value);
 
         startTransition(() => {
-          intlRouter.push(
-            formatPathname(...splitPathname(pathname).slice(2)) +
-              '?' +
-              newSearchParams.toString(),
-          );
+          intlRouter.push(basePathRelative + '?' + newSearchParams.toString());
           intlRouter.refresh();
         });
       },
-      [intlRouter, pathname, searchParams],
+      [basePathRelative, intlRouter, searchParams],
     ),
   };
 }

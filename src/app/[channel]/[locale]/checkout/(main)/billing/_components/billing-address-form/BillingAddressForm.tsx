@@ -13,36 +13,31 @@ import {AddressFields} from '../../../_components/address-fields';
 import {BackwardLink} from '../../../_components/BackwardLink';
 import {Form} from '../../../_components/Form';
 import {SubmitButton} from '../../../_components/SubmitButton';
-import {useAddressSchema} from '../../../_hooks/use-address-schema';
-import type {getAddressValidationRules} from '../../../_tools/get-address-validation-rules';
-import type {getCountryCodes} from '../../../_tools/get-country-codes';
+import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
+import {useAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
+import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {useBillingAddressSubmit} from './use-billing-address-submit';
 
 interface Props {
-  readonly defaultValues: Partial<
-    Zod.infer<ReturnType<typeof useAddressSchema>>
-  >;
-  readonly countryCodes: Awaited<ReturnType<typeof getCountryCodes>>;
-  readonly addressValidationRules: Awaited<
-    ReturnType<typeof getAddressValidationRules>
-  >;
+  readonly defaultValues: Partial<AddressFieldsSchema>;
+  readonly countryCodes: readonly string[];
+  readonly addressValidationRules: AddressValidationRules;
 }
 
 export function BillingAddressForm({
   defaultValues,
   countryCodes,
-  addressValidationRules: {countryAreaChoices, postalCode, addressFormat},
+  addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
-  const addressSchema = useAddressSchema({
+  const addressFieldsSchema = useAddressFieldsSchema({
     postalCode,
-    addressFormat,
   });
 
   const city = defaultValues.city;
   const countryArea = countryAreaChoices.at(0)?.raw;
 
-  const form = useForm<Zod.infer<typeof addressSchema>>({
-    resolver: zodResolver(addressSchema),
+  const form = useForm<AddressFieldsSchema>({
+    resolver: zodResolver(addressFieldsSchema),
     defaultValues: {
       ...defaultValues,
       ...(city && {city: capitalize(city)}),
@@ -57,6 +52,7 @@ export function BillingAddressForm({
       <AddressFields
         countryCodes={countryCodes}
         countryAreaChoices={countryAreaChoices}
+        disabled={form.formState.isSubmitting || routeIsPending}
       />
       <div className={cn('flex items-center justify-between')}>
         <BackwardLink href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}>

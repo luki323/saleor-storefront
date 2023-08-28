@@ -6,6 +6,7 @@ const config: Config = {
     extend: {
       colors: {
         ring: 'hsl(var(--ring))',
+        border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         white: 'hsl(var(--white))',
         background: 'hsl(var(--background))',
@@ -17,6 +18,7 @@ const config: Config = {
           foreground: 'hsl(var(--grey-foreground))',
         },
         muted: {
+          DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
         },
         destructive: {

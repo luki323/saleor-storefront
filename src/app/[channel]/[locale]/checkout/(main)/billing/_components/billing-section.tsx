@@ -1,3 +1,4 @@
+import type {CountryCode} from '@/graphql/generated/types';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {localeToCountryCode} from '@/i18n/tools/locale-to-country-code';
@@ -6,16 +7,13 @@ import {raise} from '@/lib/tools/raise';
 import {Heading} from '../../_components/Heading';
 import {Section} from '../../_components/Section';
 import {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
-import type {getCheckout} from '../../_tools/get-checkout';
+import type {Checkout} from '../../_tools/get-checkout';
 import {getCountryCodes} from '../../_tools/get-country-codes';
-import type {getCountrySearchParam} from '../../_tools/get-country-search-param';
 import {BillingAddressForm} from './billing-address-form';
 
 interface Props {
-  readonly billingAddress: Awaited<
-    ReturnType<typeof getCheckout>
-  >['billingAddress'];
-  readonly country: ReturnType<typeof getCountrySearchParam>;
+  readonly billingAddress: Checkout['billingAddress'];
+  readonly country: CountryCode | null;
 }
 
 export async function BillingSection({billingAddress, country}: Props) {

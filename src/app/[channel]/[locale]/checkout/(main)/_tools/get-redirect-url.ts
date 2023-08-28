@@ -1,14 +1,10 @@
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import type {getCheckout} from './get-checkout';
+import type {Checkout} from './get-checkout';
 
 export function getRedirectUrl(
-  {
-    shippingAddress,
-    shippingMethod,
-    billingAddress,
-  }: Awaited<ReturnType<typeof getCheckout>>,
+  {shippingAddress, shippingMethod, billingAddress}: Checkout,
   pathname: string,
 ) {
   if (!shippingAddress) {

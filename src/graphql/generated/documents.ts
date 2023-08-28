@@ -48,11 +48,6 @@ export type SignUpVariables = Types.Exact<{
 
 export type SignUp = { readonly accountRegister?: { readonly requiresConfirmation?: boolean | null, readonly user?: { readonly email: string } | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
 
-export type GetUserEmailVariables = Types.Exact<{ [key: string]: never; }>;
-
-
-export type GetUserEmail = { readonly me?: { readonly email: string } | null };
-
 export type GetHeaderMenuVariables = Types.Exact<{
   languageCode: Types.LanguageCodeEnum;
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -150,7 +145,7 @@ export type GetAddressValidationRulesVariables = Types.Exact<{
 }>;
 
 
-export type GetAddressValidationRules = { readonly addressValidationRules?: { readonly postalCodeMatchers: ReadonlyArray<string>, readonly postalCodeExamples: ReadonlyArray<string>, readonly addressFormat: string, readonly countryAreaChoices: ReadonlyArray<{ readonly raw?: string | null, readonly verbose?: string | null }> } | null };
+export type GetAddressValidationRules = { readonly addressValidationRules?: { readonly postalCodeMatchers: ReadonlyArray<string>, readonly postalCodeExamples: ReadonlyArray<string>, readonly countryAreaChoices: ReadonlyArray<{ readonly raw?: string | null, readonly verbose?: string | null }> } | null };
 
 export type GetCheckoutVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -473,13 +468,6 @@ export const SignUpDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
-export const GetUserEmailDocument = new TypedDocumentString(`
-    query getUserEmail {
-  me {
-    email
-  }
-}
-    `) as unknown as TypedDocumentString<GetUserEmail, GetUserEmailVariables>;
 export const GetHeaderMenuDocument = new TypedDocumentString(`
     query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
   menu(name: "navbar", channel: $channel) {
@@ -691,7 +679,6 @@ export const GetAddressValidationRulesDocument = new TypedDocumentString(`
   addressValidationRules(countryCode: $countryCode) {
     postalCodeMatchers
     postalCodeExamples
-    addressFormat
     countryAreaChoices {
       raw
       verbose

@@ -1,6 +1,5 @@
 import {getLocale} from '@/i18n/context/get-locale';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
-import {cn} from '@/lib/tools/cn';
 import {getCheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 import {Lines} from './components/lines';
@@ -8,15 +7,15 @@ import {Total} from './components/total';
 
 export async function Summary() {
   const {
-    displayGrossPrices = false,
     lines = [],
+    displayGrossPrices = false,
     ...total
   } = (await getCheckoutSummary(localeToLangCode(getLocale()))) ?? {};
 
   return (
-    <div className={cn('w-[420px]')}>
+    <>
       <Lines lines={lines} displayGrossPrices={displayGrossPrices} />
-      <Total {...total} displayGrossPrices={displayGrossPrices} />
-    </div>
+      <Total displayGrossPrices={displayGrossPrices} {...total} />
+    </>
   );
 }

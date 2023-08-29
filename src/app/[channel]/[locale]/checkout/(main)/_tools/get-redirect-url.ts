@@ -7,20 +7,34 @@ export function getRedirectUrl(
   {shippingAddress, shippingMethod, billingAddress}: Checkout,
   pathname: string,
 ) {
-  if (!shippingAddress) {
-    const informationPathname = formatPathname(
-      ...APP_ROUTES.CHECKOUT.INFORMATION,
-    );
+  const requirementRecords = {
+    [formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)]: {},
+    [formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)]: {
+      shippingAddress,
+    },
+    [formatPathname(...APP_ROUTES.CHECKOUT.BILLING)]: {
+      shippingAddress,
+      shippingMethod,
+    },
+    [formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)]: {
+      shippingAddress,
+      shippingMethod,
+      billingAddress,
+    },
+  };
 
-    return pathname === informationPathname ? null : informationPathname;
-  } else if (!shippingMethod) {
-    const shippingPathname = formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING);
+  const [requirementName] =
+    Object.entries(requirementRecords[pathname] ?? {}).find(
+      (requirementEntry) => !requirementEntry[1],
+    ) ?? [];
 
-    return pathname === shippingPathname ? null : shippingPathname;
-  } else if (!billingAddress) {
-    const billingPathname = formatPathname(...APP_ROUTES.CHECKOUT.BILLING);
-
-    return pathname === billingPathname ? null : billingPathname;
+  if (!requirementName) {
+    return null;
   }
-  return null;
+  return (
+    Object.entries(requirementRecords).findLast(
+      ([, requirementRecord]) =>
+        !Object.hasOwn(requirementRecord, requirementName),
+    )?.[0] ?? null
+  );
 }

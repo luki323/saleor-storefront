@@ -2,18 +2,18 @@ import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 
 import {Section} from '../Section';
-import {UserNameForm} from './UserNameForm';
+import {AccountDeletionAlertDialog} from './AccountDeletionAlertDialog';
 
-export async function UserNameSection() {
+export async function AccountDeletionSection() {
   const intl = await getIntl(getLocale());
 
   return (
     <Section
       name={intl.formatMessage({
-        defaultMessage: 'User name',
-        id: 'o7nzDs',
+        defaultMessage: 'Account deletion',
+        id: 'FbNOxp',
       })}>
-      <UserNameForm />
+      <AccountDeletionAlertDialog />
     </Section>
   );
 }

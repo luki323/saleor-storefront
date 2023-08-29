@@ -23,7 +23,7 @@ const config: Config = {
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',

@@ -1,6 +1,7 @@
 'use client';
 
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import type {VariantProps} from 'cva';
 import type {ComponentPropsWithoutRef} from 'react';
 
 import {cn} from '@/lib/tools/cn';
@@ -128,15 +129,17 @@ export function AlertDialogDescription({
 
 type AlertDialogActionProps = ComponentPropsWithoutRef<
   typeof AlertDialogPrimitive.Action
->;
+> &
+  VariantProps<typeof buttonStyles>;
 
 export function AlertDialogAction({
   className,
+  variant,
   ...restProps
 }: AlertDialogActionProps) {
   return (
     <AlertDialogPrimitive.Action
-      className={cn(buttonStyles(), className)}
+      className={cn(buttonStyles({variant}), className)}
       {...restProps}
     />
   );

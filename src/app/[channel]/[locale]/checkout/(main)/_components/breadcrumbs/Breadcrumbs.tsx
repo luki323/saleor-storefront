@@ -25,8 +25,7 @@ export async function Breadcrumbs({
       <ol className={cn('flex gap-2')}>
         <li className={liStyles}>
           <BreadcrumbLink
-            href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}
-            disabled={!shippingAddress}>
+            href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
             {intl.formatMessage({
               defaultMessage: 'Information',
               id: 'E80WrK',
@@ -37,7 +36,7 @@ export async function Breadcrumbs({
         <li className={liStyles}>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}
-            disabled={!shippingMethod}>
+            disabled={!shippingAddress}>
             {intl.formatMessage({
               defaultMessage: 'Shipping',
               id: 'PRlD0A',
@@ -48,10 +47,21 @@ export async function Breadcrumbs({
         <li className={liStyles}>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.BILLING)}
-            disabled={!billingAddress}>
+            disabled={!shippingAddress || !shippingMethod}>
             {intl.formatMessage({
               defaultMessage: 'Billing',
               id: 'Tbo377',
+            })}
+          </BreadcrumbLink>
+          <BreadcrumbSeparator />
+        </li>
+        <li className={liStyles}>
+          <BreadcrumbLink
+            href={formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)}
+            disabled={!shippingAddress || !shippingMethod || !billingAddress}>
+            {intl.formatMessage({
+              defaultMessage: 'Payment',
+              id: 'NmK6zy',
             })}
           </BreadcrumbLink>
         </li>

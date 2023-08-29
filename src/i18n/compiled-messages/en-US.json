@@ -85,6 +85,12 @@
       "value": "Enter a valid last name"
     }
   ],
+  "47FYwb": [
+    {
+      "type": 0,
+      "value": "Cancel"
+    }
+  ],
   "4RD+CZ": [
     {
       "type": 0,
@@ -181,6 +187,12 @@
       "value": "Information"
     }
   ],
+  "FbNOxp": [
+    {
+      "type": 0,
+      "value": "Account deletion"
+    }
+  ],
   "GntzCn": [
     {
       "type": 0,
@@ -221,6 +233,12 @@
     {
       "type": 0,
       "value": "Enter a last name"
+    }
+  ],
+  "NmK6zy": [
+    {
+      "type": 0,
+      "value": "Payment"
     }
   ],
   "OFXKGv": [
@@ -377,6 +395,12 @@
       "value": " business days"
     }
   ],
+  "bhN9Hq": [
+    {
+      "type": 0,
+      "value": "Delete your account"
+    }
+  ],
   "cPhKTw": [
     {
       "type": 0,
@@ -515,6 +539,12 @@
       "value": "ZIP Code"
     }
   ],
+  "sGf1iY": [
+    {
+      "type": 0,
+      "value": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+    }
+  ],
   "sy+pv5": [
     {
       "type": 0,
@@ -557,6 +587,12 @@
       "value": "Search products"
     }
   ],
+  "v5ykbS": [
+    {
+      "type": 0,
+      "value": "Are you absolutely sure?"
+    }
+  ],
   "vHV69y": [
     {
       "type": 0,
@@ -579,6 +615,12 @@
     {
       "type": 0,
       "value": "Shopping cart"
+    }
+  ],
+  "wyxJrL": [
+    {
+      "type": 0,
+      "value": "Delete account"
     }
   ],
   "x9hzVm": [

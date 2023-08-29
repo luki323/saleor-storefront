@@ -13,7 +13,7 @@ type Props = Omit<
 export function ShippingMethodRadioRoot({children, ...restProps}: Props) {
   return (
     <RadioGroup.Root
-      className={cn('group rounded-md border border-faded-black')}
+      className={cn('rounded-md border border-faded-black')}
       {...restProps}>
       {children}
     </RadioGroup.Root>

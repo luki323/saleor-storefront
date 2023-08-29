@@ -20,7 +20,7 @@ export function ShippingMethodRadioItem({
   return (
     <label
       className={cn(
-        'relative flex cursor-pointer gap-2 border-b border-b-faded-black p-4 last:border-b-0 group-data-[disabled=""]:cursor-not-allowed',
+        'relative flex gap-2 border-b border-b-faded-black p-4 last:border-b-0',
       )}>
       <div className={cn('flex')}>
         <RadioGroup.Item

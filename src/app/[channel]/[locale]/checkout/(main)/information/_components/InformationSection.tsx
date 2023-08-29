@@ -11,7 +11,7 @@ import {InformationForm} from './information-form';
 interface Props {
   readonly email: Checkout['email'];
   readonly shippingAddress: Checkout['shippingAddress'];
-  readonly country?: ReturnType<typeof getCountrySearchParam>;
+  readonly country: ReturnType<typeof getCountrySearchParam>;
 }
 
 export async function InformationSection({

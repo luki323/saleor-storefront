@@ -5,6 +5,7 @@ import {cn} from '@/lib/tools/cn';
 import {RefreshAccessToken} from '@/modules/account/components/RefreshAccessToken';
 import {hasAccessToken} from '@/modules/account/tools/cookies';
 
+import {AccountDeletionSection} from './_components/account-deletion-section';
 import {Hero} from './_components/Hero';
 import {UserNameSection} from './_components/user-name-section';
 
@@ -15,6 +16,7 @@ export default function UserDetails() {
         <Hero />
         <Separator />
         <UserNameSection />
+        <AccountDeletionSection />
       </div>
     );
   }

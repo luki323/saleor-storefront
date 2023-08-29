@@ -1,31 +1,34 @@
-import {useQuery} from '@tanstack/react-query';
+import {use} from 'react';
 
-import {useBasePath} from '@/i18n/hooks/use-base-path';
 import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
-import {getKeyByHookName} from '@/lib/tools/get-key-by-hook-name';
+
+function refreshAccessToken() {
+  return fetch(formatPathname(...APP_ROUTES.API.REFRESH), {
+    method: 'POST',
+  });
+}
+
+let refreshAccessTokenPromise: ReturnType<typeof refreshAccessToken> | null =
+  null;
+
+function cache(refreshAccessTokenFn: typeof refreshAccessToken) {
+  if (!refreshAccessTokenPromise) {
+    refreshAccessTokenPromise = refreshAccessTokenFn().then(
+      (response) => ((refreshAccessTokenPromise = null), response),
+    );
+  }
+  return refreshAccessTokenPromise;
+}
 
 export function useRefreshAccessToken() {
+  const response = use(cache(refreshAccessToken));
   const intlRouter = useIntlRouter();
-  const basePath = useBasePath();
 
-  return useQuery({
-    queryKey: [getKeyByHookName(useRefreshAccessToken.name)],
-    async queryFn() {
-      try {
-        const response = await fetch(
-          formatPathname(...APP_ROUTES.API.REFRESH),
-          {method: 'POST'},
-        );
-        if (!response.ok) {
-          throw null;
-        }
-      } catch {
-        intlRouter.push(formatPathname(...basePath, APP_ROUTES.LOGIN));
-      }
-      intlRouter.refresh();
-      return null;
-    },
-  });
+  if (response.ok) {
+    intlRouter.refresh();
+  } else {
+    intlRouter.push(formatPathname(APP_ROUTES.LOGIN));
+  }
 }

@@ -12,7 +12,7 @@ import {
   SelectPlaceholder,
   SelectTrigger,
   SelectValue,
-} from '../Select';
+} from '../../../Select';
 import {useCountryOptions} from './hooks/use-country-options';
 import {useSetCountrySearchParam} from './hooks/use-set-country-search-param';
 

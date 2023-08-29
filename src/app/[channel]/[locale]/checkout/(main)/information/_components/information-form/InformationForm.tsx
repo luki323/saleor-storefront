@@ -16,12 +16,12 @@ import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
 import {AddressFields} from '../../../_components/address-fields';
 import {FormItem} from '../../../_components/address-fields/components/Form';
-import {TextField} from '../../../_components/address-fields/components/TextField';
 import {Checkbox} from '../../../_components/Checkbox';
 import {Form} from '../../../_components/Form';
 import {Heading} from '../../../_components/Heading';
 import {Section} from '../../../_components/Section';
 import {SubmitButton} from '../../../_components/SubmitButton';
+import {TextField} from '../../../_components/TextField';
 import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import {useAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';

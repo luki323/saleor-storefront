@@ -11,9 +11,6 @@ dependencies:
   '@formatjs/intl-localematcher':
     specifier: ^0.4.0
     version: 0.4.0
-  '@heroicons/react':
-    specifier: ^2.0.18
-    version: 2.0.18(react@18.2.0)
   '@hookform/resolvers':
     specifier: ^3.1.1
     version: 3.1.1(react-hook-form@7.45.2)
@@ -38,12 +35,6 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.17)(react@18.2.0)
-  '@tanstack/react-query':
-    specifier: ^5.0.0-beta.0
-    version: 5.0.0-beta.0(react-dom@18.2.0)(react@18.2.0)
-  '@tanstack/react-query-next-experimental':
-    specifier: ^5.0.0-beta.0
-    version: 5.0.0-beta.0(@tanstack/react-query@5.0.0-beta.0)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
   cookie:
     specifier: ^0.5.0
     version: 0.5.0
@@ -136,9 +127,6 @@ devDependencies:
   '@graphql-typed-document-node/core':
     specifier: ^3.2.0
     version: 3.2.0(graphql@16.7.1)
-  '@tanstack/react-query-devtools':
-    specifier: ^5.0.0-beta.0
-    version: 5.0.0-beta.0(@tanstack/react-query@5.0.0-beta.0)(react-dom@18.2.0)(react@18.2.0)
   '@types/cookie':
     specifier: ^0.5.1
     version: 0.5.1
@@ -1833,14 +1821,6 @@ packages:
       graphql: 16.7.1
     dev: true
 
-  /@heroicons/react@2.0.18(react@18.2.0):
-    resolution: {integrity: sha512-7TyMjRrZZMBPa+/5Y8lN0iyvUU/01PeMGX2+RE7cQWpEUIcb4QotzUObFkJDejj/HUH4qjP/eQ0gzzKs2f+6Yw==}
-    peerDependencies:
-      react: '>= 16'
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /@hookform/resolvers@3.1.1(react-hook-form@7.45.2):
     resolution: {integrity: sha512-tS16bAUkqjITNSvbJuO1x7MXbn7Oe8ZziDTJdA9mMvsoYthnOOiznOTGBYwbdlYBgU+tgpI/BtTU3paRbCuSlg==}
     peerDependencies:
@@ -2707,57 +2687,6 @@ packages:
     dependencies:
       tslib: 2.6.1
     dev: false
-
-  /@tanstack/query-core@5.0.0-beta.0:
-    resolution: {integrity: sha512-VGq/H3PuRoj0shOcg1S5Flv3YD2qNz2ttk8w5xe5AHQE1I8NO9EHSBUxezIpk4dD6M7bQDtwHBMqqU2EwMwyUw==}
-
-  /@tanstack/query-devtools@5.0.0-beta.0:
-    resolution: {integrity: sha512-4K/F6Gey/xPvlMz/22nUC/6Nag4hm9C1S5RaaJuItNJuoC0ZVi8R3bBUPUoWZCtcPrcVMH5mxT7CC1O6TbJXzA==}
-    dev: true
-
-  /@tanstack/react-query-devtools@5.0.0-beta.0(@tanstack/react-query@5.0.0-beta.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5+voSk7ESr1Aj3QkIFQ9sj6yXOlOWgnF/fZoWlINRuIcH2A6XESBMgrQw+OaES7o6Lxs/dx3i3/OSNiBeIIBPA==}
-    peerDependencies:
-      '@tanstack/react-query': 5.0.0-beta.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      '@tanstack/query-devtools': 5.0.0-beta.0
-      '@tanstack/react-query': 5.0.0-beta.0(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
-  /@tanstack/react-query-next-experimental@5.0.0-beta.0(@tanstack/react-query@5.0.0-beta.0)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-mqHggnLj2s5cceV/UfwIqupB6OletGYh7+e0n9T7uhKnZrsuPnRwaJlvSpJXRsAm2CjH+awio9yKMy3jcotcZA==}
-    peerDependencies:
-      '@tanstack/react-query': 5.0.0-beta.0
-      next: ^13.0.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      '@tanstack/react-query': 5.0.0-beta.0(react-dom@18.2.0)(react@18.2.0)
-      next: 13.4.12(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /@tanstack/react-query@5.0.0-beta.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-BoUlk3nxSih79xLpF/ilqvZtYB775F6LsNjUGFqmeVsEv4QbfyPy3SEOgou8O9ea0WzjvDXiMmP8ac4BZkrNRg==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@tanstack/query-core': 5.0.0-beta.0
-      client-only: 0.0.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   /@tsconfig/node10@1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
@@ -6771,6 +6700,7 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
 
   /react-hook-form@7.45.2(react@18.2.0):
     resolution: {integrity: sha512-9s45OdTaKN+4NSTbXVqeDITd/nwIg++nxJGL8+OD5uf1DxvhsXQ641kaYHk5K28cpIOTYm71O/fYk7rFaygb3A==}
@@ -6868,6 +6798,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -7091,6 +7022,7 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /scuid@1.1.0:
     resolution: {integrity: sha512-MuCAyrGZcTLfQoH2XoBlQ8C6bzwN88XT/0slOGz0pn8+gIP85BOAfYa44ZXQUTOwRwPU0QvgU+V+OSajl/59Xg==}

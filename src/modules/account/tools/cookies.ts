@@ -8,6 +8,10 @@ import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {COOKIE_NAMES} from '../consts';
 
+export function hasAccessToken() {
+  return cookies().has(COOKIE_NAMES.ACCESS_TOKEN);
+}
+
 export function createAccessToken(value: string) {
   return [
     COOKIE_NAMES.ACCESS_TOKEN,

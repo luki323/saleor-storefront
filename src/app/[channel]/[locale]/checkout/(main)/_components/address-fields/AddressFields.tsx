@@ -10,8 +10,6 @@ import {cn} from '@/lib/tools/cn';
 import {ADDRESS_FIELDS} from '../../_consts';
 import type {AddressFieldsSchema} from '../../_hooks/use-address-fields-schema';
 import type {AddressValidationRules} from '../../_tools/get-address-validation-rules';
-import {CountrySelect} from './components/country-select';
-import {FormGroup, FormItem} from './components/Form';
 import {
   Select,
   SelectContent,
@@ -19,8 +17,10 @@ import {
   SelectPlaceholder,
   SelectTrigger,
   SelectValue,
-} from './components/Select';
-import {TextField} from './components/TextField';
+} from '../Select';
+import {TextField} from '../TextField';
+import {CountrySelect} from './components/country-select';
+import {FormGroup, FormItem} from './components/Form';
 
 interface Props {
   readonly countryCodes: readonly string[];

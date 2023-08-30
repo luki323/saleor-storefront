@@ -3,8 +3,8 @@ import type {PageInfo} from '@/graphql/generated/documents';
 import {createSearchParams} from '../create-search-params';
 import {mergeSearchParams} from '../merge-serach-params';
 import {deletePaginationSearchParams} from './delete-pagination-search-params';
-import {getNextPageSearchParams} from './get-next-page-search-params';
-import {getPrevPageSearchParams} from './get-prev-page-search-params';
+import {getNextPage} from './get-next-page';
+import {getPrevPage} from './get-prev-page';
 import type {PaginationSearchParams} from './types';
 
 export function getNextPrevPage(
@@ -12,31 +12,18 @@ export function getNextPrevPage(
   pageInfo: PageInfo,
   defaultPageSize: number,
 ) {
-  const nextPage = getNextPageSearchParams(
-    searchParams,
-    pageInfo,
-    defaultPageSize,
-  );
-  const prevPage = getPrevPageSearchParams(
-    searchParams,
-    pageInfo,
-    defaultPageSize,
-  );
-  const withoutPaginationSearchParams =
-    deletePaginationSearchParams(searchParams);
+  const nextPage = getNextPage(searchParams, pageInfo, defaultPageSize);
+  const prevPage = getPrevPage(searchParams, pageInfo, defaultPageSize);
 
+  const withoutPagination = deletePaginationSearchParams(
+    createSearchParams(searchParams),
+  );
   return {
     nextPage:
       nextPage &&
-      mergeSearchParams(
-        createSearchParams(nextPage),
-        withoutPaginationSearchParams,
-      ),
+      mergeSearchParams(createSearchParams(nextPage), withoutPagination),
     prevPage:
       prevPage &&
-      mergeSearchParams(
-        createSearchParams(prevPage),
-        withoutPaginationSearchParams,
-      ),
+      mergeSearchParams(createSearchParams(prevPage), withoutPagination),
   };
 }

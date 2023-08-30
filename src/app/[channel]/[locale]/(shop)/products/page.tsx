@@ -1,5 +1,4 @@
 import {cn} from '@/lib/tools/cn';
-import {createSearchParams} from '@/lib/tools/create-search-params';
 
 import {CategoryLinks} from './_components/category-links';
 import {CollectionLinks} from './_components/collection-links';
@@ -12,8 +11,6 @@ interface Props {
 }
 
 export default function ProductsPage({searchParams = {}}: Props) {
-  const urlSerachParams = createSearchParams(searchParams);
-
   return (
     <div
       className={cn(
@@ -22,10 +19,10 @@ export default function ProductsPage({searchParams = {}}: Props) {
       <div
         className={cn('order-1 flex flex-none basis-[125px] flex-col gap-5')}>
         <div>
-          <CategoryLinks urlSearchParams={urlSerachParams} />
+          <CategoryLinks searchParams={searchParams} />
         </div>
         <div>
-          <CollectionLinks urlSearchParams={urlSerachParams} />
+          <CollectionLinks searchParams={searchParams} />
         </div>
       </div>
       <div className={cn('order-1')}>

@@ -16,14 +16,14 @@ export function NavLinkWithChildren({
   children,
   node,
   searchParamName,
-  urlSearchParams,
+  searchParams,
 }: PropsWithChildren<Props>) {
   return (
     <>
       <NavLink
         node={node}
         searchParamName={searchParamName}
-        urlSearchParams={urlSearchParams}
+        searchParams={searchParams}
       />
       <div className={cn('pl-4')}>{children}</div>
     </>

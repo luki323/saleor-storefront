@@ -159,20 +159,17 @@ export type ProductAttributeFragment = { readonly name?: string | null, readonly
 
 export type ProductAttributeValueFragment = { readonly name?: string | null, readonly slug?: string | null };
 
-export type GetCategoryIdsVariables = Types.Exact<{
-  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
-}>;
+export type GetCategoryIdsVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetCategoryIds = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
+export type GetCategoryIds = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly slug: string } }> } | null };
 
 export type GetCollectionIdsVariables = Types.Exact<{
-  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
 
-export type GetCollectionIds = { readonly collections?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
+export type GetCollectionIds = { readonly collections?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly slug: string } }> } | null };
 
 export type Address = { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } };
 
@@ -932,22 +929,24 @@ fragment productAttributeValueFragment on AttributeValue {
   slug
 }`) as unknown as TypedDocumentString<GetProductAttributes, GetProductAttributesVariables>;
 export const GetCategoryIdsDocument = new TypedDocumentString(`
-    query getCategoryIds($slugs: [String!]!) {
-  categories(first: 30, filter: {slugs: $slugs}) {
+    query getCategoryIds {
+  categories(first: 30) {
     edges {
       node {
         id
+        slug
       }
     }
   }
 }
     `) as unknown as TypedDocumentString<GetCategoryIds, GetCategoryIdsVariables>;
 export const GetCollectionIdsDocument = new TypedDocumentString(`
-    query getCollectionIds($slugs: [String!]!, $channel: String) {
-  collections(first: 10, filter: {slugs: $slugs}, channel: $channel) {
+    query getCollectionIds($channel: String) {
+  collections(first: 10, channel: $channel) {
     edges {
       node {
         id
+        slug
       }
     }
   }

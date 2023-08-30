@@ -3,9 +3,9 @@ import {isDefined} from './is-defined';
 import {toArray} from './to-array';
 
 // See: https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1568
-export type SearchParamValue = string | number;
+type SearchParamValue = string | number;
 
-type SearchParams = Record<
+export type SearchParams = Record<
   string,
   SearchParamValue | readonly SearchParamValue[]
 >;

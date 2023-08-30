@@ -1,17 +1,12 @@
-import type {GetProductsVariables} from '@/graphql/generated/documents';
-import type {ProductWhereInput} from '@/graphql/generated/types';
+import type {SearchParams} from '@/lib/tools/create-search-params';
 import type {PaginationSearchParams} from '@/lib/tools/pagination/types';
+import type {GetAllValues} from '@/lib/types/utils';
+import type {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/modules/shop/consts';
 
-export type SearchParamValue = string | readonly string[];
-
-export type PredefinedProductsPageSearchParams = Partial<
-  PaginationSearchParams &
+export type ProductsPageSearchParams = PaginationSearchParams &
+  Partial<
     Record<
-      keyof Pick<ProductWhereInput, 'category' | 'collection'>,
-      SearchParamValue
-    > &
-    Record<keyof Pick<GetProductsVariables, 'search'>, string>
->;
-
-export type ProductsPageSearchParams = Record<string, SearchParamValue> &
-  PredefinedProductsPageSearchParams;
+      GetAllValues<typeof PRODUCTS_PAGE_SERACH_PARAM_KEYS>,
+      SearchParams[keyof SearchParams]
+    >
+  >;

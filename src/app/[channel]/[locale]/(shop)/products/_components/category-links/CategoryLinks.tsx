@@ -2,15 +2,16 @@ import {getLocale} from '@/i18n/context/get-locale';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
 
+import type {ProductsPageSearchParams} from '../../types';
 import {NavLinks} from '../nav-links/NavLinks';
 import {NavLinksTitle} from '../nav-links/NavLinksTitle';
 import {getNavCategories} from './tools/get-nav-categories';
 
 interface Props {
-  readonly urlSearchParams: URLSearchParams;
+  readonly searchParams: ProductsPageSearchParams;
 }
 
-export async function CategoryLinks({urlSearchParams}: Props) {
+export async function CategoryLinks({searchParams}: Props) {
   const navCategories = await getNavCategories({
     languageCode: localeToLangCode(getLocale()),
   });
@@ -23,7 +24,7 @@ export async function CategoryLinks({urlSearchParams}: Props) {
       <NavLinks
         items={navCategories}
         searchParamName="category"
-        urlSearchParams={urlSearchParams}
+        searchParams={searchParams}
       />
     </>
   );

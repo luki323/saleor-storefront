@@ -2,6 +2,7 @@ import {IntlLink} from '@/i18n/components/IntlLink';
 import {buttonStyles} from '@/lib/components/ui/Button';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
+import {createSearchParams} from '@/lib/tools/create-search-params';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';
 import {sortAsc} from '@/lib/tools/sort-asc';
@@ -26,7 +27,10 @@ export function PageSizeLinks({searchParams}: Props) {
             <IntlLink
               href={{
                 pathname: formatPathname(APP_ROUTES.PRODUCTS),
-                query: {...searchParams, [pageSizeKey]: pageSize},
+                query: createSearchParams({
+                  ...searchParams,
+                  [pageSizeKey]: pageSize,
+                }).toString(),
               }}
               className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>
               {pageSize}

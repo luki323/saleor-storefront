@@ -3,10 +3,11 @@ import type {
   CollectionNavLinksItemFragment,
 } from '@/graphql/generated/documents';
 import {cn} from '@/lib/tools/cn';
-import {createSearchParams} from '@/lib/tools/create-search-params';
-import type {hasSearchParam} from '@/lib/tools/has-search-param';
+import {isDefined} from '@/lib/tools/is-defined';
+import {toArray} from '@/lib/tools/to-array';
 import type {ConnectionWithChildren} from '@/lib/types/utils';
 
+import type {ProductsPageSearchParams} from '../../types';
 import type {NavLinkProps} from './NavLink';
 import {NavLink} from './NavLink';
 import {NavLinkWithChildren} from './NavLinkWithChildren';
@@ -20,7 +21,7 @@ interface Props extends Omit<NavLinkProps, 'node'> {
 export function NavLinks({
   items: {edges},
   searchParamName,
-  urlSearchParams,
+  searchParams,
 }: Props) {
   return (
     <ul className={cn('flex flex-col gap-0.5')}>
@@ -30,12 +31,12 @@ export function NavLinks({
             <NavLinkWithChildren
               node={restProps}
               searchParamName={searchParamName}
-              urlSearchParams={urlSearchParams}>
+              searchParams={searchParams}>
               <NavLinks
                 items={children}
                 searchParamName={searchParamName}
-                urlSearchParams={getChildrenSearchParams(
-                  urlSearchParams,
+                searchParams={getChildrenSearchParams(
+                  searchParams,
                   searchParamName,
                   restProps.slug,
                 )}
@@ -45,7 +46,7 @@ export function NavLinks({
             <NavLink
               node={restProps}
               searchParamName={searchParamName}
-              urlSearchParams={urlSearchParams}
+              searchParams={searchParams}
             />
           )}
         </li>
@@ -55,10 +56,14 @@ export function NavLinks({
 }
 
 function getChildrenSearchParams(
-  ...[searchParams, name, value]: Parameters<typeof hasSearchParam>
+  searchParams: ProductsPageSearchParams,
+  name: NavLinkProps['searchParamName'],
+  value: string,
 ) {
-  const updatedSearchParams = createSearchParams(searchParams);
-  updatedSearchParams.delete(name, value);
-
-  return updatedSearchParams;
+  return {
+    ...searchParams,
+    ...(isDefined(searchParams[name]) && {
+      [name]: toArray(searchParams[name]).filter((v) => v !== value),
+    }),
+  };
 }

@@ -1,4 +1,7 @@
+import invariant from 'tiny-invariant';
+
 import {isDefined} from '../is-defined';
+import {toArray} from '../to-array';
 import {PAGINATION_KEYS} from './consts';
 import type {PaginationSearchParams} from './types';
 
@@ -22,12 +25,17 @@ export function parsePaginationSearchParams(
     ? PAGINATION_KEYS.BEFORE
     : PAGINATION_KEYS.AFTER;
 
-  const countKey = isDefined(last)
+  const pageSizeKey = isDefined(last)
     ? PAGINATION_KEYS.LAST
     : PAGINATION_KEYS.FIRST;
 
+  const [cursor] = toArray(searchParams[cursorKey]);
+
+  const [pageSize] = toArray(searchParams[pageSizeKey] ?? defaultPageSize);
+  invariant(isDefined(pageSize));
+
   return {
-    [cursorKey]: searchParams[cursorKey],
-    [countKey]: searchParams[countKey] ?? defaultPageSize,
+    [cursorKey]: cursor,
+    [pageSizeKey]: pageSize,
   } as ParsedPaginationSearchParams;
 }

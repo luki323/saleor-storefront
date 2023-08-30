@@ -1,8 +1,9 @@
-query getCategoryIds($slugs: [String!]!) {
-  categories(first: 30, filter: {slugs: $slugs}) {
+query getCategoryIds {
+  categories(first: 30) {
     edges {
       node {
         id
+        slug
       }
     }
   }

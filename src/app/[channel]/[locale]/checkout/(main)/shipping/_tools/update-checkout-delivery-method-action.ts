@@ -1,6 +1,6 @@
 'use server';
 
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {UpdateCheckoutDeliveryMethodVariables} from '@/graphql/generated/documents';
 import {UpdateCheckoutDeliveryMethodDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

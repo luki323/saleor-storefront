@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {RefreshAccessTokenVariables} from '@/graphql/generated/documents';
 import {RefreshAccessTokenDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

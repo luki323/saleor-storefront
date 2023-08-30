@@ -1,6 +1,6 @@
 import invariant from 'tiny-invariant';
 
-import {isDefined} from '../type-guards/is-defined';
+import {isDefined} from '../is-defined';
 import type {
   NextPageInfo,
   NextPageSearchParams,

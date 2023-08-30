@@ -1,6 +1,6 @@
 import 'server-only';
 
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import {GetCheckoutSummaryDocument} from '@/graphql/generated/documents';
 import type {LanguageCodeEnum} from '@/graphql/generated/types';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

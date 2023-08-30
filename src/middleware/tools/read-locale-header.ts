@@ -4,7 +4,7 @@ import {headers} from 'next/headers';
 import invariant from 'tiny-invariant';
 
 import {isAvailableCiLocale} from '@/i18n/tools/is-available-ci-locale';
-import {isDefined} from '@/lib/tools/type-guards/is-defined';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import {CUSTOM_REQUEST_HEADERS} from '../consts';
 

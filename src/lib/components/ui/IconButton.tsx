@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
-import type {PropsWithChildren} from 'react';
 
 import {cn} from '@/lib/tools/cn';
+import type {PropsWithChildren} from '@/lib/types/react';
 
 import type {ButtonProps} from './Button';
 import {Button} from './Button';

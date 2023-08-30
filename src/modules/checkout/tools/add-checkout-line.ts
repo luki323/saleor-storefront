@@ -1,6 +1,6 @@
 import 'server-only';
 
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {
   AddCheckoutLineVariables,
   CreateCheckoutVariables,

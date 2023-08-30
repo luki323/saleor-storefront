@@ -1,6 +1,5 @@
-import type {PropsWithChildren} from 'react';
-
 import {cn} from '@/lib/tools/cn';
+import type {PropsWithChildren} from '@/lib/types/react';
 
 export function Divider({children}: PropsWithChildren) {
   return (

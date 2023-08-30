@@ -89,6 +89,9 @@
   "E80WrK": {
     "defaultMessage": "Information"
   },
+  "EFT4+S": {
+    "defaultMessage": "Saleor logo"
+  },
   "FbNOxp": {
     "defaultMessage": "Account deletion"
   },
@@ -109,6 +112,9 @@
   },
   "MJ2jZQ": {
     "defaultMessage": "Total"
+  },
+  "MOC4lx": {
+    "defaultMessage": "Subcategories of {category}"
   },
   "Nau+P4": {
     "defaultMessage": "Enter a last name"
@@ -145,9 +151,6 @@
   },
   "TwyMau": {
     "defaultMessage": "Account"
-  },
-  "U3l+Q9": {
-    "defaultMessage": "Home page"
   },
   "U8vrFK": {
     "defaultMessage": "Enter a confirm password"
@@ -271,9 +274,6 @@
   },
   "ulh3kf": {
     "defaultMessage": "Collections"
-  },
-  "un+VWt": {
-    "defaultMessage": "Search products"
   },
   "v5ykbS": {
     "defaultMessage": "Are you absolutely sure?"

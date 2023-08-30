@@ -1,0 +1,43 @@
+query getNavCategories($languageCode: LanguageCodeEnum!) {
+  categories(level: 0, first: 12) {
+    edges {
+      node {
+        ...navCategoriesItem
+        children(first: 12) {
+          edges {
+            node {
+              ...navCategoriesItem
+              children(first: 12) {
+                edges {
+                  node {
+                    ...navCategoriesItem
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment navCategoriesItem on Category {
+  translation(languageCode: $languageCode) {
+    name
+  }
+  ...categoryNavLinksItemFragment
+}
+
+# TODO: Fragment masking
+fragment categoryNavLinksItemFragment on Category {
+  id
+  level
+  ...categoryNavLinkFragment
+}
+
+# TODO: Fragment masking
+fragment categoryNavLinkFragment on Category {
+  name
+  slug
+}

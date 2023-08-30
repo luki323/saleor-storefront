@@ -49,42 +49,35 @@ export type SignUpVariables = Types.Exact<{
 export type SignUp = { readonly accountRegister?: { readonly requiresConfirmation?: boolean | null, readonly user?: { readonly email: string } | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
 
 export type GetHeaderMenuVariables = Types.Exact<{
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
   languageCode: Types.LanguageCodeEnum;
-  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
 
-export type GetHeaderMenu = { readonly menu?: { readonly items?: ReadonlyArray<{ readonly name: string, readonly translation?: { readonly name: string } | null, readonly category?: { readonly slug: string } | null }> | null } | null };
+export type GetHeaderMenu = { readonly menu?: { readonly items?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly page?: { readonly slug: string } | null, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly translation?: { readonly name: string } | null, readonly category?: { readonly slug: string, readonly name: string } | null }> | null } | null };
 
-export type Image = { readonly url: string, readonly alt?: string | null };
+export type HeaderMenuItemFragment = { readonly id: string, readonly name: string, readonly page?: { readonly slug: string } | null, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly translation?: { readonly name: string } | null, readonly category?: { readonly slug: string, readonly name: string } | null };
 
-export type Money = { readonly currency: string, readonly amount: number };
+export type HeaderMenuLinkFragment = { readonly name: string, readonly page?: { readonly slug: string } | null, readonly translation?: { readonly name: string } | null };
 
-export type PageInfo = { readonly startCursor?: string | null, readonly hasNextPage: boolean, readonly endCursor?: string | null, readonly hasPreviousPage: boolean };
+export type HeaderDropdownMenuFragment = { readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly children?: ReadonlyArray<{ readonly id: string, readonly name: string, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null }> | null, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null };
 
-export type GetCategoryIdsVariables = Types.Exact<{
-  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
-}>;
+export type HeaderMenuDropdownItemFragment = { readonly name: string, readonly category?: { readonly slug: string, readonly name: string } | null, readonly translation?: { readonly name: string } | null };
 
-
-export type GetCategoryIds = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
-
-export type GetCollectionIdsVariables = Types.Exact<{
-  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
-  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
-}>;
-
-
-export type GetCollectionIds = { readonly collections?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
+export type HeaderMenuItemTranslation = { readonly translation?: { readonly name: string } | null };
 
 export type GetNavCategoriesVariables = Types.Exact<{
   languageCode: Types.LanguageCodeEnum;
 }>;
 
 
-export type GetNavCategories = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null, readonly children?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null } }> } | null } }> } | null };
+export type GetNavCategories = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly level: number, readonly name: string, readonly slug: string, readonly children?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly level: number, readonly name: string, readonly slug: string, readonly children?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly level: number, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null } }> } | null, readonly translation?: { readonly name?: string | null } | null } }> } | null, readonly translation?: { readonly name?: string | null } | null } }> } | null };
 
-export type NavCategory = { readonly name: string, readonly slug: string };
+export type NavCategoriesItem = { readonly id: string, readonly level: number, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null };
+
+export type CategoryNavLinksItemFragment = { readonly id: string, readonly level: number, readonly name: string, readonly slug: string };
+
+export type CategoryNavLinkFragment = { readonly name: string, readonly slug: string };
 
 export type GetNavCollectionsVariables = Types.Exact<{
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -94,20 +87,11 @@ export type GetNavCollectionsVariables = Types.Exact<{
 
 export type GetNavCollections = { readonly collections?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null } }> } | null };
 
-export type NavCollection = { readonly name: string, readonly slug: string };
+export type NavCollectionsItem = { readonly id: string, readonly name: string, readonly slug: string, readonly translation?: { readonly name?: string | null } | null };
 
-export type GetProductAttributesVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.AttributeWhereInput>;
-  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
-  languageCode: Types.LanguageCodeEnum;
-}>;
+export type CollectionNavLinksItemFragment = { readonly id: string, readonly name: string, readonly slug: string };
 
-
-export type GetProductAttributes = { readonly attributes?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly type?: Types.AttributeTypeEnum | null, readonly inputType?: Types.AttributeInputTypeEnum | null, readonly translation?: { readonly name: string } | null, readonly choices?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly translation?: { readonly name: string } | null } }> } | null } }> } | null };
-
-export type ProductAttribute = { readonly name?: string | null, readonly slug?: string | null, readonly type?: Types.AttributeTypeEnum | null, readonly inputType?: Types.AttributeInputTypeEnum | null, readonly choices?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly translation?: { readonly name: string } | null } }> } | null };
-
-export type ProductAttributeValue = { readonly name?: string | null, readonly slug?: string | null };
+export type CollectionNavLinkFragment = { readonly name: string, readonly slug: string };
 
 export type GetProductsVariables = Types.Exact<{
   first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
@@ -129,6 +113,40 @@ export type ProductCard = { readonly name: string, readonly slug: string, readon
 export type ProductCardPricing = { readonly onSale?: boolean | null, readonly price?: { readonly gross: { readonly currency: string, readonly amount: number } } | null, readonly priceUndiscounted?: { readonly gross: { readonly currency: string, readonly amount: number } } | null };
 
 export type ProductCardCollectionName = { readonly name: string };
+
+export type Image = { readonly url: string, readonly alt?: string | null };
+
+export type Money = { readonly currency: string, readonly amount: number };
+
+export type PageInfo = { readonly startCursor?: string | null, readonly hasNextPage: boolean, readonly endCursor?: string | null, readonly hasPreviousPage: boolean };
+
+export type GetProductAttributesVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.AttributeWhereInput>;
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  languageCode: Types.LanguageCodeEnum;
+}>;
+
+
+export type GetProductAttributes = { readonly attributes?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly type?: Types.AttributeTypeEnum | null, readonly inputType?: Types.AttributeInputTypeEnum | null, readonly translation?: { readonly name: string } | null, readonly choices?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly translation?: { readonly name: string } | null } }> } | null } }> } | null };
+
+export type ProductAttributeFragment = { readonly name?: string | null, readonly slug?: string | null, readonly type?: Types.AttributeTypeEnum | null, readonly inputType?: Types.AttributeInputTypeEnum | null, readonly choices?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name?: string | null, readonly slug?: string | null, readonly translation?: { readonly name: string } | null } }> } | null };
+
+export type ProductAttributeValueFragment = { readonly name?: string | null, readonly slug?: string | null };
+
+export type GetCategoryIdsVariables = Types.Exact<{
+  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
+}>;
+
+
+export type GetCategoryIds = { readonly categories?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
+
+export type GetCollectionIdsVariables = Types.Exact<{
+  slugs: ReadonlyArray<Types.Scalars['String']['input']> | Types.Scalars['String']['input'];
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+}>;
+
+
+export type GetCollectionIds = { readonly collections?: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> } | null };
 
 export type Address = { readonly firstName: string, readonly lastName: string, readonly streetAddress1: string, readonly streetAddress2: string, readonly city: string, readonly countryArea: string, readonly postalCode: string, readonly country: { readonly code: string, readonly country: string } };
 
@@ -240,54 +258,172 @@ export const AccountError = new TypedDocumentString(`
   code
 }
     `, {"fragmentName":"accountError"}) as unknown as TypedDocumentString<AccountError, unknown>;
-export const PageInfo = new TypedDocumentString(`
-    fragment pageInfo on PageInfo {
-  startCursor
-  hasNextPage
-  endCursor
-  hasPreviousPage
+export const HeaderMenuItemTranslation = new TypedDocumentString(`
+    fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
 }
-    `, {"fragmentName":"pageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
-export const NavCategory = new TypedDocumentString(`
-    fragment navCategory on Category {
+    `, {"fragmentName":"headerMenuItemTranslation"}) as unknown as TypedDocumentString<HeaderMenuItemTranslation, unknown>;
+export const HeaderMenuLinkFragment = new TypedDocumentString(`
+    fragment headerMenuLinkFragment on MenuItem {
   name
-  slug
+  page {
+    slug
+  }
+  ...headerMenuItemTranslation
 }
-    `, {"fragmentName":"navCategory"}) as unknown as TypedDocumentString<NavCategory, unknown>;
-export const NavCollection = new TypedDocumentString(`
-    fragment navCollection on Collection {
+    fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
+}`, {"fragmentName":"headerMenuLinkFragment"}) as unknown as TypedDocumentString<HeaderMenuLinkFragment, unknown>;
+export const HeaderMenuDropdownItemFragment = new TypedDocumentString(`
+    fragment headerMenuDropdownItemFragment on MenuItem {
   name
-  slug
+  category {
+    slug
+    name
+  }
+  ...headerMenuItemTranslation
 }
-    `, {"fragmentName":"navCollection"}) as unknown as TypedDocumentString<NavCollection, unknown>;
-export const ProductAttributeValue = new TypedDocumentString(`
-    fragment productAttributeValue on AttributeValue {
-  name
-  slug
-}
-    `, {"fragmentName":"productAttributeValue"}) as unknown as TypedDocumentString<ProductAttributeValue, unknown>;
-export const ProductAttribute = new TypedDocumentString(`
-    fragment productAttribute on Attribute {
-  name
-  slug
-  type
-  inputType
-  choices(first: 20) {
-    edges {
-      node {
+    fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
+}`, {"fragmentName":"headerMenuDropdownItemFragment"}) as unknown as TypedDocumentString<HeaderMenuDropdownItemFragment, unknown>;
+export const HeaderDropdownMenuFragment = new TypedDocumentString(`
+    fragment headerDropdownMenuFragment on MenuItem {
+  ...headerMenuDropdownItemFragment
+  children {
+    id
+    ...headerMenuDropdownItemFragment
+    children {
+      id
+      ...headerMenuDropdownItemFragment
+      children {
         id
-        translation(languageCode: $languageCode) {
-          name
-        }
-        ...productAttributeValue
+        ...headerMenuDropdownItemFragment
       }
     }
   }
 }
-    fragment productAttributeValue on AttributeValue {
+    fragment headerMenuDropdownItemFragment on MenuItem {
+  name
+  category {
+    slug
+    name
+  }
+  ...headerMenuItemTranslation
+}
+fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
+}`, {"fragmentName":"headerDropdownMenuFragment"}) as unknown as TypedDocumentString<HeaderDropdownMenuFragment, unknown>;
+export const HeaderMenuItemFragment = new TypedDocumentString(`
+    fragment headerMenuItemFragment on MenuItem {
+  id
+  ...headerMenuLinkFragment
+  ...headerDropdownMenuFragment
+}
+    fragment headerMenuLinkFragment on MenuItem {
+  name
+  page {
+    slug
+  }
+  ...headerMenuItemTranslation
+}
+fragment headerDropdownMenuFragment on MenuItem {
+  ...headerMenuDropdownItemFragment
+  children {
+    id
+    ...headerMenuDropdownItemFragment
+    children {
+      id
+      ...headerMenuDropdownItemFragment
+      children {
+        id
+        ...headerMenuDropdownItemFragment
+      }
+    }
+  }
+}
+fragment headerMenuDropdownItemFragment on MenuItem {
+  name
+  category {
+    slug
+    name
+  }
+  ...headerMenuItemTranslation
+}
+fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
+}`, {"fragmentName":"headerMenuItemFragment"}) as unknown as TypedDocumentString<HeaderMenuItemFragment, unknown>;
+export const CategoryNavLinkFragment = new TypedDocumentString(`
+    fragment categoryNavLinkFragment on Category {
   name
   slug
-}`, {"fragmentName":"productAttribute"}) as unknown as TypedDocumentString<ProductAttribute, unknown>;
+}
+    `, {"fragmentName":"categoryNavLinkFragment"}) as unknown as TypedDocumentString<CategoryNavLinkFragment, unknown>;
+export const CategoryNavLinksItemFragment = new TypedDocumentString(`
+    fragment categoryNavLinksItemFragment on Category {
+  id
+  level
+  ...categoryNavLinkFragment
+}
+    fragment categoryNavLinkFragment on Category {
+  name
+  slug
+}`, {"fragmentName":"categoryNavLinksItemFragment"}) as unknown as TypedDocumentString<CategoryNavLinksItemFragment, unknown>;
+export const NavCategoriesItem = new TypedDocumentString(`
+    fragment navCategoriesItem on Category {
+  translation(languageCode: $languageCode) {
+    name
+  }
+  ...categoryNavLinksItemFragment
+}
+    fragment categoryNavLinksItemFragment on Category {
+  id
+  level
+  ...categoryNavLinkFragment
+}
+fragment categoryNavLinkFragment on Category {
+  name
+  slug
+}`, {"fragmentName":"navCategoriesItem"}) as unknown as TypedDocumentString<NavCategoriesItem, unknown>;
+export const CollectionNavLinkFragment = new TypedDocumentString(`
+    fragment collectionNavLinkFragment on Collection {
+  name
+  slug
+}
+    `, {"fragmentName":"collectionNavLinkFragment"}) as unknown as TypedDocumentString<CollectionNavLinkFragment, unknown>;
+export const CollectionNavLinksItemFragment = new TypedDocumentString(`
+    fragment collectionNavLinksItemFragment on Collection {
+  id
+  ...collectionNavLinkFragment
+}
+    fragment collectionNavLinkFragment on Collection {
+  name
+  slug
+}`, {"fragmentName":"collectionNavLinksItemFragment"}) as unknown as TypedDocumentString<CollectionNavLinksItemFragment, unknown>;
+export const NavCollectionsItem = new TypedDocumentString(`
+    fragment navCollectionsItem on Collection {
+  translation(languageCode: $languageCode) {
+    name
+  }
+  ...collectionNavLinksItemFragment
+}
+    fragment collectionNavLinksItemFragment on Collection {
+  id
+  ...collectionNavLinkFragment
+}
+fragment collectionNavLinkFragment on Collection {
+  name
+  slug
+}`, {"fragmentName":"navCollectionsItem"}) as unknown as TypedDocumentString<NavCollectionsItem, unknown>;
 export const Money = new TypedDocumentString(`
     fragment money on Money {
   currency
@@ -333,7 +469,7 @@ export const ProductCard = new TypedDocumentString(`
     }
   }
   isAvailable
-  thumbnail {
+  thumbnail(size: 4096) {
     ...image
   }
   collections {
@@ -344,15 +480,7 @@ export const ProductCard = new TypedDocumentString(`
     ...productCardCollectionName
   }
 }
-    fragment image on Image {
-  url
-  alt
-}
-fragment money on Money {
-  currency
-  amount
-}
-fragment productCardPricing on VariantPricingInfo {
+    fragment productCardPricing on VariantPricingInfo {
   onSale
   price {
     gross {
@@ -367,7 +495,51 @@ fragment productCardPricing on VariantPricingInfo {
 }
 fragment productCardCollectionName on Collection {
   name
+}
+fragment image on Image {
+  url
+  alt
+}
+fragment money on Money {
+  currency
+  amount
 }`, {"fragmentName":"productCard"}) as unknown as TypedDocumentString<ProductCard, unknown>;
+export const PageInfo = new TypedDocumentString(`
+    fragment pageInfo on PageInfo {
+  startCursor
+  hasNextPage
+  endCursor
+  hasPreviousPage
+}
+    `, {"fragmentName":"pageInfo"}) as unknown as TypedDocumentString<PageInfo, unknown>;
+export const ProductAttributeValueFragment = new TypedDocumentString(`
+    fragment productAttributeValueFragment on AttributeValue {
+  name
+  slug
+}
+    `, {"fragmentName":"productAttributeValueFragment"}) as unknown as TypedDocumentString<ProductAttributeValueFragment, unknown>;
+export const ProductAttributeFragment = new TypedDocumentString(`
+    fragment productAttributeFragment on Attribute {
+  name
+  slug
+  type
+  inputType
+  choices(first: 20) {
+    edges {
+      node {
+        id
+        translation(languageCode: $languageCode) {
+          name
+        }
+        ...productAttributeValueFragment
+      }
+    }
+  }
+}
+    fragment productAttributeValueFragment on AttributeValue {
+  name
+  slug
+}`, {"fragmentName":"productAttributeFragment"}) as unknown as TypedDocumentString<ProductAttributeFragment, unknown>;
 export const Address = new TypedDocumentString(`
     fragment address on Address {
   country {
@@ -469,60 +641,70 @@ export const SignUpDocument = new TypedDocumentString(`
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
 export const GetHeaderMenuDocument = new TypedDocumentString(`
-    query getHeaderMenu($languageCode: LanguageCodeEnum!, $channel: String) {
-  menu(name: "navbar", channel: $channel) {
+    query getHeaderMenu($channel: String, $languageCode: LanguageCodeEnum!) {
+  menu(name: "header", channel: $channel) {
     items {
-      name
-      translation(languageCode: $languageCode) {
-        name
-      }
-      category {
-        slug
-      }
+      ...headerMenuItemFragment
     }
   }
 }
-    `) as unknown as TypedDocumentString<GetHeaderMenu, GetHeaderMenuVariables>;
-export const GetCategoryIdsDocument = new TypedDocumentString(`
-    query getCategoryIds($slugs: [String!]!) {
-  categories(first: 30, filter: {slugs: $slugs}) {
-    edges {
-      node {
+    fragment headerMenuItemFragment on MenuItem {
+  id
+  ...headerMenuLinkFragment
+  ...headerDropdownMenuFragment
+}
+fragment headerMenuLinkFragment on MenuItem {
+  name
+  page {
+    slug
+  }
+  ...headerMenuItemTranslation
+}
+fragment headerDropdownMenuFragment on MenuItem {
+  ...headerMenuDropdownItemFragment
+  children {
+    id
+    ...headerMenuDropdownItemFragment
+    children {
+      id
+      ...headerMenuDropdownItemFragment
+      children {
         id
+        ...headerMenuDropdownItemFragment
       }
     }
   }
 }
-    `) as unknown as TypedDocumentString<GetCategoryIds, GetCategoryIdsVariables>;
-export const GetCollectionIdsDocument = new TypedDocumentString(`
-    query getCollectionIds($slugs: [String!]!, $channel: String) {
-  collections(first: 10, filter: {slugs: $slugs}, channel: $channel) {
-    edges {
-      node {
-        id
-      }
-    }
+fragment headerMenuDropdownItemFragment on MenuItem {
+  name
+  category {
+    slug
+    name
   }
+  ...headerMenuItemTranslation
 }
-    `) as unknown as TypedDocumentString<GetCollectionIds, GetCollectionIdsVariables>;
+fragment headerMenuItemTranslation on MenuItem {
+  translation(languageCode: $languageCode) {
+    name
+  }
+}`) as unknown as TypedDocumentString<GetHeaderMenu, GetHeaderMenuVariables>;
 export const GetNavCategoriesDocument = new TypedDocumentString(`
     query getNavCategories($languageCode: LanguageCodeEnum!) {
-  categories(level: 0, first: 6) {
+  categories(level: 0, first: 12) {
     edges {
       node {
-        id
-        translation(languageCode: $languageCode) {
-          name
-        }
-        ...navCategory
+        ...navCategoriesItem
         children(first: 12) {
           edges {
             node {
-              id
-              translation(languageCode: $languageCode) {
-                name
+              ...navCategoriesItem
+              children(first: 12) {
+                edges {
+                  node {
+                    ...navCategoriesItem
+                  }
+                }
               }
-              ...navCategory
             }
           }
         }
@@ -530,7 +712,18 @@ export const GetNavCategoriesDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment navCategory on Category {
+    fragment navCategoriesItem on Category {
+  translation(languageCode: $languageCode) {
+    name
+  }
+  ...categoryNavLinksItemFragment
+}
+fragment categoryNavLinksItemFragment on Category {
+  id
+  level
+  ...categoryNavLinkFragment
+}
+fragment categoryNavLinkFragment on Category {
   name
   slug
 }`) as unknown as TypedDocumentString<GetNavCategories, GetNavCategoriesVariables>;
@@ -539,54 +732,28 @@ export const GetNavCollectionsDocument = new TypedDocumentString(`
   collections(first: 6, channel: $channel) {
     edges {
       node {
-        id
         translation(languageCode: $languageCode) {
           name
         }
-        ...navCollection
+        ...navCollectionsItem
       }
     }
   }
 }
-    fragment navCollection on Collection {
+    fragment navCollectionsItem on Collection {
+  translation(languageCode: $languageCode) {
+    name
+  }
+  ...collectionNavLinksItemFragment
+}
+fragment collectionNavLinksItemFragment on Collection {
+  id
+  ...collectionNavLinkFragment
+}
+fragment collectionNavLinkFragment on Collection {
   name
   slug
 }`) as unknown as TypedDocumentString<GetNavCollections, GetNavCollectionsVariables>;
-export const GetProductAttributesDocument = new TypedDocumentString(`
-    query getProductAttributes($where: AttributeWhereInput, $channel: String, $languageCode: LanguageCodeEnum!) {
-  attributes(first: 16, where: $where, channel: $channel) {
-    edges {
-      node {
-        id
-        translation(languageCode: $languageCode) {
-          name
-        }
-        ...productAttribute
-      }
-    }
-  }
-}
-    fragment productAttribute on Attribute {
-  name
-  slug
-  type
-  inputType
-  choices(first: 20) {
-    edges {
-      node {
-        id
-        translation(languageCode: $languageCode) {
-          name
-        }
-        ...productAttributeValue
-      }
-    }
-  }
-}
-fragment productAttributeValue on AttributeValue {
-  name
-  slug
-}`) as unknown as TypedDocumentString<GetProductAttributes, GetProductAttributesVariables>;
 export const GetProductsDocument = new TypedDocumentString(`
     query getProducts($first: Int, $after: String, $last: Int, $before: String, $search: String, $filter: ProductFilterInput, $address: AddressInput, $channel: String, $languageCode: LanguageCodeEnum!) {
   products(
@@ -612,21 +779,7 @@ export const GetProductsDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment image on Image {
-  url
-  alt
-}
-fragment money on Money {
-  currency
-  amount
-}
-fragment pageInfo on PageInfo {
-  startCursor
-  hasNextPage
-  endCursor
-  hasPreviousPage
-}
-fragment productCard on Product {
+    fragment productCard on Product {
   name
   slug
   defaultVariant {
@@ -635,7 +788,7 @@ fragment productCard on Product {
     }
   }
   isAvailable
-  thumbnail {
+  thumbnail(size: 4096) {
     ...image
   }
   collections {
@@ -661,7 +814,78 @@ fragment productCardPricing on VariantPricingInfo {
 }
 fragment productCardCollectionName on Collection {
   name
+}
+fragment image on Image {
+  url
+  alt
+}
+fragment money on Money {
+  currency
+  amount
+}
+fragment pageInfo on PageInfo {
+  startCursor
+  hasNextPage
+  endCursor
+  hasPreviousPage
 }`) as unknown as TypedDocumentString<GetProducts, GetProductsVariables>;
+export const GetProductAttributesDocument = new TypedDocumentString(`
+    query getProductAttributes($where: AttributeWhereInput, $channel: String, $languageCode: LanguageCodeEnum!) {
+  attributes(first: 16, where: $where, channel: $channel) {
+    edges {
+      node {
+        id
+        translation(languageCode: $languageCode) {
+          name
+        }
+        ...productAttributeFragment
+      }
+    }
+  }
+}
+    fragment productAttributeFragment on Attribute {
+  name
+  slug
+  type
+  inputType
+  choices(first: 20) {
+    edges {
+      node {
+        id
+        translation(languageCode: $languageCode) {
+          name
+        }
+        ...productAttributeValueFragment
+      }
+    }
+  }
+}
+fragment productAttributeValueFragment on AttributeValue {
+  name
+  slug
+}`) as unknown as TypedDocumentString<GetProductAttributes, GetProductAttributesVariables>;
+export const GetCategoryIdsDocument = new TypedDocumentString(`
+    query getCategoryIds($slugs: [String!]!) {
+  categories(first: 30, filter: {slugs: $slugs}) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCategoryIds, GetCategoryIdsVariables>;
+export const GetCollectionIdsDocument = new TypedDocumentString(`
+    query getCollectionIds($slugs: [String!]!, $channel: String) {
+  collections(first: 10, filter: {slugs: $slugs}, channel: $channel) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCollectionIds, GetCollectionIdsVariables>;
 export const UpdateCheckoutBillingAddressDocument = new TypedDocumentString(`
     mutation updateCheckoutBillingAddress($id: ID!, $billingAddress: AddressInput!) {
   checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {
@@ -701,8 +925,7 @@ export const GetCheckoutDocument = new TypedDocumentString(`
       minimumDeliveryDays
       active
       price {
-        currency
-        amount
+        ...money
       }
       name
       active
@@ -715,7 +938,11 @@ export const GetCheckoutDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment address on Address {
+    fragment money on Money {
+  currency
+  amount
+}
+fragment address on Address {
   country {
     code
     country

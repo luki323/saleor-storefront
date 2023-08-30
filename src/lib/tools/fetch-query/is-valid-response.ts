@@ -1,6 +1,6 @@
 import invariant from 'tiny-invariant';
 
-import {isDefined} from '../type-guards/is-defined';
+import {isDefined} from '../is-defined';
 
 export function isValidResponse(response: Response) {
   const contentTypeHeader = response.headers.get('Content-Type');

@@ -1,9 +1,9 @@
+import {isArray} from './is-array';
+import {isDefined} from './is-defined';
 import {toArray} from './to-array';
-import {isArray} from './type-guards/is-array';
-import {isDefined} from './type-guards/is-defined';
 
 // See: https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1568
-type SearchParamValue = string | number;
+export type SearchParamValue = string | number;
 
 type SearchParams = Record<
   string,
@@ -29,7 +29,7 @@ export function createSearchParams(init: ExtendedURLSearchParamsInit) {
 function isSearchParams(
   init: ExtendedURLSearchParamsInit,
 ): init is SearchParams {
-  return (
+  return !(
     typeof init === 'string' ||
     isArray(init) ||
     init instanceof URLSearchParams ||

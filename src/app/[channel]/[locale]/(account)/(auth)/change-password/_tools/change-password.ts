@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {ChangePasswordVariables} from '@/graphql/generated/documents';
 import {ChangePasswordDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

@@ -2,7 +2,7 @@ import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 
 import {APP_ROUTES} from '@/lib/consts';
-import {isDefined} from '@/lib/tools/type-guards/is-defined';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import {confirmAccount} from './_tools/confirm-account';
 

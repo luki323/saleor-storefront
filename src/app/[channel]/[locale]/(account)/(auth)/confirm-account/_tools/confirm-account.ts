@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {ConfirmAccountVariables} from '@/graphql/generated/documents';
 import {ConfirmAccountDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

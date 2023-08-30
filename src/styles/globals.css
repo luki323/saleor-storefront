@@ -13,10 +13,10 @@
 
   --background: 0 0% 98%;
 
-  --faded-black: 0, 0%, 20%;
+  --faded-black: 0 0% 20%;
 
   --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted-foreground: 240 3.8% 46.1%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
@@ -40,6 +40,9 @@
 
   --toast-desktop-width: 365px;
   --toast-mobile-width: calc(100% -32px);
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
 }
 
 html,

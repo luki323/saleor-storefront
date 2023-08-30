@@ -38,6 +38,10 @@ const config: Config = {
           hovered: 'hsl(var(--blue-hovered))',
           foreground: 'hsl(var(--blue-foreground))',
         },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
       },
       borderRadius: {
         md: `calc(var(--radius) - 2px)`,

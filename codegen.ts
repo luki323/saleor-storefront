@@ -13,6 +13,9 @@ const codegenConfig: CodegenConfig = {
       plugins: ['typescript'],
       config: {
         defaultScalarType: 'unknown',
+        scalars: {
+          JSONString: 'string',
+        },
       },
     },
     'src/graphql/generated/documents.ts': {

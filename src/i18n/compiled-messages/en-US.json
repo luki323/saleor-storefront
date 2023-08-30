@@ -187,6 +187,12 @@
       "value": "Information"
     }
   ],
+  "EFT4+S": [
+    {
+      "type": 0,
+      "value": "Saleor logo"
+    }
+  ],
   "FbNOxp": [
     {
       "type": 0,
@@ -227,6 +233,16 @@
     {
       "type": 0,
       "value": "Total"
+    }
+  ],
+  "MOC4lx": [
+    {
+      "type": 0,
+      "value": "Subcategories of "
+    },
+    {
+      "type": 1,
+      "value": "category"
     }
   ],
   "Nau+P4": [
@@ -307,12 +323,6 @@
     {
       "type": 0,
       "value": "Account"
-    }
-  ],
-  "U3l+Q9": [
-    {
-      "type": 0,
-      "value": "Home page"
     }
   ],
   "U8vrFK": [
@@ -579,12 +589,6 @@
     {
       "type": 0,
       "value": "Collections"
-    }
-  ],
-  "un+VWt": [
-    {
-      "type": 0,
-      "value": "Search products"
     }
   ],
   "v5ykbS": [

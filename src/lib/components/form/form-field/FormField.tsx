@@ -3,11 +3,11 @@ import type {ControllerProps, FieldPath, FieldValues} from 'react-hook-form';
 import {Controller} from 'react-hook-form';
 
 import {cn} from '@/lib/tools/cn';
-import {createBoundaryContext} from '@/lib/tools/create-boundary-context';
+import {createContext} from '@/lib/tools/create-context';
 import type {PropsWithChildren} from '@/lib/types/react';
 
 const [FormFieldNameContext, useFormFieldName] =
-  createBoundaryContext<string>('formFieldName');
+  createContext<string>('formFieldName');
 
 export {useFormFieldName};
 
@@ -28,7 +28,7 @@ export function FormField<
 }
 
 const [FormItemIdContext, useFormItemId] =
-  createBoundaryContext<ReturnType<typeof useId>>('formItemId');
+  createContext<ReturnType<typeof useId>>('formItemId');
 
 export {useFormItemId};
 

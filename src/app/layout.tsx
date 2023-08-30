@@ -1,4 +1,6 @@
 import '@/styles/globals.css';
+// It won't work in client components
+import 'core-js/modules/web.url-search-params.delete.js';
 
 import {DEFAULT_LOCALE} from '@/i18n/consts';
 import type {PropsWithChildren} from '@/lib/types/react';

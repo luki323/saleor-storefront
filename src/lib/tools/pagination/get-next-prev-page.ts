@@ -22,7 +22,6 @@ export function getNextPrevPage(
     pageInfo,
     defaultPageSize,
   );
-
   const withoutPaginationSearchParams =
     deletePaginationSearchParams(searchParams);
 

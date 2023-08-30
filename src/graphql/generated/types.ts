@@ -18,7 +18,7 @@ export type Scalars = {
   Decimal: { input: unknown; output: unknown; }
   GenericScalar: { input: unknown; output: unknown; }
   JSON: { input: unknown; output: unknown; }
-  JSONString: { input: unknown; output: unknown; }
+  JSONString: { input: string; output: string; }
   Metadata: { input: unknown; output: unknown; }
   Minute: { input: unknown; output: unknown; }
   PositiveDecimal: { input: unknown; output: unknown; }

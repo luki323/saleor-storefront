@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env';
+import {GRAPHQL_ENDPOINT} from '@/env';
 import type {SignUpVariables} from '@/graphql/generated/documents';
 import {SignUpDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

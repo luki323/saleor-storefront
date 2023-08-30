@@ -1,0 +1,1 @@
+export {ProductAttributesDropdown} from './ProductAttributedDropdown';

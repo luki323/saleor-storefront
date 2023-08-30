@@ -43,5 +43,13 @@
     ],
     "no-console": ["error", {"allow": ["error"]}]
   },
+  "overrides": [
+    {
+      "files": "*.cjs",
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ],
   "ignorePatterns": ["src/graphql/generated/**"]
 }

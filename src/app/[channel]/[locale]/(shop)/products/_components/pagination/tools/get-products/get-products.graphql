@@ -1,0 +1,90 @@
+query getProducts(
+  $first: Int
+  $after: String
+  $last: Int
+  $before: String
+  $search: String
+  $filter: ProductFilterInput
+  $address: AddressInput
+  $channel: String
+  $languageCode: LanguageCodeEnum!
+) {
+  products(
+    first: $first
+    after: $after
+    last: $last
+    before: $before
+    search: $search
+    filter: $filter
+    channel: $channel
+  ) {
+    edges {
+      node {
+        id
+        translation(languageCode: $languageCode) {
+          name
+        }
+        ...productCard
+      }
+    }
+    pageInfo {
+      ...pageInfo
+    }
+  }
+}
+
+fragment productCard on Product {
+  name
+  slug
+  defaultVariant {
+    pricing(address: $address) {
+      ...productCardPricing
+    }
+  }
+  isAvailable
+  thumbnail(size: 4096) {
+    ...image
+  }
+  collections {
+    id
+    translation(languageCode: $languageCode) {
+      name
+    }
+    ...productCardCollectionName
+  }
+}
+
+fragment productCardPricing on VariantPricingInfo {
+  onSale
+  price {
+    gross {
+      ...money
+    }
+  }
+  priceUndiscounted {
+    gross {
+      ...money
+    }
+  }
+}
+
+fragment productCardCollectionName on Collection {
+  name
+}
+
+fragment image on Image {
+  url
+  alt
+}
+
+fragment money on Money {
+  currency
+  amount
+}
+
+fragment pageInfo on PageInfo {
+  startCursor
+  hasNextPage
+  endCursor
+  hasPreviousPage
+}

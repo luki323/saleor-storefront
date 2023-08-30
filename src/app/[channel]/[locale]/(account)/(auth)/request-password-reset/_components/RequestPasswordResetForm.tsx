@@ -33,6 +33,8 @@ export function RequestPasswordResetForm() {
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
+  const disabled = form.formState.isSubmitting;
+
   return (
     <Form form={form} onSubmit={form.handleSubmit(requestPasswordResetSubmit)}>
       <FormField
@@ -52,7 +54,7 @@ export function RequestPasswordResetForm() {
                 type="email"
                 placeholder="name@example.com"
                 autoComplete="email"
-                readOnly={form.formState.isSubmitting}
+                disabled={disabled}
                 required
                 {...restField}
               />
@@ -73,7 +75,7 @@ export function RequestPasswordResetForm() {
           </FormItem>
         )}
       />
-      <SubmitButton disabled={form.formState.isSubmitting}>
+      <SubmitButton disabled={disabled}>
         <FormattedMessage defaultMessage="Send reset link" id="DkQ5Q8" />
       </SubmitButton>
     </Form>

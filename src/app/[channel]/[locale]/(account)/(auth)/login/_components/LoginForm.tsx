@@ -30,9 +30,11 @@ export function LoginForm() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  const loginSubmit = useLoginSubmit(form);
+  const {loginSubmit, routeIsPending} = useLoginSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
+
+  const disabled = form.formState.isSubmitting || routeIsPending;
 
   return (
     <Form form={form} onSubmit={form.handleSubmit(loginSubmit)}>
@@ -53,7 +55,7 @@ export function LoginForm() {
                 type="email"
                 placeholder="name@example.com"
                 autoComplete="email"
-                disabled={form.formState.isSubmitting}
+                disabled={disabled}
                 required
                 {...restField}
               />
@@ -89,7 +91,7 @@ export function LoginForm() {
                 value={value}
                 type="password"
                 autoComplete="password"
-                disabled={form.formState.isSubmitting}
+                disabled={disabled}
                 required
                 {...restField}
               />
@@ -111,7 +113,7 @@ export function LoginForm() {
           </FormItem>
         )}
       />
-      <SubmitButton disabled={form.formState.isSubmitting}>
+      <SubmitButton disabled={disabled}>
         <FormattedMessage defaultMessage="Log in with email" id="vu1wqp" />
       </SubmitButton>
     </Form>

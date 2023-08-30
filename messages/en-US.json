@@ -38,11 +38,20 @@
   "3Gc+Ab": {
     "defaultMessage": "Enter a valid last name"
   },
+  "3P1axg": {
+    "defaultMessage": "New email description"
+  },
   "47FYwb": {
     "defaultMessage": "Cancel"
   },
+  "48k4Ow": {
+    "defaultMessage": "Enter a old password"
+  },
   "4RD+CZ": {
     "defaultMessage": "Shipping method"
+  },
+  "4Vr2Sg": {
+    "defaultMessage": "change password"
   },
   "4cSA+G": {
     "defaultMessage": "Or continue with"
@@ -77,6 +86,9 @@
   "BKdjS1": {
     "defaultMessage": "Enter an address"
   },
+  "BQMO3t": {
+    "defaultMessage": "Enter a new password"
+  },
   "BY343C": {
     "defaultMessage": "Change"
   },
@@ -92,17 +104,20 @@
   "EFT4+S": {
     "defaultMessage": "Saleor logo"
   },
+  "F4lKlM": {
+    "defaultMessage": "New password description"
+  },
   "FbNOxp": {
     "defaultMessage": "Account deletion"
   },
-  "GntzCn": {
-    "defaultMessage": "Enter valid email"
-  },
-  "HavxIp": {
-    "defaultMessage": "Enter first name"
+  "HrdHC1": {
+    "defaultMessage": "Request email change"
   },
   "JDSxM0": {
     "defaultMessage": "Manage your account settings and orders."
+  },
+  "Jl/tSJ": {
+    "defaultMessage": "Enter a valid new email"
   },
   "L4nXIc": {
     "defaultMessage": "Change password"
@@ -137,8 +152,14 @@
   "PRlD0A": {
     "defaultMessage": "Shipping"
   },
+  "QOiG4E": {
+    "defaultMessage": "Set password"
+  },
   "RVxG/0": {
     "defaultMessage": "Email description"
+  },
+  "St4O02": {
+    "defaultMessage": "Password changed successfully."
   },
   "TE4fIS": {
     "defaultMessage": "City"
@@ -151,6 +172,9 @@
   },
   "TwyMau": {
     "defaultMessage": "Account"
+  },
+  "U41zpQ": {
+    "defaultMessage": "Old password:"
   },
   "U8vrFK": {
     "defaultMessage": "Enter a confirm password"
@@ -176,6 +200,9 @@
   "ZpVtCa": {
     "defaultMessage": "Shipping address"
   },
+  "a4aUvK": {
+    "defaultMessage": "New email:"
+  },
   "atD3r4": {
     "defaultMessage": "Confirm password:"
   },
@@ -191,8 +218,20 @@
   "cyR7Kh": {
     "defaultMessage": "Back"
   },
+  "dEsX9w": {
+    "defaultMessage": "Enter a new email"
+  },
   "e6Ph5+": {
     "defaultMessage": "Address"
+  },
+  "fbQ+L1": {
+    "defaultMessage": "Enter a valid old password"
+  },
+  "g8IrT6": {
+    "defaultMessage": "Old password description"
+  },
+  "gCsYTJ": {
+    "defaultMessage": "New password:"
   },
   "gUIhhI": {
     "defaultMessage": "Search for products"
@@ -221,20 +260,14 @@
   "ku+mDU": {
     "defaultMessage": "State"
   },
-  "lTr7eP": {
-    "defaultMessage": "Change password and log in"
+  "lBENL4": {
+    "defaultMessage": "request email change"
   },
-  "o7nzDs": {
-    "defaultMessage": "User name"
-  },
-  "p1iOq7": {
-    "defaultMessage": "First name description"
+  "pJU6x5": {
+    "defaultMessage": "Confirmation link was sent to {newEmail} mailbox"
   },
   "pJi/8z": {
     "defaultMessage": "Enter a ZIP / postal code"
-  },
-  "pONqz8": {
-    "defaultMessage": "First name"
   },
   "pmu7Ih": {
     "defaultMessage": "Sign up with email"
@@ -242,11 +275,11 @@
   "qF/pIW": {
     "defaultMessage": "Enter an valid address"
   },
-  "qOefVu": {
-    "defaultMessage": "Last name description"
-  },
   "qTs7Lh": {
     "defaultMessage": "Firstname"
+  },
+  "r/rQ02": {
+    "defaultMessage": "Successfuly logged in."
   },
   "rBj9Ib": {
     "defaultMessage": "Next page"
@@ -263,20 +296,20 @@
   "tKMlOc": {
     "defaultMessage": "Menu"
   },
-  "tS+q2C": {
-    "defaultMessage": "Update user name"
-  },
-  "txUL0F": {
-    "defaultMessage": "Last name"
-  },
   "u1JzBg": {
     "defaultMessage": "Enter a city"
+  },
+  "uZTXoH": {
+    "defaultMessage": "Set password and log in"
   },
   "ulh3kf": {
     "defaultMessage": "Collections"
   },
   "v5ykbS": {
     "defaultMessage": "Are you absolutely sure?"
+  },
+  "vDJsvf": {
+    "defaultMessage": "Enter a valid new password"
   },
   "vHV69y": {
     "defaultMessage": "Confirm password description"

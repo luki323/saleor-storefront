@@ -5,10 +5,11 @@ export const APP_ROUTES = {
   SIGNUP: 'signup',
   CONFIRM_ACCOUNT: 'confirm-account',
   REQUEST_PASSWORD_RESET: 'request-password-reset',
-  CHANGE_PASSWORD: 'change-password',
+  SET_PASSWORD: 'set-password',
   DASHBOARD: {
     ACCOUNT: {
       USER_DETAILS: ['dashboard', 'account', 'user-details'],
+      CONFIRM_EMAIL_CHANGE: ['dashboard', 'account', 'confirm-email-change'],
     },
   },
   CHECKOUT: {

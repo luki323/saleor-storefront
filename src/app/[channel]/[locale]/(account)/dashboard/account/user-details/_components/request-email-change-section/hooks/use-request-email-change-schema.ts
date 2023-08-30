@@ -4,29 +4,29 @@ import * as zod from 'zod';
 import {useIntl} from '@/i18n/react-intl';
 import {MIN_PASSWORD_LENGTH} from '@/modules/account/consts';
 
-import {FIELDS} from '../_consts';
+import {FIELDS} from '../fields';
 
-export function useSignupFormSchema() {
+export function useRequestEmailChangeSchema() {
   const intl = useIntl();
 
   return useMemo(
     () =>
       zod.object({
-        [FIELDS.EMAIL]: zod
+        [FIELDS.NEW_EMAIL]: zod
           .string({
             invalid_type_error: intl.formatMessage({
-              defaultMessage: 'Enter a valid email',
-              id: 'PFfzPv',
+              defaultMessage: 'Enter a valid new email',
+              id: 'Jl/tSJ',
             }),
             required_error: intl.formatMessage({
-              defaultMessage: 'Enter a email',
-              id: '+m0IDF',
+              defaultMessage: 'Enter a new email',
+              id: 'dEsX9w',
             }),
           })
           .email({
             message: intl.formatMessage({
-              defaultMessage: 'Enter a valid email',
-              id: 'PFfzPv',
+              defaultMessage: 'Enter a valid new email',
+              id: 'Jl/tSJ',
             }),
           }),
         [FIELDS.PASSWORD]: zod

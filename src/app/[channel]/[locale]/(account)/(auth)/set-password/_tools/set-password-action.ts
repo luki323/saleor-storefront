@@ -2,15 +2,15 @@
 
 import invariant from 'tiny-invariant';
 
-import type {LogInVariables} from '@/graphql/generated/documents';
+import type {SetPasswordVariables} from '@/graphql/generated/documents';
 import {CSRF_TOKEN_NAME} from '@/modules/account/consts';
 import {setAccessToken, setRefreshToken} from '@/modules/account/tools/cookies';
 
-import {logIn} from './log-in';
+import {setPassword} from './set-password';
 
-export async function logInAction(variables: LogInVariables) {
-  const {tokenCreate} = await logIn(variables);
-  const {token, refreshToken, csrfToken, errors} = tokenCreate ?? {};
+export async function setPasswordAction(variables: SetPasswordVariables) {
+  const {token, refreshToken, csrfToken, errors} =
+    (await setPassword(variables)) ?? {};
 
   if (errors?.length) {
     return {
@@ -25,6 +25,9 @@ export async function logInAction(variables: LogInVariables) {
 
   return {
     type: 'success' as const,
-    result: {name: CSRF_TOKEN_NAME, value: csrfToken},
+    result: {
+      name: CSRF_TOKEN_NAME,
+      value: csrfToken,
+    },
   };
 }

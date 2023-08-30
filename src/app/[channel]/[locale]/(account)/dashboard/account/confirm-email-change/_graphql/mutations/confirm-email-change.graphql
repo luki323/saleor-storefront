@@ -1,0 +1,7 @@
+mutation confirmEmailChange($channel: String!, $token: String!) {
+  confirmEmailChange(channel: $channel, token: $token) {
+    errors {
+      ...accountError
+    }
+  }
+}

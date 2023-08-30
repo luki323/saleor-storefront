@@ -12,15 +12,6 @@ export type LogInVariables = Types.Exact<{
 
 export type LogIn = { readonly tokenCreate?: { readonly token?: string | null, readonly refreshToken?: string | null, readonly csrfToken?: string | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
 
-export type ChangePasswordVariables = Types.Exact<{
-  email: Types.Scalars['String']['input'];
-  token: Types.Scalars['String']['input'];
-  password: Types.Scalars['String']['input'];
-}>;
-
-
-export type ChangePassword = { readonly setPassword?: { readonly token?: string | null, readonly refreshToken?: string | null, readonly csrfToken?: string | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
-
 export type ConfirmAccountVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   token: Types.Scalars['String']['input'];
@@ -38,6 +29,15 @@ export type RequestPasswordResetVariables = Types.Exact<{
 
 export type RequestPasswordReset = { readonly requestPasswordReset?: { readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
 
+export type SetPasswordVariables = Types.Exact<{
+  email: Types.Scalars['String']['input'];
+  token: Types.Scalars['String']['input'];
+  password: Types.Scalars['String']['input'];
+}>;
+
+
+export type SetPassword = { readonly setPassword?: { readonly token?: string | null, readonly refreshToken?: string | null, readonly csrfToken?: string | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
+
 export type SignUpVariables = Types.Exact<{
   email: Types.Scalars['String']['input'];
   password: Types.Scalars['String']['input'];
@@ -47,6 +47,32 @@ export type SignUpVariables = Types.Exact<{
 
 
 export type SignUp = { readonly accountRegister?: { readonly requiresConfirmation?: boolean | null, readonly user?: { readonly email: string } | null, readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
+
+export type ConfirmEmailChangeVariables = Types.Exact<{
+  channel: Types.Scalars['String']['input'];
+  token: Types.Scalars['String']['input'];
+}>;
+
+
+export type ConfirmEmailChange = { readonly confirmEmailChange?: { readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
+
+export type ChangePasswordVariables = Types.Exact<{
+  newPassword: Types.Scalars['String']['input'];
+  oldPassword: Types.Scalars['String']['input'];
+}>;
+
+
+export type ChangePassword = { readonly passwordChange?: { readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
+
+export type RequestEmailChangeVariables = Types.Exact<{
+  channel: Types.Scalars['String']['input'];
+  newEmail: Types.Scalars['String']['input'];
+  password: Types.Scalars['String']['input'];
+  redirectUrl: Types.Scalars['String']['input'];
+}>;
+
+
+export type RequestEmailChange = { readonly requestEmailChange?: { readonly errors: ReadonlyArray<{ readonly field?: string | null, readonly code: Types.AccountErrorCode }> } | null };
 
 export type GetHeaderMenuVariables = Types.Exact<{
   channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
@@ -576,21 +602,6 @@ export const LogInDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<LogIn, LogInVariables>;
-export const ChangePasswordDocument = new TypedDocumentString(`
-    mutation changePassword($email: String!, $token: String!, $password: String!) {
-  setPassword(email: $email, token: $token, password: $password) {
-    token
-    refreshToken
-    csrfToken
-    errors {
-      ...accountError
-    }
-  }
-}
-    fragment accountError on AccountError {
-  field
-  code
-}`) as unknown as TypedDocumentString<ChangePassword, ChangePasswordVariables>;
 export const ConfirmAccountDocument = new TypedDocumentString(`
     mutation confirmAccount($email: String!, $token: String!) {
   confirmAccount(email: $email, token: $token) {
@@ -622,6 +633,21 @@ export const RequestPasswordResetDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<RequestPasswordReset, RequestPasswordResetVariables>;
+export const SetPasswordDocument = new TypedDocumentString(`
+    mutation setPassword($email: String!, $token: String!, $password: String!) {
+  setPassword(email: $email, token: $token, password: $password) {
+    token
+    refreshToken
+    csrfToken
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<SetPassword, SetPasswordVariables>;
 export const SignUpDocument = new TypedDocumentString(`
     mutation signUp($email: String!, $password: String!, $channel: String!, $redirectUrl: String!) {
   accountRegister(
@@ -640,6 +666,47 @@ export const SignUpDocument = new TypedDocumentString(`
   field
   code
 }`) as unknown as TypedDocumentString<SignUp, SignUpVariables>;
+export const ConfirmEmailChangeDocument = new TypedDocumentString(`
+    mutation confirmEmailChange($channel: String!, $token: String!) {
+  confirmEmailChange(channel: $channel, token: $token) {
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<ConfirmEmailChange, ConfirmEmailChangeVariables>;
+export const ChangePasswordDocument = new TypedDocumentString(`
+    mutation changePassword($newPassword: String!, $oldPassword: String!) {
+  passwordChange(newPassword: $newPassword, oldPassword: $oldPassword) {
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<ChangePassword, ChangePasswordVariables>;
+export const RequestEmailChangeDocument = new TypedDocumentString(`
+    mutation requestEmailChange($channel: String!, $newEmail: String!, $password: String!, $redirectUrl: String!) {
+  requestEmailChange(
+    channel: $channel
+    newEmail: $newEmail
+    password: $password
+    redirectUrl: $redirectUrl
+  ) {
+    errors {
+      ...accountError
+    }
+  }
+}
+    fragment accountError on AccountError {
+  field
+  code
+}`) as unknown as TypedDocumentString<RequestEmailChange, RequestEmailChangeVariables>;
 export const GetHeaderMenuDocument = new TypedDocumentString(`
     query getHeaderMenu($channel: String, $languageCode: LanguageCodeEnum!) {
   menu(name: "header", channel: $channel) {

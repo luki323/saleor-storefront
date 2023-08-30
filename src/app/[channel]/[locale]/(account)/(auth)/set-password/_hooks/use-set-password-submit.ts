@@ -7,22 +7,29 @@ import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {logInAction} from '../../_tools/log-in-action';
-import type {useLoginFormSchema} from './use-login-form-schema';
+import {setPasswordAction} from '../_tools/set-password-action';
+import type {useSetPasswordSchema} from './use-set-password-schema';
 
-type LoginFormSchema = Zod.infer<ReturnType<typeof useLoginFormSchema>>;
+type SetPasswordFormSchema = Zod.infer<ReturnType<typeof useSetPasswordSchema>>;
 
-export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
+export function useSetPasswordSubmit(
+  form: UseFormReturn<SetPasswordFormSchema>,
+  {email, token}: {readonly email: string; readonly token: string},
+) {
   const intlRouter = useIntlRouter();
   const [routeIsPending, startTransition] = useTransition();
   const intl = useIntl();
 
   return {
     routeIsPending,
-    loginSubmit: useCallback(
-      async ({email, password}: LoginFormSchema) => {
+    setPasswordSubmit: useCallback(
+      async ({password}: SetPasswordFormSchema) => {
         try {
-          const {type, result} = await logInAction({email, password});
+          const {type, result} = await setPasswordAction({
+            email,
+            token,
+            password,
+          });
 
           if (type === 'error') {
             // TODO: display server error
@@ -52,7 +59,7 @@ export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
           console.error(error);
         }
       },
-      [form, intl, intlRouter],
+      [email, form, intl, intlRouter, token],
     ),
   };
 }

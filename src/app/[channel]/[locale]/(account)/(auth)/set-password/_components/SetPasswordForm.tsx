@@ -19,66 +19,36 @@ import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {Label} from '../../_components/Label';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
-import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
-import {useSignupSubmit} from '../_hooks/use-signup-submit';
+import {useSetPasswordSchema} from '../_hooks/use-set-password-schema';
+import {useSetPasswordSubmit} from '../_hooks/use-set-password-submit';
 
-export function SignupForm() {
-  const signupFormSchema = useSignupFormSchema();
+interface Props {
+  readonly email: string;
+  readonly token: string;
+}
 
-  const form = useForm<Zod.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+export function SetPasswordForm({email, token}: Props) {
+  const setPasswordSchema = useSetPasswordSchema();
+
+  const form = useForm<Zod.infer<typeof setPasswordSchema>>({
+    resolver: zodResolver(setPasswordSchema),
   });
 
-  const signupSubmit = useSignupSubmit(form);
+  const {setPasswordSubmit, routeIsPending} = useSetPasswordSubmit(form, {
+    email,
+    token,
+  });
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
-  const disabled = form.formState.isSubmitting;
+  const disabled = form.formState.isSubmitting || routeIsPending;
 
   return (
-    <Form form={form} onSubmit={form.handleSubmit(signupSubmit)}>
-      <FormField
-        name={FIELDS.EMAIL}
-        control={form.control}
-        render={({field: {ref, value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                ref={refMountCallback(ref, deferInputFocus)}
-                value={value}
-                type="email"
-                placeholder="name@example.com"
-                autoComplete="email"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="Email description"
-                    id="RVxG/0"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
+    <Form form={form} onSubmit={form.handleSubmit(setPasswordSubmit)}>
       <FormField
         name={FIELDS.PASSWORD}
         control={form.control}
-        render={({field: {value = '', ...restField}}) => (
+        render={({field: {ref, value = '', ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
@@ -87,6 +57,7 @@ export function SignupForm() {
             </FormFieldLabel>
             <FormFieldControl>
               <TextField
+                ref={refMountCallback(ref, deferInputFocus)}
                 value={value}
                 type="password"
                 autoComplete="new-password"
@@ -111,8 +82,50 @@ export function SignupForm() {
           </FormItem>
         )}
       />
+      <FormField
+        name={FIELDS.CONFIRM_PASSWORD}
+        control={form.control}
+        render={({field: {value = '', ...restField}}) => (
+          <FormItem>
+            <FormFieldLabel>
+              <Label>
+                <FormattedMessage
+                  defaultMessage="Confirm password:"
+                  id="atD3r4"
+                />
+              </Label>
+            </FormFieldLabel>
+            <FormFieldControl>
+              <TextField
+                value={value}
+                type="password"
+                autoComplete="password"
+                disabled={disabled}
+                required
+                {...restField}
+              />
+            </FormFieldControl>
+            <div>
+              <FormFieldDescription>
+                <FormFieldDescriptionText>
+                  <FormattedMessage
+                    defaultMessage="Confirm password description"
+                    id="vHV69y"
+                  />
+                </FormFieldDescriptionText>
+              </FormFieldDescription>
+              <FormFieldErrorMessage>
+                <ErrorText />
+              </FormFieldErrorMessage>
+            </div>
+          </FormItem>
+        )}
+      />
       <SubmitButton disabled={disabled}>
-        <FormattedMessage defaultMessage="Sign up with email" id="pmu7Ih" />
+        <FormattedMessage
+          defaultMessage="Set password and log in"
+          id="uZTXoH"
+        />
       </SubmitButton>
     </Form>
   );

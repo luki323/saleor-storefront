@@ -85,16 +85,34 @@
       "value": "Enter a valid last name"
     }
   ],
+  "3P1axg": [
+    {
+      "type": 0,
+      "value": "New email description"
+    }
+  ],
   "47FYwb": [
     {
       "type": 0,
       "value": "Cancel"
     }
   ],
+  "48k4Ow": [
+    {
+      "type": 0,
+      "value": "Enter a old password"
+    }
+  ],
   "4RD+CZ": [
     {
       "type": 0,
       "value": "Shipping method"
+    }
+  ],
+  "4Vr2Sg": [
+    {
+      "type": 0,
+      "value": "change password"
     }
   ],
   "4cSA+G": [
@@ -163,6 +181,12 @@
       "value": "Enter an address"
     }
   ],
+  "BQMO3t": [
+    {
+      "type": 0,
+      "value": "Enter a new password"
+    }
+  ],
   "BY343C": [
     {
       "type": 0,
@@ -193,28 +217,34 @@
       "value": "Saleor logo"
     }
   ],
+  "F4lKlM": [
+    {
+      "type": 0,
+      "value": "New password description"
+    }
+  ],
   "FbNOxp": [
     {
       "type": 0,
       "value": "Account deletion"
     }
   ],
-  "GntzCn": [
+  "HrdHC1": [
     {
       "type": 0,
-      "value": "Enter valid email"
-    }
-  ],
-  "HavxIp": [
-    {
-      "type": 0,
-      "value": "Enter first name"
+      "value": "Request email change"
     }
   ],
   "JDSxM0": [
     {
       "type": 0,
       "value": "Manage your account settings and orders."
+    }
+  ],
+  "Jl/tSJ": [
+    {
+      "type": 0,
+      "value": "Enter a valid new email"
     }
   ],
   "L4nXIc": [
@@ -295,10 +325,22 @@
       "value": "Shipping"
     }
   ],
+  "QOiG4E": [
+    {
+      "type": 0,
+      "value": "Set password"
+    }
+  ],
   "RVxG/0": [
     {
       "type": 0,
       "value": "Email description"
+    }
+  ],
+  "St4O02": [
+    {
+      "type": 0,
+      "value": "Password changed successfully."
     }
   ],
   "TE4fIS": [
@@ -323,6 +365,12 @@
     {
       "type": 0,
       "value": "Account"
+    }
+  ],
+  "U41zpQ": [
+    {
+      "type": 0,
+      "value": "Old password:"
     }
   ],
   "U8vrFK": [
@@ -381,6 +429,12 @@
       "value": "Shipping address"
     }
   ],
+  "a4aUvK": [
+    {
+      "type": 0,
+      "value": "New email:"
+    }
+  ],
   "atD3r4": [
     {
       "type": 0,
@@ -423,10 +477,34 @@
       "value": "Back"
     }
   ],
+  "dEsX9w": [
+    {
+      "type": 0,
+      "value": "Enter a new email"
+    }
+  ],
   "e6Ph5+": [
     {
       "type": 0,
       "value": "Address"
+    }
+  ],
+  "fbQ+L1": [
+    {
+      "type": 0,
+      "value": "Enter a valid old password"
+    }
+  ],
+  "g8IrT6": [
+    {
+      "type": 0,
+      "value": "Old password description"
+    }
+  ],
+  "gCsYTJ": [
+    {
+      "type": 0,
+      "value": "New password:"
     }
   ],
   "gUIhhI": [
@@ -483,34 +561,30 @@
       "value": "State"
     }
   ],
-  "lTr7eP": [
+  "lBENL4": [
     {
       "type": 0,
-      "value": "Change password and log in"
+      "value": "request email change"
     }
   ],
-  "o7nzDs": [
+  "pJU6x5": [
     {
       "type": 0,
-      "value": "User name"
-    }
-  ],
-  "p1iOq7": [
+      "value": "Confirmation link was sent to "
+    },
+    {
+      "type": 1,
+      "value": "newEmail"
+    },
     {
       "type": 0,
-      "value": "First name description"
+      "value": " mailbox"
     }
   ],
   "pJi/8z": [
     {
       "type": 0,
       "value": "Enter a ZIP / postal code"
-    }
-  ],
-  "pONqz8": [
-    {
-      "type": 0,
-      "value": "First name"
     }
   ],
   "pmu7Ih": [
@@ -525,16 +599,16 @@
       "value": "Enter an valid address"
     }
   ],
-  "qOefVu": [
-    {
-      "type": 0,
-      "value": "Last name description"
-    }
-  ],
   "qTs7Lh": [
     {
       "type": 0,
       "value": "Firstname"
+    }
+  ],
+  "r/rQ02": [
+    {
+      "type": 0,
+      "value": "Successfuly logged in."
     }
   ],
   "rBj9Ib": [
@@ -567,22 +641,16 @@
       "value": "Menu"
     }
   ],
-  "tS+q2C": [
-    {
-      "type": 0,
-      "value": "Update user name"
-    }
-  ],
-  "txUL0F": [
-    {
-      "type": 0,
-      "value": "Last name"
-    }
-  ],
   "u1JzBg": [
     {
       "type": 0,
       "value": "Enter a city"
+    }
+  ],
+  "uZTXoH": [
+    {
+      "type": 0,
+      "value": "Set password and log in"
     }
   ],
   "ulh3kf": [
@@ -595,6 +663,12 @@
     {
       "type": 0,
       "value": "Are you absolutely sure?"
+    }
+  ],
+  "vDJsvf": [
+    {
+      "type": 0,
+      "value": "Enter a valid new password"
     }
   ],
   "vHV69y": [

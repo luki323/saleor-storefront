@@ -11,8 +11,7 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
   const token = searchParams.get('token');
 
   if (isDefined(email) && isDefined(token)) {
-    const response = await confirmAccount({email, token});
-    const {user} = response.confirmAccount ?? {};
+    const {user} = (await confirmAccount({email, token})).confirmAccount ?? {};
 
     if (user?.isActive) {
       return NextResponse.redirect(new URL(APP_ROUTES.LOGIN, origin));

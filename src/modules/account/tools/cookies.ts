@@ -1,12 +1,17 @@
 import 'server-only';
 
 import type {serialize} from 'cookie';
+import jwtDecode from 'jwt-decode';
 import {cookies} from 'next/headers';
 
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {COOKIE_NAMES} from '../consts';
+
+export function getAccessToken() {
+  return cookies().get(COOKIE_NAMES.ACCESS_TOKEN);
+}
 
 export function hasAccessToken() {
   return cookies().has(COOKIE_NAMES.ACCESS_TOKEN);
@@ -21,6 +26,7 @@ export function createAccessToken(value: string) {
       path: formatPathname(APP_ROUTES.ROOT),
       httpOnly: true,
       sameSite: 'lax',
+      maxAge: jwtDecode<{readonly exp?: number}>(value).exp,
     },
   ] satisfies Parameters<typeof serialize>;
 }

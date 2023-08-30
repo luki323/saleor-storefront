@@ -1,7 +1,6 @@
 'use client';
 
 import {zodResolver} from '@hookform/resolvers/zod';
-import type {ElementRef} from 'react';
 import {useForm} from 'react-hook-form';
 
 import {FormattedMessage} from '@/i18n/react-intl';
@@ -10,46 +9,42 @@ import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldDescription} from '@/lib/components/form/FormFieldDescription';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
 import {FormFieldLabel} from '@/lib/components/form/FormFieldLabel';
+import {Button} from '@/lib/components/ui/Button';
 import {ErrorText} from '@/lib/components/ui/ErrorText';
+import {Label} from '@/lib/components/ui/Label';
 import {TextField} from '@/lib/components/ui/TextField';
-import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
-import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
-import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
-import {Label} from '../../_components/Label';
-import {SubmitButton} from '../../_components/SubmitButton';
-import {FIELDS} from '../_consts';
-import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
-import {useSignupSubmit} from '../_hooks/use-signup-submit';
+import {Form} from '../Form';
+import {FormFieldDescriptionText, FormItem} from '../Form';
+import {FIELDS} from './fields';
+import {useRequestEmailChangeSchema} from './hooks/use-request-email-change-schema';
+import {useRequestEmailChangeSubmit} from './hooks/use-request-email-change-submit';
 
-export function SignupForm() {
-  const signupFormSchema = useSignupFormSchema();
+export function RequestEmailChangeForm() {
+  const requestEmailChangeSchema = useRequestEmailChangeSchema();
 
-  const form = useForm<Zod.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+  const form = useForm<Zod.infer<typeof requestEmailChangeSchema>>({
+    resolver: zodResolver(requestEmailChangeSchema),
   });
 
-  const signupSubmit = useSignupSubmit(form);
-
-  const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
+  const requestEmailChangeSubmit = useRequestEmailChangeSubmit(form);
 
   const disabled = form.formState.isSubmitting;
 
   return (
-    <Form form={form} onSubmit={form.handleSubmit(signupSubmit)}>
+    <Form form={form} onSubmit={form.handleSubmit(requestEmailChangeSubmit)}>
       <FormField
-        name={FIELDS.EMAIL}
+        name={FIELDS.NEW_EMAIL}
         control={form.control}
-        render={({field: {ref, value = '', ...restField}}) => (
+        render={({field: {value = '', ...restField}}) => (
           <FormItem>
             <FormFieldLabel>
               <Label>
-                <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
+                <FormattedMessage defaultMessage="New email:" id="a4aUvK" />
               </Label>
             </FormFieldLabel>
             <FormFieldControl>
               <TextField
-                ref={refMountCallback(ref, deferInputFocus)}
                 value={value}
                 type="email"
                 placeholder="name@example.com"
@@ -63,8 +58,8 @@ export function SignupForm() {
               <FormFieldDescription>
                 <FormFieldDescriptionText>
                   <FormattedMessage
-                    defaultMessage="Email description"
-                    id="RVxG/0"
+                    defaultMessage="New email description"
+                    id="3P1axg"
                   />
                 </FormFieldDescriptionText>
               </FormFieldDescription>
@@ -89,7 +84,7 @@ export function SignupForm() {
               <TextField
                 value={value}
                 type="password"
-                autoComplete="new-password"
+                autoComplete="password"
                 disabled={disabled}
                 required
                 {...restField}
@@ -111,9 +106,9 @@ export function SignupForm() {
           </FormItem>
         )}
       />
-      <SubmitButton disabled={disabled}>
-        <FormattedMessage defaultMessage="Sign up with email" id="pmu7Ih" />
-      </SubmitButton>
+      <Button disabled={disabled}>
+        <FormattedMessage defaultMessage="request email change" id="lBENL4" />
+      </Button>
     </Form>
   );
 }

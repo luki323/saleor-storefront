@@ -28,10 +28,7 @@ export function useRequestPasswordResetSubmit(
             await requestPasswordReset({
               email,
               channel,
-              redirectUrl: new URL(
-                APP_ROUTES.CHANGE_PASSWORD,
-                ORIGIN,
-              ).toString(),
+              redirectUrl: new URL(APP_ROUTES.SET_PASSWORD, ORIGIN).toString(),
             })
           ).requestPasswordReset ?? {};
 

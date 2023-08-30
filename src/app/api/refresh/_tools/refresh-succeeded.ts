@@ -2,11 +2,15 @@ import {serialize} from 'cookie';
 
 import {createAccessToken} from '@/modules/account/tools/cookies';
 
-export function refreshSucceeded(refreshedAccessToken: string) {
+export async function refreshSucceeded(refreshedAccessToken: string) {
+  const accessToken = await createAccessToken(refreshedAccessToken);
+
   return new Response(null, {
     status: 200,
     headers: {
-      'Set-Cookie': serialize(...createAccessToken(refreshedAccessToken)),
+      ...(accessToken && {
+        'Set-Cookie': serialize(...accessToken),
+      }),
     },
   });
 }

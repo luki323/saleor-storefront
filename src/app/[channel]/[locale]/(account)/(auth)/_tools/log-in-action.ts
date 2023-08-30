@@ -20,7 +20,7 @@ export async function logInAction(variables: LogInVariables) {
   }
   invariant(token && refreshToken && csrfToken, 'Missing token');
 
-  setAccessToken(token);
+  await setAccessToken(token);
   setRefreshToken(refreshToken);
 
   return {

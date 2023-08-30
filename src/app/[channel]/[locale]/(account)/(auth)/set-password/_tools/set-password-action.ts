@@ -20,7 +20,7 @@ export async function setPasswordAction(variables: SetPasswordVariables) {
   }
   invariant(token && refreshToken && csrfToken, 'Missing token');
 
-  setAccessToken(token);
+  await setAccessToken(token);
   setRefreshToken(refreshToken);
 
   return {

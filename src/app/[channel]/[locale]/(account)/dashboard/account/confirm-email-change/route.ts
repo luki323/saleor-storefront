@@ -4,6 +4,7 @@ import {NextResponse} from 'next/server';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';
+import {readChannelHeader} from '@/middleware/tools/read-channel-header';
 
 import {confirmEmailChange} from './_tools/confirm-email-change';
 
@@ -14,7 +15,7 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
     const {errors} =
       (
         await confirmEmailChange({
-          channel: 'default-channel',
+          channel: readChannelHeader(),
           token,
         })
       ).confirmEmailChange ?? {};

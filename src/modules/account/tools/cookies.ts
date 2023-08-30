@@ -1,9 +1,10 @@
 import 'server-only';
 
 import type {serialize} from 'cookie';
-import jwtDecode from 'jwt-decode';
+import * as jose from 'jose';
 import {cookies} from 'next/headers';
 
+import {CLOUD_ORIGIN} from '@/env';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -17,22 +18,39 @@ export function hasAccessToken() {
   return cookies().has(COOKIE_NAMES.ACCESS_TOKEN);
 }
 
-export function createAccessToken(value: string) {
-  return [
-    COOKIE_NAMES.ACCESS_TOKEN,
-    value,
-    {
-      secure: true,
-      path: formatPathname(APP_ROUTES.ROOT),
-      httpOnly: true,
-      sameSite: 'lax',
-      maxAge: jwtDecode<{readonly exp?: number}>(value).exp,
-    },
-  ] satisfies Parameters<typeof serialize>;
+export async function createAccessToken(value: string) {
+  const JWKS = jose.createRemoteJWKSet(
+    new URL(`${CLOUD_ORIGIN}/.well-known/jwks.json`),
+  );
+
+  try {
+    const {
+      payload: {exp, iat},
+    } = await jose.jwtVerify(value, JWKS);
+
+    return [
+      COOKIE_NAMES.ACCESS_TOKEN,
+      value,
+      {
+        secure: true,
+        path: formatPathname(APP_ROUTES.ROOT),
+        httpOnly: true,
+        sameSite: 'lax',
+        ...(typeof exp === 'number' &&
+          typeof iat === 'number' && {maxAge: exp - iat}),
+      },
+    ] satisfies Parameters<typeof serialize>;
+  } catch (error) {
+    return null;
+  }
 }
 
-export function setAccessToken(value: string) {
-  cookies().set(...createAccessToken(value));
+export async function setAccessToken(value: string) {
+  const accessToken = await createAccessToken(value);
+
+  if (accessToken) {
+    cookies().set(...accessToken);
+  }
 }
 
 export function createRefreshToken(value: string) {

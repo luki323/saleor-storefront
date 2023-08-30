@@ -13,7 +13,7 @@ export async function parseSearchParams(
   searchParams: ProductsPageSearchParams,
 ): Promise<GetProductAttributesVariables> {
   invariant(
-    !isDefined(searchParams.category) || !isDefined(searchParams.collection),
+    isDefined(searchParams.category) || isDefined(searchParams.collection),
   );
   const [channel, locale] = getBasePath();
 

@@ -7,10 +7,10 @@ import {useBasePath} from './use-base-path';
 
 export function useIntlRouter() {
   const [channel, locale] = useBasePath();
-  const {push, replace, prefetch, ...router} = useRouter();
+  const {push, replace, prefetch, ...restRouter} = useRouter();
 
   return {
-    ...router,
+    ...restRouter,
     ...useMemo(() => {
       const basePathname = formatPathname(channel, locale);
 

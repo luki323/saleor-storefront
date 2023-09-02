@@ -1,4 +1,7 @@
-require('dotenv').config({path: './.env.local'});
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
+
+dotenvExpand.expand(dotenv.config({path: './.env.local'}));
 
 /** @type {import('graphql-config').IGraphQLConfig} */
 const config = {

@@ -4,7 +4,7 @@ import type {serialize} from 'cookie';
 import * as jose from 'jose';
 import {cookies} from 'next/headers';
 
-import {CLOUD_ORIGIN} from '@/env';
+import {SALEOR_ORIGIN} from '@/env';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -20,7 +20,7 @@ export function hasAccessToken() {
 
 export async function createAccessToken(value: string) {
   const JWKS = jose.createRemoteJWKSet(
-    new URL(`${CLOUD_ORIGIN}/.well-known/jwks.json`),
+    new URL(`${SALEOR_ORIGIN}/.well-known/jwks.json`),
   );
 
   try {

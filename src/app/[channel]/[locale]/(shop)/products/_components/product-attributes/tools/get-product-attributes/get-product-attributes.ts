@@ -2,7 +2,7 @@ import 'server-only';
 
 import invariant from 'tiny-invariant';
 
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 import type {GetProductAttributesVariables} from '@/graphql/generated/documents';
 import {GetProductAttributesDocument} from '@/graphql/generated/documents';
 import {translateConnection} from '@/i18n/tools/translate-connection';

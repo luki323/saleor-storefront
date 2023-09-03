@@ -4,7 +4,7 @@ import type {serialize} from 'cookie';
 import * as jose from 'jose';
 import {cookies} from 'next/headers';
 
-import {SALEOR_ORIGIN} from '@/env';
+import {SALEOR_ORIGIN} from '@/env/env-local';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 

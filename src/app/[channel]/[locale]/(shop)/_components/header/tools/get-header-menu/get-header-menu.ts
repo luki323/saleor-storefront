@@ -1,6 +1,6 @@
 import invariant from 'tiny-invariant';
 
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 import type {GetHeaderMenuVariables} from '@/graphql/generated/documents';
 import {GetHeaderMenuDocument} from '@/graphql/generated/documents';
 import {translateNested} from '@/i18n/tools/translate-nested';

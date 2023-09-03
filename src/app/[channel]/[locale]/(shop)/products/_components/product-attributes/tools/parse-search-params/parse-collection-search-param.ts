@@ -1,13 +1,12 @@
 import type {AttributeWhereInput} from '@/graphql/generated/types';
 import {getChannel} from '@/i18n/context/get-channel';
 
-import {getCollectionIds} from '../../../../tools/get-collection-ids';
-import type {ProductsPageSearchParams} from '../../../../types';
+import {getCollectionIds} from '../../../pagination/tools/get-collection-ids';
 
 export async function parseCollectionSearchParam(
-  searchParams: Pick<ProductsPageSearchParams, 'collection'>,
+  searchParams: URLSearchParams,
 ) {
-  const collectionIds = await getCollectionIds(searchParams, getChannel());
+  const collectionIds = await getCollectionIds(getChannel(), searchParams);
 
   return collectionIds.map((id) => ({
     inCollection: id,

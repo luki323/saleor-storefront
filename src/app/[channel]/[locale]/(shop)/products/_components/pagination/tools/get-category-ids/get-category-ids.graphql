@@ -1,0 +1,17 @@
+query getCategoryIds(
+  $first: Int
+  $after: String
+  $filter: CategoryFilterInput
+) {
+  categories(first: $first, after: $after, filter: $filter) {
+    edges {
+      node {
+        id
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

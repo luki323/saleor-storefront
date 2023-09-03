@@ -1,7 +1,8 @@
-import type {SearchParams} from '../create-search-params';
+import type {PageInfo} from '@/graphql/generated/types';
 
-export type PaginationKey = 'first' | 'after' | 'last' | 'before';
+import type {FORWARD_SEARCH_PARAM_NAMES} from './consts';
 
-export type PaginationSearchParams = Partial<
-  Record<PaginationKey, SearchParams[keyof SearchParams]>
->;
+export type ForwardPageInfo = Pick<PageInfo, 'hasNextPage' | 'endCursor'>;
+
+export type ForwardSearchParamName =
+  (typeof FORWARD_SEARCH_PARAM_NAMES)[keyof typeof FORWARD_SEARCH_PARAM_NAMES];

@@ -3,33 +3,33 @@ import 'server-only';
 import type {GetProductsVariables} from '@/graphql/generated/documents';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {localeToLangCode} from '@/i18n/tools/locale-to-lang-code';
-import {parsePaginationSearchParams} from '@/lib/tools/pagination/parse-pagination-search-params';
+import {parsePaginationParams} from '@/lib/tools/pagination';
 
-import {getCategoryIds} from '../../../../tools/get-category-ids';
-import {getCollectionIds} from '../../../../tools/get-collection-ids';
-import type {ProductsPageSearchParams} from '../../../../types';
+import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../../_consts';
+import {PRODUCTS_PREFIX} from '../../consts';
 import {DEFAULT_PAGE_SIZE} from '../../consts';
+import {getCategoryIds} from '../get-category-ids';
+import {getCollectionIds} from '../get-collection-ids';
 import {parseAttributeSearchParams} from './parse-attribute-searach-params';
-import {parseSearchSarchParam} from './parse-search-search-param';
 
 export async function parseSearchParams(
-  searchParams: ProductsPageSearchParams,
+  searchParams: URLSearchParams,
 ): Promise<GetProductsVariables> {
   const [channel, locale] = getBasePath();
 
-  const [categories, collections] = await Promise.all([
+  const [categoryIds, collectionIds] = await Promise.all([
     getCategoryIds(searchParams),
-    getCollectionIds(searchParams, channel),
+    getCollectionIds(channel, searchParams),
   ]);
   return {
-    ...parsePaginationSearchParams(searchParams, DEFAULT_PAGE_SIZE),
-    ...parseSearchSarchParam(searchParams),
+    ...parsePaginationParams(searchParams, PRODUCTS_PREFIX, DEFAULT_PAGE_SIZE),
     channel,
     languageCode: localeToLangCode(locale),
     filter: {
-      categories,
-      collections,
+      categories: categoryIds,
+      collections: collectionIds,
       attributes: parseAttributeSearchParams(searchParams),
     },
+    search: searchParams.get(PRODUCTS_PAGE_SEARCH_PARAM_NAMES.SEARCH),
   };
 }

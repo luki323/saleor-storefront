@@ -1,8 +1,7 @@
-import type {ExtendedURLSearchParamsInit} from './create-search-params';
 import {createSearchParams} from './create-search-params';
 
 export function hasSearchParam(
-  searchParams: ExtendedURLSearchParamsInit,
+  searchParams: Parameters<typeof createSearchParams>[number],
   name: string,
   value: string,
 ) {

@@ -1,7 +1,7 @@
 import {createClient, fetchExchange} from '@urql/core';
 import {registerUrql} from '@urql/next/rsc';
 
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 
 function makeClient() {
   return createClient({

@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 import type {GetCountryCodesVariables} from '@/graphql/generated/documents';
 import {GetCountryCodesDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

@@ -1,8 +1,8 @@
-import type {PaginationKey} from './types';
-
-export const PAGINATION_KEYS = {
+export const FORWARD_SEARCH_PARAM_NAMES = {
   FIRST: 'first',
   AFTER: 'after',
-  LAST: 'last',
-  BEFORE: 'before',
-} satisfies Record<string, PaginationKey>;
+} as const;
+
+// Shouldn't be Base64 char (https://en.wikipedia.org/wiki/Base64) as the Saleor
+// uses it to encode cursors
+export const CURSORS_SEPARATOR = '_';

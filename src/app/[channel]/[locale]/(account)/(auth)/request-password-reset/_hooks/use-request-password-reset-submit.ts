@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import type {UseFormReturn} from 'react-hook-form';
 
-import {ORIGIN} from '@/env';
+import {ORIGIN} from '@/env/env-local';
 import {useChannel} from '@/i18n/context/channel-context';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';

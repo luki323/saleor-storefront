@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 import type {GetCheckoutVariables} from '@/graphql/generated/documents';
 import {GetCheckoutDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

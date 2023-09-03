@@ -1,6 +1,5 @@
 import {cn} from '@/lib/tools/cn';
 
-import type {ProductsPageSearchParams} from '../../types';
 import {PageSizeLinks} from './components/PageSizeLinks';
 import {PaginationLinks} from './components/PaginationLinks';
 import {ProductList} from './components/product-list';
@@ -8,7 +7,7 @@ import {getProducts} from './tools/get-products';
 import {parseSearchParams} from './tools/parse-search-params';
 
 interface Props {
-  readonly searchParams: ProductsPageSearchParams;
+  readonly searchParams: URLSearchParams;
 }
 
 export async function Pagination({searchParams}: Props) {

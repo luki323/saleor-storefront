@@ -1,24 +1,20 @@
 import type {ProductFilterInput} from '@/graphql/generated/types';
-import type {SearchParams} from '@/lib/tools/create-search-params';
-import {omit} from '@/lib/tools/omit';
-import {PAGINATION_KEYS} from '@/lib/tools/pagination/consts';
-import {toArray} from '@/lib/tools/to-array';
+import {deletePaginationParams} from '@/lib/tools/pagination';
+import {uniq} from '@/lib/tools/uniq';
 import {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/modules/shop/consts';
 
-import type {ProductsPageSearchParams} from '../../../../types';
+import {PRODUCTS_PREFIX} from '../../consts';
 
 export function parseAttributeSearchParams(
-  searchParams: ProductsPageSearchParams,
-) {
-  const attributeSearchParams = omit(
-    searchParams,
-    ...Object.values({...PAGINATION_KEYS, ...PRODUCTS_PAGE_SERACH_PARAM_KEYS}),
-  );
+  searchParams: URLSearchParams,
+): NonNullable<ProductFilterInput['attributes']> {
+  const updatedSearchParams = new URLSearchParams(searchParams);
+  deletePaginationParams(updatedSearchParams, PRODUCTS_PREFIX);
 
-  return Object.entries<SearchParams[keyof SearchParams]>(
-    attributeSearchParams,
-  ).map(([key, value]) => ({
-    slug: key,
-    values: toArray(value).map((value) => value.toString()),
-  })) satisfies ProductFilterInput['attributes'];
+  Object.values(PRODUCTS_PAGE_SERACH_PARAM_KEYS).forEach((name) =>
+    updatedSearchParams.delete(name),
+  );
+  return uniq(Array.from(updatedSearchParams.keys()))
+    .map((name) => [name, updatedSearchParams.getAll(name)] as const)
+    .map(([name, values]) => ({slug: name, values}));
 }

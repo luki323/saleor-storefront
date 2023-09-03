@@ -1,11 +1,8 @@
 import type {AttributeWhereInput} from '@/graphql/generated/types';
 
-import {getCategoryIds} from '../../../../tools/get-category-ids';
-import type {ProductsPageSearchParams} from '../../../../types';
+import {getCategoryIds} from '../../../pagination/tools/get-category-ids';
 
-export async function parseCategorySerchParam(
-  searchParams: Pick<ProductsPageSearchParams, 'category'>,
-) {
+export async function parseCategorySerchParam(searchParams: URLSearchParams) {
   const categoryIds = await getCategoryIds(searchParams);
 
   return categoryIds.map((id) => ({

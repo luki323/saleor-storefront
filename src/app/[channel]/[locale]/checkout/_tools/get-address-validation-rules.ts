@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '@/env';
+import {GRAPHQL_ENDPOINT} from '@/env/env-local';
 import type {GetAddressValidationRulesVariables} from '@/graphql/generated/documents';
 import {GetAddressValidationRulesDocument} from '@/graphql/generated/documents';
 import {fetchQueryData} from '@/lib/tools/fetch-query';

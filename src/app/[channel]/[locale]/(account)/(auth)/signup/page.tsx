@@ -1,9 +1,9 @@
 import {Divider} from '@/app/[channel]/[locale]/(account)/(auth)/_components/Divider';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {APP_ROUTES} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
 import {Description} from '../_components/Description';
 import {GoogleButton} from '../_components/GoogleButton';
 import {Heading} from '../_components/Heading';
@@ -16,7 +16,7 @@ export default function SignupPage() {
       <NavigationLink href={formatPathname(APP_ROUTES.LOGIN)}>
         <FormattedMessage defaultMessage="Login" id="AyGauy" />
       </NavigationLink>
-      <Container>
+      <section className={cn('text-center')}>
         <Heading>
           <FormattedMessage defaultMessage="Create an account" id="0vL5u1" />
         </Heading>
@@ -26,7 +26,7 @@ export default function SignupPage() {
             id="Omjm4o"
           />
         </Description>
-      </Container>
+      </section>
       <SignupForm />
       <Divider>
         <FormattedMessage defaultMessage="Or continue with" id="4cSA+G" />

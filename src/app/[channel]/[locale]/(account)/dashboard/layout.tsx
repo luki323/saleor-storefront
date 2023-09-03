@@ -17,7 +17,7 @@ export default function DashboardLayout({children}: PropsWithChildren) {
         <aside className={cn('-mx-4 lg:w-1/5')}>
           <SidebarNav />
         </aside>
-        <div className={cn('flex-1 lg:max-w-2xl')}>{children}</div>
+        <main className={cn('flex-1 lg:max-w-2xl')}>{children}</main>
       </div>
     </div>
   );

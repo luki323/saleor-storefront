@@ -2,7 +2,7 @@ import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 
-export async function Description() {
+export async function Introduction() {
   const intl = await getIntl(getLocale());
 
   return (

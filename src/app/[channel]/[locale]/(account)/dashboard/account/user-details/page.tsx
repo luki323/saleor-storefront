@@ -6,14 +6,14 @@ import {RefreshAccessToken} from '@/modules/account/components/RefreshAccessToke
 import {hasAccessToken} from '@/modules/account/tools/cookies';
 
 import {ChangePasswordSection} from './_components/change-password-section/ChangePasswordSection';
-import {Description} from './_components/Description';
+import {Introduction} from './_components/Introduction';
 import {RequestEmailChangeSection} from './_components/request-email-change-section';
 
-export default function UserDetails() {
+export default async function UserDetails() {
   if (hasAccessToken()) {
     return (
       <div className={cn('space-y-6')}>
-        <Description />
+        <Introduction />
         <Separator />
         <RequestEmailChangeSection />
         <ChangePasswordSection />

@@ -1,3 +1,4 @@
+import {revalidatePath} from 'next/cache';
 import {useCallback, useTransition} from 'react';
 
 import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
@@ -24,8 +25,12 @@ export function useShippingMethodSubmit() {
             console.error(errors);
           } else {
             startTransition(() => {
-              intlRouter.push(formatPathname(...APP_ROUTES.CHECKOUT.BILLING));
-              intlRouter.refresh();
+              const BILLING_PATHNAME = formatPathname(
+                ...APP_ROUTES.CHECKOUT.BILLING,
+              );
+
+              intlRouter.push(BILLING_PATHNAME);
+              revalidatePath(BILLING_PATHNAME);
             });
           }
         } catch (error) {

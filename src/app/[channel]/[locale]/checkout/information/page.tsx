@@ -1,11 +1,11 @@
 import {redirect} from 'next/navigation';
 
 import {APP_ROUTES} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 import {Breadcrumbs} from '../_components/breadcrumbs';
-import {Wrapper} from '../_components/Wrapper';
 import {getCheckout} from '../_tools/get-checkout';
 import {getCountrySearchParam} from '../_tools/get-country-search-param';
 import {getRedirectUrl} from '../_tools/get-redirect-url';
@@ -31,13 +31,13 @@ export default async function InformationPage({searchParams}: Props) {
     redirect(redirectUrl);
   }
   return (
-    <Wrapper>
+    <div className={cn('space-y-7')}>
       <Breadcrumbs checkout={checkout} />
       <InformationSection
         email={checkout.email}
         shippingAddress={checkout.shippingAddress}
         country={getCountrySearchParam(searchParams)}
       />
-    </Wrapper>
+    </div>
   );
 }

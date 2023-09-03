@@ -14,7 +14,7 @@ import {BackwardLink} from '../../../_components/BackwardLink';
 import {Form} from '../../../_components/Form';
 import {SubmitButton} from '../../../_components/SubmitButton';
 import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
-import {useAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
+import {useAddressFieldsSchema as useBillingAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {useBillingAddressSubmit} from './use-billing-address-submit';
 
@@ -29,7 +29,7 @@ export function BillingAddressForm({
   countryCodes,
   addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
-  const addressFieldsSchema = useAddressFieldsSchema({
+  const billingAddressFieldsSchema = useBillingAddressFieldsSchema({
     postalCode,
   });
 
@@ -37,7 +37,7 @@ export function BillingAddressForm({
   const countryArea = countryAreaChoices.at(0)?.raw;
 
   const form = useForm<AddressFieldsSchema>({
-    resolver: zodResolver(addressFieldsSchema),
+    resolver: zodResolver(billingAddressFieldsSchema),
     defaultValues: {
       ...defaultValues,
       ...(city && {city: capitalize(city)}),

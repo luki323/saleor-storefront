@@ -2,9 +2,9 @@ import {redirect} from 'next/navigation';
 
 import {FormattedMessage} from '@/i18n/react-intl';
 import {APP_ROUTES} from '@/lib/consts';
+import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {Container} from '../_components/Container';
 import {Description} from '../_components/Description';
 import {Heading} from '../_components/Heading';
 import {SetPasswordForm} from './_components/SetPasswordForm';
@@ -25,7 +25,7 @@ export default async function SetPasswordPage({
 
   return (
     <>
-      <Container>
+      <section className={cn('text-center')}>
         <Heading>
           <FormattedMessage defaultMessage="Set password" id="QOiG4E" />
         </Heading>
@@ -35,7 +35,7 @@ export default async function SetPasswordPage({
             id="h/zqNr"
           />
         </Description>
-      </Container>
+      </section>
       <SetPasswordForm email={email} token={token} />
     </>
   );

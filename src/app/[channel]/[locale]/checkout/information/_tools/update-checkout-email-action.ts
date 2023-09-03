@@ -10,14 +10,12 @@ import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 export async function updateCheckoutEmailAction(
   email: UpdateCheckoutEmailVariables['email'],
 ) {
-  const id = getCheckoutId() ?? raise('Checkout id is not defined');
-
   return (
     await fetchQueryData(GRAPHQL_ENDPOINT, {
       params: {
         query: UpdateCheckoutEmailDocument,
         variables: {
-          id,
+          id: getCheckoutId() ?? raise('Checkout id is not defined'),
           email,
         },
       },

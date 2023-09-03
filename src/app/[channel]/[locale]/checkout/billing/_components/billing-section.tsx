@@ -2,10 +2,10 @@ import type {CountryCode} from '@/graphql/generated/types';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {localeToCountryCode} from '@/i18n/tools/locale-to-country-code';
+import {cn} from '@/lib/tools/cn';
 import {raise} from '@/lib/tools/raise';
 
 import {Heading} from '../../_components/Heading';
-import {Section} from '../../_components/Section';
 import {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
 import type {Checkout} from '../../_tools/get-checkout';
 import {getCountryCodes} from '../../_tools/get-country-codes';
@@ -32,7 +32,7 @@ export async function BillingSection({billingAddress, country}: Props) {
   ]);
 
   return (
-    <Section>
+    <section className={cn('space-y-3')}>
       <Heading>
         <FormattedMessage defaultMessage="Billing address" id="6orx1c" />
       </Heading>
@@ -44,6 +44,6 @@ export async function BillingSection({billingAddress, country}: Props) {
         countryCodes={countryCodes}
         addressValidationRules={addressValidationRules}
       />
-    </Section>
+    </section>
   );
 }

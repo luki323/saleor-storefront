@@ -19,11 +19,8 @@ import {FormItem} from '../../../_components/address-fields/components/Form';
 import {Checkbox} from '../../../_components/Checkbox';
 import {Form} from '../../../_components/Form';
 import {Heading} from '../../../_components/Heading';
-import {Section} from '../../../_components/Section';
 import {SubmitButton} from '../../../_components/SubmitButton';
 import {TextField} from '../../../_components/TextField';
-import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
-import {useAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {FIELDS} from './fields';
 import type {InformationFieldsSchema} from './hooks/use-information-fields-schema';
@@ -31,9 +28,7 @@ import {useInformationFieldsSchema} from './hooks/use-information-fields-schema'
 import {useInformationSubmit} from './hooks/use-information-submit';
 
 interface Props {
-  readonly defaultValues: Partial<
-    AddressFieldsSchema & InformationFieldsSchema
-  >;
+  readonly defaultValues: Partial<InformationFieldsSchema>;
   readonly countryCodes: readonly string[];
   readonly addressValidationRules: AddressValidationRules;
 }
@@ -43,16 +38,15 @@ export function InformationForm({
   countryCodes,
   addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
-  const informationFieldsSchema = useInformationFieldsSchema();
-  const addressFieldsSchema = useAddressFieldsSchema({
+  const informationFieldsSchema = useInformationFieldsSchema({
     postalCode,
   });
 
   const city = defaultValues.city;
   const countryArea = countryAreaChoices.at(0)?.raw;
 
-  const form = useForm<AddressFieldsSchema & InformationFieldsSchema>({
-    resolver: zodResolver(informationFieldsSchema.merge(addressFieldsSchema)),
+  const form = useForm<InformationFieldsSchema>({
+    resolver: zodResolver(informationFieldsSchema),
     defaultValues: {
       ...defaultValues,
       ...(city && {city: capitalize(city)}),
@@ -70,7 +64,7 @@ export function InformationForm({
 
   return (
     <Form form={form} onSubmit={form.handleSubmit(shippingAddressSubmit)}>
-      <Section>
+      <section className={cn('space-y-3')}>
         <Heading>
           <FormattedMessage defaultMessage="Contact" id="zFegDD" />
         </Heading>
@@ -99,8 +93,8 @@ export function InformationForm({
             </FormItem>
           )}
         />
-      </Section>
-      <Section>
+      </section>
+      <section className={cn('space-y-3')}>
         <Heading>
           <FormattedMessage defaultMessage="Shipping address" id="ZpVtCa" />
         </Heading>
@@ -124,7 +118,7 @@ export function InformationForm({
             </Checkbox>
           )}
         />
-      </Section>
+      </section>
       <div className={cn('self-end')}>
         <SubmitButton disabled={form.formState.isSubmitting || routeIsPending}>
           <FormattedMessage defaultMessage="Continue to shipping" id="DgnS8R" />

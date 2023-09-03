@@ -1,8 +1,8 @@
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
+import {cn} from '@/lib/tools/cn';
 
 import {Heading} from '../../../_components/Heading';
-import {Section} from '../../../_components/Section';
 import type {Checkout} from '../../../_tools/get-checkout';
 import {ShippingMethodForm} from './form';
 
@@ -18,7 +18,7 @@ export async function ShippingMethodSection({
   const intl = await getIntl(getLocale());
 
   return (
-    <Section>
+    <section className={cn('space-y-3')}>
       <Heading>
         {intl.formatMessage({
           defaultMessage: 'Shipping method',
@@ -29,6 +29,6 @@ export async function ShippingMethodSection({
         shippingMethod={shippingMethod}
         shippingMethods={shippingMethods}
       />
-    </Section>
+    </section>
   );
 }

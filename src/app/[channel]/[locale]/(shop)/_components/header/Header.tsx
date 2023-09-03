@@ -8,7 +8,7 @@ import {ShoppingCartButton} from './components/ShoppingCartButton';
 
 export async function Header() {
   return (
-    <div className={cn('flex items-center px-4 py-4 lg:px-6')}>
+    <header className={cn('flex items-center px-4 py-4 lg:px-6')}>
       <div className={cn('flex-1')}>
         <div className={cn('flex flex-1 items-center gap-5 max-md:hidden')}>
           <HomeLink />
@@ -29,6 +29,6 @@ export async function Header() {
       <div className={cn('flex flex-1 justify-end')}>
         <ShoppingCartButton />
       </div>
-    </div>
+    </header>
   );
 }

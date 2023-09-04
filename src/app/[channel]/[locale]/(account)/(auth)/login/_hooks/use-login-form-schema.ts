@@ -5,7 +5,7 @@ import {useIntl} from '@/i18n/react-intl';
 
 import {FIELDS} from '../_consts';
 
-export type LoginFormSchema = Zod.infer<ReturnType<typeof useLoginFormSchema>>;
+export type LoginFormSchema = zod.infer<ReturnType<typeof useLoginFormSchema>>;
 
 export function useLoginFormSchema() {
   const intl = useIntl();

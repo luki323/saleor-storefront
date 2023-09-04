@@ -6,7 +6,7 @@ import {MIN_PASSWORD_LENGTH} from '@/modules/account/consts';
 
 import {FIELDS} from '../_consts';
 
-export type SignupFormSchema = Zod.infer<
+export type SignupFormSchema = zod.infer<
   ReturnType<typeof useSignupFormSchema>
 >;
 

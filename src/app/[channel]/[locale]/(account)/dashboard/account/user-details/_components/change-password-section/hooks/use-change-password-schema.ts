@@ -6,7 +6,7 @@ import {MIN_PASSWORD_LENGTH} from '@/modules/account/consts';
 
 import {FIELDS} from '../fields';
 
-export type ChangePasswordSchema = Zod.infer<
+export type ChangePasswordSchema = zod.infer<
   ReturnType<typeof useChangePasswordSchema>
 >;
 

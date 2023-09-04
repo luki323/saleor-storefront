@@ -6,7 +6,7 @@ import {useIntl} from '@/i18n/react-intl';
 import {useAddressFieldsSchema} from '../../../../_hooks/use-address-fields-schema';
 import {FIELDS} from '../fields';
 
-export type InformationFieldsSchema = Zod.infer<
+export type InformationFieldsSchema = zod.infer<
   ReturnType<typeof useInformationFieldsSchema>
 >;
 

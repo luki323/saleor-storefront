@@ -8,7 +8,7 @@ import {random} from '@/lib/tools/random';
 
 import {ADDRESS_FIELDS} from '../_consts';
 
-export type AddressFieldsSchema = Zod.infer<
+export type AddressFieldsSchema = zod.infer<
   ReturnType<typeof useAddressFieldsSchema>
 >;
 

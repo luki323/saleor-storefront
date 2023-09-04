@@ -5,7 +5,7 @@ import {useIntl} from '@/i18n/react-intl';
 
 import {FIELDS} from '../_consts';
 
-export type RequestPasswordResetSchema = Zod.infer<
+export type RequestPasswordResetSchema = zod.infer<
   ReturnType<typeof useRequestPasswordResetSchema>
 >;
 

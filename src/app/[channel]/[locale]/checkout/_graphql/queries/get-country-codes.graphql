@@ -1,7 +1,0 @@
-query getCountryCodes($channel: String!) {
-  channel(slug: $channel) {
-    countries {
-      code
-    }
-  }
-}

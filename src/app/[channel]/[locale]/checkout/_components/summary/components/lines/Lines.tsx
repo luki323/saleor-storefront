@@ -1,16 +1,54 @@
 import Image from 'next/image';
 
+import type {FragmentType} from '@/graphql/generated/fragment-masking';
+import {getFragment} from '@/graphql/generated/fragment-masking';
+import {graphql} from '@/graphql/generated/gql';
 import {cn} from '@/lib/tools/cn';
-import type {CheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 import {Money} from '../../../Money';
 import {Quantity} from './Quantity';
 
-interface Props extends Pick<CheckoutSummary, 'lines'> {
-  readonly displayGrossPrices: boolean;
+const Lines_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment Lines_CheckoutFragment on Checkout {
+    lines {
+      totalPrice {
+        currency
+        net {
+          amount
+        }
+        gross {
+          amount
+        }
+      }
+      variant {
+        product {
+          name
+          translation(languageCode: $languageCode) {
+            name
+          }
+          media {
+            url
+            alt
+          }
+        }
+      }
+      quantity
+      id
+    }
+    displayGrossPrices
+  }
+`);
+
+interface Props {
+  readonly checkout: FragmentType<typeof Lines_CheckoutFragment>;
 }
 
-export function Lines({lines, displayGrossPrices}: Props) {
+export function Lines({checkout}: Props) {
+  const {lines, displayGrossPrices} = getFragment(
+    Lines_CheckoutFragment,
+    checkout,
+  );
+
   return (
     <ul className={cn('flex flex-col gap-4')}>
       {lines.map(

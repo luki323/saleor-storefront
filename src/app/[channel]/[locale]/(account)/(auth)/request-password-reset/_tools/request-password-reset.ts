@@ -1,15 +1,28 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {RequestPasswordResetVariables} from '@/graphql/generated/documents';
-import {RequestPasswordResetDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {RequestPasswordResetMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
+
+const RequestPasswordResetMutation = graphql(/* GraphQL */ `
+  mutation RequestPasswordResetMutation(
+    $email: String!
+    $redirectUrl: String!
+    $channel: String!
+  ) {
+    requestPasswordReset(
+      email: $email
+      redirectUrl: $redirectUrl
+      channel: $channel
+    ) {
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
 
 export async function requestPasswordReset(
-  variables: RequestPasswordResetVariables,
+  variables: RequestPasswordResetMutationMutationVariables,
 ) {
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: RequestPasswordResetDocument,
-      variables,
-    },
-  });
+  return await fetchMutationData(RequestPasswordResetMutation, variables);
 }

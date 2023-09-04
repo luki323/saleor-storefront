@@ -1,7 +1,7 @@
-import type {ProductFilterInput} from '@/graphql/generated/types';
+import {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/app/[channel]/[locale]/(shop)/_consts';
+import type {ProductFilterInput} from '@/graphql/generated/graphql';
 import {deletePaginationParams} from '@/lib/tools/pagination';
 import {uniq} from '@/lib/tools/uniq';
-import {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/modules/shop/consts';
 
 import {PRODUCTS_PREFIX} from '../../consts';
 

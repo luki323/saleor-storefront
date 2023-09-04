@@ -6,6 +6,10 @@ import {MIN_PASSWORD_LENGTH} from '@/modules/account/consts';
 
 import {FIELDS} from '../_consts';
 
+export type SetPasswordFormSchema = Zod.infer<
+  ReturnType<typeof useSetPasswordSchema>
+>;
+
 export function useSetPasswordSchema() {
   const intl = useIntl();
 

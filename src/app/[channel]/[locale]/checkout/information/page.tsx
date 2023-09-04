@@ -1,15 +1,35 @@
 import {redirect} from 'next/navigation';
 
+import {graphql} from '@/graphql/generated';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
+import {fetchQueryData} from '@/lib/tools/get-client';
+import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 import {Breadcrumbs} from '../_components/breadcrumbs';
-import {getCheckout} from '../_tools/get-checkout';
 import {getCountrySearchParam} from '../_tools/get-country-search-param';
 import {getRedirectUrl} from '../_tools/get-redirect-url';
 import {InformationSection} from './_components/InformationSection';
+
+const InformationPage_CheckoutQuery = graphql(/* GraphQL */ `
+  query InformationPage_Query($id: ID!) {
+    checkout(id: $id) {
+      shippingAddress {
+        __typename
+      }
+      deliveryMethod {
+        __typename
+      }
+      billingAddress {
+        __typename
+      }
+      ...Breadcrumbs_CheckoutFragment
+      ...InformationSection_CheckoutFragment
+    }
+  }
+`);
 
 interface Props {
   readonly searchParams?: {
@@ -19,8 +39,20 @@ interface Props {
 
 export default async function InformationPage({searchParams}: Props) {
   const id = getCheckoutId() ?? redirect(formatPathname(APP_ROUTES.ROOT));
-
-  const checkout = await getCheckout({id});
+  const checkout =
+    (
+      await fetchQueryData(
+        InformationPage_CheckoutQuery,
+        {
+          id,
+        },
+        {
+          fetchOptions: {
+            cache: 'no-cache',
+          },
+        },
+      )
+    ).checkout ?? raise('`checkout` is not defined');
 
   const redirectUrl = getRedirectUrl(
     checkout,
@@ -34,8 +66,7 @@ export default async function InformationPage({searchParams}: Props) {
     <div className={cn('space-y-7')}>
       <Breadcrumbs checkout={checkout} />
       <InformationSection
-        email={checkout.email}
-        shippingAddress={checkout.shippingAddress}
+        checkout={checkout}
         country={getCountrySearchParam(searchParams)}
       />
     </div>

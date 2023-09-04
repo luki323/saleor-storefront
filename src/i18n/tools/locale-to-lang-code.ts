@@ -1,4 +1,4 @@
-import type {LanguageCodeEnum} from '@/graphql/generated/types';
+import type {LanguageCodeEnum} from '@/graphql/generated/graphql';
 
 import type {AvailableLocale} from '../consts';
 

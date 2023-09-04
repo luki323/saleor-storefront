@@ -3,9 +3,10 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {APP_ROUTES} from '@/lib/consts';
-import {capitalize} from '@/lib/tools/capitalize';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -15,36 +16,56 @@ import {Form} from '../../../_components/Form';
 import {SubmitButton} from '../../../_components/SubmitButton';
 import type {AddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
 import {useAddressFieldsSchema as useBillingAddressFieldsSchema} from '../../../_hooks/use-address-fields-schema';
-import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {useBillingAddressSubmit} from './use-billing-address-submit';
 
+const BillingAddressForm_ChannelFragment = graphql(/* GraphQL */ `
+  fragment BillingAddressForm_ChannelFragment on Channel {
+    ...AddressFields_ChannelFragment
+  }
+`);
+
+const BillingAddressForm_AddressValidationDataFragment = graphql(/* GraphQL */ `
+  fragment BillingAddressForm_AddressValidationDataFragment on AddressValidationData {
+    postalCodeMatchers
+    postalCodeExamples
+    ...AddressFields_AddressValidationDataFragment
+  }
+`);
+
 interface Props {
+  readonly channel: FragmentType<typeof BillingAddressForm_ChannelFragment>;
+  readonly addressValidationData: FragmentType<
+    typeof BillingAddressForm_AddressValidationDataFragment
+  >;
   readonly defaultValues: Partial<AddressFieldsSchema>;
-  readonly countryCodes: readonly string[];
-  readonly addressValidationRules: AddressValidationRules;
 }
 
 export function BillingAddressForm({
+  channel,
+  addressValidationData,
   defaultValues,
-  countryCodes,
-  addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
+  const channelFragment = getFragment(
+    BillingAddressForm_ChannelFragment,
+    channel,
+  );
+  const {
+    postalCodeMatchers,
+    postalCodeExamples,
+    ...restAddressValidationDataFragment
+  } = getFragment(
+    BillingAddressForm_AddressValidationDataFragment,
+    addressValidationData,
+  );
+
   const billingAddressFieldsSchema = useBillingAddressFieldsSchema({
-    postalCode,
+    postalCodeMatchers,
+    postalCodeExamples,
   });
-
-  const city = defaultValues.city;
-  const countryArea = countryAreaChoices.at(0)?.raw;
-
   const form = useForm<AddressFieldsSchema>({
     resolver: zodResolver(billingAddressFieldsSchema),
-    defaultValues: {
-      ...defaultValues,
-      ...(city && {city: capitalize(city)}),
-      ...(countryArea && {countryArea}),
-    },
+    defaultValues,
   });
-
   const {billingAddressSubmit, routeIsPending} = useBillingAddressSubmit();
 
   const disabled = form.formState.isSubmitting || routeIsPending;
@@ -52,8 +73,8 @@ export function BillingAddressForm({
   return (
     <Form form={form} onSubmit={form.handleSubmit(billingAddressSubmit)}>
       <AddressFields
-        countryCodes={countryCodes}
-        countryAreaChoices={countryAreaChoices}
+        channel={channelFragment}
+        addressValidationData={restAddressValidationDataFragment}
         disabled={disabled}
       />
       <div className={cn('flex items-center justify-between')}>

@@ -1,7 +1,7 @@
 import 'server-only';
 
 import {graphql} from '@/graphql/generated';
-import type {GetNavCategoriesVariables} from '@/graphql/generated/documents';
+import type {GetNavCategoriesQueryQueryVariables} from '@/graphql/generated/graphql';
 import {translateConnection} from '@/i18n/tools/translate-connection';
 import {fetchQueryData} from '@/lib/tools/get-client';
 
@@ -49,7 +49,9 @@ const GetNavCategoriesQuery = graphql(`
   }
 `);
 
-export async function getNavCategories(variables: GetNavCategoriesVariables) {
+export async function getNavCategories(
+  variables: GetNavCategoriesQueryQueryVariables,
+) {
   const {categories} = await fetchQueryData(GetNavCategoriesQuery, variables);
 
   return categories && translateConnection(categories);

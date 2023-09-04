@@ -19,17 +19,16 @@ import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {Label} from '../../_components/Label';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
+import type {LoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginFormSchema} from '../_hooks/use-login-form-schema';
 import {useLoginSubmit} from '../_hooks/use-login-submit';
 import {RequestPasswordResetLink} from './RequestPasswordResetLink';
 
 export function LoginForm() {
   const loginFormSchema = useLoginFormSchema();
-
-  const form = useForm<Zod.infer<typeof loginFormSchema>>({
+  const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
   });
-
   const {loginSubmit, routeIsPending} = useLoginSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();

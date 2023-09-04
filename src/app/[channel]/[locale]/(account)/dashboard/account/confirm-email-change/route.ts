@@ -13,12 +13,10 @@ export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
 
   if (isDefined(token)) {
     const {errors} =
-      (
-        await confirmEmailChange({
-          channel: readChannelHeader(),
-          token,
-        })
-      ).confirmEmailChange ?? {};
+      (await confirmEmailChange({
+        channel: readChannelHeader(),
+        token,
+      })) ?? {};
 
     if (errors?.length) {
       return NextResponse.next();

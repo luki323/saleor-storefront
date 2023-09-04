@@ -1,24 +1,39 @@
 'use server';
 
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {UpdateCheckoutBillingAddressVariables} from '@/graphql/generated/documents';
-import {UpdateCheckoutBillingAddressDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {AddressInput} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
+const UpdateCheckoutBillingAddressMutation = graphql(/* GraphQL */ `
+  mutation UpdateCheckoutBillingAddressMutation(
+    $id: ID!
+    $billingAddress: AddressInput!
+  ) {
+    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
 export async function updateCheckoutBillingAddressAction(
-  billingAddress: UpdateCheckoutBillingAddressVariables['billingAddress'],
+  billingAddress: AddressInput,
 ) {
   return (
-    await fetchQueryData(GRAPHQL_ENDPOINT, {
-      params: {
-        query: UpdateCheckoutBillingAddressDocument,
-        variables: {
-          id: getCheckoutId() ?? raise('Checkout id is not defined'),
-          billingAddress,
+    await fetchMutationData(
+      UpdateCheckoutBillingAddressMutation,
+      {
+        billingAddress,
+        id: getCheckoutId() ?? raise('Checkout id is not defined'),
+      },
+      {
+        fetchOptions: {
+          cache: 'no-cache',
         },
       },
-    })
+    )
   ).checkoutBillingAddressUpdate;
 }

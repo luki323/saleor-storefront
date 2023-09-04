@@ -30,7 +30,6 @@ export async function parseSearchParams(
       categories: categoryIds,
       // @ts-expect-error https://github.com/dotansimha/graphql-code-generator/issues/8296#issuecomment-1287010974
       collections: collectionIds,
-      // @ts-expect-error https://github.com/dotansimha/graphql-code-generator/issues/8296#issuecomment-1287010974
       attributes: parseAttributeSearchParams(searchParams),
     },
     search: searchParams.get(PRODUCTS_PAGE_SEARCH_PARAM_NAMES.SEARCH),

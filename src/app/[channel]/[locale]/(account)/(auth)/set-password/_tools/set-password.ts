@@ -1,16 +1,33 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {SetPasswordVariables} from '@/graphql/generated/documents';
-import {SetPasswordDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {SetPasswordMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 
-export async function setPassword(variables: SetPasswordVariables) {
+const SetPasswordMutation = graphql(/* GraphQL */ `
+  mutation SetPasswordMutation(
+    $email: String!
+    $token: String!
+    $password: String!
+  ) {
+    setPassword(email: $email, token: $token, password: $password) {
+      token
+      refreshToken
+      csrfToken
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
+
+export async function setPassword(
+  variables: SetPasswordMutationMutationVariables,
+) {
   return (
-    await fetchQueryData(GRAPHQL_ENDPOINT, {
-      params: {
-        query: SetPasswordDocument,
-        variables,
+    await fetchMutationData(SetPasswordMutation, variables, {
+      fetchOptions: {
+        cache: 'no-cache',
       },
-      cache: 'no-cache',
     })
   ).setPassword;
 }

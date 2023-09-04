@@ -19,6 +19,7 @@ import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {Label} from '../../_components/Label';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
+import type {SetPasswordFormSchema} from '../_hooks/use-set-password-schema';
 import {useSetPasswordSchema} from '../_hooks/use-set-password-schema';
 import {useSetPasswordSubmit} from '../_hooks/use-set-password-submit';
 
@@ -29,11 +30,9 @@ interface Props {
 
 export function SetPasswordForm({email, token}: Props) {
   const setPasswordSchema = useSetPasswordSchema();
-
-  const form = useForm<Zod.infer<typeof setPasswordSchema>>({
+  const form = useForm<SetPasswordFormSchema>({
     resolver: zodResolver(setPasswordSchema),
   });
-
   const {setPasswordSubmit, routeIsPending} = useSetPasswordSubmit(form, {
     email,
     token,

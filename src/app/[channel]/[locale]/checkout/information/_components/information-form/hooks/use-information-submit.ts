@@ -1,7 +1,7 @@
 import {revalidatePath} from 'next/cache';
 import {useCallback, useTransition} from 'react';
 
-import type {AddressInput} from '@/graphql/generated/types';
+import type {AddressInput} from '@/graphql/generated/graphql';
 import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';

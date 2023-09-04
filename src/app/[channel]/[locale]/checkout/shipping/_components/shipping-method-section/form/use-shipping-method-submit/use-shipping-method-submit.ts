@@ -5,8 +5,8 @@ import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {updateCheckoutDeliveryMethodAction} from '../../../_tools/update-checkout-delivery-method-action';
-import type {ShippingMethodSchema} from './consts/shipping-method-schema';
+import type {ShippingMethodSchema} from '../consts/shipping-method-schema';
+import {updateCheckoutDeliveryMethodAction} from './update-checkout-delivery-method-action';
 
 export function useShippingMethodSubmit() {
   const intlRouter = useIntlRouter();

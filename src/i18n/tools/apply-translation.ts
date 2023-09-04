@@ -1,4 +1,4 @@
-import type {TranslationTypes} from '@/graphql/generated/types';
+import type {TranslationTypes} from '@/graphql/generated/graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 import type {GetAllValues} from '@/lib/types/utils';
 

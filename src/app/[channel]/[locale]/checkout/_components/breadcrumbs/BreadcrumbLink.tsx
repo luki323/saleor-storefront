@@ -16,7 +16,7 @@ const styles = cva(
   {
     variants: {
       disabled: {
-        true: 'pointer-events-none cursor-text !text-grey',
+        true: 'pointer-events-none cursor-text text-grey hover:text-grey',
       },
     },
   },

@@ -6,6 +6,10 @@ import {MIN_PASSWORD_LENGTH} from '@/modules/account/consts';
 
 import {FIELDS} from '../fields';
 
+export type RequestEmailChangeSchema = Zod.infer<
+  ReturnType<typeof useRequestEmailChangeSchema>
+>;
+
 export function useRequestEmailChangeSchema() {
   const intl = useIntl();
 

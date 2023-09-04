@@ -19,16 +19,15 @@ import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {Label} from '../../_components/Label';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
+import type {RequestPasswordResetSchema} from '../_hooks/use-request-password-reset-schema';
 import {useRequestPasswordResetSchema} from '../_hooks/use-request-password-reset-schema';
 import {useRequestPasswordResetSubmit} from '../_hooks/use-request-password-reset-submit';
 
 export function RequestPasswordResetForm() {
   const requestPasswordResetSchema = useRequestPasswordResetSchema();
-
-  const form = useForm<Zod.infer<typeof requestPasswordResetSchema>>({
+  const form = useForm<RequestPasswordResetSchema>({
     resolver: zodResolver(requestPasswordResetSchema),
   });
-
   const requestPasswordResetSubmit = useRequestPasswordResetSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();

@@ -9,9 +9,7 @@ import {APP_ROUTES} from '@/lib/consts';
 
 import {logInAction} from '../../_tools/log-in-action';
 import {signUp} from '../_tools/sign-up';
-import type {useSignupFormSchema} from './use-signup-form-schema';
-
-type SignupFormSchema = Zod.infer<ReturnType<typeof useSignupFormSchema>>;
+import type {SignupFormSchema} from './use-signup-form-schema';
 
 export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
   const channel = useChannel();

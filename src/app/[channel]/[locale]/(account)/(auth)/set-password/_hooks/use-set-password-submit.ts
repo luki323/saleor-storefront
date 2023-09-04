@@ -8,9 +8,7 @@ import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {setPasswordAction} from '../_tools/set-password-action';
-import type {useSetPasswordSchema} from './use-set-password-schema';
-
-type SetPasswordFormSchema = Zod.infer<ReturnType<typeof useSetPasswordSchema>>;
+import type {SetPasswordFormSchema} from './use-set-password-schema';
 
 export function useSetPasswordSubmit(
   form: UseFormReturn<SetPasswordFormSchema>,

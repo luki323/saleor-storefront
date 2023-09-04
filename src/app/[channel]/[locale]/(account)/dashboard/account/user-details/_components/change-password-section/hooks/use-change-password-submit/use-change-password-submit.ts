@@ -4,12 +4,8 @@ import type {UseFormReturn} from 'react-hook-form';
 import {useIntl} from '@/i18n/react-intl';
 import {toast} from '@/lib/components/ui/toaster/tools/toast';
 
-import {changePasswordAction} from '../../../tools/change-password-action';
-import type {useChangePasswordSchema} from './use-change-password-schema';
-
-type ChangePasswordSchema = Zod.infer<
-  ReturnType<typeof useChangePasswordSchema>
->;
+import type {ChangePasswordSchema} from '../use-change-password-schema';
+import {changePasswordAction} from './change-password-action';
 
 export function useChangePasswordSubmit(
   form: UseFormReturn<ChangePasswordSchema>,

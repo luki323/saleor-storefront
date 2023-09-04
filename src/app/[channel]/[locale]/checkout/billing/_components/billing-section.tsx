@@ -1,35 +1,86 @@
-import type {CountryCode} from '@/graphql/generated/types';
+import invariant from 'tiny-invariant';
+
+import {type FragmentType, getFragment, graphql} from '@/graphql/generated';
+import type {CountryCode} from '@/graphql/generated/graphql';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {localeToCountryCode} from '@/i18n/tools/locale-to-country-code';
 import {cn} from '@/lib/tools/cn';
-import {raise} from '@/lib/tools/raise';
+import {fetchQueryData} from '@/lib/tools/get-client';
 
 import {Heading} from '../../_components/Heading';
-import {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
-import type {Checkout} from '../../_tools/get-checkout';
-import {getCountryCodes} from '../../_tools/get-country-codes';
+import {findCountryCode} from '../../_tools/find-country-code';
+import {getDefaultAddressValues} from '../../_tools/get-default-address-values';
 import {BillingAddressForm} from './billing-address-form';
 
+const BillingSection_ChannelQuery = graphql(/* GraphQL */ `
+  query BillingSection_ChannelQuery($channel: String!) {
+    channel(slug: $channel) {
+      ...BillingAddressForm_ChannelFragment
+    }
+  }
+`);
+
+const BillingSection_AddressValidationRulesQuery = graphql(/* GraphQL */ `
+  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {
+    addressValidationRules(countryCode: $countryCode) {
+      countryAreaChoices {
+        raw
+      }
+      ...BillingAddressForm_AddressValidationDataFragment
+    }
+  }
+`);
+
+const BillingSection_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment BillingSection_CheckoutFragment on Checkout {
+    email
+    billingAddress {
+      country {
+        code
+        country
+      }
+      firstName
+      lastName
+      streetAddress1
+      streetAddress2
+      city
+      countryArea
+      postalCode
+    }
+  }
+`);
+
 interface Props {
-  readonly billingAddress: Checkout['billingAddress'];
+  readonly checkout: FragmentType<typeof BillingSection_CheckoutFragment>;
   readonly country: CountryCode | null;
 }
 
-export async function BillingSection({billingAddress, country}: Props) {
-  const [channel, locale] = getBasePath();
+export async function BillingSection({checkout, country}: Props) {
+  const [channelParam, localeParam] = getBasePath();
 
-  const countryCode =
-    country ?? billingAddress?.country ?? localeToCountryCode(locale);
+  const {email, billingAddress} = getFragment(
+    BillingSection_CheckoutFragment,
+    checkout,
+  );
 
-  const [countryCodes, addressValidationRules] = await Promise.all([
-    getCountryCodes({
-      channel,
+  const countryCode = findCountryCode(
+    country,
+    billingAddress?.country.code,
+    localeToCountryCode(localeParam),
+  );
+  invariant(countryCode);
+
+  const [{channel}, {addressValidationRules}] = await Promise.all([
+    fetchQueryData(BillingSection_ChannelQuery, {
+      channel: channelParam,
     }),
-    getAddressValidationRules({
-      countryCode: countryCode ?? raise('Country code is not defineds'),
+    fetchQueryData(BillingSection_AddressValidationRulesQuery, {
+      countryCode,
     }),
   ]);
+  invariant(channel);
+  invariant(addressValidationRules);
 
   return (
     <section className={cn('space-y-3')}>
@@ -38,11 +89,15 @@ export async function BillingSection({billingAddress, country}: Props) {
       </Heading>
       <BillingAddressForm
         defaultValues={{
-          ...billingAddress,
-          ...(countryCode && {country: countryCode}),
+          ...(email && {email}),
+          ...getDefaultAddressValues({
+            countryCode,
+            addressValues: billingAddress ?? {},
+            ...addressValidationRules,
+          }),
         }}
-        countryCodes={countryCodes}
-        addressValidationRules={addressValidationRules}
+        channel={channel}
+        addressValidationData={addressValidationRules}
       />
     </section>
   );

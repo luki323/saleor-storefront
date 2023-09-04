@@ -1,13 +1,23 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {ConfirmAccountVariables} from '@/graphql/generated/documents';
-import {ConfirmAccountDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {ConfirmAccountMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 
-export async function confirmAccount(variables: ConfirmAccountVariables) {
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: ConfirmAccountDocument,
-      variables,
-    },
-  });
+const ConfirmAccountMutation = graphql(/* GraphQL */ `
+  mutation ConfirmAccountMutation($email: String!, $token: String!) {
+    confirmAccount(email: $email, token: $token) {
+      user {
+        isActive
+      }
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
+
+export async function confirmAccount(
+  variables: ConfirmAccountMutationMutationVariables,
+) {
+  return await fetchMutationData(ConfirmAccountMutation, variables);
 }

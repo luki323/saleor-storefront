@@ -8,9 +8,7 @@ import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {logInAction} from '../../_tools/log-in-action';
-import type {useLoginFormSchema} from './use-login-form-schema';
-
-type LoginFormSchema = Zod.infer<ReturnType<typeof useLoginFormSchema>>;
+import type {LoginFormSchema} from './use-login-form-schema';
 
 export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
   const intlRouter = useIntlRouter();

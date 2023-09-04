@@ -1,14 +1,25 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {LogInVariables} from '@/graphql/generated/documents';
-import {LogInDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {LogInMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 
-export async function logIn(variables: LogInVariables) {
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: LogInDocument,
-      variables,
+const LogInMutation = graphql(/* GraphQL */ `
+  mutation LogInMutation($email: String!, $password: String!) {
+    tokenCreate(email: $email, password: $password) {
+      token
+      refreshToken
+      csrfToken
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
+
+export async function logIn(variables: LogInMutationMutationVariables) {
+  return await fetchMutationData(LogInMutation, variables, {
+    fetchOptions: {
+      cache: 'no-cache',
     },
-    cache: 'no-cache',
   });
 }

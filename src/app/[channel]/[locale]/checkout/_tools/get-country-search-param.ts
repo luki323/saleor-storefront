@@ -7,5 +7,5 @@ export function getCountrySearchParam({
       readonly country?: string;
     }
   | undefined = {}) {
-  return country && isCountryCode(country) ? country : null;
+  return isCountryCode(country) ? country : null;
 }

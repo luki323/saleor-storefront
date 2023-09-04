@@ -26,7 +26,7 @@ export function SelectTrigger({
       {...restProps}>
       {children}
       <Select_.Icon asChild>
-        <ChevronDown className="h-4 w-4 opacity-50" />
+        <ChevronDown className={cn('h-4 w-4 opacity-50')} />
       </Select_.Icon>
     </Select_.Trigger>
   );
@@ -78,9 +78,12 @@ export function SelectItem({
         className,
       )}
       {...restProps}>
-      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <span
+        className={cn(
+          'absolute left-2 flex h-3.5 w-3.5 items-center justify-center',
+        )}>
         <Select_.ItemIndicator>
-          <Check className="h-4 w-4" />
+          <Check className={cn('h-4 w-4')} />
         </Select_.ItemIndicator>
       </span>
       <Select_.ItemText>{children}</Select_.ItemText>

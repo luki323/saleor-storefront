@@ -8,8 +8,8 @@ import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {requestEmailChangeAction} from '../../../tools/request-email-change-action';
-import type {useRequestEmailChangeSchema} from './use-request-email-change-schema';
+import type {useRequestEmailChangeSchema} from '../use-request-email-change-schema';
+import {requestEmailChangeAction} from './request-email-change-action';
 
 type RequestEmailChangeSchema = Zod.infer<
   ReturnType<typeof useRequestEmailChangeSchema>

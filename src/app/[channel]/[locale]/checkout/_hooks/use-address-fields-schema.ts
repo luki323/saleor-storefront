@@ -1,20 +1,21 @@
 import {useMemo} from 'react';
 import * as zod from 'zod';
 
+import type {AddressValidationData} from '@/graphql/generated/graphql';
 import {useIntl} from '@/i18n/react-intl';
 import {isCountryCode} from '@/i18n/tools/is-country-code';
 import {random} from '@/lib/tools/random';
 
 import {ADDRESS_FIELDS} from '../_consts';
-import type {AddressValidationRules} from '../_tools/get-address-validation-rules';
 
 export type AddressFieldsSchema = Zod.infer<
   ReturnType<typeof useAddressFieldsSchema>
 >;
 
 export function useAddressFieldsSchema({
-  postalCode,
-}: Pick<AddressValidationRules, 'postalCode'>) {
+  postalCodeMatchers,
+  postalCodeExamples,
+}: Pick<AddressValidationData, 'postalCodeMatchers' | 'postalCodeExamples'>) {
   const intl = useIntl();
 
   return useMemo(() => {
@@ -105,7 +106,7 @@ export function useAddressFieldsSchema({
         })
         .refine(
           (value) =>
-            postalCode.matchers.some((postalCodeMatcher) =>
+            postalCodeMatchers.some((postalCodeMatcher) =>
               new RegExp(postalCodeMatcher).test(value),
             ),
           {
@@ -116,11 +117,11 @@ export function useAddressFieldsSchema({
                 id: 'WAgSwa',
               },
               {
-                postalCodeExample: random(postalCode.examples),
+                postalCodeExample: random(postalCodeExamples),
               },
             ),
           },
         ),
     });
-  }, [intl, postalCode.examples, postalCode.matchers]);
+  }, [intl, postalCodeExamples, postalCodeMatchers]);
 }

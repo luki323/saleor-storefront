@@ -1,22 +1,53 @@
 import {redirect} from 'next/navigation';
 
+import {graphql} from '@/graphql/generated';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
+import {fetchQueryData} from '@/lib/tools/get-client';
 import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 import {Breadcrumbs} from '../_components/breadcrumbs';
-import {getCheckout} from '../_tools/get-checkout';
 import {getRedirectUrl} from '../_tools/get-redirect-url';
 import {ShippingMethodSection} from './_components/shipping-method-section';
 import {ShippingReviewTable} from './_components/shipping-review-table';
-import {getShipTo} from './_tools/get-ship-to';
+
+const ShippingPage_CheckoutQuery = graphql(/* GraphQL */ `
+  query ShippingPage_CheckoutQuery($id: ID!) {
+    checkout(id: $id) {
+      shippingAddress {
+        __typename
+      }
+      deliveryMethod {
+        __typename
+      }
+      billingAddress {
+        __typename
+      }
+      ...Breadcrumbs_CheckoutFragment
+      ...ShippingReviewTable_CheckoutFragment
+      ...ShippingMethodSection_CheckoutFragment
+    }
+  }
+`);
 
 export default async function ShippingPage() {
   const id = getCheckoutId() ?? redirect(formatPathname(APP_ROUTES.ROOT));
-
-  const checkout = await getCheckout({id});
+  const checkout =
+    (
+      await fetchQueryData(
+        ShippingPage_CheckoutQuery,
+        {
+          id,
+        },
+        {
+          fetchOptions: {
+            cache: 'no-cache',
+          },
+        },
+      )
+    ).checkout ?? raise('`checkout` is not defined');
 
   const redirectUrl = getRedirectUrl(
     checkout,
@@ -26,19 +57,11 @@ export default async function ShippingPage() {
   if (redirectUrl) {
     redirect(redirectUrl);
   }
-  const {shippingMethod, shippingMethods} = checkout;
-
   return (
     <div className={cn('space-y-7')}>
       <Breadcrumbs checkout={checkout} />
-      <ShippingReviewTable
-        contact={checkout.email ?? raise('Contact is not defined.')}
-        shipTo={getShipTo(checkout.shippingAddress)}
-      />
-      <ShippingMethodSection
-        shippingMethod={shippingMethod}
-        shippingMethods={shippingMethods}
-      />
+      <ShippingReviewTable checkout={checkout} />
+      <ShippingMethodSection checkout={checkout} />
     </div>
   );
 }

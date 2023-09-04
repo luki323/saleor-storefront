@@ -1,6 +1,6 @@
 import type {CamelCase, ScreamingSnakeCase} from 'type-fest';
 
-import type {AddressInput} from '@/graphql/generated/types';
+import type {AddressInput} from '@/graphql/generated/graphql';
 
 export const ADDRESS_FIELDS: {
   readonly [FieldKey in ScreamingSnakeCase<

@@ -1,10 +1,14 @@
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import type {Checkout} from './get-checkout';
+type Checkout = Partial<{
+  readonly shippingAddress: unknown;
+  readonly deliveryMethod: unknown;
+  readonly billingAddress: unknown;
+}>;
 
 export function getRedirectUrl(
-  {shippingAddress, shippingMethod, billingAddress}: Checkout,
+  {shippingAddress, deliveryMethod, billingAddress}: Checkout,
   pathname: string,
 ) {
   const requirementRecords = {
@@ -14,11 +18,11 @@ export function getRedirectUrl(
     },
     [formatPathname(...APP_ROUTES.CHECKOUT.BILLING)]: {
       shippingAddress,
-      shippingMethod,
+      deliveryMethod,
     },
     [formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)]: {
       shippingAddress,
-      shippingMethod,
+      deliveryMethod,
       billingAddress,
     },
   };

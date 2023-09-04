@@ -8,11 +8,7 @@ import {toast} from '@/lib/components/ui/toaster/tools/toast';
 import {APP_ROUTES} from '@/lib/consts';
 
 import {requestPasswordReset} from '../_tools/request-password-reset';
-import type {useRequestPasswordResetSchema} from './use-request-password-reset-schema';
-
-type RequestPasswordResetSchema = Zod.infer<
-  ReturnType<typeof useRequestPasswordResetSchema>
->;
+import type {RequestPasswordResetSchema} from './use-request-password-reset-schema';
 
 export function useRequestPasswordResetSubmit(
   form: UseFormReturn<RequestPasswordResetSchema>,

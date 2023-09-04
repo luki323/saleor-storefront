@@ -1,4 +1,4 @@
-import type {PageInfo} from '@/graphql/generated/types';
+import type {PageInfo} from '@/graphql/generated/graphql';
 
 import type {FORWARD_SEARCH_PARAM_NAMES} from './consts';
 

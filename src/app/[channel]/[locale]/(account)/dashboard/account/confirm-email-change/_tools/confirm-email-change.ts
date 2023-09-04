@@ -1,21 +1,33 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {ConfirmEmailChangeVariables} from '@/graphql/generated/documents';
-import {ConfirmEmailChangeDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {ConfirmEmailChangeMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 import {getAccessToken} from '@/modules/account/tools/cookies';
 
+const ConfirmEmailChangeMutation = graphql(/* GraphQL */ `
+  mutation ConfirmEmailChangeMutation($channel: String!, $token: String!) {
+    confirmEmailChange(channel: $channel, token: $token) {
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
+
 export async function confirmEmailChange(
-  variables: ConfirmEmailChangeVariables,
+  variables: ConfirmEmailChangeMutationMutationVariables,
 ) {
   const accessToken = getAccessToken();
 
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: ConfirmEmailChangeDocument,
-      variables,
-    },
-    headers: {
-      ...(accessToken?.value && {Authorization: `Bearer ${accessToken.value}`}),
-    },
-  });
+  return (
+    await fetchMutationData(ConfirmEmailChangeMutation, variables, {
+      fetchOptions: {
+        headers: {
+          ...(accessToken?.value && {
+            Authorization: `Bearer ${accessToken.value}`,
+          }),
+        },
+      },
+    })
+  ).confirmEmailChange;
 }

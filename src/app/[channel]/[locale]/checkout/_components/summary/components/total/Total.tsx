@@ -2,28 +2,58 @@ import type {VariantProps} from 'cva';
 import {cva} from 'cva';
 import invariant from 'tiny-invariant';
 
+import type {FragmentType} from '@/graphql/generated/fragment-masking';
+import {getFragment} from '@/graphql/generated/fragment-masking';
+import {graphql} from '@/graphql/generated/gql';
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
-import type {CheckoutSummary} from '@/modules/checkout/tools/get-checkout-summary';
 
 import {Money} from '../../../Money';
 import {Text} from './Text';
 
-type TotalProps = Partial<
-  Pick<
-    CheckoutSummary,
-    'displayGrossPrices' | 'subtotalPrice' | 'shippingPrice' | 'totalPrice'
-  >
->;
+const Total_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment Total_CheckoutFragment on Checkout {
+    subtotalPrice {
+      currency
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    shippingPrice {
+      currency
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    totalPrice {
+      currency
+      net {
+        amount
+      }
+      gross {
+        amount
+      }
+    }
+    displayGrossPrices
+  }
+`);
 
-export async function Total({
-  displayGrossPrices,
-  subtotalPrice,
-  shippingPrice,
-  totalPrice,
-}: TotalProps) {
+interface TotalProps {
+  readonly checkout: FragmentType<typeof Total_CheckoutFragment>;
+}
+
+export async function Total({checkout}: TotalProps) {
+  const {subtotalPrice, shippingPrice, totalPrice, displayGrossPrices} =
+    getFragment(Total_CheckoutFragment, checkout);
+
   const intl = await getIntl(getLocale());
 
   invariant(subtotalPrice);

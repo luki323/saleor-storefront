@@ -1,20 +1,25 @@
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 
 import {Heading} from '../../../_components/Heading';
-import type {Checkout} from '../../../_tools/get-checkout';
 import {ShippingMethodForm} from './form';
 
+const ShippingMethodSection_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment ShippingMethodSection_CheckoutFragment on Checkout {
+    ...ShippingMethodForm_CheckoutFragment
+  }
+`);
+
 interface Props {
-  readonly shippingMethod: Checkout['shippingMethod'];
-  readonly shippingMethods: Checkout['shippingMethods'];
+  readonly checkout: FragmentType<
+    typeof ShippingMethodSection_CheckoutFragment
+  >;
 }
 
-export async function ShippingMethodSection({
-  shippingMethod,
-  shippingMethods,
-}: Props) {
+export async function ShippingMethodSection({checkout}: Props) {
   const intl = await getIntl(getLocale());
 
   return (
@@ -26,8 +31,7 @@ export async function ShippingMethodSection({
         })}
       </Heading>
       <ShippingMethodForm
-        shippingMethod={shippingMethod}
-        shippingMethods={shippingMethods}
+        checkout={getFragment(ShippingMethodSection_CheckoutFragment, checkout)}
       />
     </section>
   );

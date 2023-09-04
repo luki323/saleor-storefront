@@ -1,7 +1,7 @@
 import 'server-only';
 
 import {graphql} from '@/graphql/generated';
-import type {GetNavCollectionsVariables} from '@/graphql/generated/documents';
+import type {GetNavCollectionsQueryQueryVariables} from '@/graphql/generated/graphql';
 import {translateConnection} from '@/i18n/tools/translate-connection';
 import {fetchQueryData} from '@/lib/tools/get-client';
 
@@ -25,7 +25,9 @@ const GetNavCollectionsQuery = graphql(`
   }
 `);
 
-export async function getNavCollections(variables: GetNavCollectionsVariables) {
+export async function getNavCollections(
+  variables: GetNavCollectionsQueryQueryVariables,
+) {
   const {collections} = await fetchQueryData(GetNavCollectionsQuery, variables);
 
   return collections && translateConnection(collections);

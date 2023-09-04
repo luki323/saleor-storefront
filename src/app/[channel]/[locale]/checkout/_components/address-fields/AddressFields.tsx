@@ -1,5 +1,7 @@
 import {useFormContext} from 'react-hook-form';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {FormattedMessage, useIntl} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
@@ -9,7 +11,6 @@ import {cn} from '@/lib/tools/cn';
 
 import {ADDRESS_FIELDS} from '../../_consts';
 import type {AddressFieldsSchema} from '../../_hooks/use-address-fields-schema';
-import type {AddressValidationRules} from '../../_tools/get-address-validation-rules';
 import {
   Select,
   SelectContent,
@@ -22,24 +23,47 @@ import {TextField} from '../TextField';
 import {CountrySelect} from './components/country-select';
 import {FormGroup, FormItem} from './components/Form';
 
+const AddressFields_ChannelFragment = graphql(/* GraphQL */ `
+  fragment AddressFields_ChannelFragment on Channel {
+    ...CountrySelect_ChannelFragment
+  }
+`);
+
+const AddressFields_AddressValidationDataFragment = graphql(/* GraphQL */ `
+  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {
+    countryAreaChoices {
+      raw
+      verbose
+    }
+  }
+`);
+
 interface Props {
-  readonly countryCodes: readonly string[];
-  readonly countryAreaChoices: AddressValidationRules['countryAreaChoices'];
+  readonly channel: FragmentType<typeof AddressFields_ChannelFragment>;
+  readonly addressValidationData: FragmentType<
+    typeof AddressFields_AddressValidationDataFragment
+  >;
   readonly disabled: boolean;
 }
 
 export function AddressFields({
-  countryCodes,
-  countryAreaChoices,
+  channel,
+  addressValidationData,
   disabled,
 }: Props) {
   const form = useFormContext<AddressFieldsSchema>();
+
+  const channelFragment = getFragment(AddressFields_ChannelFragment, channel);
+  const {countryAreaChoices} = getFragment(
+    AddressFields_AddressValidationDataFragment,
+    addressValidationData,
+  );
 
   const intl = useIntl();
 
   return (
     <div className={cn('flex flex-col gap-3.5')}>
-      <CountrySelect countryCodes={countryCodes} disabled={disabled} />
+      <CountrySelect channel={channelFragment} disabled={disabled} />
       <FormGroup>
         <FormField
           name={ADDRESS_FIELDS.FIRST_NAME}
@@ -168,11 +192,22 @@ export function AddressFields({
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {countryAreaChoices.map(({raw, verbose}) => (
-                  <SelectItem key={raw} value={raw}>
-                    {verbose}
-                  </SelectItem>
-                ))}
+                {countryAreaChoices
+                  .filter(
+                    (
+                      countryAreaChoice,
+                    ): countryAreaChoice is {
+                      readonly raw: string;
+                      readonly verbose: string;
+                    } =>
+                      Boolean(countryAreaChoice.raw) &&
+                      Boolean(countryAreaChoice.verbose),
+                  )
+                  .map(({raw, verbose}) => (
+                    <SelectItem key={raw} value={raw}>
+                      {verbose}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
           )}

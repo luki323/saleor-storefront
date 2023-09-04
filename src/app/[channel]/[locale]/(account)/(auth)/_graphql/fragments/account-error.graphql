@@ -1,4 +1,0 @@
-fragment accountError on AccountError {
-  field
-  code
-}

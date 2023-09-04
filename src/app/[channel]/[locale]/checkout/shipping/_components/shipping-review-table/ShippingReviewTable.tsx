@@ -1,15 +1,41 @@
+import invariant from 'tiny-invariant';
+
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {cn} from '@/lib/tools/cn';
 
+import {getShipTo} from './get-ship-to';
 import {ShippingReviewRow} from './ShippingReviewRow';
 
+const ShippingReviewTable_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment ShippingReviewTable_CheckoutFragment on Checkout {
+    email
+    shippingAddress {
+      streetAddress1
+      city
+      countryArea
+      postalCode
+      country {
+        code
+      }
+    }
+  }
+`);
+
 interface Props {
-  readonly contact: string;
-  readonly shipTo: string;
+  readonly checkout: FragmentType<typeof ShippingReviewTable_CheckoutFragment>;
 }
 
-export async function ShippingReviewTable({contact, shipTo}: Props) {
+export async function ShippingReviewTable({checkout}: Props) {
+  const {email, shippingAddress} = getFragment(
+    ShippingReviewTable_CheckoutFragment,
+    checkout,
+  );
+  invariant(email);
+  invariant(shippingAddress);
+
   const intl = await getIntl(getLocale());
 
   return (
@@ -22,7 +48,7 @@ export async function ShippingReviewTable({contact, shipTo}: Props) {
           defaultMessage: 'Contact',
           id: 'zFegDD',
         })}
-        value={contact}
+        value={email}
       />
       <Divider />
       <ShippingReviewRow
@@ -30,7 +56,7 @@ export async function ShippingReviewTable({contact, shipTo}: Props) {
           defaultMessage: 'Ship to',
           id: '+JsDiH',
         })}
-        value={shipTo}
+        value={getShipTo(shippingAddress)}
       />
     </div>
   );

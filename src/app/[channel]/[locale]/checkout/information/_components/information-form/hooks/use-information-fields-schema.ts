@@ -4,20 +4,19 @@ import * as zod from 'zod';
 import {useIntl} from '@/i18n/react-intl';
 
 import {useAddressFieldsSchema} from '../../../../_hooks/use-address-fields-schema';
-import type {AddressValidationRules} from '../../../../_tools/get-address-validation-rules';
 import {FIELDS} from '../fields';
 
 export type InformationFieldsSchema = Zod.infer<
-  Awaited<ReturnType<typeof useInformationFieldsSchema>>
+  ReturnType<typeof useInformationFieldsSchema>
 >;
 
-export function useInformationFieldsSchema({
-  postalCode,
-}: Pick<AddressValidationRules, 'postalCode'>) {
+export function useInformationFieldsSchema(
+  addressFieldsSchemaOptions: Parameters<typeof useAddressFieldsSchema>[0],
+) {
   const intl = useIntl();
-  const addressFieldsSchema = useAddressFieldsSchema({
-    postalCode,
-  });
+  const addressFieldsSchema = useAddressFieldsSchema(
+    addressFieldsSchemaOptions,
+  );
 
   return useMemo(
     () =>

@@ -1,47 +1,100 @@
+import invariant from 'tiny-invariant';
+
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated/gql';
+import type {CountryCode} from '@/graphql/generated/graphql';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {localeToCountryCode} from '@/i18n/tools/locale-to-country-code';
-import {raise} from '@/lib/tools/raise';
+import {fetchQueryData} from '@/lib/tools/get-client';
 
-import {getAddressValidationRules} from '../../_tools/get-address-validation-rules';
-import type {Checkout} from '../../_tools/get-checkout';
-import {getCountryCodes} from '../../_tools/get-country-codes';
-import type {getCountrySearchParam} from '../../_tools/get-country-search-param';
+import {findCountryCode} from '../../_tools/find-country-code';
+import {getDefaultAddressValues} from '../../_tools/get-default-address-values';
 import {InformationForm} from './information-form';
 
+const InformationSection_ChannelQuery = graphql(/* GraphQL */ `
+  query InformationSection_ChannelQuery($channel: String!) {
+    channel(slug: $channel) {
+      ...InformationForm_ChannelFragment
+    }
+  }
+`);
+
+const InformationSection_AddressValidationRulesQuery = graphql(/* GraphQL */ `
+  query InformationSection_AddressValidationRulesQuery(
+    $countryCode: CountryCode!
+  ) {
+    addressValidationRules(countryCode: $countryCode) {
+      countryAreaChoices {
+        raw
+      }
+      ...InformationForm_AddressValidationDataFragment
+    }
+  }
+`);
+
+const InformationSection_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment InformationSection_CheckoutFragment on Checkout {
+    email
+    shippingAddress {
+      country {
+        code
+        country
+      }
+      firstName
+      lastName
+      streetAddress1
+      streetAddress2
+      city
+      countryArea
+      postalCode
+    }
+  }
+`);
+
 interface Props {
-  readonly email: Checkout['email'];
-  readonly shippingAddress: Checkout['shippingAddress'];
-  readonly country: ReturnType<typeof getCountrySearchParam>;
+  readonly checkout: FragmentType<typeof InformationSection_CheckoutFragment>;
+  readonly country: CountryCode | null;
 }
 
-export async function InformationSection({
-  email,
-  shippingAddress,
-  country,
-}: Props) {
-  const [channel, locale] = getBasePath();
+export async function InformationSection({checkout, country}: Props) {
+  const [channelParam, localeParam] = getBasePath();
 
-  const countryCode =
-    country ?? shippingAddress?.country ?? localeToCountryCode(locale);
+  const {email, shippingAddress} = getFragment(
+    InformationSection_CheckoutFragment,
+    checkout,
+  );
 
-  const [countryCodes, addressValidationRules] = await Promise.all([
-    getCountryCodes({
-      channel,
+  const countryCode = findCountryCode(
+    country,
+    shippingAddress?.country.code,
+    localeToCountryCode(localeParam),
+  );
+  invariant(countryCode);
+
+  const [{channel}, {addressValidationRules}] = await Promise.all([
+    fetchQueryData(InformationSection_ChannelQuery, {
+      channel: channelParam,
     }),
-    getAddressValidationRules({
-      countryCode: countryCode ?? raise('Country code is not defineds'),
+    fetchQueryData(InformationSection_AddressValidationRulesQuery, {
+      countryCode,
     }),
   ]);
+  invariant(channel);
+  invariant(addressValidationRules);
 
   return (
     <InformationForm
       defaultValues={{
         ...(email && {email}),
-        ...shippingAddress,
-        ...(countryCode && {country: countryCode}),
+        ...getDefaultAddressValues({
+          countryCode,
+          addressValues: shippingAddress ?? {},
+          ...addressValidationRules,
+        }),
       }}
-      countryCodes={countryCodes}
-      addressValidationRules={addressValidationRules}
+      channel={channel}
+      addressValidationData={addressValidationRules}
     />
   );
 }

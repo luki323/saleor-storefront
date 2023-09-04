@@ -1,20 +1,46 @@
 import 'server-only';
 
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {CreateCheckoutVariables} from '@/graphql/generated/documents';
-import {CreateCheckoutDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {CreateCheckoutMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 import {raise} from '@/lib/tools/raise';
 
 import {setCheckoutId} from './cookies';
 
-export async function createCheckout(variables: CreateCheckoutVariables) {
+const CreateCheckoutMutation = graphql(/* GraphQL */ `
+  mutation CreateCheckoutMutation(
+    $lines: [CheckoutLineInput!]!
+    $channel: String!
+    $languageCode: LanguageCodeEnum!
+    $email: String
+  ) {
+    checkoutCreate(
+      input: {
+        channel: $channel
+        lines: $lines
+        languageCode: $languageCode
+        email: $email
+      }
+    ) {
+      checkout {
+        id
+      }
+      errors {
+        field
+        code
+      }
+    }
+  }
+`);
+
+export async function createCheckoutAction(
+  variables: CreateCheckoutMutationMutationVariables,
+) {
   const {checkout, errors} =
     (
-      await fetchQueryData(GRAPHQL_ENDPOINT, {
-        params: {
-          query: CreateCheckoutDocument,
-          variables,
+      await fetchMutationData(CreateCheckoutMutation, variables, {
+        fetchOptions: {
+          cache: 'no-cache',
         },
       })
     ).checkoutCreate ?? {};
@@ -24,7 +50,6 @@ export async function createCheckout(variables: CreateCheckoutVariables) {
       errors,
     };
   }
-
   setCheckoutId(checkout?.id ?? raise('Checkout id is not defined'));
 
   return null;

@@ -1,4 +1,4 @@
-import type {AttributeWhereInput} from '@/graphql/generated/types';
+import type {AttributeWhereInput} from '@/graphql/generated/graphql';
 import {getChannel} from '@/i18n/context/get-channel';
 
 import {getCollectionIds} from '../../../pagination/tools/get-collection-ids';

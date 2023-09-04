@@ -1,9 +1,9 @@
 import {useRouter} from 'next/navigation';
 import {useTransition} from 'react';
 
+import {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/app/[channel]/[locale]/(shop)/_consts';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
-import {PRODUCTS_PAGE_SERACH_PARAM_KEYS} from '@/modules/shop/consts';
 
 export function useSearchProducts() {
   const router = useRouter();

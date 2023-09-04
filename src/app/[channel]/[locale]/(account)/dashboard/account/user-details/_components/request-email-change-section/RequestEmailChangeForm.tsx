@@ -17,16 +17,15 @@ import {TextField} from '@/lib/components/ui/TextField';
 import {Form} from '../Form';
 import {FormFieldDescriptionText, FormItem} from '../Form';
 import {FIELDS} from './fields';
+import type {RequestEmailChangeSchema} from './hooks/use-request-email-change-schema';
 import {useRequestEmailChangeSchema} from './hooks/use-request-email-change-schema';
-import {useRequestEmailChangeSubmit} from './hooks/use-request-email-change-submit';
+import {useRequestEmailChangeSubmit} from './hooks/use-request-email-change-submit/use-request-email-change-submit';
 
 export function RequestEmailChangeForm() {
   const requestEmailChangeSchema = useRequestEmailChangeSchema();
-
-  const form = useForm<Zod.infer<typeof requestEmailChangeSchema>>({
+  const form = useForm<RequestEmailChangeSchema>({
     resolver: zodResolver(requestEmailChangeSchema),
   });
-
   const requestEmailChangeSubmit = useRequestEmailChangeSubmit(form);
 
   const disabled = form.formState.isSubmitting;

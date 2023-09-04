@@ -1,5 +1,9 @@
+import {useMemo} from 'react';
 import {useFormContext} from 'react-hook-form';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated/gql';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 
@@ -16,15 +20,30 @@ import {
 import {useCountryOptions} from './hooks/use-country-options';
 import {useSetCountrySearchParam} from './hooks/use-set-country-search-param';
 
+const CountrySelect_ChannelFragment = graphql(/* GraphQL */ `
+  fragment CountrySelect_ChannelFragment on Channel {
+    countries {
+      code
+    }
+  }
+`);
+
 interface Props {
-  readonly countryCodes: readonly string[];
+  readonly channel: FragmentType<typeof CountrySelect_ChannelFragment>;
   readonly disabled: boolean;
 }
 
-export function CountrySelect({countryCodes, disabled}: Props) {
+export function CountrySelect({channel, disabled}: Props) {
   const form = useFormContext<AddressFieldsSchema>();
 
-  const countryOptions = useCountryOptions(countryCodes);
+  const {countries} = getFragment(CountrySelect_ChannelFragment, channel);
+
+  const countryOptions = useCountryOptions(
+    useMemo(
+      () => countries?.flatMap((country) => country.code) ?? [],
+      [countries],
+    ),
+  );
 
   const {routeIsPending, setCountrySearchParam} = useSetCountrySearchParam();
 

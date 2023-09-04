@@ -4,13 +4,15 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import type {ElementRef} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated/gql';
 import {FormattedMessage, useIntl} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
 import {ErrorText} from '@/lib/components/ui/ErrorText';
 import {useRefMountCallback} from '@/lib/hooks/use-ref-mount-callback';
-import {capitalize} from '@/lib/tools/capitalize';
 import {cn} from '@/lib/tools/cn';
 import {deferInputFocus} from '@/lib/tools/defer-input-focus';
 
@@ -21,39 +23,56 @@ import {Form} from '../../../_components/Form';
 import {Heading} from '../../../_components/Heading';
 import {SubmitButton} from '../../../_components/SubmitButton';
 import {TextField} from '../../../_components/TextField';
-import type {AddressValidationRules} from '../../../_tools/get-address-validation-rules';
 import {FIELDS} from './fields';
 import type {InformationFieldsSchema} from './hooks/use-information-fields-schema';
 import {useInformationFieldsSchema} from './hooks/use-information-fields-schema';
 import {useInformationSubmit} from './hooks/use-information-submit';
 
+const InformationForm_ChannelFragment = graphql(/* GraphQL */ `
+  fragment InformationForm_ChannelFragment on Channel {
+    ...AddressFields_ChannelFragment
+  }
+`);
+
+const InformationForm_AddressValidationDataFragment = graphql(/* GraphQL */ `
+  fragment InformationForm_AddressValidationDataFragment on AddressValidationData {
+    postalCodeMatchers
+    postalCodeExamples
+    ...AddressFields_AddressValidationDataFragment
+  }
+`);
+
 interface Props {
+  readonly channel: FragmentType<typeof InformationForm_ChannelFragment>;
+  readonly addressValidationData: FragmentType<
+    typeof InformationForm_AddressValidationDataFragment
+  >;
   readonly defaultValues: Partial<InformationFieldsSchema>;
-  readonly countryCodes: readonly string[];
-  readonly addressValidationRules: AddressValidationRules;
 }
 
 export function InformationForm({
+  channel,
+  addressValidationData,
   defaultValues,
-  countryCodes,
-  addressValidationRules: {countryAreaChoices, postalCode},
 }: Props) {
+  const channelFragment = getFragment(InformationForm_ChannelFragment, channel);
+  const {
+    postalCodeMatchers,
+    postalCodeExamples,
+    ...restAddressValidationDataFragment
+  } = getFragment(
+    InformationForm_AddressValidationDataFragment,
+    addressValidationData,
+  );
+
   const informationFieldsSchema = useInformationFieldsSchema({
-    postalCode,
+    postalCodeMatchers,
+    postalCodeExamples,
   });
-
-  const city = defaultValues.city;
-  const countryArea = countryAreaChoices.at(0)?.raw;
-
   const form = useForm<InformationFieldsSchema>({
     resolver: zodResolver(informationFieldsSchema),
-    defaultValues: {
-      ...defaultValues,
-      ...(city && {city: capitalize(city)}),
-      ...(countryArea && {countryArea}),
-    },
+    defaultValues,
   });
-
   const {shippingAddressSubmit, routeIsPending} = useInformationSubmit();
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
@@ -99,8 +118,8 @@ export function InformationForm({
           <FormattedMessage defaultMessage="Shipping address" id="ZpVtCa" />
         </Heading>
         <AddressFields
-          countryCodes={countryCodes}
-          countryAreaChoices={countryAreaChoices}
+          channel={channelFragment}
+          addressValidationData={restAddressValidationDataFragment}
           disabled={disabled}
         />
         <Controller

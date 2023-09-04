@@ -4,5 +4,5 @@ import {isCountryCode} from './is-country-code';
 export function localeToCountryCode(locale: AvailableLocale) {
   const region = new Intl.Locale(locale).region;
 
-  return region && isCountryCode(region) ? region : null;
+  return isCountryCode(region) ? region : null;
 }

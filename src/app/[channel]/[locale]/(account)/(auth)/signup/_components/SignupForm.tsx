@@ -19,16 +19,15 @@ import {Form, FormFieldDescriptionText, FormItem} from '../../_components/Form';
 import {Label} from '../../_components/Label';
 import {SubmitButton} from '../../_components/SubmitButton';
 import {FIELDS} from '../_consts';
+import type {SignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupSubmit} from '../_hooks/use-signup-submit';
 
 export function SignupForm() {
   const signupFormSchema = useSignupFormSchema();
-
-  const form = useForm<Zod.infer<typeof signupFormSchema>>({
+  const form = useForm<SignupFormSchema>({
     resolver: zodResolver(signupFormSchema),
   });
-
   const signupSubmit = useSignupSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();

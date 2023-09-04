@@ -1,29 +1,47 @@
 import {ChevronRightIcon} from 'lucide-react';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated/gql';
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
+import type {PropsWithChildren} from '@/lib/types/react';
 
-import type {Checkout} from '../../_tools/get-checkout';
 import {BreadcrumbLink} from './BreadcrumbLink';
 
+const Breadcrumbs_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment Breadcrumbs_CheckoutFragment on Checkout {
+    shippingAddress {
+      __typename
+    }
+    deliveryMethod {
+      __typename
+    }
+    billingAddress {
+      __typename
+    }
+  }
+`);
+
 interface Props {
-  readonly checkout: Checkout;
+  readonly checkout: FragmentType<typeof Breadcrumbs_CheckoutFragment>;
 }
 
-export async function Breadcrumbs({
-  checkout: {shippingAddress, shippingMethod, billingAddress},
-}: Props) {
-  const intl = await getIntl(getLocale());
+export async function Breadcrumbs({checkout}: Props) {
+  const {shippingAddress, deliveryMethod, billingAddress} = getFragment(
+    Breadcrumbs_CheckoutFragment,
+    checkout,
+  );
 
-  const liStyles = cn('flex items-center gap-2');
+  const intl = await getIntl(getLocale());
 
   return (
     <nav aria-label="Breadcrumb">
       <ol className={cn('flex gap-2')}>
-        <li className={liStyles}>
+        <Breadcrumb>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
             {intl.formatMessage({
@@ -32,8 +50,8 @@ export async function Breadcrumbs({
             })}
           </BreadcrumbLink>
           <BreadcrumbSeparator />
-        </li>
-        <li className={liStyles}>
+        </Breadcrumb>
+        <Breadcrumb>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}
             disabled={!shippingAddress}>
@@ -43,31 +61,35 @@ export async function Breadcrumbs({
             })}
           </BreadcrumbLink>
           <BreadcrumbSeparator />
-        </li>
-        <li className={liStyles}>
+        </Breadcrumb>
+        <Breadcrumb>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.BILLING)}
-            disabled={!shippingAddress || !shippingMethod}>
+            disabled={!shippingAddress || !deliveryMethod}>
             {intl.formatMessage({
               defaultMessage: 'Billing',
               id: 'Tbo377',
             })}
           </BreadcrumbLink>
           <BreadcrumbSeparator />
-        </li>
-        <li className={liStyles}>
+        </Breadcrumb>
+        <Breadcrumb>
           <BreadcrumbLink
             href={formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)}
-            disabled={!shippingAddress || !shippingMethod || !billingAddress}>
+            disabled={!shippingAddress || !deliveryMethod || !billingAddress}>
             {intl.formatMessage({
               defaultMessage: 'Payment',
               id: 'NmK6zy',
             })}
           </BreadcrumbLink>
-        </li>
+        </Breadcrumb>
       </ol>
     </nav>
   );
+}
+
+function Breadcrumb({children}: PropsWithChildren) {
+  return <li className={cn('flex items-center gap-2')}>{children}</li>;
 }
 
 function BreadcrumbSeparator() {

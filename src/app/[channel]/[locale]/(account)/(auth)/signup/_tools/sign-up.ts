@@ -1,13 +1,34 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {SignUpVariables} from '@/graphql/generated/documents';
-import {SignUpDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {SignUpMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
 
-export async function signUp(variables: SignUpVariables) {
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: SignUpDocument,
-      variables,
-    },
-  });
+const SignUpMutation = graphql(/* GraphQL */ `
+  mutation SignUpMutation(
+    $email: String!
+    $password: String!
+    $channel: String!
+    $redirectUrl: String!
+  ) {
+    accountRegister(
+      input: {
+        email: $email
+        password: $password
+        channel: $channel
+        redirectUrl: $redirectUrl
+      }
+    ) {
+      user {
+        email
+      }
+      errors {
+        field
+        code
+      }
+      requiresConfirmation
+    }
+  }
+`);
+
+export async function signUp(variables: SignUpMutationMutationVariables) {
+  return await fetchMutationData(SignUpMutation, variables);
 }

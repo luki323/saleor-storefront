@@ -17,16 +17,15 @@ import {TextField} from '@/lib/components/ui/TextField';
 import {Form} from '../Form';
 import {FormFieldDescriptionText, FormItem} from '../Form';
 import {FIELDS} from './fields';
+import type {ChangePasswordSchema} from './hooks/use-change-password-schema';
 import {useChangePasswordSchema} from './hooks/use-change-password-schema';
-import {useChangePasswordSubmit} from './hooks/use-change-password-submit';
+import {useChangePasswordSubmit} from './hooks/use-change-password-submit/use-change-password-submit';
 
 export function ChangePassowrdForm() {
   const changePasswordSchema = useChangePasswordSchema();
-
-  const form = useForm<Zod.infer<typeof changePasswordSchema>>({
+  const form = useForm<ChangePasswordSchema>({
     resolver: zodResolver(changePasswordSchema),
   });
-
   const changePasswordSubmit = useChangePasswordSubmit(form);
 
   const disabled = form.formState.isSubmitting;

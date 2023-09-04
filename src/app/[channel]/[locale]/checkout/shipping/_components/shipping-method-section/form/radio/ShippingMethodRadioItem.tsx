@@ -2,21 +2,36 @@
 
 import * as RadioGroup from '@radix-ui/react-radio-group';
 
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {FormattedMessage} from '@/i18n/react-intl';
 import {cn} from '@/lib/tools/cn';
 
 import {Money} from '../../../../../_components/Money';
-import type {Checkout} from '../../../../../_tools/get-checkout';
 
-type Props = Checkout['shippingMethods'][number];
+const ShippingMethodRadioItem_ShippingMethod = graphql(/* GraphQL */ `
+  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {
+    id
+    name
+    minimumDeliveryDays
+    maximumDeliveryDays
+    price {
+      currency
+      amount
+    }
+  }
+`);
 
-export function ShippingMethodRadioItem({
-  id,
-  name,
-  minimumDeliveryDays,
-  maximumDeliveryDays,
-  price,
-}: Props) {
+interface Props {
+  readonly shippingMethod: FragmentType<
+    typeof ShippingMethodRadioItem_ShippingMethod
+  >;
+}
+
+export function ShippingMethodRadioItem({shippingMethod}: Props) {
+  const {id, name, minimumDeliveryDays, maximumDeliveryDays, price} =
+    getFragment(ShippingMethodRadioItem_ShippingMethod, shippingMethod);
+
   return (
     <label
       className={cn(

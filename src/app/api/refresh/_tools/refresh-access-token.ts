@@ -1,15 +1,22 @@
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import type {RefreshAccessTokenVariables} from '@/graphql/generated/documents';
-import {RefreshAccessTokenDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import type {RefreshAccessTokenMutationMutationVariables} from '@/graphql/generated/graphql';
+import {fetchMutationData} from '@/lib/tools/get-client';
+
+const RefreshAccessTokenMutation = graphql(`
+  mutation RefreshAccessTokenMutation($refreshToken: String!) {
+    tokenRefresh(refreshToken: $refreshToken) {
+      token
+      errors {
+        field
+        message
+        code
+      }
+    }
+  }
+`);
 
 export async function refreshAccessToken(
-  variables: RefreshAccessTokenVariables,
+  variables: RefreshAccessTokenMutationMutationVariables,
 ) {
-  return await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: RefreshAccessTokenDocument,
-      variables,
-    },
-  });
+  return await fetchMutationData(RefreshAccessTokenMutation, variables);
 }

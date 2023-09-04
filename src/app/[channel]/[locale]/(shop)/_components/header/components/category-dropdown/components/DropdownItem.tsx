@@ -1,23 +1,41 @@
-import type {HeaderDropdownMenuFragment} from '@/graphql/generated/documents';
+import type {FragmentType} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
+import {applyTranslation} from '@/i18n/tools/apply-translation';
 import {DropdownMenuItem} from '@/lib/components/ui/DropdownMenu';
 import {cn} from '@/lib/tools/cn';
-import type {RequiredNonNullable} from '@/lib/types/utils';
 
 import {useSelectCategory} from '../use-select-category';
 
+const DropdownItem_MenuItemFragment = graphql(`
+  fragment DropdownItem_MenuItemFragment on MenuItem {
+    name
+    category {
+      slug
+    }
+    translation(languageCode: $languageCode) {
+      name
+    }
+  }
+`);
+
 interface Props {
-  readonly item: HeaderDropdownMenuFragment &
-    RequiredNonNullable<Pick<HeaderDropdownMenuFragment, 'category'>>;
+  readonly item: FragmentType<typeof DropdownItem_MenuItemFragment>;
 }
 
-export function DropdownItem({item: {name, category}}: Props) {
+export function DropdownItem(props: Props) {
+  const {name, category} = applyTranslation(
+    getFragment(DropdownItem_MenuItemFragment, props.item),
+  );
   const selectCategory = useSelectCategory();
 
   return (
-    <DropdownMenuItem
-      onSelect={() => selectCategory(category.slug)}
-      className={cn('flex-1')}>
-      {name}
-    </DropdownMenuItem>
+    category && (
+      <DropdownMenuItem
+        onSelect={() => selectCategory(category.slug)}
+        className={cn('flex-1')}>
+        {name}
+      </DropdownMenuItem>
+    )
   );
 }

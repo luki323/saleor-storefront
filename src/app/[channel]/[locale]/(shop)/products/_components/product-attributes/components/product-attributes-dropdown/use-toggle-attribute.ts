@@ -7,13 +7,13 @@ import {toggleSearchParam} from '@/lib/tools/toggle-search-param';
 
 import {PRODUCTS_PREFIX} from '../../../pagination/consts';
 
-export function useToggleAttribute(attributeName: string) {
+export function useToggleAttribute(searchParamName: string) {
   const router = useRouter();
 
-  return function toggleAttribute(value: string) {
+  return function toggleAttribute(slug: string) {
     const searchParams = new URLSearchParams(document.location.search);
     deleteCursorsParam(searchParams, PRODUCTS_PREFIX);
-    toggleSearchParam(searchParams, attributeName, value);
+    toggleSearchParam(searchParams, searchParamName, slug);
 
     router.push(`${formatPathname(APP_ROUTES.PRODUCTS)}?${searchParams}`);
   };

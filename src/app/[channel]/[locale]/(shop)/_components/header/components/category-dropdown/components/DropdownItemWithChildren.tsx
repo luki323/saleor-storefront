@@ -1,6 +1,8 @@
 import {FormattedMessage} from 'react-intl';
 
-import type {HeaderDropdownMenuFragment} from '@/graphql/generated/documents';
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
+import {applyTranslation} from '@/i18n/tools/apply-translation';
 import {
   DropdownMenuSub,
   DropdownMenuSubContent,
@@ -8,19 +10,28 @@ import {
 } from '@/lib/components/ui/DropdownMenu';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
-import type {RequiredNonNullable} from '@/lib/types/utils';
 
 import {DropdownItem} from './DropdownItem';
 
+const DropdownItemWithChildren_MenuItemFragment = graphql(`
+  fragment DropdownItemWithChildren_MenuItemFragment on MenuItem {
+    name
+    translation(languageCode: $languageCode) {
+      name
+    }
+    ...DropdownItem_MenuItemFragment
+  }
+`);
+
 interface Props {
-  readonly item: HeaderDropdownMenuFragment &
-    RequiredNonNullable<Pick<HeaderDropdownMenuFragment, 'category'>>;
+  readonly item: FragmentType<typeof DropdownItemWithChildren_MenuItemFragment>;
 }
 
-export function DropdownItemWithChildren({
-  children,
-  item,
-}: PropsWithChildren<Props>) {
+export function DropdownItemWithChildren(props: PropsWithChildren<Props>) {
+  const item = applyTranslation(
+    getFragment(DropdownItemWithChildren_MenuItemFragment, props.item),
+  );
+
   return (
     <div
       className={cn(
@@ -33,11 +44,11 @@ export function DropdownItemWithChildren({
             <FormattedMessage
               defaultMessage="Subcategories of {category}"
               id="MOC4lx"
-              values={{category: item.category.name}}
+              values={{category: item.name}}
             />
           </span>
         </DropdownMenuSubTrigger>
-        <DropdownMenuSubContent>{children}</DropdownMenuSubContent>
+        <DropdownMenuSubContent>{props.children}</DropdownMenuSubContent>
       </DropdownMenuSub>
     </div>
   );

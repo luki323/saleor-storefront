@@ -1,36 +1,49 @@
 'use client';
 
 import {Fragment} from 'react';
-import invariant from 'tiny-invariant';
 
-import type {HeaderDropdownMenuFragment} from '@/graphql/generated/documents';
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {DropdownMenuSeparator} from '@/lib/components/ui/DropdownMenu';
-import {isKeyDefined} from '@/lib/tools/is-key-defined';
-import type {RequiredNonNullable} from '@/lib/types/utils';
 
 import {DropdownItem} from './components/DropdownItem';
 import {DropdownItemWithChildren} from './components/DropdownItemWithChildren';
 
-export interface CategoryDropdownItemProps {
-  readonly item: HeaderDropdownMenuFragment &
-    RequiredNonNullable<Pick<HeaderDropdownMenuFragment, 'category'>>;
+const CategoryDropdownItem_MenuItemFragment = graphql(`
+  fragment CategoryDropdownItem_MenuItemFragment on MenuItem {
+    ...DropdownItem_MenuItemFragment
+    ...DropdownItemWithChildren_MenuItemFragment
+    children {
+      id
+      ...DropdownItem_MenuItemFragment
+      ...DropdownItemWithChildren_MenuItemFragment
+      children {
+        id
+        ...DropdownItem_MenuItemFragment
+        ...DropdownItemWithChildren_MenuItemFragment
+      }
+    }
+  }
+`);
+
+interface Props {
+  readonly item: FragmentType<typeof CategoryDropdownItem_MenuItemFragment>;
 }
 
-export function CategoryDropdownItem({item}: CategoryDropdownItemProps) {
+export function CategoryDropdownItem(props: Props) {
+  const item = getFragment(CategoryDropdownItem_MenuItemFragment, props.item);
+
   return !item.children?.length ? (
     <DropdownItem item={item} />
   ) : (
     <DropdownItemWithChildren item={item}>
-      {item.children.map((item, i) => {
-        invariant(isKeyDefined(item, 'category'));
-
-        return (
-          <Fragment key={item.id}>
-            {Boolean(i) && <DropdownMenuSeparator />}
-            <CategoryDropdownItem item={item} />
-          </Fragment>
-        );
-      })}
+      {item.children.map((item, idx) => (
+        <Fragment key={item.id}>
+          {Boolean(idx) && <DropdownMenuSeparator />}
+          {/* @ts-expect-error https://github.com/graphql/graphql-spec/issues/91#issuecomment-254895093 */}
+          <CategoryDropdownItem item={item} />
+        </Fragment>
+      ))}
     </DropdownItemWithChildren>
   );
 }

@@ -1,30 +1,44 @@
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 
+import type {FragmentType} from '@/graphql/generated';
+import {graphql} from '@/graphql/generated';
+import {getFragment} from '@/graphql/generated';
 import {getIntl} from '@/i18n/get-intl';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {isDefined} from '@/lib/tools/is-defined';
 import {getPrevNextParams} from '@/lib/tools/pagination';
-import type {ForwardPageInfo} from '@/lib/tools/pagination/types';
 
 import {PRODUCTS_PREFIX} from '../consts';
 import {NavigationIcon} from './NavigationIcon';
 
+const PaginationLinks_ProductCountableConnectionFragment = graphql(`
+  fragment PaginationLinks_PageInfoFragment on PageInfo {
+    hasNextPage
+    endCursor
+  }
+`);
+
 interface Props {
   readonly searchParams: URLSearchParams;
-  readonly pageInfo: ForwardPageInfo;
+  readonly pageInfo: FragmentType<
+    typeof PaginationLinks_ProductCountableConnectionFragment
+  >;
 }
 
-export async function PaginationLinks({searchParams, pageInfo}: Props) {
+export async function PaginationLinks(props: Props) {
+  const pageInfo = getFragment(
+    PaginationLinks_ProductCountableConnectionFragment,
+    props.pageInfo,
+  );
   const intl = await getIntl();
 
   const [prevParams, nextParams] = getPrevNextParams(
-    searchParams,
+    props.searchParams,
     pageInfo,
     PRODUCTS_PREFIX,
   );
-
   return (
     <ul className={cn('flex justify-between')}>
       <li>

@@ -14,10 +14,12 @@ export async function CategoryLinks({searchParams}: Props) {
   });
 
   return (
-    <NavLinks
-      nodes={navCategories}
-      searchParamName="category"
-      searchParams={searchParams}
-    />
+    navCategories && (
+      <NavLinks
+        nodes={navCategories}
+        searchParamName="category"
+        searchParams={searchParams}
+      />
+    )
   );
 }

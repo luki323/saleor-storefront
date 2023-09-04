@@ -1,9 +1,27 @@
+import {graphql} from '@/graphql/generated';
 import {cn} from '@/lib/tools/cn';
+import {fetchQueryData} from '@/lib/tools/get-client';
 
 import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../_consts';
 import {ProductAttributesDropdown} from './components/product-attributes-dropdown';
-import {getProductAttributes} from './tools/get-product-attributes';
 import {parseSearchParams} from './tools/parse-search-params';
+
+const ProductAttributes_AttributesQuery = graphql(`
+  query ProductAttributes_AttributesQuery(
+    $where: AttributeWhereInput
+    $channel: String
+    $languageCode: LanguageCodeEnum!
+  ) {
+    attributes(first: 16, where: $where, channel: $channel) {
+      edges {
+        node {
+          id
+          ...ProductAttributesDropdown_AttributeFragment
+        }
+      }
+    }
+  }
+`);
 
 interface Props {
   readonly searchParams: URLSearchParams;
@@ -16,16 +34,17 @@ export async function ProductAttributes({searchParams}: Props) {
   ) {
     return null;
   }
-  const productAttributes = await getProductAttributes(
+  const {attributes} = await fetchQueryData(
+    ProductAttributes_AttributesQuery,
     await parseSearchParams(searchParams),
   );
 
-  if (productAttributes.edges.length === 0) {
+  if (!attributes || attributes.edges.length === 0) {
     return null;
   }
   return (
     <ul className={cn('flex gap-6 pb-4 text-sm')}>
-      {productAttributes.edges.map(({node}) => (
+      {attributes.edges.map(({node}) => (
         <li key={node.id}>
           <ProductAttributesDropdown attribute={node} />
         </li>

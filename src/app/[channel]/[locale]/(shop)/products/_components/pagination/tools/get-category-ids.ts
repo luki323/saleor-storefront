@@ -1,13 +1,32 @@
 import 'server-only';
 
 import {CATEGORY_BOUND, MAX_PAGE_SIZE} from '@/env/env';
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import {GetCategoryIdsDocument} from '@/graphql/generated/documents';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {graphql} from '@/graphql/generated';
+import {fetchQueryData} from '@/lib/tools/get-client';
 import {isDefined} from '@/lib/tools/is-defined';
 import {uniq} from '@/lib/tools/uniq';
 
-import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../../_consts';
+import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../_consts';
+
+const GetCategoryIdsQuery = graphql(`
+  query GetCategoryIdsQuery(
+    $first: Int
+    $after: String
+    $filter: CategoryFilterInput
+  ) {
+    categories(first: $first, after: $after, filter: $filter) {
+      edges {
+        node {
+          id
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+`);
 
 export async function getCategoryIds(searchParams: URLSearchParams) {
   const categories = uniq(
@@ -27,16 +46,11 @@ async function getCategoryIdsAux(
     return categoryIdsAcc;
   }
 
-  const {categories} = await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: GetCategoryIdsDocument,
-      variables: {
-        first: categorySlugs.length,
-        ...(isDefined(after) && {after}),
-        filter: {
-          slugs: categorySlugs.slice(0, MAX_PAGE_SIZE),
-        },
-      },
+  const {categories} = await fetchQueryData(GetCategoryIdsQuery, {
+    first: categorySlugs.length,
+    ...(isDefined(after) && {after}),
+    filter: {
+      slugs: categorySlugs.slice(0, MAX_PAGE_SIZE),
     },
   });
   return await getCategoryIdsAux(

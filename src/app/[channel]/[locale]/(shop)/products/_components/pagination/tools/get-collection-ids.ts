@@ -1,14 +1,39 @@
 import 'server-only';
 
 import {COLLECTION_BOUND, MAX_PAGE_SIZE} from '@/env/env';
-import {GRAPHQL_ENDPOINT} from '@/env/env-local';
-import {GetCollectionIdsDocument} from '@/graphql/generated/documents';
+import {graphql} from '@/graphql/generated';
 import type {AvailableChannel} from '@/i18n/consts';
-import {fetchQueryData} from '@/lib/tools/fetch-query';
+import {fetchQueryData} from '@/lib/tools/get-client';
 import {isDefined} from '@/lib/tools/is-defined';
 import {uniq} from '@/lib/tools/uniq';
 
-import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../../_consts';
+import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../_consts';
+
+const GetCollectionIdsQuery = graphql(`
+  query getCollectionIds(
+    $first: Int
+    $after: String
+    $filter: CollectionFilterInput
+    $channel: String
+  ) {
+    collections(
+      first: $first
+      after: $after
+      filter: $filter
+      channel: $channel
+    ) {
+      edges {
+        node {
+          id
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+`);
 
 export async function getCollectionIds(
   channel: AvailableChannel,
@@ -32,18 +57,13 @@ async function getCollectionIdsAux(
     return collectionIdsAcc;
   }
 
-  const {collections} = await fetchQueryData(GRAPHQL_ENDPOINT, {
-    params: {
-      query: GetCollectionIdsDocument,
-      variables: {
-        first: collectionSlugs.length,
-        ...(isDefined(after) && {after}),
-        filter: {
-          slugs: collectionSlugs.slice(0, MAX_PAGE_SIZE),
-        },
-        channel,
-      },
+  const {collections} = await fetchQueryData(GetCollectionIdsQuery, {
+    first: collectionSlugs.length,
+    ...(isDefined(after) && {after}),
+    filter: {
+      slugs: collectionSlugs.slice(0, MAX_PAGE_SIZE),
     },
+    channel,
   });
   return await getCollectionIdsAux(
     channel,

@@ -1,46 +1,59 @@
 import Image from 'next/image';
-import invariant from 'tiny-invariant';
 
-import type {ProductCard as ProductCardType} from '@/graphql/generated/documents';
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import {FormattedMessage} from '@/i18n/react-intl';
+import {applyTranslation} from '@/i18n/tools/apply-translation';
 import {cn} from '@/lib/tools/cn';
 import {isDefined} from '@/lib/tools/is-defined';
 
 import {Badge} from './Bage';
 import {PriceBadge} from './PriceBadge';
 
+const ProductCard_ProductFragment = graphql(`
+  fragment ProductCard_ProductFragment on Product {
+    name
+    translation(languageCode: $languageCode) {
+      name
+    }
+    defaultVariant {
+      pricing(address: $address) {
+        ...PriceBadge_VariantPricingInfoFragment
+      }
+    }
+    isAvailable
+    thumbnail(size: 4096) {
+      url
+      alt
+    }
+  }
+`);
+
 interface Props {
-  readonly product: ProductCardType;
+  readonly product: FragmentType<typeof ProductCard_ProductFragment>;
 }
 
-export function ProductCard({
-  product: {name, thumbnail, defaultVariant, isAvailable},
-}: Props) {
-  invariant(thumbnail);
-
-  const {pricing} = defaultVariant ?? {};
-  invariant(pricing);
-
-  const {alt, url} = thumbnail;
-  invariant(isDefined(alt) && isDefined(url));
-
-  const {price, priceUndiscounted, onSale} = pricing;
-  invariant(price && priceUndiscounted && isDefined(onSale));
+export function ProductCard(props: Props) {
+  const {name, defaultVariant, isAvailable, thumbnail} = applyTranslation(
+    getFragment(ProductCard_ProductFragment, props.product),
+  );
 
   return (
     <div
       className={cn(
         'relative aspect-square rounded-lg border border-input bg-white hover:border-blue-600',
       )}>
-      <Image
-        alt={alt}
-        src={url}
-        width={400}
-        height={400}
-        className={cn(
-          'h-full transition duration-300 hover:scale-105 max-sm:w-full',
-        )}
-      />
+      {thumbnail && isDefined(thumbnail.alt) && (
+        <Image
+          alt={thumbnail.alt}
+          src={thumbnail.url}
+          width={400}
+          height={400}
+          className={cn(
+            'h-full transition duration-300 hover:scale-105 max-sm:w-full',
+          )}
+        />
+      )}
       <h4 className={cn('absolute left-2 top-3 w-1/2')}>
         <Badge>{name}</Badge>
       </h4>
@@ -52,13 +65,11 @@ export function ProductCard({
           </Badge>
         )}
       </span>
-      <span className={cn('absolute bottom-3 left-2')}>
-        <PriceBadge
-          onSale={onSale}
-          price={price}
-          priceUndiscounted={priceUndiscounted}
-        />
-      </span>
+      {defaultVariant && defaultVariant.pricing && (
+        <span className={cn('absolute bottom-3 left-2')}>
+          <PriceBadge pricing={defaultVariant.pricing} />
+        </span>
+      )}
     </div>
   );
 }

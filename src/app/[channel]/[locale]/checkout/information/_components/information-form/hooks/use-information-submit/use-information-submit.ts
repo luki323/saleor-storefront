@@ -1,40 +1,12 @@
-import {revalidatePath} from 'next/cache';
 import {useCallback, useTransition} from 'react';
 
-import type {AddressInput} from '@/graphql/generated/graphql';
 import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {updateCheckoutBillingAddressAction} from '../../../../_tools/update-checkout-billing-address-action';
-import {updateCheckoutEmailAction} from '../../../_tools/update-checkout-email-action';
-import {updateCheckoutShippingAddressAction} from '../../../_tools/update-checkout-shipping-address-action';
-import type {InformationFieldsSchema} from './use-information-fields-schema';
-
-async function updateCheckoutAddress(
-  addressInput: AddressInput,
-  useShippingAsBillingAddress?: boolean,
-) {
-  const {errors} =
-    (await updateCheckoutShippingAddressAction(addressInput)) ?? {};
-
-  if (errors?.length) {
-    return {
-      errors,
-    };
-  }
-  if (useShippingAsBillingAddress) {
-    const {errors} =
-      (await updateCheckoutBillingAddressAction(addressInput)) ?? {};
-
-    if (errors?.length) {
-      return {
-        errors,
-      };
-    }
-  }
-  return null;
-}
+import {updateCheckoutEmailAction} from '../../../../_tools/update-checkout-email-action';
+import type {InformationFieldsSchema} from '../use-information-fields-schema';
+import {updateCheckoutAddress} from './update-checkout-address';
 
 export function useInformationSubmit() {
   const intlRouter = useIntlRouter();
@@ -70,7 +42,7 @@ export function useInformationSubmit() {
               );
 
               intlRouter.push(SHIPPING_PATHNAME);
-              revalidatePath(SHIPPING_PATHNAME);
+              intlRouter.refresh();
             });
           }
         } catch (error) {

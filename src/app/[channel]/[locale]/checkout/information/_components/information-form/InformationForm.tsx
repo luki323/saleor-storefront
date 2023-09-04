@@ -26,7 +26,7 @@ import {TextField} from '../../../_components/TextField';
 import {FIELDS} from './fields';
 import type {InformationFieldsSchema} from './hooks/use-information-fields-schema';
 import {useInformationFieldsSchema} from './hooks/use-information-fields-schema';
-import {useInformationSubmit} from './hooks/use-information-submit';
+import {useInformationSubmit} from './hooks/use-information-submit/use-information-submit';
 
 const InformationForm_ChannelFragment = graphql(/* GraphQL */ `
   fragment InformationForm_ChannelFragment on Channel {

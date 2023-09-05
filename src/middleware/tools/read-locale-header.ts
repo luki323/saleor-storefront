@@ -11,5 +11,6 @@ import {CUSTOM_REQUEST_HEADERS} from '../consts';
 export function readLocaleHeader() {
   const locale = headers().get(CUSTOM_REQUEST_HEADERS.LOCALE);
   invariant(isDefined(locale) && isAvailableCiLocale(locale), 'Invalid locale');
+
   return locale;
 }

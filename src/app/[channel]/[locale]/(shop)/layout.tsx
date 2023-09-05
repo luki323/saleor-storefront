@@ -7,7 +7,7 @@ export default function ShopLayout({children}: PropsWithChildren) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      {children}
       <Footer />
     </>
   );

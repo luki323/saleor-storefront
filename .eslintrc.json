@@ -26,7 +26,6 @@
       "error",
       {"fixStyle": "separate-type-imports"}
     ],
-    "functional/no-this-expressions": "error",
     "functional/prefer-readonly-type": "error",
     "react/function-component-definition": [
       "error",

@@ -1,11 +1,17 @@
+import invariant from 'tiny-invariant';
+
 import {ciEquals} from '@/lib/tools/ci-equals';
-import {raise} from '@/lib/tools/raise';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import {AVAILABLE_LOCALES} from '../consts';
 
 export function formatLocale(preferredLocale: string) {
-  return (
-    AVAILABLE_LOCALES.find((locale) => ciEquals(locale, preferredLocale)) ??
-    raise(`Not found ${preferredLocale} locale`)
+  const formattedLocale = AVAILABLE_LOCALES.find((locale) =>
+    ciEquals(locale, preferredLocale),
   );
+  invariant(
+    isDefined(formattedLocale),
+    `Couldn't format '${preferredLocale}' locale`,
+  );
+  return formattedLocale;
 }

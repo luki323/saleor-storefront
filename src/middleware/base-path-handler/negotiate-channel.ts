@@ -1,8 +1,9 @@
+import invariant from 'tiny-invariant';
+
 import type {AvailableChannel, AvailableLocale} from '@/i18n/consts';
 import {DEFAULT_CHANNEL} from '@/i18n/consts';
 import {isAvailableChannel} from '@/i18n/tools/is-available-channel';
 import {isDefined} from '@/lib/tools/is-defined';
-import {raise} from '@/lib/tools/raise';
 
 const localeToChannel: Record<AvailableLocale, AvailableChannel> = {
   'en-US': 'default-channel',
@@ -13,13 +14,15 @@ export function negotiateChannel(
   preferredChannel?: string,
 ): AvailableChannel {
   if (!isDefined(preferredChannel)) {
-    return (
-      localeToChannel[locale] ??
-      raise(`Inexhaustive locale check for ${locale} locale`)
+    const channel = localeToChannel[locale];
+
+    invariant(
+      isDefined(channel),
+      `Inexhaustive locale check for ${locale} locale`,
     );
+    return channel;
   }
-  if (isAvailableChannel(preferredChannel)) {
-    return preferredChannel;
-  }
-  return DEFAULT_CHANNEL;
+  return isAvailableChannel(preferredChannel)
+    ? preferredChannel
+    : DEFAULT_CHANNEL;
 }

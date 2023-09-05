@@ -6,9 +6,11 @@ import {cache} from 'react';
 import type {AvailableLocale} from './consts';
 import {DEFAULT_LOCALE} from './consts';
 import {getLocale} from './context/get-locale';
+import {assertAvailableLocale} from './tools/assert-available-locale';
 import {loadCompiledMessages} from './tools/load-compiled-messages';
 
 const getIntlFn = cache(async (locale: AvailableLocale) => {
+  assertAvailableLocale(locale);
   const messages = await loadCompiledMessages(locale);
 
   return createIntl(

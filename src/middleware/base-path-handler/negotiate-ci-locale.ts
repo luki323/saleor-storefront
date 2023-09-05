@@ -30,8 +30,7 @@ export function negotiateCiLocale(headers: Headers, preferredLocale?: string) {
   } catch {
     locale = DEFAULT_LOCALE;
   }
-  if (isDefined(preferredLocale) && ciEquals(preferredLocale, locale)) {
-    return preferredLocale;
-  }
-  return locale;
+  return isDefined(preferredLocale) && ciEquals(preferredLocale, locale)
+    ? preferredLocale
+    : locale;
 }

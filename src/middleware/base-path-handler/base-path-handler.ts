@@ -1,37 +1,32 @@
 import {formatLocale} from '@/i18n/tools/format-locale';
 import {formatPathname} from '@/lib/tools/format-pathname';
-import {isDefined} from '@/lib/tools/is-defined';
 import {splitPathname} from '@/lib/tools/split-pathname';
 
-import type {Handler} from '../create-middie';
+import type {Handler} from '../create-middleware';
 import {negotiateChannel} from './negotiate-channel';
 import {negotiateCiLocale} from './negotiate-ci-locale';
 
-export const basePathHandler: Handler = function basePathHandler(req) {
+export const basePathHandler: Handler = function basePathHandler({
+  req,
+  EarlyReturnResponse,
+}) {
   const segments = splitPathname(req.nextUrl.pathname);
-  const [channelSegment, localeSegment] = segments;
 
-  const locale = negotiateCiLocale(req.headers, localeSegment);
-  const formattedLocale = formatLocale(locale);
+  const [, localeSegment] = segments;
+  const preferredLocale = negotiateCiLocale(req.headers, localeSegment);
+  const locale = formatLocale(preferredLocale);
 
-  const channel = negotiateChannel(formattedLocale, channelSegment);
+  const [channelSegment] = segments;
+  const channel = negotiateChannel(locale, channelSegment);
 
-  if (
-    channelSegment !== channel ||
-    !isDefined(localeSegment) ||
-    localeSegment !== locale
-  ) {
-    // Redirect if the channel or locale isn't valid
+  if (channelSegment !== channel || localeSegment !== preferredLocale) {
     const updatedUrl = req.nextUrl.clone();
     updatedUrl.pathname = formatPathname(channel, locale, ...segments);
-
-    this.MiddieResponse.redirect(updatedUrl);
+    EarlyReturnResponse.redirect(updatedUrl);
   }
-  if (localeSegment === locale) {
-    // Rewrite if the channel is valid and the locale is case-insensitive equal
+  if (preferredLocale !== locale) {
     const updatedUrl = req.nextUrl.clone();
     updatedUrl.pathname = formatPathname(channel, locale, ...segments.slice(2));
-
-    this.MiddieResponse.rewrite(updatedUrl);
+    EarlyReturnResponse.rewrite(updatedUrl);
   }
 };

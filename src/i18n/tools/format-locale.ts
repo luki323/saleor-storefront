@@ -11,7 +11,7 @@ export function formatLocale(preferredLocale: string) {
   );
   invariant(
     isDefined(formattedLocale),
-    `Couldn't format '${preferredLocale}' locale`,
+    `Couldn't format "${preferredLocale}" locale`,
   );
   return formattedLocale;
 }

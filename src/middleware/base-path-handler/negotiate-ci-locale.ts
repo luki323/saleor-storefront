@@ -7,26 +7,20 @@ import {ciEquals} from '@/lib/tools/ci-equals';
 import {isDefined} from '@/lib/tools/is-defined';
 
 export function negotiateCiLocale(headers: Headers, preferredLocale?: string) {
-  const requestedLanguages = new Negotiator({
+  const preferredLocales = new Negotiator({
     headers: Object.fromEntries(headers),
   }).languages();
 
   let locale: string;
 
   try {
-    if (!isDefined(preferredLocale)) {
-      throw null;
-    }
+    const requestedLocales =
+      isDefined(preferredLocale) && isAvailableCiLocale(preferredLocale)
+        ? [preferredLocale, ...preferredLocales]
+        : preferredLocales;
 
-    locale = match(
-      [
-        ...(isAvailableCiLocale(preferredLocale) ? [preferredLocale] : []),
-        ...requestedLanguages,
-      ],
-      // @ts-expect-error https://github.com/formatjs/formatjs/pull/4132
-      AVAILABLE_LOCALES,
-      DEFAULT_LOCALE,
-    );
+    // Destructure `AVAILABLE_LOCALES` to avoid readonly issue
+    locale = match(requestedLocales, [...AVAILABLE_LOCALES], DEFAULT_LOCALE);
   } catch {
     locale = DEFAULT_LOCALE;
   }

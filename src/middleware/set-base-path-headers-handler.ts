@@ -6,25 +6,36 @@ import {isAvailableCiLocale} from '@/i18n/tools/is-available-ci-locale';
 import {isDefined} from '@/lib/tools/is-defined';
 import {splitPathname} from '@/lib/tools/split-pathname';
 
-import {CUSTOM_REQUEST_HEADERS} from './consts';
-import type {Handler} from './create-middie';
+import type {Handler} from './create-middleware';
 
-export const setBasePathHeadersHandler: Handler = function setBasePathHeaders(
+export const CUSTOM_REQUEST_HEADERS = {
+  CHANNEL: 'X-Channel',
+  LOCALE: 'X-Locale',
+};
+
+export const setBasePathHeadersHandler: Handler = function setBasePathHeaders({
   req,
-) {
+  EarlyReturnResponse,
+}) {
   const segments = splitPathname(req.nextUrl.pathname);
-  const [channelSegment, localeSegment] = segments;
 
-  invariant(isDefined(channelSegment) && isAvailableChannel(channelSegment));
-  invariant(isDefined(localeSegment) && isAvailableCiLocale(localeSegment));
-
+  const [channelSegment] = segments;
+  invariant(
+    isDefined(channelSegment) && isAvailableChannel(channelSegment),
+    `Invalid channel: "${channelSegment}"`,
+  );
+  const [, localeSegment] = segments;
+  invariant(
+    isDefined(localeSegment) && isAvailableCiLocale(localeSegment),
+    `Invalid locale: "${localeSegment}"`,
+  );
   const formattedLocale = formatLocale(localeSegment);
 
   const updatedHeaders = new Headers(req.headers);
   updatedHeaders.set(CUSTOM_REQUEST_HEADERS.CHANNEL, channelSegment);
   updatedHeaders.set(CUSTOM_REQUEST_HEADERS.LOCALE, formattedLocale);
 
-  this.MiddieResponse.next({
+  EarlyReturnResponse.next({
     request: {headers: updatedHeaders},
   });
 };

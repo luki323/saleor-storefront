@@ -3,11 +3,12 @@ import {NextResponse} from 'next/server';
 
 import {isKeyDefined} from '@/lib/tools/is-key-defined';
 
-function createResponseWithEarlyReturn() {
-  // eslint-disable-next-line functional/prefer-readonly-type -- It needs to be mutable
+function createEarlyReturnResponse() {
+  // eslint-disable-next-line functional/prefer-readonly-type
   const earlyReturn: {value?: NextResponse} = {};
 
-  class MiddieResponse extends NextResponse {
+  // Extends `NextResponse` so that we know when one of its static methods is called
+  class EarlyReturnResponse extends NextResponse {
     static override json<Body>(
       ...params: Parameters<typeof NextResponse.json<Body>>
     ) {
@@ -27,50 +28,38 @@ function createResponseWithEarlyReturn() {
       return (earlyReturn.value = super.next(...params));
     }
   }
-  return {earlyReturn, MiddieResponse};
+  return {earlyReturn, EarlyReturnResponse};
 }
 
-export type HandlerThisObj = Pick<
-  ReturnType<typeof createResponseWithEarlyReturn>,
-  'MiddieResponse'
->;
+export type Handler = (param: {
+  readonly req: NextRequest;
+  readonly res: NextResponse;
+  readonly EarlyReturnResponse: ReturnType<
+    typeof createEarlyReturnResponse
+  >['EarlyReturnResponse'];
+}) => void | Promise<void>;
 
-export type Handler = (
-  this: HandlerThisObj,
-  req: NextRequest,
-  res: NextResponse,
-) => void | Promise<void>;
+export function createMiddleware() {
+  const {earlyReturn, EarlyReturnResponse} = createEarlyReturnResponse();
 
-interface Middie {
-  (req: NextRequest): ReturnType<NextMiddleware>;
-  readonly use: (handler: Handler) => void;
-}
-
-export function createMiddie() {
-  const {earlyReturn, MiddieResponse} = createResponseWithEarlyReturn();
-
-  const handlerThisObj: HandlerThisObj = {
-    MiddieResponse,
-  };
   let handlers: readonly Handler[] = [];
 
   function use(handler: Handler) {
     handlers = [...handlers, handler];
   }
-  const middie: Middie = async function middie(req) {
-    const res = new MiddieResponse();
+  async function middleware(
+    req: NextRequest,
+  ): Promise<ReturnType<NextMiddleware>> {
+    const res = new EarlyReturnResponse();
 
     for (const handler of handlers) {
-      await handler.call(handlerThisObj, req, res);
+      await handler({req, res, EarlyReturnResponse});
 
       if (isKeyDefined(earlyReturn, 'value')) {
         return earlyReturn.value;
       }
     }
     return res;
-  };
-  // @ts-expect-error There's no other way to do this without mutating an object
-  middie.use = use;
-
-  return middie;
+  }
+  return {use, middleware};
 }

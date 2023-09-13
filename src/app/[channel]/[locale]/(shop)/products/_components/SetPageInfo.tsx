@@ -1,4 +1,7 @@
-import {experimental_useEffectEvent as useEffectEvent, useEffect} from 'react';
+import {
+  experimental_useEffectEvent as useEffectEvent,
+  useLayoutEffect,
+} from 'react';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
@@ -23,7 +26,7 @@ export function SetPageInfo({pageInfo, onRender}: SetPageInfoProps) {
 
   const onRenderStable = useEffectEvent(onRender);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onRenderStable(pageInfoData);
   }, [onRenderStable, pageInfoData]);
 

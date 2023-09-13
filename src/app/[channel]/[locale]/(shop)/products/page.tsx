@@ -5,8 +5,8 @@ import {createSearchParams} from '@/lib/tools/create-search-params';
 
 import {PageSizeLinks} from './_components/PageSizeLinks';
 import {ProductList} from './_components/ProductList';
-import {getKeyVariables} from './_tools/get-key-variables';
-import {getKeyVariablesKey} from './_tools/get-key-variables-key';
+import {getQueryVariables} from './_tools/get-query-variables';
+import {getQueryVariablesKey} from './_tools/get-query-variables-key';
 
 interface Props {
   readonly searchParams: SearchParams;
@@ -19,13 +19,13 @@ export default function ProductsPage({searchParams}: Props) {
 async function ProductsPage_({searchParams: searchParamsObj}: Props) {
   const searchParams = createSearchParams(searchParamsObj);
 
-  const keyVariables = await getKeyVariables(searchParams);
-  const key = getKeyVariablesKey(keyVariables, searchParams);
+  const queryVariables = await getQueryVariables(searchParams);
+  const key = getQueryVariablesKey(queryVariables, searchParams);
 
   return (
     <main>
       <Suspense fallback="Loading...">
-        <ProductList key={key} keyVariables={keyVariables} />
+        <ProductList key={key} queryVariables={queryVariables} />
       </Suspense>
       <PageSizeLinks searchParams={searchParams} />
     </main>

@@ -7,14 +7,14 @@ import {isDefined} from '@/lib/tools/is-defined';
 import {getCategoryIds} from './get-category-ids';
 import {getCollectionIds} from './get-collection-ids';
 
-export type KeyVariables = Omit<
+export type QueryVariables = Omit<
   ProductListItems_ProductsQueryQueryVariables,
   PageVariablesKey
 >;
 
-export async function getKeyVariables(
+export async function getQueryVariables(
   searchParams: URLSearchParams,
-): Promise<KeyVariables> {
+): Promise<QueryVariables> {
   const [channel, locale] = getBasePath();
 
   const [categoryIds, collectionIds] = await Promise.all([

@@ -30,5 +30,5 @@ const SignUpMutation = graphql(/* GraphQL */ `
 `);
 
 export async function signUp(variables: SignUpMutationMutationVariables) {
-  return await fetchMutationData(SignUpMutation, variables);
+  return fetchMutationData(SignUpMutation, variables);
 }

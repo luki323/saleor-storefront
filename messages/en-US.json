@@ -20,6 +20,9 @@
   "/uUIep": {
     "defaultMessage": "User details"
   },
+  "00LcfG": {
+    "defaultMessage": "Load more"
+  },
   "06/qxx": {
     "defaultMessage": "Reset link was sent to {email} mailbox"
   },
@@ -40,9 +43,6 @@
   },
   "3P1axg": {
     "defaultMessage": "New email description"
-  },
-  "47FYwb": {
-    "defaultMessage": "Cancel"
   },
   "48k4Ow": {
     "defaultMessage": "Enter a old password"
@@ -101,14 +101,8 @@
   "E80WrK": {
     "defaultMessage": "Information"
   },
-  "EFT4+S": {
-    "defaultMessage": "Saleor logo"
-  },
   "F4lKlM": {
     "defaultMessage": "New password description"
-  },
-  "FbNOxp": {
-    "defaultMessage": "Account deletion"
   },
   "HrdHC1": {
     "defaultMessage": "Request email change"
@@ -127,9 +121,6 @@
   },
   "MJ2jZQ": {
     "defaultMessage": "Total"
-  },
-  "MOC4lx": {
-    "defaultMessage": "Subcategories of {category}"
   },
   "Nau+P4": {
     "defaultMessage": "Enter a last name"
@@ -206,12 +197,6 @@
   "bHEjjM": {
     "defaultMessage": "{minimumDeliveryDays} to {maximumDeliveryDays} business days"
   },
-  "bhN9Hq": {
-    "defaultMessage": "Delete your account"
-  },
-  "cPhKTw": {
-    "defaultMessage": "Not available"
-  },
   "cyR7Kh": {
     "defaultMessage": "Back"
   },
@@ -230,9 +215,6 @@
   "gCsYTJ": {
     "defaultMessage": "New password:"
   },
-  "gUIhhI": {
-    "defaultMessage": "Search for products"
-  },
   "h/zqNr": {
     "defaultMessage": "Enter your new password"
   },
@@ -247,9 +229,6 @@
   },
   "k2CDuD": {
     "defaultMessage": "Return to information"
-  },
-  "k9hDFZ": {
-    "defaultMessage": "Previous page"
   },
   "kFjJxN": {
     "defaultMessage": "Update your user details settings."
@@ -278,20 +257,11 @@
   "r/rQ02": {
     "defaultMessage": "Successfuly logged in."
   },
-  "rBj9Ib": {
-    "defaultMessage": "Next page"
-  },
   "rHnr4K": {
     "defaultMessage": "ZIP Code"
   },
-  "sGf1iY": {
-    "defaultMessage": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
-  },
   "sy+pv5": {
     "defaultMessage": "Email"
-  },
-  "tKMlOc": {
-    "defaultMessage": "Menu"
   },
   "u1JzBg": {
     "defaultMessage": "Enter a city"
@@ -299,8 +269,8 @@
   "uZTXoH": {
     "defaultMessage": "Set password and log in"
   },
-  "v5ykbS": {
-    "defaultMessage": "Are you absolutely sure?"
+  "un+VWt": {
+    "defaultMessage": "Search products"
   },
   "vDJsvf": {
     "defaultMessage": "Enter a valid new password"
@@ -316,9 +286,6 @@
   },
   "wjh10D": {
     "defaultMessage": "Shopping cart"
-  },
-  "wyxJrL": {
-    "defaultMessage": "Delete account"
   },
   "x9hzVm": {
     "defaultMessage": "Enter a valid ZIP / postal code"

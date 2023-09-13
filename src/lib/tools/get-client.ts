@@ -23,7 +23,7 @@ export async function fetchQueryData<
   context?: Partial<OperationContext>,
 ) {
   const {error, data} = await getClient().query(query, variables, context);
-  invariant(!error && data);
+  invariant(!error && data, error?.message);
 
   return data;
 }
@@ -37,7 +37,7 @@ export async function fetchMutationData<
   context?: Partial<OperationContext>,
 ) {
   const {error, data} = await getClient().mutation(query, variables, context);
-  invariant(!error && data);
+  invariant(!error && data, error?.message);
 
   return data;
 }

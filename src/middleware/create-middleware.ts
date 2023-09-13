@@ -61,5 +61,5 @@ export function createMiddleware() {
     }
     return res;
   }
-  return {use, middleware};
+  return {middleware, use};
 }

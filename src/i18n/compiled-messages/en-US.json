@@ -41,6 +41,12 @@
       "value": "User details"
     }
   ],
+  "00LcfG": [
+    {
+      "type": 0,
+      "value": "Load more"
+    }
+  ],
   "06/qxx": [
     {
       "type": 0,
@@ -89,12 +95,6 @@
     {
       "type": 0,
       "value": "New email description"
-    }
-  ],
-  "47FYwb": [
-    {
-      "type": 0,
-      "value": "Cancel"
     }
   ],
   "48k4Ow": [
@@ -211,22 +211,10 @@
       "value": "Information"
     }
   ],
-  "EFT4+S": [
-    {
-      "type": 0,
-      "value": "Saleor logo"
-    }
-  ],
   "F4lKlM": [
     {
       "type": 0,
       "value": "New password description"
-    }
-  ],
-  "FbNOxp": [
-    {
-      "type": 0,
-      "value": "Account deletion"
     }
   ],
   "HrdHC1": [
@@ -263,16 +251,6 @@
     {
       "type": 0,
       "value": "Total"
-    }
-  ],
-  "MOC4lx": [
-    {
-      "type": 0,
-      "value": "Subcategories of "
-    },
-    {
-      "type": 1,
-      "value": "category"
     }
   ],
   "Nau+P4": [
@@ -453,18 +431,6 @@
       "value": " business days"
     }
   ],
-  "bhN9Hq": [
-    {
-      "type": 0,
-      "value": "Delete your account"
-    }
-  ],
-  "cPhKTw": [
-    {
-      "type": 0,
-      "value": "Not available"
-    }
-  ],
   "cyR7Kh": [
     {
       "type": 0,
@@ -501,12 +467,6 @@
       "value": "New password:"
     }
   ],
-  "gUIhhI": [
-    {
-      "type": 0,
-      "value": "Search for products"
-    }
-  ],
   "h/zqNr": [
     {
       "type": 0,
@@ -535,12 +495,6 @@
     {
       "type": 0,
       "value": "Return to information"
-    }
-  ],
-  "k9hDFZ": [
-    {
-      "type": 0,
-      "value": "Previous page"
     }
   ],
   "kFjJxN": [
@@ -605,34 +559,16 @@
       "value": "Successfuly logged in."
     }
   ],
-  "rBj9Ib": [
-    {
-      "type": 0,
-      "value": "Next page"
-    }
-  ],
   "rHnr4K": [
     {
       "type": 0,
       "value": "ZIP Code"
     }
   ],
-  "sGf1iY": [
-    {
-      "type": 0,
-      "value": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
-    }
-  ],
   "sy+pv5": [
     {
       "type": 0,
       "value": "Email"
-    }
-  ],
-  "tKMlOc": [
-    {
-      "type": 0,
-      "value": "Menu"
     }
   ],
   "u1JzBg": [
@@ -647,10 +583,10 @@
       "value": "Set password and log in"
     }
   ],
-  "v5ykbS": [
+  "un+VWt": [
     {
       "type": 0,
-      "value": "Are you absolutely sure?"
+      "value": "Search products"
     }
   ],
   "vDJsvf": [
@@ -681,12 +617,6 @@
     {
       "type": 0,
       "value": "Shopping cart"
-    }
-  ],
-  "wyxJrL": [
-    {
-      "type": 0,
-      "value": "Delete account"
     }
   ],
   "x9hzVm": [

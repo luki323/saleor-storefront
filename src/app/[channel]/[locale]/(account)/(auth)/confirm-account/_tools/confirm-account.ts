@@ -19,5 +19,5 @@ const ConfirmAccountMutation = graphql(/* GraphQL */ `
 export async function confirmAccount(
   variables: ConfirmAccountMutationMutationVariables,
 ) {
-  return await fetchMutationData(ConfirmAccountMutation, variables);
+  return fetchMutationData(ConfirmAccountMutation, variables);
 }

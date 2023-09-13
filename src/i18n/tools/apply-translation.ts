@@ -21,7 +21,6 @@ export function applyTranslation<Obj extends TranslatedQueryObject>({
       ([key, value]) =>
         isDefined(value) &&
         key in restProps &&
-        // Ensure that the overwritten keys have the same type
         typeof value === typeof restProps[key as keyof typeof restProps],
     ),
   );

@@ -20,5 +20,5 @@ const getIntlFn = cache(async (locale: AvailableLocale) => {
 });
 
 export async function getIntl(locale?: AvailableLocale) {
-  return await getIntlFn(locale ?? getLocale());
+  return getIntlFn(locale ?? getLocale());
 }

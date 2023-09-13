@@ -17,9 +17,7 @@ const LogInMutation = graphql(/* GraphQL */ `
 `);
 
 export async function logIn(variables: LogInMutationMutationVariables) {
-  return await fetchMutationData(LogInMutation, variables, {
-    fetchOptions: {
-      cache: 'no-cache',
-    },
+  return fetchMutationData(LogInMutation, variables, {
+    fetchOptions: {cache: 'no-cache'},
   });
 }

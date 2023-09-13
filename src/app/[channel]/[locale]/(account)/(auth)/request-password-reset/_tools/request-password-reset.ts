@@ -24,5 +24,5 @@ const RequestPasswordResetMutation = graphql(/* GraphQL */ `
 export async function requestPasswordReset(
   variables: RequestPasswordResetMutationMutationVariables,
 ) {
-  return await fetchMutationData(RequestPasswordResetMutation, variables);
+  return fetchMutationData(RequestPasswordResetMutation, variables);
 }

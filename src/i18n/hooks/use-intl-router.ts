@@ -12,15 +12,15 @@ export function useIntlRouter() {
   return {
     ...restRouter,
     ...useMemo(() => {
-      const basePathname = formatPathname(channel, locale);
+      const basePath = formatPathname(channel, locale);
 
       return {
         push: (...[href, options]: Parameters<typeof push>) =>
-          push(`${basePathname}${href}`, options),
+          push(`${basePath}${href}`, options),
         replace: (...[href, options]: Parameters<typeof replace>) =>
-          replace(`${basePathname}${href}`, options),
+          replace(`${basePath}${href}`, options),
         prefetch: (...[href, options]: Parameters<typeof prefetch>) =>
-          prefetch(`${basePathname}${href}`, options),
+          prefetch(`${basePath}${href}`, options),
       };
     }, [channel, locale, prefetch, push, replace]),
   };

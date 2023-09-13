@@ -10,6 +10,7 @@ import type {PropsWithChildren} from '@/lib/types/react';
 import {fontSans} from '@/styles/fonts';
 
 import {Toaster} from './_components/Toaster';
+import {UrqlProvider} from './_components/UrqlProvider';
 
 interface Props {
   readonly params: {
@@ -27,7 +28,9 @@ export default function HomeLayout({
       <body>
         <ChannelContext.Provider value={channel}>
           <LocaleContext.Provider value={locale}>
-            <IntlProvider locale={locale}>{children}</IntlProvider>
+            <IntlProvider locale={locale}>
+              <UrqlProvider>{children}</UrqlProvider>
+            </IntlProvider>
           </LocaleContext.Provider>
         </ChannelContext.Provider>
         <Toaster expand />

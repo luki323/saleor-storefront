@@ -43,12 +43,10 @@ const documents = {
     types.NavbarDropdownItem_MenuItemFragmentFragmentDoc,
   '\n  fragment NavbarDropdownTrigger_MenuItemFragment on MenuItem {\n    name\n    translation(languageCode: $languageCode) {\n      name\n    }\n  }\n':
     types.NavbarDropdownTrigger_MenuItemFragmentFragmentDoc,
-  '\n  fragment ProductListItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n':
-    types.ProductListItem_ProductFragmentFragmentDoc,
-  '\n  query ProductListItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductListItem_ProductFragment\n        }\n      }\n      pageInfo {\n        ...SetPageInfo_PageInfoFragment\n      }\n    }\n  }\n':
-    types.ProductListItems_ProductsQueryDocument,
-  '\n  fragment SetPageInfo_PageInfoFragment on PageInfo {\n    hasNextPage\n    endCursor\n    hasPreviousPage\n    startCursor\n  }\n':
-    types.SetPageInfo_PageInfoFragmentFragmentDoc,
+  '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n':
+    types.ProductItem_ProductFragmentFragmentDoc,
+  '\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n':
+    types.ProductItems_ProductsQueryDocument,
   '\n  query GetCategoryIds($slugs: [String!]!) {\n    categories(first: 100, filter: {slugs: $slugs}) {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n':
     types.GetCategoryIdsDocument,
   '\n  query GetCollectionIds($slugs: [String!]!, $channel: String) {\n    collections(first: 100, filter: {slugs: $slugs}, channel: $channel) {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n':
@@ -227,20 +225,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment ProductListItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n',
-): (typeof documents)['\n  fragment ProductListItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n'];
+  source: '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n',
+): (typeof documents)['\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query ProductListItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductListItem_ProductFragment\n        }\n      }\n      pageInfo {\n        ...SetPageInfo_PageInfoFragment\n      }\n    }\n  }\n',
-): (typeof documents)['\n  query ProductListItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductListItem_ProductFragment\n        }\n      }\n      pageInfo {\n        ...SetPageInfo_PageInfoFragment\n      }\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  fragment SetPageInfo_PageInfoFragment on PageInfo {\n    hasNextPage\n    endCursor\n    hasPreviousPage\n    startCursor\n  }\n',
-): (typeof documents)['\n  fragment SetPageInfo_PageInfoFragment on PageInfo {\n    hasNextPage\n    endCursor\n    hasPreviousPage\n    startCursor\n  }\n'];
+  source: '\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

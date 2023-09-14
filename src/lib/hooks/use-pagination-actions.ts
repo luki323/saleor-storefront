@@ -1,5 +1,5 @@
 import type {AnyVariables} from '@urql/core';
-import {startTransition, useCallback, useState} from 'react';
+import {startTransition, useCallback, useRef} from 'react';
 
 import type {PageInfo} from '@/graphql/generated/graphql';
 import {isDefined} from '@/lib/tools/is-defined';
@@ -11,40 +11,37 @@ export function usePaginationActions<QueryVariables extends AnyVariables>(
 ) {
   const [data, dispatch] = usePaginationVariables(...params);
 
-  const [pageInfo, setPageInfo] = useState<PageInfo>();
+  const pageInfoRef = useRef<PageInfo>();
 
   const handlePrevPage = useCallback(() => {
-    if (!pageInfo) {
+    if (!pageInfoRef.current) {
       return;
     }
-    const {hasPreviousPage, startCursor} = pageInfo;
+    const {hasPreviousPage, startCursor} = pageInfoRef.current;
 
     if (hasPreviousPage && isDefined(startCursor)) {
       startTransition(() => {
         dispatch({type: 'prev', before: startCursor});
       });
     }
-  }, [dispatch, pageInfo]);
+  }, [dispatch]);
 
   const handleNextPage = useCallback(() => {
-    if (!pageInfo) {
+    if (!pageInfoRef.current) {
       return;
     }
-    const {hasNextPage, endCursor} = pageInfo;
+    const {hasNextPage, endCursor} = pageInfoRef.current;
 
     if (hasNextPage && isDefined(endCursor)) {
       startTransition(() => {
         dispatch({type: 'next', after: endCursor});
       });
     }
-  }, [dispatch, pageInfo]);
+  }, [dispatch]);
 
   const onNextPage = useCallback((pageInfo: PageInfo) => {
-    setPageInfo(pageInfo);
+    pageInfoRef.current = pageInfo;
   }, []);
 
-  return [
-    {...data, pageInfo},
-    {handlePrevPage, handleNextPage, onNextPage},
-  ] as const;
+  return [data, {handlePrevPage, handleNextPage, onNextPage}] as const;
 }

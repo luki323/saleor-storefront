@@ -3,8 +3,8 @@ import {getFragment, graphql} from '@/graphql/generated';
 import {applyTranslation} from '@/i18n/tools/apply-translation';
 import {cn} from '@/lib/tools/cn';
 
-const ProductListItem_ProductFragment = graphql(/* GraphQL */ `
-  fragment ProductListItem_ProductFragment on Product {
+const ProductItem_ProductFragment = graphql(/* GraphQL */ `
+  fragment ProductItem_ProductFragment on Product {
     __typename
     id
     name
@@ -17,12 +17,12 @@ const ProductListItem_ProductFragment = graphql(/* GraphQL */ `
 `);
 
 interface Props {
-  readonly product: FragmentType<typeof ProductListItem_ProductFragment>;
+  readonly product: FragmentType<typeof ProductItem_ProductFragment>;
 }
 
-export function ProductListItem({product}: Props) {
+export function ProductItem({product}: Props) {
   const {name} = applyTranslation(
-    getFragment(ProductListItem_ProductFragment, product),
+    getFragment(ProductItem_ProductFragment, product),
   );
 
   return (

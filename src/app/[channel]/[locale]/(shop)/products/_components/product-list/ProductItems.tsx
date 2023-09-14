@@ -1,15 +1,16 @@
 import {useQuery} from '@urql/next';
+import {useLayoutEffect} from 'react';
 import type {UnionToIntersection} from 'type-fest';
 
 import {graphql} from '@/graphql/generated';
-import type {ProductListItems_ProductsQueryQueryVariables} from '@/graphql/generated/graphql';
+import type {ProductItems_ProductsQueryQueryVariables} from '@/graphql/generated/graphql';
 import type {usePaginationActions} from '@/lib/hooks/use-pagination-actions';
 
-import {ProductListItem} from './ProductListItem';
-import {SetPageInfo} from './SetPageInfo';
+import {PageNav} from './PageNav';
+import {ProductItem} from './ProductItem';
 
-const ProductListItems_ProductsQuery = graphql(/* GraphQL */ `
-  query ProductListItems_ProductsQuery(
+const ProductItems_ProductsQuery = graphql(/* GraphQL */ `
+  query ProductItems_ProductsQuery(
     $first: Int
     $after: String
     $last: Int
@@ -30,26 +31,37 @@ const ProductListItems_ProductsQuery = graphql(/* GraphQL */ `
       edges {
         node {
           id
-          ...ProductListItem_ProductFragment
+          ...ProductItem_ProductFragment
         }
       }
       pageInfo {
-        ...SetPageInfo_PageInfoFragment
+        hasNextPage
+        endCursor
+        hasPreviousPage
+        startCursor
       }
     }
   }
 `);
 
 type Props = {
-  readonly variables: ProductListItems_ProductsQueryQueryVariables;
+  readonly variables: ProductItems_ProductsQueryQueryVariables;
   readonly isLastPage: boolean;
 } & Pick<
   UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
-  'onNextPage'
+  'handlePrevPage' | 'handleNextPage' | 'onNextPage'
 >;
 
-export function ProductListItems({variables, isLastPage, onNextPage}: Props) {
-  const [{data}] = useQuery({query: ProductListItems_ProductsQuery, variables});
+export function ProductItems({variables, isLastPage, ...actions}: Props) {
+  const [{data}] = useQuery({query: ProductItems_ProductsQuery, variables});
+
+  useLayoutEffect(() => {
+    const {pageInfo} = data?.products ?? {};
+
+    if (isLastPage && pageInfo) {
+      actions.onNextPage(pageInfo);
+    }
+  });
 
   if (!data || !data.products) {
     return undefined;
@@ -59,9 +71,9 @@ export function ProductListItems({variables, isLastPage, onNextPage}: Props) {
   return (
     <>
       {edges.map(({node}) => (
-        <ProductListItem key={node.id} product={node} />
+        <ProductItem key={node.id} product={node} />
       ))}
-      {isLastPage && <SetPageInfo pageInfo={pageInfo} onMount={onNextPage} />}
+      {isLastPage && pageInfo && <PageNav pageInfo={pageInfo} {...actions} />}
     </>
   );
 }

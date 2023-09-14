@@ -28939,7 +28939,7 @@ export type NavbarDropdownTrigger_MenuItemFragmentFragment = {
   translation?: {name: string} | null;
 } & {' $fragmentName'?: 'NavbarDropdownTrigger_MenuItemFragmentFragment'};
 
-export type ProductListItem_ProductFragmentFragment = {
+export type ProductItem_ProductFragmentFragment = {
   __typename: 'Product';
   id: string;
   name: string;
@@ -28948,9 +28948,9 @@ export type ProductListItem_ProductFragmentFragment = {
     id: string;
     name?: string | null;
   } | null;
-} & {' $fragmentName'?: 'ProductListItem_ProductFragmentFragment'};
+} & {' $fragmentName'?: 'ProductItem_ProductFragmentFragment'};
 
-export type ProductListItems_ProductsQueryQueryVariables = Exact<{
+export type ProductItems_ProductsQueryQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
@@ -28965,29 +28965,23 @@ export type ProductListItems_ProductsQueryQueryVariables = Exact<{
   languageCode: LanguageCodeEnum;
 }>;
 
-export type ProductListItems_ProductsQueryQuery = {
+export type ProductItems_ProductsQueryQuery = {
   products?: {
     edges: Array<{
       node: {id: string} & {
         ' $fragmentRefs'?: {
-          ProductListItem_ProductFragmentFragment: ProductListItem_ProductFragmentFragment;
+          ProductItem_ProductFragmentFragment: ProductItem_ProductFragmentFragment;
         };
       };
     }>;
     pageInfo: {
-      ' $fragmentRefs'?: {
-        SetPageInfo_PageInfoFragmentFragment: SetPageInfo_PageInfoFragmentFragment;
-      };
+      hasNextPage: boolean;
+      endCursor?: string | null;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
     };
   } | null;
 };
-
-export type SetPageInfo_PageInfoFragmentFragment = {
-  hasNextPage: boolean;
-  endCursor?: string | null;
-  hasPreviousPage: boolean;
-  startCursor?: string | null;
-} & {' $fragmentName'?: 'SetPageInfo_PageInfoFragmentFragment'};
 
 export type GetCategoryIdsQueryVariables = Exact<{
   slugs: Array<Scalars['String']['input']> | Scalars['String']['input'];
@@ -30056,12 +30050,12 @@ export const NavbarItem_MenuItemFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<NavbarItem_MenuItemFragmentFragment, unknown>;
-export const ProductListItem_ProductFragmentFragmentDoc = {
+export const ProductItem_ProductFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'ProductListItem_ProductFragment'},
+      name: {kind: 'Name', value: 'ProductItem_ProductFragment'},
       typeCondition: {
         kind: 'NamedType',
         name: {kind: 'Name', value: 'Product'},
@@ -30098,29 +30092,7 @@ export const ProductListItem_ProductFragmentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<ProductListItem_ProductFragmentFragment, unknown>;
-export const SetPageInfo_PageInfoFragmentFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'SetPageInfo_PageInfoFragment'},
-      typeCondition: {
-        kind: 'NamedType',
-        name: {kind: 'Name', value: 'PageInfo'},
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {kind: 'Field', name: {kind: 'Name', value: 'hasNextPage'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'endCursor'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'hasPreviousPage'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'startCursor'}},
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SetPageInfo_PageInfoFragmentFragment, unknown>;
+} as unknown as DocumentNode<ProductItem_ProductFragmentFragment, unknown>;
 export const Breadcrumbs_CheckoutFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -32165,13 +32137,13 @@ export const NavbarMenu_MenuQueryDocument = {
   NavbarMenu_MenuQueryQuery,
   NavbarMenu_MenuQueryQueryVariables
 >;
-export const ProductListItems_ProductsQueryDocument = {
+export const ProductItems_ProductsQueryDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: {kind: 'Name', value: 'ProductListItems_ProductsQuery'},
+      name: {kind: 'Name', value: 'ProductItems_ProductsQuery'},
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -32325,7 +32297,7 @@ export const ProductListItems_ProductsQueryDocument = {
                               kind: 'FragmentSpread',
                               name: {
                                 kind: 'Name',
-                                value: 'ProductListItem_ProductFragment',
+                                value: 'ProductItem_ProductFragment',
                               },
                             },
                           ],
@@ -32341,11 +32313,17 @@ export const ProductListItems_ProductsQueryDocument = {
                     kind: 'SelectionSet',
                     selections: [
                       {
-                        kind: 'FragmentSpread',
-                        name: {
-                          kind: 'Name',
-                          value: 'SetPageInfo_PageInfoFragment',
-                        },
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'hasNextPage'},
+                      },
+                      {kind: 'Field', name: {kind: 'Name', value: 'endCursor'}},
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'hasPreviousPage'},
+                      },
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'startCursor'},
                       },
                     ],
                   },
@@ -32358,7 +32336,7 @@ export const ProductListItems_ProductsQueryDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'ProductListItem_ProductFragment'},
+      name: {kind: 'Name', value: 'ProductItem_ProductFragment'},
       typeCondition: {
         kind: 'NamedType',
         name: {kind: 'Name', value: 'Product'},
@@ -32394,27 +32372,10 @@ export const ProductListItems_ProductsQueryDocument = {
         ],
       },
     },
-    {
-      kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'SetPageInfo_PageInfoFragment'},
-      typeCondition: {
-        kind: 'NamedType',
-        name: {kind: 'Name', value: 'PageInfo'},
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {kind: 'Field', name: {kind: 'Name', value: 'hasNextPage'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'endCursor'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'hasPreviousPage'}},
-          {kind: 'Field', name: {kind: 'Name', value: 'startCursor'}},
-        ],
-      },
-    },
   ],
 } as unknown as DocumentNode<
-  ProductListItems_ProductsQueryQuery,
-  ProductListItems_ProductsQueryQueryVariables
+  ProductItems_ProductsQueryQuery,
+  ProductItems_ProductsQueryQueryVariables
 >;
 export const GetCategoryIdsDocument = {
   kind: 'Document',

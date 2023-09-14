@@ -21,16 +21,12 @@ export function Products({queryVariables}: Props) {
     USE_PAGINATION ? data.currentVariables : data.variablesArray,
   );
 
-  return (
-    <>
-      {variablesArray.map((variables, idx) => (
-        <ProductItems
-          key={idx}
-          variables={variables}
-          isLastPage={idx === variablesArray.length - 1}
-          {...actions}
-        />
-      ))}
-    </>
-  );
+  return variablesArray.map((variables, idx) => (
+    <ProductItems
+      key={idx}
+      variables={variables}
+      isLastPage={idx === variablesArray.length - 1}
+      {...actions}
+    />
+  ));
 }

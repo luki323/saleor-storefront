@@ -11,11 +11,11 @@ import {updatePaginationSearchParam} from '@/lib/tools/update-pagination-search-
 export function usePaginationVariables<QueryVariables extends AnyVariables>({
   queryVariables,
   defaultPageSize,
-  updateSearchParamsOnMount,
+  updateSearchParams,
 }: {
   readonly queryVariables: QueryVariables;
   readonly defaultPageSize: number;
-  readonly updateSearchParamsOnMount: boolean;
+  readonly updateSearchParams: boolean;
 }) {
   const searchParams = useSearchParams();
 
@@ -28,7 +28,7 @@ export function usePaginationVariables<QueryVariables extends AnyVariables>({
   );
   useUpdateSearchParmsOnMount({
     newSearchParams,
-    shouldUpdate: updateSearchParamsOnMount,
+    shouldUpdate: updateSearchParams,
   });
 
   const currentVariables = useMemo(
@@ -43,6 +43,7 @@ export function usePaginationVariables<QueryVariables extends AnyVariables>({
       })),
     [data.variablesArray, queryVariables],
   );
+
   return [{currentVariables, variablesArray}, dispatch] as const;
 }
 

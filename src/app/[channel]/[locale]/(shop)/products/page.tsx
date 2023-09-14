@@ -1,12 +1,17 @@
+import dynamic from 'next/dynamic';
 import {Suspense} from 'react';
 
 import type {SearchParams} from '@/lib/tools/create-search-params';
 import {createSearchParams} from '@/lib/tools/create-search-params';
 
-import {PageSizeLinks} from './_components/PageSizeLinks';
-import {ProductList} from './_components/ProductList';
+import {ProductList} from './_components/product-list/ProductList';
+import {USE_PAGINATION} from './_consts';
 import {getQueryVariables} from './_tools/get-query-variables';
 import {getQueryVariablesKey} from './_tools/get-query-variables-key';
+
+const PageSizeLinks = dynamic(() =>
+  import('./_components/PageSizeLinks').then((mod) => mod.PageSizeLinks),
+);
 
 interface Props {
   readonly searchParams: SearchParams;
@@ -27,7 +32,7 @@ async function ProductsPage_({searchParams: searchParamsObj}: Props) {
       <Suspense fallback="Loading...">
         <ProductList key={key} queryVariables={queryVariables} />
       </Suspense>
-      <PageSizeLinks searchParams={searchParams} />
+      {USE_PAGINATION && <PageSizeLinks searchParams={searchParams} />}
     </main>
   );
 }

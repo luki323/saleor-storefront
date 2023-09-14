@@ -9,10 +9,9 @@ import {getFragment, graphql} from '@/graphql/generated';
 import * as DropdownMenu from './DropdownMenu';
 import {NavbarDropdownTrigger} from './NavbarDropdownTrigger';
 
-const NavbarDropdownContent = dynamic(async () => {
-  const {NavbarDropdownContent} = await import('./NavbarDropdownContent');
-  return NavbarDropdownContent;
-});
+const NavbarDropdownContent = dynamic(() =>
+  import('./NavbarDropdownContent').then((mod) => mod.NavbarDropdownContent),
+);
 
 const NavbarDropdown_MenuItemFragment = graphql(`
   fragment NavbarDropdown_MenuItemFragment on MenuItem {

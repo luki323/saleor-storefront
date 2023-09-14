@@ -1,7 +1,4 @@
-import {
-  experimental_useEffectEvent as useEffectEvent,
-  useLayoutEffect,
-} from 'react';
+import {experimental_useEffectEvent as useEffectEvent, useEffect} from 'react';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
@@ -18,17 +15,17 @@ const SetPageInfo_PageInfoFragment = graphql(/* GraphQL */ `
 
 export interface SetPageInfoProps {
   readonly pageInfo: FragmentType<typeof SetPageInfo_PageInfoFragment>;
-  readonly onRender: (pageInfo: SetPageInfo_PageInfoFragmentFragment) => void;
+  readonly onMount: (pageInfo: SetPageInfo_PageInfoFragmentFragment) => void;
 }
 
-export function SetPageInfo({pageInfo, onRender}: SetPageInfoProps) {
+export function SetPageInfo({pageInfo, onMount}: SetPageInfoProps) {
   const pageInfoData = getFragment(SetPageInfo_PageInfoFragment, pageInfo);
 
-  const onRenderStable = useEffectEvent(onRender);
+  const onMountStable = useEffectEvent(onMount);
 
-  useLayoutEffect(() => {
-    onRenderStable(pageInfoData);
-  }, [onRenderStable, pageInfoData]);
+  useEffect(() => {
+    onMountStable(pageInfoData);
+  }, [onMountStable, pageInfoData]);
 
   return undefined;
 }

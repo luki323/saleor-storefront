@@ -1,10 +1,11 @@
 import {useQuery} from '@urql/next';
+import type {UnionToIntersection} from 'type-fest';
 
 import {graphql} from '@/graphql/generated';
 import type {ProductListItems_ProductsQueryQueryVariables} from '@/graphql/generated/graphql';
+import type {usePaginationActions} from '@/lib/hooks/use-pagination-actions';
 
 import {ProductListItem} from './ProductListItem';
-import type {SetPageInfoProps} from './SetPageInfo';
 import {SetPageInfo} from './SetPageInfo';
 
 const ProductListItems_ProductsQuery = graphql(/* GraphQL */ `
@@ -39,11 +40,13 @@ const ProductListItems_ProductsQuery = graphql(/* GraphQL */ `
   }
 `);
 
-interface Props {
+type Props = {
   readonly variables: ProductListItems_ProductsQueryQueryVariables;
   readonly isLastPage: boolean;
-  readonly onNextPage: SetPageInfoProps['onRender'];
-}
+} & Pick<
+  UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
+  'onNextPage'
+>;
 
 export function ProductListItems({variables, isLastPage, onNextPage}: Props) {
   const [{data}] = useQuery({query: ProductListItems_ProductsQuery, variables});
@@ -58,7 +61,7 @@ export function ProductListItems({variables, isLastPage, onNextPage}: Props) {
       {edges.map(({node}) => (
         <ProductListItem key={node.id} product={node} />
       ))}
-      {isLastPage && <SetPageInfo pageInfo={pageInfo} onRender={onNextPage} />}
+      {isLastPage && <SetPageInfo pageInfo={pageInfo} onMount={onNextPage} />}
     </>
   );
 }

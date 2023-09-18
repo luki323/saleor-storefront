@@ -27,17 +27,14 @@ export async function NavbarMenu() {
   );
 
   return (
-    menu?.items && (
-      <nav className={cn('max-w-md overflow-x-scroll px-3 py-2')}>
-        <ul
-          className={cn('flex gap-4 text-sm font-semibold sm:gap-5 md:gap-6')}>
-          {menu.items.map((item) => (
-            <li key={item.id}>
-              <NavbarItem menuItem={item} />
-            </li>
-          ))}
-        </ul>
-      </nav>
-    )
+    <nav className={cn('max-w-md overflow-x-scroll px-3 py-2')}>
+      <ul className={cn('flex gap-4 text-sm font-semibold sm:gap-5 md:gap-6')}>
+        {menu?.items?.map((item) => (
+          <li key={item.id}>
+            <NavbarItem menuItem={item} />
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

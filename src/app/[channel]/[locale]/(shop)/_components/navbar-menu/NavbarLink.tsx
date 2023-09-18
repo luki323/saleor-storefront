@@ -25,6 +25,7 @@ export function NavbarLink({menuItem}: Props) {
   const {name, page} = applyTranslation(
     getFragment(NavbarLink_MenuItemFragment, menuItem),
   );
+
   return (
     page && (
       <IntlLink

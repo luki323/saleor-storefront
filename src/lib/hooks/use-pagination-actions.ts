@@ -13,32 +13,53 @@ export function usePaginationActions<QueryVariables extends AnyVariables>(
 
   const pageInfoRef = useRef<PageInfo>();
 
-  const handlePrevPage = useCallback(() => {
-    if (!pageInfoRef.current) {
-      return;
-    }
-    const {hasPreviousPage, startCursor} = pageInfoRef.current;
+  const currentPageSize =
+    'first' in data.currentVariables
+      ? data.currentVariables.first
+      : data.currentVariables.last;
 
-    if (hasPreviousPage && isDefined(startCursor)) {
-      startTransition(() => {
-        dispatch({type: 'prev', before: startCursor});
-      });
-    }
-  }, [dispatch]);
+  const handlePrevPage = useCallback(
+    (pageSize: number) => {
+      if (pageSize !== currentPageSize) {
+        startTransition(() => {
+          dispatch({type: 'changePageSize', pageSize});
+        });
+        return;
+      }
+      if (!pageInfoRef.current) {
+        return;
+      }
+      const {hasPreviousPage, startCursor} = pageInfoRef.current;
 
-  const handleNextPage = useCallback(() => {
-    if (!pageInfoRef.current) {
-      return;
-    }
-    const {hasNextPage, endCursor} = pageInfoRef.current;
+      if (hasPreviousPage && isDefined(startCursor)) {
+        startTransition(() => {
+          dispatch({type: 'prev', before: startCursor, pageSize});
+        });
+      }
+    },
+    [currentPageSize, dispatch],
+  );
+  const handleNextPage = useCallback(
+    (pageSize: number) => {
+      if (pageSize !== currentPageSize) {
+        startTransition(() => {
+          dispatch({type: 'changePageSize', pageSize});
+        });
+        return;
+      }
+      if (!pageInfoRef.current) {
+        return;
+      }
+      const {hasNextPage, endCursor} = pageInfoRef.current;
 
-    if (hasNextPage && isDefined(endCursor)) {
-      startTransition(() => {
-        dispatch({type: 'next', after: endCursor});
-      });
-    }
-  }, [dispatch]);
-
+      if (hasNextPage && isDefined(endCursor)) {
+        startTransition(() => {
+          dispatch({type: 'next', after: endCursor, pageSize});
+        });
+      }
+    },
+    [currentPageSize, dispatch],
+  );
   const onNextPage = useCallback((pageInfo: PageInfo) => {
     pageInfoRef.current = pageInfo;
   }, []);

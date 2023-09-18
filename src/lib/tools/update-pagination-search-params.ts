@@ -5,7 +5,7 @@ import {deletePaginationSearchParams} from './delete-pagination-search-params';
 import {PAGINATION_SEARCH_PARAM_NAMES} from './get-pagination-search-params';
 import {isDefined} from './is-defined';
 
-export function updatePaginationSearchParam(
+export function updatePaginationSearchParams(
   searchParams: ReadonlyURLSearchParams,
   pageVariables: PageVariables,
 ) {

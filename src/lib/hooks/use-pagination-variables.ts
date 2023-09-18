@@ -6,24 +6,28 @@ import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {APP_ROUTES} from '@/lib/consts';
 import {usePagination} from '@/lib/hooks/use-pagination';
 import {getPaginationSearchParams} from '@/lib/tools/get-pagination-search-params';
-import {updatePaginationSearchParam} from '@/lib/tools/update-pagination-search-params';
+import {updatePaginationSearchParams} from '@/lib/tools/update-pagination-search-params';
 
 export function usePaginationVariables<QueryVariables extends AnyVariables>({
   queryVariables,
   defaultPageSize,
   updateSearchParams,
+  restoreFromUrl,
 }: {
   readonly queryVariables: QueryVariables;
   readonly defaultPageSize: number;
   readonly updateSearchParams: boolean;
+  readonly restoreFromUrl: boolean;
 }) {
   const searchParams = useSearchParams();
 
   const [data, dispatch] = usePagination(() =>
-    getPaginationSearchParams(searchParams, defaultPageSize),
+    restoreFromUrl
+      ? getPaginationSearchParams(searchParams, defaultPageSize)
+      : {first: defaultPageSize},
   );
   const newSearchParams = useMemo(
-    () => updatePaginationSearchParam(searchParams, data.currentVariables),
+    () => updatePaginationSearchParams(searchParams, data.currentVariables),
     [data.currentVariables, searchParams],
   );
   useUpdateSearchParmsOnMount({
@@ -43,7 +47,6 @@ export function usePaginationVariables<QueryVariables extends AnyVariables>({
       })),
     [data.variablesArray, queryVariables],
   );
-
   return [{currentVariables, variablesArray}, dispatch] as const;
 }
 

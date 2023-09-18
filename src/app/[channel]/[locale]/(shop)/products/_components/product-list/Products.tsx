@@ -11,11 +11,16 @@ interface Props {
   readonly queryVariables: QueryVariables;
 }
 
+const BASE_OPTIONS = {
+  defaultPageSize: DEFAULT_PAGE_SIZE,
+  updateSearchParams: USE_PAGINATION,
+  restoreFromUrl: true,
+};
+
 export function Products({queryVariables}: Props) {
   const [data, actions] = usePaginationActions({
     queryVariables,
-    defaultPageSize: DEFAULT_PAGE_SIZE,
-    updateSearchParams: USE_PAGINATION,
+    ...BASE_OPTIONS,
   });
   const variablesArray = toArray(
     USE_PAGINATION ? data.currentVariables : data.variablesArray,

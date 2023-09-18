@@ -10,6 +10,7 @@ export function changePageSize(
     return searchParams;
   }
   const updatedSearchParams = new URLSearchParams(searchParams);
+
   deletePaginationSearchParams(updatedSearchParams);
 
   updatedSearchParams.set(

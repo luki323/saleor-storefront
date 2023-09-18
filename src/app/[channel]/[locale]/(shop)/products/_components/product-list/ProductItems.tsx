@@ -1,11 +1,12 @@
 import {useQuery} from '@urql/next';
-import {useLayoutEffect} from 'react';
 import type {UnionToIntersection} from 'type-fest';
 
 import {graphql} from '@/graphql/generated';
 import type {ProductItems_ProductsQueryQueryVariables} from '@/graphql/generated/graphql';
+import {useHandleNextPage} from '@/lib/hooks/use-handle-next-page';
 import type {usePaginationActions} from '@/lib/hooks/use-pagination-actions';
 
+import {DEFAULT_PAGE_SIZE} from '../../_consts';
 import {PageNav} from './PageNav';
 import {ProductItem} from './ProductItem';
 
@@ -55,25 +56,18 @@ type Props = {
 export function ProductItems({variables, isLastPage, ...actions}: Props) {
   const [{data}] = useQuery({query: ProductItems_ProductsQuery, variables});
 
-  useLayoutEffect(() => {
-    const {pageInfo} = data?.products ?? {};
+  const {pageInfo, edges} = data?.products ?? {};
 
-    if (isLastPage && pageInfo) {
-      actions.onNextPage(pageInfo);
-    }
-  });
+  useHandleNextPage({...(pageInfo && {pageInfo}), isLastPage, ...actions});
 
-  if (!data || !data.products) {
-    return undefined;
-  }
-  const {edges, pageInfo} = data.products;
+  const pageSize = variables.first ?? variables.last ?? DEFAULT_PAGE_SIZE;
 
   return (
     <>
-      {edges.map(({node}) => (
-        <ProductItem key={node.id} product={node} />
-      ))}
-      {isLastPage && pageInfo && <PageNav pageInfo={pageInfo} {...actions} />}
+      {edges?.map(({node}) => <ProductItem key={node.id} product={node} />)}
+      {isLastPage && pageInfo && (
+        <PageNav pageInfo={pageInfo} pageSize={pageSize} {...actions} />
+      )}
     </>
   );
 }

@@ -28939,6 +28939,36 @@ export type NavbarDropdownTrigger_MenuItemFragmentFragment = {
   translation?: {name: string} | null;
 } & {' $fragmentName'?: 'NavbarDropdownTrigger_MenuItemFragmentFragment'};
 
+export type CategoryDropdownItems_CategoriesQueryQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  languageCode: LanguageCodeEnum;
+}>;
+
+export type CategoryDropdownItems_CategoriesQueryQuery = {
+  categories?: {
+    edges: Array<{
+      node: {
+        __typename: 'Category';
+        id: string;
+        name: string;
+        slug: string;
+        translation?: {
+          __typename: 'CategoryTranslation';
+          id: string;
+          name?: string | null;
+        } | null;
+      };
+    }>;
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor?: string | null;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
+    };
+  } | null;
+};
+
 export type ProductItem_ProductFragmentFragment = {
   __typename: 'Product';
   id: string;
@@ -28984,6 +29014,7 @@ export type ProductItems_ProductsQueryQuery = {
 };
 
 export type GetCategoryIdsQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
   slugs: Array<Scalars['String']['input']> | Scalars['String']['input'];
 }>;
 
@@ -28992,6 +29023,7 @@ export type GetCategoryIdsQuery = {
 };
 
 export type GetCollectionIdsQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
   slugs: Array<Scalars['String']['input']> | Scalars['String']['input'];
   channel?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -32137,6 +32169,155 @@ export const NavbarMenu_MenuQueryDocument = {
   NavbarMenu_MenuQueryQuery,
   NavbarMenu_MenuQueryQueryVariables
 >;
+export const CategoryDropdownItems_CategoriesQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: {kind: 'Name', value: 'CategoryDropdownItems_CategoriesQuery'},
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
+          type: {kind: 'NamedType', name: {kind: 'Name', value: 'Int'}},
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {kind: 'Variable', name: {kind: 'Name', value: 'after'}},
+          type: {kind: 'NamedType', name: {kind: 'Name', value: 'String'}},
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: {kind: 'Name', value: 'languageCode'},
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {kind: 'Name', value: 'LanguageCodeEnum'},
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'categories'},
+            arguments: [
+              {
+                kind: 'Argument',
+                name: {kind: 'Name', value: 'first'},
+                value: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
+              },
+              {
+                kind: 'Argument',
+                name: {kind: 'Name', value: 'after'},
+                value: {kind: 'Variable', name: {kind: 'Name', value: 'after'}},
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'edges'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'node'},
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: {kind: 'Name', value: '__typename'},
+                            },
+                            {kind: 'Field', name: {kind: 'Name', value: 'id'}},
+                            {
+                              kind: 'Field',
+                              name: {kind: 'Name', value: 'name'},
+                            },
+                            {
+                              kind: 'Field',
+                              name: {kind: 'Name', value: 'translation'},
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: {kind: 'Name', value: 'languageCode'},
+                                  value: {
+                                    kind: 'Variable',
+                                    name: {kind: 'Name', value: 'languageCode'},
+                                  },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: {kind: 'Name', value: '__typename'},
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: {kind: 'Name', value: 'id'},
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: {kind: 'Name', value: 'name'},
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {kind: 'Name', value: 'slug'},
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'pageInfo'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'hasNextPage'},
+                      },
+                      {kind: 'Field', name: {kind: 'Name', value: 'endCursor'}},
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'hasPreviousPage'},
+                      },
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'startCursor'},
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CategoryDropdownItems_CategoriesQueryQuery,
+  CategoryDropdownItems_CategoriesQueryQueryVariables
+>;
 export const ProductItems_ProductsQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -32387,6 +32568,14 @@ export const GetCategoryIdsDocument = {
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
+          variable: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
+          type: {
+            kind: 'NonNullType',
+            type: {kind: 'NamedType', name: {kind: 'Name', value: 'Int'}},
+          },
+        },
+        {
+          kind: 'VariableDefinition',
           variable: {kind: 'Variable', name: {kind: 'Name', value: 'slugs'}},
           type: {
             kind: 'NonNullType',
@@ -32413,7 +32602,7 @@ export const GetCategoryIdsDocument = {
               {
                 kind: 'Argument',
                 name: {kind: 'Name', value: 'first'},
-                value: {kind: 'IntValue', value: '100'},
+                value: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
               },
               {
                 kind: 'Argument',
@@ -32473,6 +32662,14 @@ export const GetCollectionIdsDocument = {
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
+          variable: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
+          type: {
+            kind: 'NonNullType',
+            type: {kind: 'NamedType', name: {kind: 'Name', value: 'Int'}},
+          },
+        },
+        {
+          kind: 'VariableDefinition',
           variable: {kind: 'Variable', name: {kind: 'Name', value: 'slugs'}},
           type: {
             kind: 'NonNullType',
@@ -32504,7 +32701,7 @@ export const GetCollectionIdsDocument = {
               {
                 kind: 'Argument',
                 name: {kind: 'Name', value: 'first'},
-                value: {kind: 'IntValue', value: '100'},
+                value: {kind: 'Variable', name: {kind: 'Name', value: 'first'}},
               },
               {
                 kind: 'Argument',

@@ -7,9 +7,11 @@ import type {usePaginationActions} from './use-pagination-actions';
 
 export function useHandleNextPage({
   pageInfo,
+  isLastPage,
   ...actions
 }: {
   readonly pageInfo?: PageInfo;
+  readonly isLastPage: boolean;
 } & Pick<
   UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
   'onNextPage'
@@ -17,8 +19,8 @@ export function useHandleNextPage({
   const onNextPage = useEffectEvent(actions.onNextPage);
 
   useEffect(() => {
-    if (pageInfo) {
+    if (pageInfo && isLastPage) {
       onNextPage(pageInfo);
     }
-  }, [onNextPage, pageInfo]);
+  }, [isLastPage, onNextPage, pageInfo]);
 }

@@ -3,6 +3,7 @@ import {Suspense} from 'react';
 import type {SearchParams} from '@/lib/tools/create-search-params';
 import {createSearchParams} from '@/lib/tools/create-search-params';
 
+import {Filters} from './_components/filters';
 import {Products} from './_components/product-list/Products';
 import {getQueryVariables} from './_tools/get-query-variables';
 import {getQueryVariablesKey} from './_tools/get-query-variables-key';
@@ -23,6 +24,7 @@ async function ProductsPage_({searchParams: searchParamsObj}: Props) {
 
   return (
     <main>
+      <Filters />
       <Suspense fallback="Loading...">
         <Products key={key} queryVariables={queryVariables} />
       </Suspense>

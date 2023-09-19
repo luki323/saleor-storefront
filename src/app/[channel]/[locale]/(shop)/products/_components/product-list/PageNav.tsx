@@ -25,8 +25,11 @@ export function PageNav({variables, ...actions}: Props) {
   const {pageInfo} = data?.products ?? {};
 
   // Update page info for page nav handlers (`handleNextPage` and `handlePrevPage`)
-  useHandleNextPage({...(pageInfo && {pageInfo}), ...actions});
-
+  useHandleNextPage({
+    ...(pageInfo && {pageInfo}),
+    isLastPage: true,
+    ...actions,
+  });
   const pageSize = variables.first ?? variables.last ?? DEFAULT_PAGE_SIZE;
 
   return USE_PAGINATION ? (

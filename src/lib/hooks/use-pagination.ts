@@ -1,16 +1,16 @@
 import {useReducer} from 'react';
 import invariant from 'tiny-invariant';
 
-export interface NextPageVariables {
+import {PAGINATION_SEARCH_PARAM_NAMES} from '../tools/get-pagination-search-params';
+
+interface NextPageVariables {
   readonly first: number;
   readonly after?: string;
 }
-
-export interface PrevPageVariables {
+interface PrevPageVariables {
   readonly last: number;
   readonly before?: string;
 }
-
 export type PageVariables = NextPageVariables | PrevPageVariables;
 
 export type PageVariablesKey = keyof PageVariables;
@@ -18,45 +18,30 @@ export type PageVariablesKey = keyof PageVariables;
 type Init = () => PageVariables;
 
 export function usePagination(init: Init) {
-  const [{pageSize, pageSizeToCursors}, dispatch] = useReducer(
+  const [{pageSize, pageSizeToVariables}, dispatch] = useReducer(
     paginationReducer,
     undefined,
     () => initState(init),
   );
-  const currentCursors = pageSizeToCursors[pageSize];
-  invariant(currentCursors, `Not found cursors for "${pageSize}" page`);
+  const variablesState = pageSizeToVariables[pageSize];
+  invariant(variablesState, `Not found variables state for "${pageSize}" page`);
 
-  const {cursors, currentIdx} = currentCursors;
+  const {currentIdx, variablesArray} = variablesState;
 
-  const variablesArray = cursors.map((cursor) =>
-    cursorToPageVariables(cursor, pageSize),
-  );
   const currentVariables = variablesArray[currentIdx];
   invariant(currentVariables, `Not found variables for "${currentIdx}" idx`);
 
   return [{currentVariables, variablesArray}, dispatch] as const;
 }
 
-type Cursor = {readonly after?: string} | {readonly before?: string};
-
-function cursorToPageVariables(
-  cursor: Cursor,
-  pageSize: number,
-): PageVariables {
-  return 'before' in cursor
-    ? {...cursor, last: pageSize}
-    : {...cursor, first: pageSize};
-}
-
-interface CursorsState {
+interface PageVariablesState {
   readonly currentIdx: number;
-  readonly cursors: readonly Cursor[];
+  readonly variablesArray: readonly PageVariables[];
 }
-
 interface State {
   readonly pageSize: number;
-  readonly pageSizeToCursors: {
-    readonly [pageSize: number]: CursorsState;
+  readonly pageSizeToVariables: {
+    readonly [pageSize: number]: PageVariablesState;
   };
 }
 
@@ -70,49 +55,64 @@ function initState(init: Init): State {
   const pageVariables = init();
 
   const pageSize =
-    'first' in pageVariables ? pageVariables.first : pageVariables.last;
+    PAGINATION_SEARCH_PARAM_NAMES.LAST in pageVariables
+      ? pageVariables.last
+      : pageVariables.first;
 
   return {
     pageSize,
-    pageSizeToCursors: {
-      [pageSize]: {currentIdx: 0, cursors: [pageVariables]},
+    pageSizeToVariables: {
+      [pageSize]: {
+        currentIdx: 0,
+        variablesArray: [pageVariables],
+      },
     },
   };
 }
 
-function paginationReducer({pageSizeToCursors}: State, action: Action): State {
-  const {currentIdx, cursors} =
-    pageSizeToCursors[action.pageSize] ?? initCursorsState();
+function paginationReducer(
+  {pageSizeToVariables}: State,
+  action: Action,
+): State {
+  const {currentIdx, variablesArray} =
+    pageSizeToVariables[action.pageSize] ??
+    initPageVariablesState(action.pageSize);
 
-  let newCursorsState: CursorsState;
+  let newVariablesState: PageVariablesState;
 
   switch (action.type) {
     case 'next': {
       const nextIdx = currentIdx + 1;
 
-      if (cursors[nextIdx]) {
-        newCursorsState = {currentIdx: nextIdx, cursors};
+      if (variablesArray[nextIdx]) {
+        newVariablesState = {currentIdx: nextIdx, variablesArray};
         break;
       }
-      const {after} = action;
+      const {pageSize, after} = action;
 
-      newCursorsState = {currentIdx: nextIdx, cursors: [...cursors, {after}]};
+      newVariablesState = {
+        currentIdx: nextIdx,
+        variablesArray: [...variablesArray, {first: pageSize, after}],
+      };
       break;
     }
     case 'prev': {
       const prevIdx = currentIdx - 1;
 
-      if (cursors[prevIdx]) {
-        newCursorsState = {currentIdx: prevIdx, cursors};
+      if (variablesArray[prevIdx]) {
+        newVariablesState = {currentIdx: prevIdx, variablesArray};
         break;
       }
-      const {before} = action;
+      const {pageSize, before} = action;
 
-      newCursorsState = {currentIdx: 0, cursors: [{before}, ...cursors]};
+      newVariablesState = {
+        currentIdx: 0,
+        variablesArray: [{last: pageSize, before}, ...variablesArray],
+      };
       break;
     }
     case 'changePageSize': {
-      newCursorsState = {currentIdx: 0, cursors};
+      newVariablesState = {currentIdx: 0, variablesArray};
       break;
     }
     default: {
@@ -122,13 +122,13 @@ function paginationReducer({pageSizeToCursors}: State, action: Action): State {
   }
   return {
     pageSize: action.pageSize,
-    pageSizeToCursors: {
-      ...pageSizeToCursors,
-      [action.pageSize]: newCursorsState,
+    pageSizeToVariables: {
+      ...pageSizeToVariables,
+      [action.pageSize]: newVariablesState,
     },
   };
 }
 
-function initCursorsState(): CursorsState {
-  return {currentIdx: 0, cursors: [{}]};
+function initPageVariablesState(pageSize: number): PageVariablesState {
+  return {currentIdx: 0, variablesArray: [{first: pageSize}]};
 }

@@ -15,14 +15,16 @@ export type QueryVariables = Omit<
 export async function getQueryVariables(
   searchParams: URLSearchParams,
 ): Promise<QueryVariables> {
-  const [channel, locale] = getBasePath();
+  const basePath = getBasePath();
+
+  const [channel] = basePath;
 
   const [categoryIds, collectionIds] = await Promise.all([
     getCategoryIds(searchParams),
     getCollectionIds(searchParams, {channel}),
   ]);
   return {
-    ...basePathToQueryVariables(channel, locale),
+    ...basePathToQueryVariables(...basePath),
     ...(isDefined(categoryIds) && {categoryIds}),
     ...(isDefined(collectionIds) && {collectionIds}),
   };

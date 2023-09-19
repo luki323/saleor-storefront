@@ -4,6 +4,7 @@ import type {usePaginationActions} from '@/lib/hooks/use-pagination-actions';
 import {cn} from '@/lib/tools/cn';
 
 import {DEFAULT_PAGE_SIZE} from '../../_consts';
+import {PageNavButton} from './PageNavButton';
 
 const pageSizes = Array(3)
   .fill(undefined)
@@ -11,15 +12,19 @@ const pageSizes = Array(3)
 
 type Props = Pick<
   UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
-  'handleNextPage'
+  'handlePageSizeChange'
 >;
 
-export function PageSizeLinks({handleNextPage}: Props) {
+export function PageSizes({handlePageSizeChange}: Props) {
   return (
     <ol className={cn('flex gap-3')}>
       {pageSizes.map((pageSize) => (
         <li key={pageSize}>
-          <button onClick={() => handleNextPage(pageSize)}>{pageSize}</button>
+          <PageNavButton
+            size="icon"
+            onClick={() => handlePageSizeChange(pageSize)}>
+            {pageSize}
+          </PageNavButton>
         </li>
       ))}
     </ol>

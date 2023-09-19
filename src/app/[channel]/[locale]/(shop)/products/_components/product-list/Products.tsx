@@ -1,11 +1,18 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import {usePaginationActions} from '@/lib/hooks/use-pagination-actions';
 import {toArray} from '@/lib/tools/to-array';
 
 import {DEFAULT_PAGE_SIZE, USE_PAGINATION} from '../../_consts';
 import type {QueryVariables} from '../../_tools/get-query-variables';
+import {PageNav} from './PageNav';
 import {ProductItems} from './ProductItems';
+
+const PageSizes = dynamic(() =>
+  import('./PageSizes').then((mod) => mod.PageSizes),
+);
 
 interface Props {
   readonly queryVariables: QueryVariables;
@@ -14,7 +21,7 @@ interface Props {
 const BASE_OPTIONS = {
   defaultPageSize: DEFAULT_PAGE_SIZE,
   updateSearchParams: USE_PAGINATION,
-  restoreFromUrl: true,
+  restoreFromUrl: USE_PAGINATION,
 };
 
 export function Products({queryVariables}: Props) {
@@ -25,13 +32,19 @@ export function Products({queryVariables}: Props) {
   const variablesArray = toArray(
     USE_PAGINATION ? data.currentVariables : data.variablesArray,
   );
+  const lastVariables = variablesArray.at(-1);
 
-  return variablesArray.map((variables, idx) => (
-    <ProductItems
-      key={idx}
-      variables={variables}
-      isLastPage={idx === variablesArray.length - 1}
-      {...actions}
-    />
-  ));
+  return (
+    <>
+      <ol>
+        {variablesArray.map((variables, idx) => (
+          <ProductItems key={idx} variables={variables} />
+        ))}
+      </ol>
+      <nav>
+        {lastVariables && <PageNav variables={lastVariables} {...actions} />}
+        {USE_PAGINATION && <PageSizes {...actions} />}
+      </nav>
+    </>
+  );
 }

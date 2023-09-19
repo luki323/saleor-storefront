@@ -4,6 +4,7 @@ import {startTransition, useCallback, useRef} from 'react';
 import type {PageInfo} from '@/graphql/generated/graphql';
 import {isDefined} from '@/lib/tools/is-defined';
 
+import {PAGINATION_SEARCH_PARAM_NAMES} from '../tools/get-pagination-search-params';
 import {usePaginationVariables} from './use-pagination-variables';
 
 export function usePaginationActions<QueryVariables extends AnyVariables>(
@@ -13,19 +14,8 @@ export function usePaginationActions<QueryVariables extends AnyVariables>(
 
   const pageInfoRef = useRef<PageInfo>();
 
-  const currentPageSize =
-    'first' in data.currentVariables
-      ? data.currentVariables.first
-      : data.currentVariables.last;
-
   const handlePrevPage = useCallback(
     (pageSize: number) => {
-      if (pageSize !== currentPageSize) {
-        startTransition(() => {
-          dispatch({type: 'changePageSize', pageSize});
-        });
-        return;
-      }
       if (!pageInfoRef.current) {
         return;
       }
@@ -37,16 +27,10 @@ export function usePaginationActions<QueryVariables extends AnyVariables>(
         });
       }
     },
-    [currentPageSize, dispatch],
+    [dispatch],
   );
   const handleNextPage = useCallback(
     (pageSize: number) => {
-      if (pageSize !== currentPageSize) {
-        startTransition(() => {
-          dispatch({type: 'changePageSize', pageSize});
-        });
-        return;
-      }
       if (!pageInfoRef.current) {
         return;
       }
@@ -58,11 +42,29 @@ export function usePaginationActions<QueryVariables extends AnyVariables>(
         });
       }
     },
+    [dispatch],
+  );
+  const currentPageSize =
+    PAGINATION_SEARCH_PARAM_NAMES.FIRST in data.currentVariables
+      ? data.currentVariables.first
+      : data.currentVariables.last;
+
+  const handlePageSizeChange = useCallback(
+    (pageSize: number) => {
+      if (pageSize !== currentPageSize) {
+        startTransition(() => {
+          dispatch({type: 'changePageSize', pageSize});
+        });
+      }
+    },
     [currentPageSize, dispatch],
   );
   const onNextPage = useCallback((pageInfo: PageInfo) => {
     pageInfoRef.current = pageInfo;
   }, []);
 
-  return [data, {handlePrevPage, handleNextPage, onNextPage}] as const;
+  return [
+    data,
+    {handlePrevPage, handleNextPage, handlePageSizeChange, onNextPage},
+  ] as const;
 }

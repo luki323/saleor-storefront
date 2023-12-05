@@ -55,7 +55,6 @@ export function useSignupSubmit(form: UseFormReturn<SignupFormSchema>) {
           }
           localStorage.setItem(result.name, result.value);
         }
-
         form.reset();
       } catch (error) {
         // TODO: display server error

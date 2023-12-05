@@ -547,6 +547,12 @@
       "value": "Enter a ZIP / postal code"
     }
   ],
+  "phAZoj": [
+    {
+      "type": 0,
+      "value": "Collection"
+    }
+  ],
   "pmu7Ih": [
     {
       "type": 0,

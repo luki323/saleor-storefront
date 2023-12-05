@@ -29004,17 +29004,6 @@ export type CollectionDropdownItems_CategoriesQueryQuery = {
   } | null;
 };
 
-export type ProductItem_ProductFragmentFragment = {
-  __typename: 'Product';
-  id: string;
-  name: string;
-  translation?: {
-    __typename: 'ProductTranslation';
-    id: string;
-    name?: string | null;
-  } | null;
-} & {' $fragmentName'?: 'ProductItem_ProductFragmentFragment'};
-
 export type ProductItems_ProductsQueryQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
@@ -29047,6 +29036,17 @@ export type ProductItems_ProductsQueryQuery = {
     };
   } | null;
 };
+
+export type ProductItem_ProductFragmentFragment = {
+  __typename: 'Product';
+  id: string;
+  name: string;
+  translation?: {
+    __typename: 'ProductTranslation';
+    id: string;
+    name?: string | null;
+  } | null;
+} & {' $fragmentName'?: 'ProductItem_ProductFragmentFragment'};
 
 export type GetCategoryIdsQueryVariables = Exact<{
   first: Scalars['Int']['input'];

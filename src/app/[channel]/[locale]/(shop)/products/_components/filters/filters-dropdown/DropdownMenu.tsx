@@ -1,7 +1,6 @@
 'use client';
 
 export {
-  Arrow,
   CheckboxItem,
   Content,
   ItemIndicator,

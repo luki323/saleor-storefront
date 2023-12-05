@@ -1,5 +1,6 @@
 import {Suspense} from 'react';
 
+import {cn} from '@/lib/tools/cn';
 import type {SearchParams} from '@/lib/tools/create-search-params';
 import {createSearchParams} from '@/lib/tools/create-search-params';
 
@@ -24,7 +25,9 @@ async function ProductsPage_({searchParams: searchParamsObj}: Props) {
 
   return (
     <main>
-      <Filters />
+      <div className={cn('mb-4 mt-1')}>
+        <Filters />
+      </div>
       <Suspense fallback="Loading...">
         <Products key={key} queryVariables={queryVariables} />
       </Suspense>

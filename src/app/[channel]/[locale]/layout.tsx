@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
-// It'll work only for server components
-import 'core-js/modules/web.url-search-params.delete.js';
+import './polyfills';
 
 import {IntlProvider} from '@/i18n/components/IntlProvider';
 import type {AvailableChannel, AvailableLocale} from '@/i18n/consts';

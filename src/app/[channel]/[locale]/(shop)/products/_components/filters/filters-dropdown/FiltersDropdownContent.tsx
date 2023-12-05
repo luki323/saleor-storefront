@@ -12,13 +12,13 @@ export function FiltersDropdownContent({
   return (
     <DropdownMenu.Portal>
       <DropdownMenu.Content
+        sideOffset={12}
         {...restProps}
         className={cn(
           'flex max-h-64 flex-col gap-1 overflow-scroll rounded-md border border-grey bg-black bg-opacity-90 px-2 py-2 text-sm text-white shadow-lg backdrop-blur-md',
           className,
         )}>
         {children}
-        <DropdownMenu.Arrow />
       </DropdownMenu.Content>
     </DropdownMenu.Portal>
   );

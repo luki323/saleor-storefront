@@ -67,6 +67,30 @@
       "value": "Apartment, suit, etc. (optional)"
     }
   ],
+  "0ZmUBu": [
+    {
+      "options": {
+        "city": {
+          "value": [
+            {
+              "type": 0,
+              "value": "City"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "Other"
+            }
+          ]
+        }
+      },
+      "type": 5,
+      "value": "cityType"
+    }
+  ],
   "0s5kDf": [
     {
       "type": 0,
@@ -95,6 +119,12 @@
     {
       "type": 0,
       "value": "New email description"
+    }
+  ],
+  "3ZPs5M": [
+    {
+      "type": 0,
+      "value": "Increase quantity"
     }
   ],
   "48k4Ow": [
@@ -137,6 +167,12 @@
     {
       "type": 0,
       "value": "Sign up"
+    }
+  ],
+  "8N2GKa": [
+    {
+      "type": 0,
+      "value": "Your cart is empty."
     }
   ],
   "8QOEAp": [
@@ -191,6 +227,12 @@
     {
       "type": 0,
       "value": "Change"
+    }
+  ],
+  "CTSLLJ": [
+    {
+      "type": 0,
+      "value": "My Cart"
     }
   ],
   "DgnS8R": [
@@ -321,10 +363,10 @@
       "value": "Password changed successfully."
     }
   ],
-  "TE4fIS": [
+  "T3mGSH": [
     {
       "type": 0,
-      "value": "City"
+      "value": "Delete cart item"
     }
   ],
   "TZm4bq": [
@@ -395,6 +437,12 @@
       "value": "Orders"
     }
   ],
+  "YYfgYY": [
+    {
+      "type": 0,
+      "value": "Reduce quantity"
+    }
+  ],
   "ZpVtCa": [
     {
       "type": 0,
@@ -411,24 +459,6 @@
     {
       "type": 0,
       "value": "Confirm password:"
-    }
-  ],
-  "bHEjjM": [
-    {
-      "type": 1,
-      "value": "minimumDeliveryDays"
-    },
-    {
-      "type": 0,
-      "value": " to "
-    },
-    {
-      "type": 1,
-      "value": "maximumDeliveryDays"
-    },
-    {
-      "type": 0,
-      "value": " business days"
     }
   ],
   "ccXLVi": [
@@ -453,6 +483,12 @@
     {
       "type": 0,
       "value": "Address"
+    }
+  ],
+  "eeFogF": [
+    {
+      "type": 0,
+      "value": "Enter a valid country area"
     }
   ],
   "fbQ+L1": [
@@ -515,16 +551,16 @@
       "value": "Update your user details settings."
     }
   ],
-  "ku+mDU": [
-    {
-      "type": 0,
-      "value": "State"
-    }
-  ],
   "lBENL4": [
     {
       "type": 0,
       "value": "request email change"
+    }
+  ],
+  "mwAM9U": [
+    {
+      "type": 0,
+      "value": "Enter a country area"
     }
   ],
   "pJU6x5": [
@@ -589,10 +625,132 @@
       "value": "ZIP Code"
     }
   ],
+  "rbrahO": [
+    {
+      "type": 0,
+      "value": "Close"
+    }
+  ],
   "sy+pv5": [
     {
       "type": 0,
       "value": "Email"
+    }
+  ],
+  "tD8gJ0": [
+    {
+      "options": {
+        "island": {
+          "value": [
+            {
+              "type": 0,
+              "value": "Island"
+            }
+          ]
+        },
+        "oblast": {
+          "value": [
+            {
+              "type": 0,
+              "value": "Oblast"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "Other"
+            }
+          ]
+        },
+        "province": {
+          "value": [
+            {
+              "type": 0,
+              "value": "Province"
+            }
+          ]
+        },
+        "state": {
+          "value": [
+            {
+              "type": 0,
+              "value": "State"
+            }
+          ]
+        }
+      },
+      "type": 5,
+      "value": "countryAreaType"
+    }
+  ],
+  "tXQ9ea": [
+    {
+      "options": {
+        "maximum": {
+          "value": [
+            {
+              "type": 0,
+              "value": "maximum "
+            },
+            {
+              "type": 1,
+              "value": "maximumDeliveryDays"
+            },
+            {
+              "type": 0,
+              "value": " business days"
+            }
+          ]
+        },
+        "minimum": {
+          "value": [
+            {
+              "type": 0,
+              "value": "minimum "
+            },
+            {
+              "type": 1,
+              "value": "minimumDeliveryDays"
+            },
+            {
+              "type": 0,
+              "value": " business days"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "unknown business days"
+            }
+          ]
+        },
+        "range": {
+          "value": [
+            {
+              "type": 1,
+              "value": "minimumDeliveryDays"
+            },
+            {
+              "type": 0,
+              "value": " to "
+            },
+            {
+              "type": 1,
+              "value": "maximumDeliveryDays"
+            },
+            {
+              "type": 0,
+              "value": " business days"
+            }
+          ]
+        }
+      },
+      "type": 5,
+      "value": "type"
     }
   ],
   "u1JzBg": [
@@ -665,6 +823,12 @@
     {
       "type": 0,
       "value": "Enter a first name"
+    }
+  ],
+  "z3Qj9h": [
+    {
+      "type": 0,
+      "value": "Proceed to Checkout"
     }
   ],
   "zFegDD": [

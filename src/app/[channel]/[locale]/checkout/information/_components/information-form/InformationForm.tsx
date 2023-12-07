@@ -2,7 +2,7 @@
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import type {ElementRef} from 'react';
-import {Controller, useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment} from '@/graphql/generated';
@@ -26,7 +26,7 @@ import {TextField} from '../../../_components/TextField';
 import {FIELDS} from './fields';
 import type {InformationFieldsSchema} from './hooks/use-information-fields-schema';
 import {useInformationFieldsSchema} from './hooks/use-information-fields-schema';
-import {useInformationSubmit} from './hooks/use-information-submit/use-information-submit';
+import {useInformationSubmit} from './hooks/use-information-submit';
 
 const InformationForm_ChannelFragment = graphql(/* GraphQL */ `
   fragment InformationForm_ChannelFragment on Channel {
@@ -56,24 +56,19 @@ export function InformationForm({
   defaultValues,
 }: Props) {
   const channelFragment = getFragment(InformationForm_ChannelFragment, channel);
-  const {
-    postalCodeMatchers,
-    postalCodeExamples,
-    ...restAddressValidationDataFragment
-  } = getFragment(
+  const addressValidationDataFragment = getFragment(
     InformationForm_AddressValidationDataFragment,
     addressValidationData,
   );
 
-  const informationFieldsSchema = useInformationFieldsSchema({
-    postalCodeMatchers,
-    postalCodeExamples,
-  });
+  const informationFieldsSchema = useInformationFieldsSchema(
+    addressValidationDataFragment,
+  );
   const form = useForm<InformationFieldsSchema>({
     resolver: zodResolver(informationFieldsSchema),
     defaultValues,
   });
-  const {shippingAddressSubmit, routeIsPending} = useInformationSubmit();
+  const {shippingAddressSubmit, routeIsPending} = useInformationSubmit(form);
 
   const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
@@ -119,17 +114,17 @@ export function InformationForm({
         </Heading>
         <AddressFields
           channel={channelFragment}
-          addressValidationData={restAddressValidationDataFragment}
+          addressValidationData={addressValidationDataFragment}
           disabled={disabled}
         />
-        <Controller
+        <FormField
           name={FIELDS.USE_SHIPPING_AS_BILLING_ADDRESS}
           control={form.control}
           render={({field: {value = false, onChange}}) => (
             <Checkbox
               checked={value}
-              disabled={disabled}
-              onCheckedChange={onChange}>
+              onCheckedChange={onChange}
+              disabled={disabled}>
               <FormattedMessage
                 defaultMessage="Use shipping address as billing address"
                 id="2htJqw"
@@ -139,7 +134,7 @@ export function InformationForm({
         />
       </section>
       <div className={cn('self-end')}>
-        <SubmitButton disabled={form.formState.isSubmitting || routeIsPending}>
+        <SubmitButton disabled={disabled}>
           <FormattedMessage defaultMessage="Continue to shipping" id="DgnS8R" />
         </SubmitButton>
       </div>

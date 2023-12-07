@@ -26,3 +26,7 @@ export const ADDRESS_FIELDS: {
   COUNTRY_AREA: 'countryArea',
   POSTAL_CODE: 'postalCode',
 };
+
+export const ADDRESS_FIELDS_NAMES = Object.values(
+  ADDRESS_FIELDS,
+) as ReadonlyArray<(typeof ADDRESS_FIELDS)[keyof typeof ADDRESS_FIELDS]>;

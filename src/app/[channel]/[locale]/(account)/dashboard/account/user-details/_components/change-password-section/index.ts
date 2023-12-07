@@ -1,1 +1,1 @@
-export {};
+export {ChangePasswordSection} from './ChangePasswordSection';

@@ -29,6 +29,9 @@
   "0MqfPh": {
     "defaultMessage": "Apartment, suit, etc. (optional)"
   },
+  "0ZmUBu": {
+    "defaultMessage": "{cityType, select, city {City} other {Other} }"
+  },
   "0s5kDf": {
     "defaultMessage": "Continue to billing"
   },
@@ -43,6 +46,9 @@
   },
   "3P1axg": {
     "defaultMessage": "New email description"
+  },
+  "3ZPs5M": {
+    "defaultMessage": "Increase quantity"
   },
   "48k4Ow": {
     "defaultMessage": "Enter a old password"
@@ -64,6 +70,9 @@
   },
   "8HJxXG": {
     "defaultMessage": "Sign up"
+  },
+  "8N2GKa": {
+    "defaultMessage": "Your cart is empty."
   },
   "8QOEAp": {
     "defaultMessage": "Enter a valid confirm password"
@@ -91,6 +100,9 @@
   },
   "BY343C": {
     "defaultMessage": "Change"
+  },
+  "CTSLLJ": {
+    "defaultMessage": "My Cart"
   },
   "DgnS8R": {
     "defaultMessage": "Continue to shipping"
@@ -152,8 +164,8 @@
   "St4O02": {
     "defaultMessage": "Password changed successfully."
   },
-  "TE4fIS": {
-    "defaultMessage": "City"
+  "T3mGSH": {
+    "defaultMessage": "Delete cart item"
   },
   "TZm4bq": {
     "defaultMessage": "Enter a valid password"
@@ -185,6 +197,9 @@
   "X7jl6w": {
     "defaultMessage": "Orders"
   },
+  "YYfgYY": {
+    "defaultMessage": "Reduce quantity"
+  },
   "ZpVtCa": {
     "defaultMessage": "Shipping address"
   },
@@ -193,9 +208,6 @@
   },
   "atD3r4": {
     "defaultMessage": "Confirm password:"
-  },
-  "bHEjjM": {
-    "defaultMessage": "{minimumDeliveryDays} to {maximumDeliveryDays} business days"
   },
   "ccXLVi": {
     "defaultMessage": "Category"
@@ -208,6 +220,9 @@
   },
   "e6Ph5+": {
     "defaultMessage": "Address"
+  },
+  "eeFogF": {
+    "defaultMessage": "Enter a valid country area"
   },
   "fbQ+L1": {
     "defaultMessage": "Enter a valid old password"
@@ -239,11 +254,11 @@
   "kFjJxN": {
     "defaultMessage": "Update your user details settings."
   },
-  "ku+mDU": {
-    "defaultMessage": "State"
-  },
   "lBENL4": {
     "defaultMessage": "request email change"
+  },
+  "mwAM9U": {
+    "defaultMessage": "Enter a country area"
   },
   "pJU6x5": {
     "defaultMessage": "Confirmation link was sent to {newEmail} mailbox"
@@ -272,8 +287,17 @@
   "rHnr4K": {
     "defaultMessage": "ZIP Code"
   },
+  "rbrahO": {
+    "defaultMessage": "Close"
+  },
   "sy+pv5": {
     "defaultMessage": "Email"
+  },
+  "tD8gJ0": {
+    "defaultMessage": "{countryAreaType, select, state {State} province {Province} island {Island} oblast {Oblast} other {Other} }"
+  },
+  "tXQ9ea": {
+    "defaultMessage": "{type, select, range {{minimumDeliveryDays} to {maximumDeliveryDays} business days} minimum {minimum {minimumDeliveryDays} business days} maximum {maximum {maximumDeliveryDays} business days} other {unknown business days} }"
   },
   "u1JzBg": {
     "defaultMessage": "Enter a city"
@@ -310,6 +334,9 @@
   },
   "y6WUKS": {
     "defaultMessage": "Enter a first name"
+  },
+  "z3Qj9h": {
+    "defaultMessage": "Proceed to Checkout"
   },
   "zFegDD": {
     "defaultMessage": "Contact"

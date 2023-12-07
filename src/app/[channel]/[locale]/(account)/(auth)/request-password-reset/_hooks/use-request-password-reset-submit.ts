@@ -29,7 +29,7 @@ export function useRequestPasswordResetSubmit(
           ).requestPasswordReset ?? {};
 
         if (errors?.length) {
-          // TODO: Display server error
+          // TODO: display server error
         } else {
           toast.default({
             title: intl.formatMessage({

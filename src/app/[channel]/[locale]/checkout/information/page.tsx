@@ -5,17 +5,18 @@ import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 import {fetchQueryData} from '@/lib/tools/get-client';
-import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 import {Breadcrumbs} from '../_components/breadcrumbs';
 import {getCountrySearchParam} from '../_tools/get-country-search-param';
 import {getRedirectUrl} from '../_tools/get-redirect-url';
+import {goToRoot} from '../_tools/go-to-root';
 import {InformationSection} from './_components/InformationSection';
 
 const InformationPage_CheckoutQuery = graphql(/* GraphQL */ `
   query InformationPage_Query($id: ID!) {
     checkout(id: $id) {
+      quantity
       shippingAddress {
         __typename
       }
@@ -33,18 +34,17 @@ const InformationPage_CheckoutQuery = graphql(/* GraphQL */ `
 
 interface Props {
   readonly searchParams?: {
-    readonly country: string;
+    readonly country?: string;
   };
 }
 
 export default async function InformationPage({searchParams}: Props) {
-  const id = getCheckoutId() ?? redirect(formatPathname(APP_ROUTES.ROOT));
   const checkout =
     (
       await fetchQueryData(
         InformationPage_CheckoutQuery,
         {
-          id,
+          id: getCheckoutId() ?? goToRoot(),
         },
         {
           fetchOptions: {
@@ -52,8 +52,11 @@ export default async function InformationPage({searchParams}: Props) {
           },
         },
       )
-    ).checkout ?? raise('`checkout` is not defined');
+    ).checkout ?? goToRoot();
 
+  if (!checkout.quantity) {
+    goToRoot();
+  }
   const redirectUrl = getRedirectUrl(
     checkout,
     formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION),

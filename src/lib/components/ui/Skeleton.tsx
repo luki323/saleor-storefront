@@ -4,11 +4,11 @@ import {cn} from '@/lib/tools/cn';
 
 type Props = HTMLAttributes<HTMLDivElement>;
 
-export function Skeleton({className, ...props}: Props) {
+export function Skeleton({className, ...restProps}: Props) {
   return (
     <div
       className={cn('animate-pulse rounded-md bg-muted', className)}
-      {...props}
+      {...restProps}
     />
   );
 }

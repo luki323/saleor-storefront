@@ -5,8 +5,6 @@ import {Spinner} from '@/lib/components/ui/Spinner';
 import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
-type Props = VariantProps<typeof styles>;
-
 const styles = cva(
   'relative rounded-md bg-blue p-5 text-sm font-bold text-white transition-colors hover:bg-blue-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black',
   {
@@ -17,6 +15,8 @@ const styles = cva(
     },
   },
 );
+
+type Props = VariantProps<typeof styles>;
 
 export function SubmitButton({children, disabled}: PropsWithChildren<Props>) {
   return (

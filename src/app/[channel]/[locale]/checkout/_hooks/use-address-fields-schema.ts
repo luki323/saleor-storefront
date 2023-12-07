@@ -92,7 +92,16 @@ export function useAddressFieldsSchema({
             id: 'u1JzBg',
           }),
         }),
-      [ADDRESS_FIELDS.COUNTRY_AREA]: zod.string(),
+      [ADDRESS_FIELDS.COUNTRY_AREA]: zod.string({
+        invalid_type_error: intl.formatMessage({
+          defaultMessage: 'Enter a valid country area',
+          id: 'eeFogF',
+        }),
+        required_error: intl.formatMessage({
+          defaultMessage: 'Enter a country area',
+          id: 'mwAM9U',
+        }),
+      }),
       [ADDRESS_FIELDS.POSTAL_CODE]: zod
         .string({
           invalid_type_error: intl.formatMessage({

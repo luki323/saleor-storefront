@@ -1,4 +1,4 @@
-import 'server-only';
+'use server';
 
 import {graphql} from '@/graphql/generated';
 import type {CreateCheckoutMutationMutationVariables} from '@/graphql/generated/graphql';

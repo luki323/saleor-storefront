@@ -2,7 +2,7 @@ import {useFormContext} from 'react-hook-form';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
-import {FormattedMessage, useIntl} from '@/i18n/react-intl';
+import {useIntl} from '@/i18n/react-intl';
 import {FormField} from '@/lib/components/form/form-field/FormField';
 import {FormFieldControl} from '@/lib/components/form/FormFieldControl';
 import {FormFieldErrorMessage} from '@/lib/components/form/FormFieldErrorMessage';
@@ -11,16 +11,10 @@ import {cn} from '@/lib/tools/cn';
 
 import {ADDRESS_FIELDS} from '../../_consts';
 import type {AddressFieldsSchema} from '../../_hooks/use-address-fields-schema';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectPlaceholder,
-  SelectTrigger,
-  SelectValue,
-} from '../Select';
 import {TextField} from '../TextField';
+import {CityFormField} from './components/CityFormField';
 import {CountrySelect} from './components/country-select';
+import {CountryAreaFormField} from './components/CountryAreaFormField';
 import {FormGroup, FormItem} from './components/Form';
 
 const AddressFields_ChannelFragment = graphql(/* GraphQL */ `
@@ -31,10 +25,8 @@ const AddressFields_ChannelFragment = graphql(/* GraphQL */ `
 
 const AddressFields_AddressValidationDataFragment = graphql(/* GraphQL */ `
   fragment AddressFields_AddressValidationDataFragment on AddressValidationData {
-    countryAreaChoices {
-      raw
-      verbose
-    }
+    ...CityFormField_AddressValidationDataFragment
+    ...CountryAreaFormField_AddressValidationDataFragment
   }
 `);
 
@@ -51,20 +43,20 @@ export function AddressFields({
   addressValidationData,
   disabled,
 }: Props) {
-  const form = useFormContext<AddressFieldsSchema>();
-
   const channelFragment = getFragment(AddressFields_ChannelFragment, channel);
-  const {countryAreaChoices} = getFragment(
+  const addressValidationDataFragment = getFragment(
     AddressFields_AddressValidationDataFragment,
     addressValidationData,
   );
+
+  const form = useFormContext<AddressFieldsSchema>();
 
   const intl = useIntl();
 
   return (
     <div className={cn('flex flex-col gap-3.5')}>
       <CountrySelect channel={channelFragment} disabled={disabled} />
-      <FormGroup>
+      <FormGroup className={cn('grid-cols-2')}>
         <FormField
           name={ADDRESS_FIELDS.FIRST_NAME}
           control={form.control}
@@ -153,64 +145,14 @@ export function AddressFields({
           </FormItem>
         )}
       />
-      <FormGroup>
-        <FormField
-          name={ADDRESS_FIELDS.CITY}
-          control={form.control}
-          render={({field}) => (
-            <FormItem>
-              <FormFieldControl>
-                <TextField
-                  placeholder={intl.formatMessage({
-                    defaultMessage: 'City',
-                    id: 'TE4fIS',
-                  })}
-                  disabled={disabled}
-                  required
-                  {...field}
-                />
-              </FormFieldControl>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </FormItem>
-          )}
+      <FormGroup className={cn('grid-cols-3')}>
+        <CityFormField
+          addressValidationData={addressValidationDataFragment}
+          disabled={disabled}
         />
-        <FormField
-          name={ADDRESS_FIELDS.COUNTRY_AREA}
-          control={form.control}
-          render={({field}) => (
-            <Select
-              value={field.value}
-              onValueChange={field.onChange}
-              disabled={disabled}
-              required>
-              <SelectTrigger>
-                <SelectPlaceholder>
-                  <FormattedMessage defaultMessage="State" id="ku+mDU" />
-                </SelectPlaceholder>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {countryAreaChoices
-                  .filter(
-                    (
-                      countryAreaChoice,
-                    ): countryAreaChoice is {
-                      readonly raw: string;
-                      readonly verbose: string;
-                    } =>
-                      Boolean(countryAreaChoice.raw) &&
-                      Boolean(countryAreaChoice.verbose),
-                  )
-                  .map(({raw, verbose}) => (
-                    <SelectItem key={raw} value={raw}>
-                      {verbose}
-                    </SelectItem>
-                  ))}
-              </SelectContent>
-            </Select>
-          )}
+        <CountryAreaFormField
+          addressValidationData={addressValidationDataFragment}
+          disabled={disabled}
         />
         <FormField
           name={ADDRESS_FIELDS.POSTAL_CODE}

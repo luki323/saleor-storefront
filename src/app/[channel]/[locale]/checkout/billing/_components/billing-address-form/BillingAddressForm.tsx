@@ -49,24 +49,19 @@ export function BillingAddressForm({
     BillingAddressForm_ChannelFragment,
     channel,
   );
-  const {
-    postalCodeMatchers,
-    postalCodeExamples,
-    ...restAddressValidationDataFragment
-  } = getFragment(
+  const addressValidationDataFragment = getFragment(
     BillingAddressForm_AddressValidationDataFragment,
     addressValidationData,
   );
 
-  const billingAddressFieldsSchema = useBillingAddressFieldsSchema({
-    postalCodeMatchers,
-    postalCodeExamples,
-  });
+  const billingAddressFieldsSchema = useBillingAddressFieldsSchema(
+    addressValidationDataFragment,
+  );
   const form = useForm<AddressFieldsSchema>({
     resolver: zodResolver(billingAddressFieldsSchema),
     defaultValues,
   });
-  const {billingAddressSubmit, routeIsPending} = useBillingAddressSubmit();
+  const {billingAddressSubmit, routeIsPending} = useBillingAddressSubmit(form);
 
   const disabled = form.formState.isSubmitting || routeIsPending;
 
@@ -74,7 +69,7 @@ export function BillingAddressForm({
     <Form form={form} onSubmit={form.handleSubmit(billingAddressSubmit)}>
       <AddressFields
         channel={channelFragment}
-        addressValidationData={restAddressValidationDataFragment}
+        addressValidationData={addressValidationDataFragment}
         disabled={disabled}
       />
       <div className={cn('flex items-center justify-between')}>

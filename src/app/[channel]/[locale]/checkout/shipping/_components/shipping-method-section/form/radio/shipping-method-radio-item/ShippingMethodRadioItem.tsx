@@ -4,21 +4,20 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
-import {FormattedMessage} from '@/i18n/react-intl';
 import {cn} from '@/lib/tools/cn';
 
-import {Money} from '../../../../../_components/Money';
+import {Money} from '../../../../../../_components/Money';
+import {DeliveryDays} from './DeliveryDays';
 
 const ShippingMethodRadioItem_ShippingMethod = graphql(/* GraphQL */ `
   fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {
     id
     name
-    minimumDeliveryDays
-    maximumDeliveryDays
     price {
       currency
       amount
     }
+    ...DeliveryDays_ShippingMethod
   }
 `);
 
@@ -29,8 +28,10 @@ interface Props {
 }
 
 export function ShippingMethodRadioItem({shippingMethod}: Props) {
-  const {id, name, minimumDeliveryDays, maximumDeliveryDays, price} =
-    getFragment(ShippingMethodRadioItem_ShippingMethod, shippingMethod);
+  const {id, name, price, ...restShippingMethodFragment} = getFragment(
+    ShippingMethodRadioItem_ShippingMethod,
+    shippingMethod,
+  );
 
   return (
     <label
@@ -51,16 +52,7 @@ export function ShippingMethodRadioItem({shippingMethod}: Props) {
       <div className={cn('flex w-full justify-between')}>
         <div className={cn('flex flex-col')}>
           <span className={cn('text-sm text-white')}>{name}</span>
-          <span className={cn('text-sm text-grey-light')}>
-            <FormattedMessage
-              defaultMessage="{minimumDeliveryDays} to {maximumDeliveryDays} business days"
-              values={{
-                minimumDeliveryDays: minimumDeliveryDays ?? 0,
-                maximumDeliveryDays: maximumDeliveryDays ?? 0,
-              }}
-              id="bHEjjM"
-            />
-          </span>
+          <DeliveryDays shippingMethod={restShippingMethodFragment} />
         </div>
         <div>
           <Money value={price.amount} currency={price.currency} bold />

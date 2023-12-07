@@ -29,6 +29,24 @@ const documents = {
     types.ChangePasswordMutationDocument,
   '\n  mutation RequestEmailChangeMutation(\n    $channel: String!\n    $newEmail: String!\n    $password: String!\n    $redirectUrl: String!\n  ) {\n    requestEmailChange(\n      channel: $channel\n      newEmail: $newEmail\n      password: $password\n      redirectUrl: $redirectUrl\n    ) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
     types.RequestEmailChangeMutationDocument,
+  '\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n':
+    types.ShoppingCartButton_CheckoutFragmentFragmentDoc,
+  '\n  query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      quantity\n      ...ShoppingCartButton_CheckoutFragment\n      ...CartBody_CheckoutFragment\n      ...CartFooter_CheckoutFragment\n    }\n  }\n':
+    types.CartDialog_CheckoutQueryDocument,
+  '\n  fragment CartBody_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...CheckoutLine_CheckoutLineFragment\n    }\n    ...CheckoutLine_CheckoutFragment\n  }\n':
+    types.CartBody_CheckoutFragmentFragmentDoc,
+  '\n  fragment CheckoutLine_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n':
+    types.CheckoutLine_CheckoutFragmentFragmentDoc,
+  '\n  fragment CheckoutLine_CheckoutLineFragment on CheckoutLine {\n    id\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n':
+    types.CheckoutLine_CheckoutLineFragmentFragmentDoc,
+  '\n  mutation UpdateCheckoutLinesMutation(\n    $checkoutId: ID!\n    $lines: [CheckoutLineUpdateInput!]!\n  ) {\n    checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
+    types.UpdateCheckoutLinesMutationDocument,
+  '\n  mutation DeleteCheckoutLinesMutation($id: ID!, $linesIds: [ID!]!) {\n    checkoutLinesDelete(id: $id, linesIds: $linesIds) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
+    types.DeleteCheckoutLinesMutationDocument,
+  '\n  fragment CartFooter_CheckoutFragment on Checkout {\n    ...CartTotal_CheckoutFragment\n  }\n':
+    types.CartFooter_CheckoutFragmentFragmentDoc,
+  '\n  fragment CartTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n':
+    types.CartTotal_CheckoutFragmentFragmentDoc,
   '\n  fragment NavbarItem_MenuItemFragment on MenuItem {\n    children {\n      __typename\n    }\n    ...NavbarLink_MenuItemFragment\n    ...NavbarDropdown_MenuItemFragment\n  }\n':
     types.NavbarItem_MenuItemFragmentFragmentDoc,
   '\n  fragment NavbarLink_MenuItemFragment on MenuItem {\n    name\n    translation(languageCode: $languageCode) {\n      name\n    }\n    page {\n      slug\n    }\n  }\n':
@@ -61,35 +79,43 @@ const documents = {
     types.GetCollectionIdsDocument,
   '\n  fragment AddressFields_ChannelFragment on Channel {\n    ...CountrySelect_ChannelFragment\n  }\n':
     types.AddressFields_ChannelFragmentFragmentDoc,
-  '\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    countryAreaChoices {\n      raw\n      verbose\n    }\n  }\n':
+  '\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    ...CityFormField_AddressValidationDataFragment\n    ...CountryAreaFormField_AddressValidationDataFragment\n  }\n':
     types.AddressFields_AddressValidationDataFragmentFragmentDoc,
+  '\n  fragment CityFormField_AddressValidationDataFragment on AddressValidationData {\n    cityType\n    cityChoices {\n      raw\n      verbose\n    }\n  }\n':
+    types.CityFormField_AddressValidationDataFragmentFragmentDoc,
+  '\n    fragment CountryAreaFormField_AddressValidationDataFragment on AddressValidationData {\n      countryAreaType\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  ':
+    types.CountryAreaFormField_AddressValidationDataFragmentFragmentDoc,
   '\n  fragment CountrySelect_ChannelFragment on Channel {\n    countries {\n      code\n    }\n  }\n':
     types.CountrySelect_ChannelFragmentFragmentDoc,
   '\n  fragment Breadcrumbs_CheckoutFragment on Checkout {\n    shippingAddress {\n      __typename\n    }\n    deliveryMethod {\n      __typename\n    }\n    billingAddress {\n      __typename\n    }\n  }\n':
     types.Breadcrumbs_CheckoutFragmentFragmentDoc,
-  '\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...Total_CheckoutFragment\n    }\n  }\n':
+  '\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...CheckoutTotal_CheckoutFragment\n    }\n  }\n':
     types.Summary_QueryDocument,
-  '\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      totalPrice {\n        currency\n        net {\n          amount\n        }\n        gross {\n          amount\n        }\n      }\n      variant {\n        product {\n          name\n          translation(languageCode: $languageCode) {\n            name\n          }\n          media {\n            url\n            alt\n          }\n        }\n      }\n      quantity\n      id\n    }\n    displayGrossPrices\n  }\n':
+  '\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...Line_CheckoutLineFragment\n    }\n    ...Line_CheckoutFragment\n  }\n':
     types.Lines_CheckoutFragmentFragmentDoc,
-  '\n  fragment Total_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n':
-    types.Total_CheckoutFragmentFragmentDoc,
+  '\n  fragment Line_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n':
+    types.Line_CheckoutFragmentFragmentDoc,
+  '\n  fragment Line_CheckoutLineFragment on CheckoutLine {\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n':
+    types.Line_CheckoutLineFragmentFragmentDoc,
+  '\n  fragment CheckoutTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n':
+    types.CheckoutTotal_CheckoutFragmentFragmentDoc,
   '\n  mutation UpdateCheckoutBillingAddressMutation(\n    $id: ID!\n    $billingAddress: AddressInput!\n  ) {\n    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
     types.UpdateCheckoutBillingAddressMutationDocument,
+  '\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n':
+    types.BillingSection_ChannelQueryDocument,
+  '\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n':
+    types.BillingSection_AddressValidationRulesQueryDocument,
+  '\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n':
+    types.BillingSection_CheckoutFragmentFragmentDoc,
   '\n  fragment BillingAddressForm_ChannelFragment on Channel {\n    ...AddressFields_ChannelFragment\n  }\n':
     types.BillingAddressForm_ChannelFragmentFragmentDoc,
   '\n  fragment BillingAddressForm_AddressValidationDataFragment on AddressValidationData {\n    postalCodeMatchers\n    postalCodeExamples\n    ...AddressFields_AddressValidationDataFragment\n  }\n':
     types.BillingAddressForm_AddressValidationDataFragmentFragmentDoc,
-  '\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n':
-    types.BillingSection_ChannelQueryDocument,
-  '\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n':
-    types.BillingSection_AddressValidationRulesQueryDocument,
-  '\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n':
-    types.BillingSection_CheckoutFragmentFragmentDoc,
-  '\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n':
+  '\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n':
     types.BillingPage_CheckoutQueryDocument,
   '\n  query InformationSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...InformationForm_ChannelFragment\n    }\n  }\n':
     types.InformationSection_ChannelQueryDocument,
-  '\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n':
+  '\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n':
     types.InformationSection_AddressValidationRulesQueryDocument,
   '\n  fragment InformationSection_CheckoutFragment on Checkout {\n    email\n    shippingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n':
     types.InformationSection_CheckoutFragmentFragmentDoc,
@@ -101,21 +127,23 @@ const documents = {
     types.UpdateCheckoutEmailMutationDocument,
   '\n  mutation UpdateCheckoutShippingAddressMutation(\n    $id: ID!\n    $shippingAddress: AddressInput!\n  ) {\n    checkoutShippingAddressUpdate(id: $id, shippingAddress: $shippingAddress) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
     types.UpdateCheckoutShippingAddressMutationDocument,
-  '\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n':
+  '\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n':
     types.InformationPage_QueryDocument,
-  '\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n':
+  '\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n    }\n  }\n':
     types.PaymentPage_CheckoutQueryDocument,
   '\n  fragment ShippingMethodSection_CheckoutFragment on Checkout {\n    ...ShippingMethodForm_CheckoutFragment\n  }\n':
     types.ShippingMethodSection_CheckoutFragmentFragmentDoc,
   '\n  fragment ShippingMethodForm_CheckoutFragment on Checkout {\n    shippingMethod: deliveryMethod {\n      ... on ShippingMethod {\n        id\n      }\n    }\n    shippingMethods {\n      id\n      active\n      ...ShippingMethodRadioItem_ShippingMethod\n    }\n  }\n':
     types.ShippingMethodForm_CheckoutFragmentFragmentDoc,
-  '\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    minimumDeliveryDays\n    maximumDeliveryDays\n    price {\n      currency\n      amount\n    }\n  }\n':
+  '\n  fragment DeliveryDays_ShippingMethod on ShippingMethod {\n    minimumDeliveryDays\n    maximumDeliveryDays\n  }\n':
+    types.DeliveryDays_ShippingMethodFragmentDoc,
+  '\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    price {\n      currency\n      amount\n    }\n    ...DeliveryDays_ShippingMethod\n  }\n':
     types.ShippingMethodRadioItem_ShippingMethodFragmentDoc,
   '\n  mutation UpdateCheckoutDeliveryMethodMutation(\n    $id: ID!\n    $deliveryMethodId: ID!\n  ) {\n    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $deliveryMethodId) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
     types.UpdateCheckoutDeliveryMethodMutationDocument,
   '\n  fragment ShippingReviewTable_CheckoutFragment on Checkout {\n    email\n    shippingAddress {\n      streetAddress1\n      city\n      countryArea\n      postalCode\n      country {\n        code\n      }\n    }\n  }\n':
     types.ShippingReviewTable_CheckoutFragmentFragmentDoc,
-  '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n':
+  '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n':
     types.ShippingPage_CheckoutQueryDocument,
   '\n  mutation RefreshAccessTokenMutation($refreshToken: String!) {\n    tokenRefresh(refreshToken: $refreshToken) {\n      token\n      errors {\n        field\n        message\n        code\n      }\n    }\n  }\n':
     types.RefreshAccessTokenMutationDocument,
@@ -187,6 +215,60 @@ export function graphql(
 export function graphql(
   source: '\n  mutation RequestEmailChangeMutation(\n    $channel: String!\n    $newEmail: String!\n    $password: String!\n    $redirectUrl: String!\n  ) {\n    requestEmailChange(\n      channel: $channel\n      newEmail: $newEmail\n      password: $password\n      redirectUrl: $redirectUrl\n    ) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  mutation RequestEmailChangeMutation(\n    $channel: String!\n    $newEmail: String!\n    $password: String!\n    $redirectUrl: String!\n  ) {\n    requestEmailChange(\n      channel: $channel\n      newEmail: $newEmail\n      password: $password\n      redirectUrl: $redirectUrl\n    ) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n',
+): (typeof documents)['\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      quantity\n      ...ShoppingCartButton_CheckoutFragment\n      ...CartBody_CheckoutFragment\n      ...CartFooter_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      quantity\n      ...ShoppingCartButton_CheckoutFragment\n      ...CartBody_CheckoutFragment\n      ...CartFooter_CheckoutFragment\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CartBody_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...CheckoutLine_CheckoutLineFragment\n    }\n    ...CheckoutLine_CheckoutFragment\n  }\n',
+): (typeof documents)['\n  fragment CartBody_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...CheckoutLine_CheckoutLineFragment\n    }\n    ...CheckoutLine_CheckoutFragment\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CheckoutLine_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n',
+): (typeof documents)['\n  fragment CheckoutLine_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CheckoutLine_CheckoutLineFragment on CheckoutLine {\n    id\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  fragment CheckoutLine_CheckoutLineFragment on CheckoutLine {\n    id\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  mutation UpdateCheckoutLinesMutation(\n    $checkoutId: ID!\n    $lines: [CheckoutLineUpdateInput!]!\n  ) {\n    checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n',
+): (typeof documents)['\n  mutation UpdateCheckoutLinesMutation(\n    $checkoutId: ID!\n    $lines: [CheckoutLineUpdateInput!]!\n  ) {\n    checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  mutation DeleteCheckoutLinesMutation($id: ID!, $linesIds: [ID!]!) {\n    checkoutLinesDelete(id: $id, linesIds: $linesIds) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n',
+): (typeof documents)['\n  mutation DeleteCheckoutLinesMutation($id: ID!, $linesIds: [ID!]!) {\n    checkoutLinesDelete(id: $id, linesIds: $linesIds) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CartFooter_CheckoutFragment on Checkout {\n    ...CartTotal_CheckoutFragment\n  }\n',
+): (typeof documents)['\n  fragment CartFooter_CheckoutFragment on Checkout {\n    ...CartTotal_CheckoutFragment\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CartTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n',
+): (typeof documents)['\n  fragment CartTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -287,8 +369,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    countryAreaChoices {\n      raw\n      verbose\n    }\n  }\n',
-): (typeof documents)['\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    countryAreaChoices {\n      raw\n      verbose\n    }\n  }\n'];
+  source: '\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    ...CityFormField_AddressValidationDataFragment\n    ...CountryAreaFormField_AddressValidationDataFragment\n  }\n',
+): (typeof documents)['\n  fragment AddressFields_AddressValidationDataFragment on AddressValidationData {\n    ...CityFormField_AddressValidationDataFragment\n    ...CountryAreaFormField_AddressValidationDataFragment\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CityFormField_AddressValidationDataFragment on AddressValidationData {\n    cityType\n    cityChoices {\n      raw\n      verbose\n    }\n  }\n',
+): (typeof documents)['\n  fragment CityFormField_AddressValidationDataFragment on AddressValidationData {\n    cityType\n    cityChoices {\n      raw\n      verbose\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n    fragment CountryAreaFormField_AddressValidationDataFragment on AddressValidationData {\n      countryAreaType\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  ',
+): (typeof documents)['\n    fragment CountryAreaFormField_AddressValidationDataFragment on AddressValidationData {\n      countryAreaType\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  '];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -305,26 +399,56 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...Total_CheckoutFragment\n    }\n  }\n',
-): (typeof documents)['\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...Total_CheckoutFragment\n    }\n  }\n'];
+  source: '\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...CheckoutTotal_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      ...Lines_CheckoutFragment\n      ...CheckoutTotal_CheckoutFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      totalPrice {\n        currency\n        net {\n          amount\n        }\n        gross {\n          amount\n        }\n      }\n      variant {\n        product {\n          name\n          translation(languageCode: $languageCode) {\n            name\n          }\n          media {\n            url\n            alt\n          }\n        }\n      }\n      quantity\n      id\n    }\n    displayGrossPrices\n  }\n',
-): (typeof documents)['\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      totalPrice {\n        currency\n        net {\n          amount\n        }\n        gross {\n          amount\n        }\n      }\n      variant {\n        product {\n          name\n          translation(languageCode: $languageCode) {\n            name\n          }\n          media {\n            url\n            alt\n          }\n        }\n      }\n      quantity\n      id\n    }\n    displayGrossPrices\n  }\n'];
+  source: '\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...Line_CheckoutLineFragment\n    }\n    ...Line_CheckoutFragment\n  }\n',
+): (typeof documents)['\n  fragment Lines_CheckoutFragment on Checkout {\n    lines {\n      id\n      ...Line_CheckoutLineFragment\n    }\n    ...Line_CheckoutFragment\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment Total_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n',
-): (typeof documents)['\n  fragment Total_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n'];
+  source: '\n  fragment Line_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n',
+): (typeof documents)['\n  fragment Line_CheckoutFragment on Checkout {\n    displayGrossPrices\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment Line_CheckoutLineFragment on CheckoutLine {\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  fragment Line_CheckoutLineFragment on CheckoutLine {\n    quantity\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    variant {\n      product {\n        name\n        translation(languageCode: $languageCode) {\n          name\n        }\n        attributes {\n          values {\n            name\n            translation(languageCode: $languageCode) {\n              name\n            }\n          }\n        }\n        media {\n          url\n          alt\n        }\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment CheckoutTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n',
+): (typeof documents)['\n  fragment CheckoutTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: '\n  mutation UpdateCheckoutBillingAddressMutation(\n    $id: ID!\n    $billingAddress: AddressInput!\n  ) {\n    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  mutation UpdateCheckoutBillingAddressMutation(\n    $id: ID!\n    $billingAddress: AddressInput!\n  ) {\n    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n',
+): (typeof documents)['\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n',
+): (typeof documents)['\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n',
+): (typeof documents)['\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -341,26 +465,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n',
-): (typeof documents)['\n  query BillingSection_ChannelQuery($channel: String!) {\n    channel(slug: $channel) {\n      ...BillingAddressForm_ChannelFragment\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n',
-): (typeof documents)['\n  query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...BillingAddressForm_AddressValidationDataFragment\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n',
-): (typeof documents)['\n  fragment BillingSection_CheckoutFragment on Checkout {\n    email\n    billingAddress {\n      country {\n        code\n        country\n      }\n      firstName\n      lastName\n      streetAddress1\n      streetAddress2\n      city\n      countryArea\n      postalCode\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n',
-): (typeof documents)['\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n'];
+  source: '\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query BillingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...BillingSection_CheckoutFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -371,8 +477,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n',
-): (typeof documents)['\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n'];
+  source: '\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n',
+): (typeof documents)['\n  query InformationSection_AddressValidationRulesQuery(\n    $countryCode: CountryCode!\n  ) {\n    addressValidationRules(countryCode: $countryCode) {\n      cityChoices {\n        raw\n      }\n      countryAreaChoices {\n        raw\n      }\n      ...InformationForm_AddressValidationDataFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -407,14 +513,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n',
-): (typeof documents)['\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n'];
+  source: '\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query InformationPage_Query($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n',
-): (typeof documents)['\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...InformationSection_CheckoutFragment\n    }\n  }\n'];
+  source: '\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query PaymentPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -431,8 +537,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    minimumDeliveryDays\n    maximumDeliveryDays\n    price {\n      currency\n      amount\n    }\n  }\n',
-): (typeof documents)['\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    minimumDeliveryDays\n    maximumDeliveryDays\n    price {\n      currency\n      amount\n    }\n  }\n'];
+  source: '\n  fragment DeliveryDays_ShippingMethod on ShippingMethod {\n    minimumDeliveryDays\n    maximumDeliveryDays\n  }\n',
+): (typeof documents)['\n  fragment DeliveryDays_ShippingMethod on ShippingMethod {\n    minimumDeliveryDays\n    maximumDeliveryDays\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    price {\n      currency\n      amount\n    }\n    ...DeliveryDays_ShippingMethod\n  }\n',
+): (typeof documents)['\n  fragment ShippingMethodRadioItem_ShippingMethod on ShippingMethod {\n    id\n    name\n    price {\n      currency\n      amount\n    }\n    ...DeliveryDays_ShippingMethod\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -449,8 +561,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n',
-): (typeof documents)['\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n'];
+  source: '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n',
+): (typeof documents)['\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

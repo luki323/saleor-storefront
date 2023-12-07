@@ -1,16 +1,18 @@
 'use client';
 
 import {zodResolver} from '@hookform/resolvers/zod';
-import {Controller, useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
 import {FormattedMessage} from '@/i18n/react-intl';
+import {FormField} from '@/lib/components/form/form-field/FormField';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {BackwardLink} from '../../../../_components/BackwardLink';
+import {Form} from '../../../../_components/Form';
 import {SubmitButton} from '../../../../_components/SubmitButton';
 import {FIELDS} from './consts/fields';
 import type {ShippingMethodSchema} from './consts/shipping-method-schema';
@@ -46,19 +48,18 @@ export function ShippingMethodForm({checkout}: Props) {
   const form = useForm<ShippingMethodSchema>({
     resolver: zodResolver(shippingMethodSchema),
   });
-  const {shippingMethodSubmit, routeIsPending} = useShippingMethodSubmit();
+  const {shippingMethodSubmit, routeIsPending} = useShippingMethodSubmit(form);
 
   const defaultValue =
     shippingMethod && 'id' in shippingMethod
       ? shippingMethod.id
       : shippingMethods.at(0)?.id;
+
   const disabled = form.formState.isSubmitting || routeIsPending;
 
   return (
-    <form
-      onSubmit={form.handleSubmit(shippingMethodSubmit)}
-      className={cn('flex flex-col gap-7')}>
-      <Controller
+    <Form form={form} onSubmit={form.handleSubmit(shippingMethodSubmit)}>
+      <FormField
         name={FIELDS.DELIVERY_METHOD_ID}
         control={form.control}
         {...(defaultValue && {defaultValue})}
@@ -69,14 +70,12 @@ export function ShippingMethodForm({checkout}: Props) {
             disabled={disabled}>
             {shippingMethods
               .filter((shippingMethod) => shippingMethod.active)
-              .map((shippingMethod) => {
-                return (
-                  <ShippingMethodRadioItem
-                    key={shippingMethod.id}
-                    shippingMethod={shippingMethod}
-                  />
-                );
-              })}
+              .map((shippingMethod) => (
+                <ShippingMethodRadioItem
+                  key={shippingMethod.id}
+                  shippingMethod={shippingMethod}
+                />
+              ))}
           </ShippingMethodRadioRoot>
         )}
       />
@@ -96,6 +95,6 @@ export function ShippingMethodForm({checkout}: Props) {
           </SubmitButton>
         </div>
       </div>
-    </form>
+    </Form>
   );
 }

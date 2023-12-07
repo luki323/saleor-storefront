@@ -34,9 +34,9 @@ interface Props {
 }
 
 export function CountrySelect({channel, disabled}: Props) {
-  const form = useFormContext<AddressFieldsSchema>();
-
   const {countries} = getFragment(CountrySelect_ChannelFragment, channel);
+
+  const form = useFormContext<AddressFieldsSchema>();
 
   const countryOptions = useCountryOptions(
     useMemo(
@@ -44,7 +44,6 @@ export function CountrySelect({channel, disabled}: Props) {
       [countries],
     ),
   );
-
   const {routeIsPending, setCountrySearchParam} = useSetCountrySearchParam();
 
   return (

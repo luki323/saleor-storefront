@@ -8,9 +8,9 @@ export function Quantity({value}: Props) {
   return (
     <div
       className={cn(
-        'flex h-5 w-5 items-center justify-center rounded-full bg-grey-light',
+        'flex h-5 w-5 items-center justify-center rounded-full bg-subdued',
       )}>
-      <p className={cn('text-xs text-white')}>{value}</p>
+      <p className={cn('text-xs font-medium')}>{value}</p>
     </div>
   );
 }

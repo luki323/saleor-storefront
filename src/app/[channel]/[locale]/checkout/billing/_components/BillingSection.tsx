@@ -1,6 +1,7 @@
 import invariant from 'tiny-invariant';
 
-import {type FragmentType, getFragment, graphql} from '@/graphql/generated';
+import type {FragmentType} from '@/graphql/generated';
+import {getFragment, graphql} from '@/graphql/generated';
 import type {CountryCode} from '@/graphql/generated/graphql';
 import {getBasePath} from '@/i18n/context/get-base-path';
 import {FormattedMessage} from '@/i18n/react-intl';
@@ -24,6 +25,9 @@ const BillingSection_ChannelQuery = graphql(/* GraphQL */ `
 const BillingSection_AddressValidationRulesQuery = graphql(/* GraphQL */ `
   query BillingSection_AddressValidationRulesQuery($countryCode: CountryCode!) {
     addressValidationRules(countryCode: $countryCode) {
+      cityChoices {
+        raw
+      }
       countryAreaChoices {
         raw
       }
@@ -57,19 +61,17 @@ interface Props {
 }
 
 export async function BillingSection({checkout, country}: Props) {
-  const [channelParam, localeParam] = getBasePath();
-
   const {email, billingAddress} = getFragment(
     BillingSection_CheckoutFragment,
     checkout,
   );
 
+  const [channelParam, localeParam] = getBasePath();
   const countryCode = findCountryCode(
     country,
     billingAddress?.country.code,
     localeToCountryCode(localeParam),
   );
-  invariant(countryCode);
 
   const [{channel}, {addressValidationRules}] = await Promise.all([
     fetchQueryData(BillingSection_ChannelQuery, {
@@ -79,8 +81,7 @@ export async function BillingSection({checkout, country}: Props) {
       countryCode,
     }),
   ]);
-  invariant(channel);
-  invariant(addressValidationRules);
+  invariant(channel && addressValidationRules);
 
   return (
     <section className={cn('space-y-3')}>

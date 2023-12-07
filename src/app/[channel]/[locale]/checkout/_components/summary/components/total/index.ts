@@ -1,1 +1,1 @@
-export {Total} from './Total';
+export {CheckoutTotal} from './Total';

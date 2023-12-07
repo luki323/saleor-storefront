@@ -17,6 +17,10 @@ const config: Config = {
           dark: 'hsl(var(--grey-dark))',
           foreground: 'hsl(var(--grey-foreground))',
         },
+        subdued: {
+          DEFAULT: 'hsl(var(--subdued))',
+          foreground: 'hsl(var(--subdued-foreground))',
+        },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',

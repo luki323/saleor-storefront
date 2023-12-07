@@ -18,7 +18,7 @@ export const TextField = forwardRef<ElementRef<'input'>, Props>(
       onBlur,
       value = initialValue,
       'aria-invalid': ariaInvalid,
-      ...props
+      ...restProps
     },
     ref,
   ) {
@@ -53,7 +53,7 @@ export const TextField = forwardRef<ElementRef<'input'>, Props>(
             valueHasChanged && 'pb-[.4rem] pt-[1.35rem] transition-all',
           )}
           id={id}
-          {...props}
+          {...restProps}
           {...registerFocusState({onFocus, onBlur})}
         />
       </div>

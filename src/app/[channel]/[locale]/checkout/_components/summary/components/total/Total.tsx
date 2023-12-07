@@ -1,20 +1,16 @@
-import type {VariantProps} from 'cva';
-import {cva} from 'cva';
-import invariant from 'tiny-invariant';
-
 import type {FragmentType} from '@/graphql/generated/fragment-masking';
 import {getFragment} from '@/graphql/generated/fragment-masking';
 import {graphql} from '@/graphql/generated/gql';
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
+import {Cell, Row, Table} from '@/lib/components/ui/Table';
 import {cn} from '@/lib/tools/cn';
-import type {PropsWithChildren} from '@/lib/types/react';
 
 import {Money} from '../../../Money';
 import {Text} from './Text';
 
-const Total_CheckoutFragment = graphql(/* GraphQL */ `
-  fragment Total_CheckoutFragment on Checkout {
+const CheckoutTotal_CheckoutFragment = graphql(/* GraphQL */ `
+  fragment CheckoutTotal_CheckoutFragment on Checkout {
     subtotalPrice {
       currency
       net {
@@ -46,22 +42,18 @@ const Total_CheckoutFragment = graphql(/* GraphQL */ `
   }
 `);
 
-interface TotalProps {
-  readonly checkout: FragmentType<typeof Total_CheckoutFragment>;
+interface Props {
+  readonly checkout: FragmentType<typeof CheckoutTotal_CheckoutFragment>;
 }
 
-export async function Total({checkout}: TotalProps) {
-  const {subtotalPrice, shippingPrice, totalPrice, displayGrossPrices} =
-    getFragment(Total_CheckoutFragment, checkout);
-
+export async function CheckoutTotal({checkout}: Props) {
   const intl = await getIntl(getLocale());
 
-  invariant(subtotalPrice);
-  invariant(shippingPrice);
-  invariant(totalPrice);
+  const {subtotalPrice, shippingPrice, totalPrice, displayGrossPrices} =
+    getFragment(CheckoutTotal_CheckoutFragment, checkout);
 
   return (
-    <div role="table" className={cn('mt-6 flex flex-col gap-2')}>
+    <Table className={cn('mt-6 gap-2')}>
       <Row>
         <Cell>
           <Text>
@@ -71,7 +63,7 @@ export async function Total({checkout}: TotalProps) {
             })}
           </Text>
         </Cell>
-        <Cell justifyEnd>
+        <Cell className={cn('justify-end')}>
           <Money
             value={
               displayGrossPrices
@@ -92,7 +84,7 @@ export async function Total({checkout}: TotalProps) {
             })}
           </Text>
         </Cell>
-        <Cell justifyEnd>
+        <Cell className={cn('justify-end')}>
           <Money
             value={
               displayGrossPrices
@@ -112,7 +104,7 @@ export async function Total({checkout}: TotalProps) {
             })}
           </Text>
         </Cell>
-        <Cell justifyEnd>
+        <Cell className={cn('justify-end')}>
           <abbr className={cn('mr-2 text-xs text-grey-light')}>
             {totalPrice.currency}
           </abbr>
@@ -128,32 +120,6 @@ export async function Total({checkout}: TotalProps) {
           />
         </Cell>
       </Row>
-    </div>
-  );
-}
-
-function Row({children}: PropsWithChildren) {
-  return (
-    <div role="row" className={cn('flex')}>
-      {children}
-    </div>
-  );
-}
-
-type CellProps = VariantProps<typeof cellStyles>;
-
-const cellStyles = cva('flex-1 flex items-center', {
-  variants: {
-    justifyEnd: {
-      true: 'justify-end',
-    },
-  },
-});
-
-function Cell({children, justifyEnd}: PropsWithChildren<CellProps>) {
-  return (
-    <div role="cell" className={cn(cellStyles({justifyEnd}))}>
-      {children}
-    </div>
+    </Table>
   );
 }

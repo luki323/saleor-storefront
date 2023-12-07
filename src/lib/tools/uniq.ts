@@ -17,6 +17,5 @@ export function uniqBy<Item>(
       uniqueValues.add(key);
     }
   }
-
   return newArr;
 }

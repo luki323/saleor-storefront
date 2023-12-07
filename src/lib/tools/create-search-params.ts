@@ -9,17 +9,19 @@ export type SearchParams = Record<
   SearchParamValue | readonly SearchParamValue[]
 >;
 
+export type Init =
+  | ConstructorParameters<typeof URLSearchParams>[number]
+  | SearchParams;
+
 // Extends `URLSearchParams` to include Next.js parsed search parameters
-export function createSearchParams(
-  init: ConstructorParameters<typeof URLSearchParams>[number] | SearchParams,
-) {
-  if (
-    !(
-      typeof init === 'object' &&
-      !(init instanceof URLSearchParams) &&
-      !isArray(init)
-    )
-  ) {
+export function createSearchParams(init: Init) {
+  const isDefaultInit = !(
+    typeof init === 'object' &&
+    !(init instanceof URLSearchParams) &&
+    !isArray(init)
+  );
+
+  if (isDefaultInit) {
     return new URLSearchParams(init);
   }
   return new URLSearchParams(

@@ -1,6 +1,7 @@
 export const APP_ROUTES = {
   ROOT: '',
   PRODUCTS: 'products',
+  PRODUCT: 'product',
   LOGIN: 'login',
   SIGNUP: 'signup',
   CONFIRM_ACCOUNT: 'confirm-account',

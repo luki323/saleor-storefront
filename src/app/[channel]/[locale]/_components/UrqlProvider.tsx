@@ -23,6 +23,10 @@ export function UrqlProvider({children}: PropsWithChildren) {
           keys: {
             // https://formidable.com/open-source/urql/docs/graphcache/normalized-caching/#custom-keys-and-non-keyable-entities
             Image: () => null,
+            TaxedMoney: () => null,
+            Money: () => null,
+            ProductPricingInfo: () => null,
+            TaxedMoneyRange: () => null,
           },
         }),
         ssr,

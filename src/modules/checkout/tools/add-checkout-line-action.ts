@@ -6,6 +6,7 @@ import type {
   CreateCheckoutMutationMutationVariables,
 } from '@/graphql/generated/graphql';
 import {fetchMutationData} from '@/lib/tools/get-client';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import {getCheckoutId} from './cookies';
 import {createCheckoutAction} from './create-checkout';
@@ -31,24 +32,15 @@ export async function addCheckoutLineAction({
 }: Variables) {
   const id = getCheckoutId();
 
-  if (id) {
-    return fetchMutationData(
-      AddCheckoutLineMutation,
-      {
-        id,
-        line,
-      },
-      {
-        fetchOptions: {
-          cache: 'no-cache',
-        },
-      },
-    );
-  } else {
-    return createCheckoutAction({
-      channel,
-      lines: [line],
-      languageCode,
-    });
-  }
+  return !isDefined(id)
+    ? await createCheckoutAction({
+        channel,
+        lines: [line],
+        languageCode,
+      })
+    : await fetchMutationData(
+        AddCheckoutLineMutation,
+        {id, line},
+        {fetchOptions: {cache: 'no-cache'}},
+      );
 }

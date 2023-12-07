@@ -21,6 +21,5 @@ export const IntlLink: typeof Link = forwardRef(function IntlLink(
     ...(!hrefIsString && hrefProp),
     pathname,
   };
-
   return <Link ref={ref} href={href} {...restProps} />;
 });

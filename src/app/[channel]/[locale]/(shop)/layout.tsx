@@ -1,33 +1,33 @@
-import type {PropsWithChildren} from 'react';
+import '@/styles/globals.css';
+import './styles/globals.css';
+import '../polyfills';
 
-import {APP_ROUTES} from '@/lib/consts';
-import {cn} from '@/lib/tools/cn';
-import {formatPathname} from '@/lib/tools/format-pathname';
+import type {AvailableChannel, AvailableLocale} from '@/i18n/consts';
+import type {PropsWithChildren} from '@/lib/types/react';
+import {fontSans} from '@/styles/fonts';
 
-import {LinkedLogo} from './_components/LinkedLogo';
-import {NavbarMenu} from './_components/navbar-menu';
-import {SearchButton} from './_components/SearchButton';
-import {ShoppingCartButton} from './_components/ShoppingCartButton';
+import {Providers} from '../_components/Providers';
+import {Toaster} from '../_components/Toaster';
 
-export default function ShopLayout({children}: PropsWithChildren) {
+interface Props {
+  readonly params: {
+    readonly channel: AvailableChannel;
+    readonly locale: AvailableLocale;
+  };
+}
+
+export default function HomeLayout({
+  children,
+  params: {channel, locale},
+}: PropsWithChildren<Props>) {
   return (
-    <div className={cn('px-4 md:px-6')}>
-      <div className={cn('mx-auto max-w-7xl')}>
-        <header
-          className={cn(
-            'sticky top-0 flex items-center gap-2 bg-primary-foreground py-3 md:py-4',
-          )}>
-          <div className={cn('mr-4 sm:mr-8 md:mr-12')}>
-            <LinkedLogo href={formatPathname(APP_ROUTES.ROOT)} />
-          </div>
-          <NavbarMenu />
-          <div className={cn('ml-auto')}>
-            <SearchButton />
-          </div>
-          <ShoppingCartButton />
-        </header>
-        {children}
-      </div>
-    </div>
+    <html lang={locale} className={fontSans.className}>
+      <body>
+        <Providers channel={channel} locale={locale}>
+          {children}
+        </Providers>
+        <Toaster expand />
+      </body>
+    </html>
   );
 }

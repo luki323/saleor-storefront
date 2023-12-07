@@ -22,4 +22,6 @@ export const APP_ROUTES = {
   API: {
     REFRESH: ['api', 'refresh'],
   },
+  COLLECTION: 'collection',
+  CATEGORY: 'category',
 };

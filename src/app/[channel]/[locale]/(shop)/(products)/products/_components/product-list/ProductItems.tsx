@@ -3,7 +3,7 @@ import {useQuery} from '@urql/next';
 import {graphql} from '@/graphql/generated';
 import type {ProductItems_ProductsQueryQueryVariables} from '@/graphql/generated/graphql';
 
-import {ProductItem} from './product-item';
+import {ProductItem} from '../../../_components/product-item';
 
 export const ProductItems_ProductsQuery = graphql(/* GraphQL */ `
   query ProductItems_ProductsQuery(

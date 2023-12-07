@@ -8,10 +8,10 @@ import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
-import {ProductCategoryName} from '../../../../_components/ProductCategoryName';
-import {ProductPriceRange} from '../../../../_components/ProductPriceRange';
-import {ProductThumbnail} from '../../../../_components/ProductThumbnail';
-import {PRODUCT_PAGE_SEARCH_PARAM_NAMES} from '../../../../product/[slug]/_consts';
+import {PRODUCT_PAGE_SEARCH_PARAM_NAMES} from '../../product/[slug]/_consts';
+import {ProductCategoryName} from '../ProductCategoryName';
+import {ProductPriceRange} from '../ProductPriceRange';
+import {ProductThumbnail} from '../ProductThumbnail';
 
 const ProductItem_ProductFragment = graphql(/* GraphQL */ `
   fragment ProductItem_ProductFragment on Product {

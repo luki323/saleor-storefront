@@ -49,6 +49,8 @@ const documents = {
     types.NavbarDropdownItem_MenuItemFragmentFragmentDoc,
   '\n  fragment NavbarDropdownTrigger_MenuItemFragment on MenuItem {\n    name\n    translation(languageCode: $languageCode) {\n      name\n    }\n  }\n':
     types.NavbarDropdownTrigger_MenuItemFragmentFragmentDoc,
+  '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n':
+    types.ProductItem_ProductFragmentFragmentDoc,
   '\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n':
     types.ShoppingCartButton_CheckoutFragmentFragmentDoc,
   '\n  query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {\n    checkout(id: $id) {\n      quantity\n      ...ShoppingCartButton_CheckoutFragment\n      ...CartBody_CheckoutFragment\n      ...CartFooter_CheckoutFragment\n    }\n  }\n':
@@ -67,6 +69,10 @@ const documents = {
     types.CartFooter_CheckoutFragmentFragmentDoc,
   '\n  fragment CartTotal_CheckoutFragment on Checkout {\n    subtotalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    shippingPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    totalPrice {\n      currency\n      net {\n        amount\n      }\n      gross {\n        amount\n      }\n    }\n    displayGrossPrices\n  }\n':
     types.CartTotal_CheckoutFragmentFragmentDoc,
+  '\n  query CategoryPage_CategoryQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    category(slug: $slug) {\n      __typename\n      id\n      products(first: 100, channel: $channel) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n':
+    types.CategoryPage_CategoryQueryDocument,
+  '\n  query CollectionPage_CollectionQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    collection(slug: $slug, channel: $channel) {\n      __typename\n      id\n      products(first: 100) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n':
+    types.CollectionPage_CollectionQueryDocument,
   '\n  fragment Product_ProductFragment on Product {\n    __typename\n    id\n    name\n    description\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n      description\n    }\n    isAvailable\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    variants {\n      __typename\n      id\n    }\n    ...VariantLinks_ProductFragment\n  }\n':
     types.Product_ProductFragmentFragmentDoc,
   '\n  fragment VariantLink_ProductVariantFragment on ProductVariant {\n    __typename\n    id\n    name\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    product {\n      __typename\n      id\n      slug\n    }\n  }\n':
@@ -85,8 +91,6 @@ const documents = {
     types.CollectionDropdownItems_CategoriesQueryDocument,
   '\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n':
     types.ProductItems_ProductsQueryDocument,
-  '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n':
-    types.ProductItem_ProductFragmentFragmentDoc,
   '\n  query GetCategoryIds($first: Int!, $slugs: [String!]!) {\n    categories(first: $first, filter: {slugs: $slugs}) {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n':
     types.GetCategoryIdsDocument,
   '\n  query GetCollectionIds($first: Int!, $slugs: [String!]!, $channel: String) {\n    collections(first: $first, filter: {slugs: $slugs}, channel: $channel) {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n':
@@ -293,6 +297,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n',
+): (typeof documents)['\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n',
 ): (typeof documents)['\n  fragment ShoppingCartButton_CheckoutFragment on Checkout {\n    quantity\n  }\n'];
 /**
@@ -347,6 +357,18 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  query CategoryPage_CategoryQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    category(slug: $slug) {\n      __typename\n      id\n      products(first: 100, channel: $channel) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query CategoryPage_CategoryQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    category(slug: $slug) {\n      __typename\n      id\n      products(first: 100, channel: $channel) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query CollectionPage_CollectionQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    collection(slug: $slug, channel: $channel) {\n      __typename\n      id\n      products(first: 100) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query CollectionPage_CollectionQuery(\n    $slug: String\n    $channel: String\n    $languageCode: LanguageCodeEnum!\n  ) {\n    collection(slug: $slug, channel: $channel) {\n      __typename\n      id\n      products(first: 100) {\n        edges {\n          node {\n            __typename\n            id\n            ...ProductItem_ProductFragment\n          }\n        }\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  fragment Product_ProductFragment on Product {\n    __typename\n    id\n    name\n    description\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n      description\n    }\n    isAvailable\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    variants {\n      __typename\n      id\n    }\n    ...VariantLinks_ProductFragment\n  }\n',
 ): (typeof documents)['\n  fragment Product_ProductFragment on Product {\n    __typename\n    id\n    name\n    description\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n      description\n    }\n    isAvailable\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    variants {\n      __typename\n      id\n    }\n    ...VariantLinks_ProductFragment\n  }\n'];
 /**
@@ -397,12 +419,6 @@ export function graphql(
 export function graphql(
   source: '\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  query ProductItems_ProductsQuery(\n    $first: Int\n    $after: String\n    $last: Int\n    $before: String\n    $channel: String\n    $categoryIds: [ID!]\n    $collectionIds: [ID!]\n    $languageCode: LanguageCodeEnum!\n  ) {\n    products(\n      first: $first\n      after: $after\n      last: $last\n      before: $before\n      filter: {categories: $categoryIds, collections: $collectionIds}\n      channel: $channel\n    ) {\n      edges {\n        node {\n          id\n          ...ProductItem_ProductFragment\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n',
-): (typeof documents)['\n  fragment ProductItem_ProductFragment on Product {\n    __typename\n    id\n    name\n    slug\n    translation(languageCode: $languageCode) {\n      __typename\n      id\n      name\n    }\n    thumbnail(format: WEBP, size: 4096) {\n      ...ProductThumbnail_ImageFragment\n    }\n    pricing {\n      ...ProductPriceRange_PricingInfoFragment\n    }\n    category {\n      ...ProductCategoryName_CategoryFragment\n    }\n    variants {\n      __typename\n      id\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -2,8 +2,11 @@
 
 import type {FragmentType} from '@/graphql/generated';
 import {getFragment, graphql} from '@/graphql/generated';
+import {useIntlRouter} from '@/i18n/hooks/use-intl-router';
 import {arrayChunks} from '@/lib/tools/array-chunks';
 import {cn} from '@/lib/tools/cn';
+import {formatPathname} from '@/lib/tools/format-pathname';
+import {isDefined} from '@/lib/tools/is-defined';
 
 import * as DropdownMenu from './DropdownMenu';
 import {NavbarDropdownColumn} from './NavbarDropdownColumn';
@@ -32,6 +35,8 @@ const COL_SIZE = 8;
 export function NavbarDropdownContent({menuItem}: Props) {
   const item = getFragment(NavbarDropdownContent_MenuItemFragment, menuItem);
 
+  const intlRouter = useIntlRouter();
+
   return (
     <DropdownMenu.Content
       className={cn(
@@ -39,7 +44,15 @@ export function NavbarDropdownContent({menuItem}: Props) {
       )}
       sideOffset={8}
       align="start">
-      <DropdownMenu.RadioGroup className={cn('flex gap-8')}>
+      <DropdownMenu.RadioGroup
+        className={cn('flex gap-8')}
+        onValueChange={(routeSegment) => {
+          const slug = item.page?.slug;
+
+          if (isDefined(slug)) {
+            intlRouter.push(formatPathname(slug, routeSegment));
+          }
+        }}>
         {item.children &&
           arrayChunks(item.children, COL_SIZE).map((col, idx) => (
             <NavbarDropdownColumn key={idx}>

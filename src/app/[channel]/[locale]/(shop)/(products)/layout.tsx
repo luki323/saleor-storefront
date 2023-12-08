@@ -5,6 +5,7 @@ import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 import {LinkedLogo} from './_components/LinkedLogo';
+import {LoginLink} from './_components/LoginLink';
 import {NavbarMenu} from './_components/navbar-menu';
 import {SearchButton} from './_components/SearchButton';
 import {ShoppingCartDialog} from './_components/shopping-cart-dialog';
@@ -25,6 +26,7 @@ export default function ShopLayout({children}: PropsWithChildren) {
             <SearchButton />
           </div>
           <ShoppingCartDialog />
+          <LoginLink />
         </header>
         {children}
         <footer className={cn('mt-4 h-96 bg-gray-100')}>{/* TODO */}</footer>

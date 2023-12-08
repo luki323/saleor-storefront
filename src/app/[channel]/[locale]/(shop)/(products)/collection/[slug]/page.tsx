@@ -43,6 +43,8 @@ async function CollectionPage_({params: {slug}}: Props) {
     slug,
     ...basePathToQueryVariables(...getBasePath()),
   });
+
+  // TODO: Replace with pagination
   return (
     <ol className={cn('grid grid-cols-3 gap-x-10 gap-y-6')}>
       {collection?.products?.edges.map(({node}) => (

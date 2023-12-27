@@ -5,13 +5,9 @@ import {isDefined} from '@/lib/tools/is-defined';
 
 import {AVAILABLE_LOCALES} from '../consts';
 
-export function formatLocale(preferredLocale: string) {
-  const formattedLocale = AVAILABLE_LOCALES.find((locale) =>
-    ciEquals(locale, preferredLocale),
-  );
-  invariant(
-    isDefined(formattedLocale),
-    `Couldn't format "${preferredLocale}" locale`,
-  );
+export function formatLocale(locale: string) {
+  const formattedLocale = AVAILABLE_LOCALES.find((l) => ciEquals(l, locale));
+  invariant(isDefined(formattedLocale), `Couldn't format "${locale}" locale`);
+
   return formattedLocale;
 }

@@ -9,10 +9,10 @@ interface Props {
 }
 
 export async function IntlProvider({
-  locale: localeProp,
+  locale,
   children,
 }: PropsWithChildren<Props>) {
-  const {locale, defaultLocale, messages} = await getIntl(localeProp);
+  const {defaultLocale, messages} = await getIntl(locale);
 
   return (
     <ReactIntlProvider

@@ -1,8 +1,8 @@
 import invariant from 'tiny-invariant';
 
+import {assertAvailableChannel} from '@/i18n/tools/assert-available-channel';
+import {assertAvailableLocale} from '@/i18n/tools/assert-available-locale';
 import {formatLocale} from '@/i18n/tools/format-locale';
-import {isAvailableChannel} from '@/i18n/tools/is-available-channel';
-import {isAvailableCiLocale} from '@/i18n/tools/is-available-ci-locale';
 import {isDefined} from '@/lib/tools/is-defined';
 import {splitPathname} from '@/lib/tools/split-pathname';
 
@@ -20,15 +20,13 @@ export const setBasePathHeadersHandler: Handler = function setBasePathHeaders({
   const segments = splitPathname(req.nextUrl.pathname);
 
   const [channelSegment] = segments;
-  invariant(
-    isDefined(channelSegment) && isAvailableChannel(channelSegment),
-    `Invalid channel: "${channelSegment}"`,
-  );
+  invariant(isDefined(channelSegment), 'Missing channel segment');
+  assertAvailableChannel(channelSegment);
+
   const [, localeSegment] = segments;
-  invariant(
-    isDefined(localeSegment) && isAvailableCiLocale(localeSegment),
-    `Invalid locale: "${localeSegment}"`,
-  );
+  invariant(isDefined(localeSegment), 'Missing locale segment');
+  assertAvailableLocale(localeSegment);
+
   const formattedLocale = formatLocale(localeSegment);
 
   const updatedHeaders = new Headers(req.headers);

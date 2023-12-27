@@ -7,8 +7,8 @@ import {setBasePathHeadersHandler} from './middleware/set-base-path-headers-hand
 
 export default async function middleware(req: NextRequest) {
   const {middleware, use} = createMiddleware();
-  use(preventFromVisitingHomePage);
   use(basePathHandler);
+  use(preventFromVisitingHomePage);
   use(setBasePathHeadersHandler);
 
   return middleware(req);

@@ -26,7 +26,6 @@ export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
             // TODO: display server error
             return;
           }
-
           localStorage.setItem(result.name, result.value);
 
           form.reset();
@@ -41,7 +40,6 @@ export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
               id: 'r/rQ02',
             }),
           });
-
           startTransition(() => {
             intlRouter.push(formatPathname(...APP_ROUTES.ROOT));
           });

@@ -2,7 +2,7 @@ import {graphql} from '@/graphql/generated';
 import type {RefreshAccessTokenMutationMutationVariables} from '@/graphql/generated/graphql';
 import {fetchMutationData} from '@/lib/tools/get-client';
 
-const RefreshAccessTokenMutation = graphql(`
+const RefreshAccessTokenMutation = graphql(/* GraphQL */ `
   mutation RefreshAccessTokenMutation($refreshToken: String!) {
     tokenRefresh(refreshToken: $refreshToken) {
       token

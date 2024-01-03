@@ -14468,6 +14468,7 @@ export type MutationTransactionInitializeArgs = {
   amount?: InputMaybe<Scalars['PositiveDecimal']['input']>;
   customerIpAddress?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
+  idempotencyKey?: InputMaybe<Scalars['String']['input']>;
   paymentGateway: PaymentGatewayToInitialize;
 };
 
@@ -27411,6 +27412,12 @@ export type TransactionEvent = Node & {
   /** The ID of the object. */
   id: Scalars['ID']['output'];
   /**
+   * Idempotency key assigned to the event.
+   *
+   * Added in Saleor 3.14.
+   */
+  idempotencyKey?: Maybe<Scalars['String']['output']>;
+  /**
    * Message related to the transaction's event.
    *
    * Added in Saleor 3.13.
@@ -27574,6 +27581,7 @@ export enum TransactionInitializeErrorCode {
   GraphqlError = 'GRAPHQL_ERROR',
   Invalid = 'INVALID',
   NotFound = 'NOT_FOUND',
+  Unique = 'UNIQUE',
 }
 
 /**
@@ -27594,6 +27602,12 @@ export type TransactionInitializeSession = Event & {
   customerIpAddress?: Maybe<Scalars['String']['output']>;
   /** Payment gateway data in JSON format, received from storefront. */
   data?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * Idempotency key assigned to the transaction initialize.
+   *
+   * Added in Saleor 3.14.
+   */
+  idempotencyKey: Scalars['String']['output'];
   /** Time of the event. */
   issuedAt?: Maybe<Scalars['DateTime']['output']>;
   /** The user or application that triggered the event. */
@@ -27649,6 +27663,12 @@ export type TransactionItem = Node &
     chargePendingAmount: Money;
     /** Total amount charged for this payment. */
     chargedAmount: Money;
+    /**
+     * The related checkout.
+     *
+     * Added in Saleor 3.14.
+     */
+    checkout?: Maybe<Checkout>;
     /** Date and time at which payment transaction was created. */
     createdAt: Scalars['DateTime']['output'];
     /**
@@ -32093,6 +32113,20 @@ export type ShippingPage_CheckoutQueryQuery = {
         };
       })
     | null;
+};
+
+export type DeactivateAllTokensMutationMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type DeactivateAllTokensMutationMutation = {
+  tokensDeactivateAll?: {
+    errors: Array<{
+      field?: string | null;
+      message?: string | null;
+      code: AccountErrorCode;
+    }>;
+  } | null;
 };
 
 export type RefreshAccessTokenMutationMutationVariables = Exact<{
@@ -41528,6 +41562,45 @@ export const ShippingPage_CheckoutQueryDocument = {
 } as unknown as DocumentNode<
   ShippingPage_CheckoutQueryQuery,
   ShippingPage_CheckoutQueryQueryVariables
+>;
+export const DeactivateAllTokensMutationDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: {kind: 'Name', value: 'DeactivateAllTokensMutation'},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'tokensDeactivateAll'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'errors'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {kind: 'Field', name: {kind: 'Name', value: 'field'}},
+                      {kind: 'Field', name: {kind: 'Name', value: 'message'}},
+                      {kind: 'Field', name: {kind: 'Name', value: 'code'}},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeactivateAllTokensMutationMutation,
+  DeactivateAllTokensMutationMutationVariables
 >;
 export const RefreshAccessTokenMutationDocument = {
   kind: 'Document',

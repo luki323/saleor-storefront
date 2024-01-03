@@ -7,6 +7,7 @@ import {hasAccessToken} from '@/modules/account/tools/cookies';
 
 import {ChangePasswordSection} from './_components/change-password-section';
 import {Introduction} from './_components/Introduction';
+import {LogOutSection} from './_components/log-out-section';
 import {RequestEmailChangeSection} from './_components/request-email-change-section';
 
 export default async function UserDetails() {
@@ -17,6 +18,7 @@ export default async function UserDetails() {
         <Separator />
         <RequestEmailChangeSection />
         <ChangePasswordSection />
+        <LogOutSection />
       </div>
     );
   }

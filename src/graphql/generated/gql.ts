@@ -163,6 +163,8 @@ const documents = {
     types.ShippingReviewTable_CheckoutFragmentFragmentDoc,
   '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n':
     types.ShippingPage_CheckoutQueryDocument,
+  '\n  mutation DeactivateAllTokensMutation {\n    tokensDeactivateAll {\n      errors {\n        field\n        message\n        code\n      }\n    }\n  }\n':
+    types.DeactivateAllTokensMutationDocument,
   '\n  mutation RefreshAccessTokenMutation($refreshToken: String!) {\n    tokenRefresh(refreshToken: $refreshToken) {\n      token\n      errors {\n        field\n        message\n        code\n      }\n    }\n  }\n':
     types.RefreshAccessTokenMutationDocument,
   '\n  mutation AddCheckoutLineMutation($id: ID, $line: CheckoutLineInput!) {\n    checkoutLinesAdd(id: $id, lines: [$line]) {\n      errors {\n        field\n        code\n      }\n    }\n  }\n':
@@ -635,6 +637,12 @@ export function graphql(
 export function graphql(
   source: '\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n',
 ): (typeof documents)['\n  query ShippingPage_CheckoutQuery($id: ID!) {\n    checkout(id: $id) {\n      quantity\n      shippingAddress {\n        __typename\n      }\n      deliveryMethod {\n        __typename\n      }\n      billingAddress {\n        __typename\n      }\n      ...Breadcrumbs_CheckoutFragment\n      ...ShippingReviewTable_CheckoutFragment\n      ...ShippingMethodSection_CheckoutFragment\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  mutation DeactivateAllTokensMutation {\n    tokensDeactivateAll {\n      errors {\n        field\n        message\n        code\n      }\n    }\n  }\n',
+): (typeof documents)['\n  mutation DeactivateAllTokensMutation {\n    tokensDeactivateAll {\n      errors {\n        field\n        message\n        code\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

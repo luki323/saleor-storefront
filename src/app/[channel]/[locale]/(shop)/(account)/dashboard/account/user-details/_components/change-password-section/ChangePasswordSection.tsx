@@ -1,21 +1,22 @@
 import {getLocale} from '@/i18n/context/get-locale';
 import {getIntl} from '@/i18n/get-intl';
-import {cn} from '@/lib/tools/cn';
 
+import {SectionHeading} from '../SectionHeading';
+import {UserDetailsSection} from '../UserDetailsSection';
 import {ChangePassowrdForm} from './ChangePassowrdForm';
 
 export async function ChangePasswordSection() {
   const intl = await getIntl(getLocale());
 
   return (
-    <section className={cn('space-y-2')}>
-      <h3 className={cn('font-medium')}>
+    <UserDetailsSection>
+      <SectionHeading>
         {intl.formatMessage({
           defaultMessage: 'Change password',
           id: 'L4nXIc',
         })}
-      </h3>
+      </SectionHeading>
       <ChangePassowrdForm />
-    </section>
+    </UserDetailsSection>
   );
 }

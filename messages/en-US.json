@@ -128,6 +128,9 @@
   "Jl/tSJ": {
     "defaultMessage": "Enter a valid new email"
   },
+  "KN7zKn": {
+    "defaultMessage": "Error"
+  },
   "L4nXIc": {
     "defaultMessage": "Change password"
   },
@@ -157,6 +160,9 @@
   },
   "PRlD0A": {
     "defaultMessage": "Shipping"
+  },
+  "PlBReU": {
+    "defaultMessage": "Log out"
   },
   "QOiG4E": {
     "defaultMessage": "Set password"
@@ -212,6 +218,9 @@
   "atD3r4": {
     "defaultMessage": "Confirm password:"
   },
+  "bUnGvj": {
+    "defaultMessage": "Failed to sign up"
+  },
   "ccXLVi": {
     "defaultMessage": "Category"
   },
@@ -256,6 +265,9 @@
   },
   "kFjJxN": {
     "defaultMessage": "Update your user details settings."
+  },
+  "l3CDSb": {
+    "defaultMessage": "Controls"
   },
   "lBENL4": {
     "defaultMessage": "request email change"

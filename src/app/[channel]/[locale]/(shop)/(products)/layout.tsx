@@ -3,7 +3,9 @@ import type {PropsWithChildren} from 'react';
 import {APP_ROUTES} from '@/lib/consts';
 import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
+import {isUserLoggedIn} from '@/lib/tools/is-user-logged-in';
 
+import {DashboardLink} from './_components/DashboardLink';
 import {LinkedLogo} from './_components/LinkedLogo';
 import {LoginLink} from './_components/LoginLink';
 import {NavbarMenu} from './_components/navbar-menu';
@@ -26,7 +28,7 @@ export default function ShopLayout({children}: PropsWithChildren) {
             <SearchButton />
           </div>
           <ShoppingCartDialog />
-          <LoginLink />
+          {isUserLoggedIn() ? <DashboardLink /> : <LoginLink />}
         </header>
         {children}
         <footer className={cn('mt-4 h-96 bg-gray-100')}>{/* TODO */}</footer>

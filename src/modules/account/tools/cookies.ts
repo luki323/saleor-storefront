@@ -1,10 +1,8 @@
 import 'server-only';
 
-import type {serialize} from 'cookie';
-import * as jose from 'jose';
+import type {CookieSerializeOptions, serialize} from 'cookie';
 import {cookies} from 'next/headers';
 
-import {SALEOR_ORIGIN} from '@/env/env-local';
 import {APP_ROUTES} from '@/lib/consts';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
@@ -18,31 +16,21 @@ export function hasAccessToken() {
   return cookies().has(COOKIE_NAMES.ACCESS_TOKEN);
 }
 
-export async function createAccessToken(value: string) {
-  const JWKS = jose.createRemoteJWKSet(
-    new URL(`${SALEOR_ORIGIN}/.well-known/jwks.json`),
-  );
-
-  try {
-    const {
-      payload: {exp, iat},
-    } = await jose.jwtVerify(value, JWKS);
-
-    return [
-      COOKIE_NAMES.ACCESS_TOKEN,
-      value,
-      {
-        secure: true,
-        path: formatPathname(APP_ROUTES.ROOT),
-        httpOnly: true,
-        sameSite: 'lax',
-        ...(typeof exp === 'number' &&
-          typeof iat === 'number' && {maxAge: exp - iat}),
-      },
-    ] satisfies Parameters<typeof serialize>;
-  } catch (error) {
-    return null;
-  }
+export function createAccessToken(
+  value: string,
+  options?: Pick<CookieSerializeOptions, 'expires'>,
+) {
+  return [
+    COOKIE_NAMES.ACCESS_TOKEN,
+    value,
+    {
+      secure: true,
+      path: formatPathname(APP_ROUTES.ROOT),
+      httpOnly: true,
+      sameSite: 'lax',
+      ...options,
+    },
+  ] satisfies Parameters<typeof serialize>;
 }
 
 export async function setAccessToken(value: string) {
@@ -53,7 +41,10 @@ export async function setAccessToken(value: string) {
   }
 }
 
-export function createRefreshToken(value: string) {
+export function createRefreshToken(
+  value: string,
+  options?: Pick<CookieSerializeOptions, 'expires'>,
+) {
   return [
     COOKIE_NAMES.REFRESH_TOKEN,
     value,
@@ -62,6 +53,7 @@ export function createRefreshToken(value: string) {
       httpOnly: true,
       sameSite: 'strict',
       path: formatPathname(...APP_ROUTES.API.REFRESH),
+      ...options,
     },
   ] satisfies Parameters<typeof serialize>;
 }
@@ -71,5 +63,6 @@ export function setRefreshToken(value: string) {
 }
 
 export function deleteAllCookies() {
-  Object.values(COOKIE_NAMES).forEach((name) => cookies().delete(name));
+  cookies().set(...createAccessToken('', {expires: new Date(0)}));
+  cookies().set(...createRefreshToken('', {expires: new Date(0)}));
 }

@@ -283,6 +283,12 @@
       "value": "Enter a valid new email"
     }
   ],
+  "KN7zKn": [
+    {
+      "type": 0,
+      "value": "Error"
+    }
+  ],
   "L4nXIc": [
     {
       "type": 0,
@@ -349,6 +355,12 @@
     {
       "type": 0,
       "value": "Shipping"
+    }
+  ],
+  "PlBReU": [
+    {
+      "type": 0,
+      "value": "Log out"
     }
   ],
   "QOiG4E": [
@@ -467,6 +479,12 @@
       "value": "Confirm password:"
     }
   ],
+  "bUnGvj": [
+    {
+      "type": 0,
+      "value": "Failed to sign up"
+    }
+  ],
   "ccXLVi": [
     {
       "type": 0,
@@ -555,6 +573,12 @@
     {
       "type": 0,
       "value": "Update your user details settings."
+    }
+  ],
+  "l3CDSb": [
+    {
+      "type": 0,
+      "value": "Controls"
     }
   ],
   "lBENL4": [

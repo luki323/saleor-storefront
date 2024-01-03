@@ -4,7 +4,7 @@ import {splitPathname} from '@/lib/tools/split-pathname';
 
 import type {Handler} from './create-middleware';
 
-export const preventFromVisitingHomePage: Handler =
+export const preventFromVisitingHomePageHandler: Handler =
   function preventFromVisitingHomePage({req, EarlyReturnResponse}) {
     // Temporarily prevent from visiting home page until it's implemented
     if (splitPathname(req.nextUrl.pathname).length === 2) {
